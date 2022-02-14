@@ -17,6 +17,7 @@ const companySchema = new Schema({
   password: { type: String, required: true },
   repeatPassword: { type: String, required: true },
   description: { type: String, required: true },
+  jobs: [{ type: mongoose.Schema.Types.ObjectId, ref: "jobs" }],
 });
-const CompanyCollection = mongoose.model("company", companySchema);
+const CompanyCollection = mongoose.model("companies", companySchema);
 module.exports = CompanyCollection;

@@ -30,7 +30,7 @@ const typeDefs = gql`
     password: String!
     repeatPassword: String!
     description: String!
-    job: [JobType]
+    jobs: [JobType]
   }
   # job type
   type JobType {
@@ -40,7 +40,7 @@ const typeDefs = gql`
     date: String!
     num_of_people_needed: Int!
     job_description: String!
-    created_bY: String!
+    created_bY: CompanyType
   }
   type Query {
     # user Query
@@ -112,15 +112,15 @@ const typeDefs = gql`
       date: String!
       num_of_people_needed: Int!
       job_description: String!
-      created_bY: String!
+      created_bY: ID!
     ): JobType
     deleteJob(id: ID): JobType
     updateJob(
-      job_Title: String!
-      company_Name: String!
-      date: String!
-      num_of_people_needed: Int!
-      job_description: String!
+      job_Title: String
+      company_Name: String
+      date: String
+      num_of_people_needed: Int
+      job_description: String
       created_bY: String
     ): JobType
   }
@@ -131,6 +131,7 @@ const resolvers = {
     // user queries
     getUsers: async () => {
       const getAllUsers = await UserCollection.find({});
+
       if (getAllUsers) {
         return getAllUsers;
       } else {
@@ -147,7 +148,9 @@ const resolvers = {
     },
     // company queries
     getCompanies: async () => {
-      const getAllCompanies = await CompanyCollection.find({});
+      const getAllCompanies = await CompanyCollection.find({})
+        .populate("jobs")
+        .populate("created_bY");
       if (getAllCompanies) {
         return getAllCompanies;
       } else {
@@ -155,7 +158,7 @@ const resolvers = {
       }
     },
     async getOneCompany(_, { id }) {
-      const getCompany = await CompanyCollection.findById(id);
+      const getCompany = await CompanyCollection.findById(id).populate("jobs");
       if (getCompany) {
         return getCompany;
       } else {
@@ -164,7 +167,8 @@ const resolvers = {
     },
     // job queries
     getJobs: async () => {
-      const getAllJobs = await JobCollection.find({});
+      const getAllJobs = await JobCollection.find({}).populate("created_bY");
+
       if (getAllJobs) {
         return getAllJobs;
       } else {
@@ -172,7 +176,7 @@ const resolvers = {
       }
     },
     async getOneJob(_, { id }) {
-      const getJob = await JobCollection.findById(id);
+      const getJob = await JobCollection.findById(id).populate("created_bY");
       if (getJob) {
         return getJob;
       } else {
@@ -241,10 +245,15 @@ const resolvers = {
     // job Mutation
     async addJob(_, args) {
       const createJob = new JobCollection(args);
-      console.log("====================================");
-      console.log(createJob);
-      console.log("====================================");
-      return await createJob.save();
+      await createJob.save();
+      // we need to store the job in the database
+      const company = await CompanyCollection.findById(args.created_bY);
+      //!  then we need to find the company that created this job using
+      //!   the id for the company we receive it from args when we create the job
+      company.jobs.push(createJob._id);
+      await company.save();
+
+      return createJob;
     },
     async updateJob(_, args) {
       const updateJob = await JobCollection.findByIdAndUpdate(

@@ -1,5 +1,10 @@
 // const { makeExecutableSchema } = require("graphql-tools");
 // const ConstraintDirective = require("graphql-constraint-directive");
+// for cors policy
+// const express = require("express");
+// const app = express();
+// //////
+
 const { ApolloServer } = require("apollo-server");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -16,13 +21,8 @@ mongoose
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  // mocks: true,
-
-  // context: ({ req }) => ({
-  //   //   // authScope: getScope(req.headers.authorization),
-  // }),
 });
 
 server.listen().then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
+  console.log(`🚀 apolloServer Server ready at  ${url}`);
 });

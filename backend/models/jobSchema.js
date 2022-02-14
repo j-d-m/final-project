@@ -7,7 +7,7 @@ const jobSchema = new Schema({
   date: { type: String, required: true },
   num_of_people_needed: { type: Number, required: true },
   job_description: { type: String, required: true },
-  created_by: { type: String, required: true },
+  created_bY: { type: mongoose.Schema.Types.ObjectId, ref: "companies" },
 });
-const JobCollection = mongoose.model("job", jobSchema);
+const JobCollection = mongoose.model("jobs", jobSchema);
 module.exports = JobCollection;
