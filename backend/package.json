@@ -1,0 +1,22 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server",
+    "dev": "nodemon server"
+  },
+  "keywords": [],
+  "author": "Anass knene",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^3.6.3",
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "graphql": "^15.8.0",
+    "graphql-constraint-directive": "^2.3.0",
+    "mongoose": "^6.2.1"
+  }
+}
