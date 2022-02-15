@@ -1,16 +1,18 @@
-// const { makeExecutableSchema } = require("graphql-tools");
-// const ConstraintDirective = require("graphql-constraint-directive");
 // for cors policy
-// const express = require("express");
 // const app = express();
+// const cors = require("cors");
+// app.use(cors({ origin: "http://localhost:3000" }));
+// const express = require("express");
 // //////
 
 const { ApolloServer } = require("apollo-server");
-const mongoose = require("mongoose");
-const cors = require("cors");
-const { typeDefs, resolvers } = require("./graphql/resolve_def");
+const { typeDefs } = require("./graphql/typeDefs");
+const { resolvers } = require("./graphql/resolvers");
+
+// const { typeDefs, resolvers } = require("./graphql/resolvers");
 
 require("dotenv").config();
+const mongoose = require("mongoose");
 const { DB_USER, DB_PASS, DB_HOST, DB_NAME } = process.env;
 const mongoURL = `mongodb+srv://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}?retryWrites=true&w=majority`;
 mongoose
@@ -21,6 +23,15 @@ mongoose
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  context: (context) => {
+    return context;
+  },
+  // this ↓
+  cors: true,
+  // or this ↓
+  // cors: {
+  // 	origin: '*',
+  // 	credentials: true}
 });
 
 server.listen().then(({ url }) => {

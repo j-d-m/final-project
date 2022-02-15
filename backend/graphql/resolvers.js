@@ -1,135 +1,18 @@
-const { gql } = require("apollo-server");
 const UserCollection = require("../models/userSchema");
 const bcrypt = require("bcrypt");
 const CompanyCollection = require("../models/companySchema");
 const JobCollection = require("../models/jobSchema");
-
-const typeDefs = gql`
-  # user type
-  type UserType {
-    id: ID
-    first_name: String!
-    last_name: String!
-    avatar: String
-    email: String!
-    phone: Int
-    password: String!
-    hourly_rate: Int
-    description: String!
-  }
-  # company type
-  type CompanyType {
-    id: ID
-    company_name: String!
-    owner_name: String!
-    avatar: String
-    company_type: String!
-    address: String!
-    phone: Int
-    email: String!
-    password: String!
-    repeatPassword: String!
-    description: String!
-    jobs: [JobType]
-  }
-  # job type
-  type JobType {
-    id: ID
-    job_Title: String!
-    company_Name: String!
-    date: String!
-    num_of_people_needed: Int!
-    job_description: String!
-    created_bY: CompanyType
-  }
-  type Query {
-    # user Query
-    getUsers: [UserType]
-    getOneUser(id: ID): UserType
-    # company Query
-    getCompanies: [CompanyType]
-    getOneCompany(id: ID): CompanyType
-    # job Query
-    getJobs: [JobType]
-    getOneJob(id: ID): JobType
-  }
-  type Mutation {
-    # user Mutation
-    addUser(
-      first_name: String!
-      last_name: String!
-      email: String!
-      password: String!
-      phone: Int
-      hourly_rate: Int
-      description: String!
-    ): UserType
-    deleteUser(id: ID): UserType
-    updateUser(
-      id: ID!
-      first_name: String
-      last_name: String
-      avatar: String
-      email: String
-      password: String
-      phone: Int
-      hourly_rate: Int
-      description: String
-    ): UserType
-    # Company Mutation
-    addCompany(
-      id: ID
-      company_name: String!
-      owner_name: String!
-      avatar: String
-      company_type: String!
-      address: String!
-      phone: Int
-      email: String!
-      password: String!
-      repeatPassword: String!
-      description: String!
-    ): CompanyType
-    deleteCompany(id: ID): CompanyType
-    updateCompany(
-      id: ID
-      company_name: String
-      owner_name: String
-      avatar: String
-      company_type: String
-      address: String
-      phone: Int
-      email: String
-      password: String
-      repeatPassword: String
-      description: String
-    ): CompanyType
-    # job Mutation
-    addJob(
-      id: ID
-      job_Title: String!
-      company_Name: String!
-      date: String!
-      num_of_people_needed: Int!
-      job_description: String!
-      created_bY: ID!
-    ): JobType
-    deleteJob(id: ID): JobType
-    updateJob(
-      job_Title: String
-      company_Name: String
-      date: String
-      num_of_people_needed: Int
-      job_description: String
-      created_bY: String
-    ): JobType
-  }
-`;
-
+// const { makeExecutableSchema } = require("graphql-tools");
+// const ConstraintDirective = require("graphql-constraint-directive");
+const Joi = require("@hapi/joi");
+const { UserInputError } = require("apollo-server");
 const resolvers = {
   Query: {
     // user queries
-    getUsers: async () => {
+    getUsers: async (_, args, context) => {
+      console.log("====================================");
+      console.log(context);
+      console.log("====================================");
       const getAllUsers = await UserCollection.find({});
 
       if (getAllUsers) {
@@ -148,9 +31,8 @@ const resolvers = {
     },
     // company queries
     getCompanies: async () => {
-      const getAllCompanies = await CompanyCollection.find({})
-        .populate("jobs")
-        .populate("created_bY");
+      const getAllCompanies = await CompanyCollection.find().populate("jobs");
+
       if (getAllCompanies) {
         return getAllCompanies;
       } else {
@@ -167,7 +49,7 @@ const resolvers = {
     },
     // job queries
     getJobs: async () => {
-      const getAllJobs = await JobCollection.find({}).populate("created_bY");
+      const getAllJobs = await JobCollection.find({}).populate("created_by");
 
       if (getAllJobs) {
         return getAllJobs;
@@ -176,7 +58,7 @@ const resolvers = {
       }
     },
     async getOneJob(_, { id }) {
-      const getJob = await JobCollection.findById(id).populate("created_bY");
+      const getJob = await JobCollection.findById(id).populate("created_by");
       if (getJob) {
         return getJob;
       } else {
@@ -187,6 +69,30 @@ const resolvers = {
   Mutation: {
     // company Mutation
     async addCompany(_, args) {
+      const schema = Joi.object({
+        company_name: Joi.string().alphanum().min(2).max(50).required(),
+        owner_name: Joi.string().alphanum().min(2).max(50).required(),
+        company_type: Joi.string().alphanum().min(2).max(50).required(),
+        address: Joi.string().alphanum().min(2).max(50).required(),
+        phone: Joi.string().length(10),
+        // .pattern(/^[0-9]+$/),
+        email: Joi.string().email({ tlds: { allow: false } }),
+        password: Joi.string().min(5).max(15).required(),
+        repeatPassword: Joi.any().valid(Joi.ref("password")).required(),
+        // .options({  allowOnly: "must match password" } }),
+        description: Joi.string().min(5).max(150).required(),
+      });
+      const { value, error } = schema.validate(args, { abortEarly: false });
+      if (error) {
+        console.log(error.details[0].message);
+        throw new UserInputError(
+          `cant create company because${error.details[0].message}`,
+          {
+            validationError: error.details,
+          }
+        );
+      }
+
       const findCompany = await CompanyCollection.findOne({
         email: args.email,
       });
@@ -221,10 +127,14 @@ const resolvers = {
     async addUser(_, args) {
       const findUser = await UserCollection.findOne({ email: args.email });
       if (!findUser) {
-        const hashedPassword = bcrypt.hashSync(args.password, 10);
-        args.password = hashedPassword;
-        const createUser = new UserCollection(args);
-        return await createUser.save();
+        if (args.password === args.repeatPassword) {
+          const hashedPassword = bcrypt.hashSync(args.password, 10);
+          args.password = hashedPassword;
+          const createUser = new UserCollection(args);
+          return await createUser.save();
+        } else {
+          throw new Error("your password is not matching repeat password");
+        }
       } else {
         throw new Error("error creating user");
       }
@@ -247,7 +157,7 @@ const resolvers = {
       const createJob = new JobCollection(args);
       await createJob.save();
       // we need to store the job in the database
-      const company = await CompanyCollection.findById(args.created_bY);
+      const company = await CompanyCollection.findById(args.created_by);
       //!  then we need to find the company that created this job using
       //!   the id for the company we receive it from args when we create the job
       company.jobs.push(createJob._id);
@@ -269,4 +179,4 @@ const resolvers = {
     },
   },
 };
-module.exports = { typeDefs, resolvers };
+module.exports = { resolvers };

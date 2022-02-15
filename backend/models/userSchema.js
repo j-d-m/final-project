@@ -11,8 +11,9 @@ const userSchema = new Schema({
     },
   },
   email: { type: String, required: true },
-  phone: { type: Number },
+  phone: { type: String, required: true },
   password: { type: String, required: true },
+  repeatPassword: { type: String, required: true },
   hourly_rate: { type: Number },
   description: { type: String, required: true },
 });

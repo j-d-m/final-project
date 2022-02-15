@@ -12,7 +12,7 @@ const companySchema = new Schema({
   },
   company_type: { type: String, required: true },
   address: { type: String, required: true },
-  phone: { type: Number },
+  phone: { type: String, required: true },
   email: { type: String, required: true },
   password: { type: String, required: true },
   repeatPassword: { type: String, required: true },
