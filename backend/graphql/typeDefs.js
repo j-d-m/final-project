@@ -39,6 +39,12 @@ const typeDefs = gql`
     job_description: String!
     created_by: CompanyType
   }
+  type AuthData {
+    userId: ID!
+    token: String!
+    tokenExpiration: Int!
+  }
+
   type Query {
     # user Query
     getUsers: [UserType]
@@ -49,6 +55,8 @@ const typeDefs = gql`
     # job Query
     getJobs: [JobType]
     getOneJob(id: ID): JobType
+    #auth for user
+    loginUser(email: String!, password: String!): AuthData!
   }
   type Mutation {
     # user Mutation
