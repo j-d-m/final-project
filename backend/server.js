@@ -30,8 +30,9 @@ const server = new ApolloServer({
   cors: true,
   // or this ↓
   // cors: {
-  // 	origin: '*',
-  // 	credentials: true}
+  //   origin: "*",
+  //   credentials: true,
+  // },
 });
 
 server.listen().then(({ url }) => {
