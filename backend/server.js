@@ -1,8 +1,9 @@
+const express = require("express");
+const app = express();
+const session = require("express-session");
 // for cors policy
-// const app = express();
 // const cors = require("cors");
 // app.use(cors({ origin: "http://localhost:3000" }));
-// const express = require("express");
 // //////
 const express = require("express");
 const app = express();
@@ -34,6 +35,7 @@ const server = new ApolloServer({
   context: (context) => {
     return context;
   },
+
   // this ↓
   cors: true,
   // or this ↓
@@ -43,6 +45,7 @@ const server = new ApolloServer({
   // },
 });
 
-server.listen().then(({ url }) => {
-  console.log(`🚀 apolloServer Server ready at  ${url}`);
+server.start().then(() => {
+  server.applyMiddleware({ app });
+  app.listen(4000, () => console.log(`🚀 apolloServer Server ready at  `));
 });

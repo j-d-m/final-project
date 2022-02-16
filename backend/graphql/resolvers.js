@@ -3,8 +3,6 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const CompanyCollection = require("../models/companySchema");
 const JobCollection = require("../models/jobSchema");
-// const { makeExecutableSchema } = require("graphql-tools");
-// const ConstraintDirective = require("graphql-constraint-directive");
 const Joi = require("@hapi/joi");
 const { UserInputError } = require("apollo-server");
 const { isError } = require("@hapi/joi");
@@ -12,23 +10,26 @@ const resolvers = {
   Query: {
     // user queries
     getUsers: async (_, args, context) => {
-      console.log("====================================");
-      console.log(context);
-      console.log("====================================");
       const getAllUsers = await UserCollection.find({});
-
       if (getAllUsers) {
         return getAllUsers;
       } else {
         throw new Error("no users found");
       }
     },
-    async getOneUser(_, { id }) {
-      const getUser = await UserCollection.findById(id);
-      if (getUser) {
-        return getUser;
+    async getOneUser(_, { id }, { req }) {
+      req.session.isAuthenticated = false;
+      req.session.cookie.token = true;
+      console.log(req.session);
+      if (req.session.isAuthenticated) {
+        const getUser = await UserCollection.findById(id);
+        if (getUser) {
+          return getUser;
+        } else {
+          throw new Error("no user found");
+        }
       } else {
-        throw new Error("no user found");
+        throw new Error("you are not authenticated");
       }
     },
     //user login
@@ -186,14 +187,10 @@ const resolvers = {
       }
       const findUser = await UserCollection.findOne({ email: args.email });
       if (!findUser) {
-        // if (args.password === args.repeatPassword) {
         const hashedPassword = bcrypt.hashSync(args.password, 10);
         args.password = hashedPassword;
         const createUser = new UserCollection(args);
         return await createUser.save();
-        // } else {
-        //   throw new Error("your password is not matching repeat password");
-        // }
       } else {
         throw new Error("error creating user");
       }
