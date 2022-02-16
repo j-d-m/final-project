@@ -69,6 +69,7 @@ const resolvers = {
         throw new Error("no company found");
       }
     },
+
     // job queries
     getJobs: async () => {
       const getAllJobs = await JobCollection.find({}).populate("created_by");
@@ -91,9 +92,10 @@ const resolvers = {
   Mutation: {
     // company Mutation
     async addCompany(_, args, context) {
-      if (!context.isAuth) {
-        throw new Error("Unauthenticated!");
-      }
+      // console.log(context);
+      // if (!context.isAuth) {
+      //   throw new Error("Unauthenticated!");
+      // }
       const schema = Joi.object({
         company_name: Joi.string().min(2).max(50).required(),
         owner_name: Joi.string().min(2).max(50).required(),
@@ -112,10 +114,18 @@ const resolvers = {
         description: Joi.string().min(5).max(150).required(),
       });
       const { value, error } = schema.validate(args, { abortEarly: false });
+
       if (error) {
-        console.log(error.details[0].message);
+        // console.log("123" + error.details[0].message);
+
         throw new UserInputError(
-          `cant create company because${error.details[0].message}`,
+          error.details.map((item) => {
+            if (item.message.includes("required pattern")) {
+              item.message = `Your password should have minimum 5 and maximum 15 characters, at least one uppercase letter, one lowercase letter, one number and one special character:`;
+            } else {
+              return item.message;
+            }
+          }),
           {
             validationError: error.details,
           }
@@ -154,6 +164,9 @@ const resolvers = {
     // user Mutation
 
     async addUser(_, args) {
+      if (!context.isAuth) {
+        throw new Error("Unauthenticated!");
+      }
       const schema = Joi.object({
         first_name: Joi.string().min(2).max(50).required(),
         last_name: Joi.string().min(2).max(50).required(),
@@ -172,10 +185,16 @@ const resolvers = {
         description: Joi.string().min(5).max(150).required(),
       });
       const { value, error } = schema.validate(args, { abortEarly: false });
+
       if (error) {
-        console.log(error.details[0].message);
         throw new UserInputError(
-          `cant create user because${error.details[0].message}`,
+          error.details.map((item) => {
+            if (item.message.includes("required pattern")) {
+              item.message = `Your password should have minimum 5 and maximum 15 characters, at least one uppercase letter, one lowercase letter, one number and one special character:`;
+            } else {
+              return item.message;
+            }
+          }),
           {
             validationError: error.details,
           }

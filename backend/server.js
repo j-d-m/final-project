@@ -12,7 +12,7 @@ const { ApolloServer } = require("apollo-server");
 const { typeDefs } = require("./graphql/typeDefs");
 const { resolvers } = require("./graphql/resolvers");
 
-mongoose.connect("mongodb://127.0.0.1:27017/graphql-data", () =>
+mongoose.connect("mongodb://127.0.0.1:27017/final-project-dci", () =>
   console.log("connected to DB")
 );
 // const { typeDefs, resolvers } = require("./graphql/resolvers");
