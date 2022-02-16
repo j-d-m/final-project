@@ -1,11 +1,13 @@
 const UserCollection = require("../models/userSchema");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const CompanyCollection = require("../models/companySchema");
 const JobCollection = require("../models/jobSchema");
 // const { makeExecutableSchema } = require("graphql-tools");
 // const ConstraintDirective = require("graphql-constraint-directive");
 const Joi = require("@hapi/joi");
 const { UserInputError } = require("apollo-server");
+const { isError } = require("@hapi/joi");
 const resolvers = {
   Query: {
     // user queries
@@ -29,6 +31,26 @@ const resolvers = {
         throw new Error("no user found");
       }
     },
+    //user login
+    async loginUser(_, { email, password }) {
+      const user = await UserCollection.findOne({ email: email });
+      if (!user) {
+        throw new Error("User does not exist");
+      }
+      const isEqual = await bcrypt.compare(password, user.password);
+      if (!isEqual) {
+        throw new Error("Password is incorrect");
+      }
+      //if everything is ok. lets create token and install jsonwebtoken to generate json web token
+      //to return to the frontend
+      const token = jwt.sign(
+        { userId: user.id, email: user.email },
+        "somesupersecretkey"
+        //to keep the token short is best option
+      );
+      return { userId: user.id, token: token, tokenExpiration: 1 };
+    },
+
     // company queries
     getCompanies: async () => {
       const getAllCompanies = await CompanyCollection.find().populate("jobs");
@@ -68,7 +90,10 @@ const resolvers = {
   },
   Mutation: {
     // company Mutation
-    async addCompany(_, args) {
+    async addCompany(_, args, context) {
+      if (!context.isAuth) {
+        throw new Error("Unauthenticated!");
+      }
       const schema = Joi.object({
         company_name: Joi.string().min(2).max(50).required(),
         owner_name: Joi.string().min(2).max(50).required(),
@@ -183,6 +208,7 @@ const resolvers = {
       const deleteUser = await UserCollection.findByIdAndDelete(args.id);
       return deleteUser;
     },
+
     // job Mutation
     async addJob(_, args) {
       const createJob = new JobCollection(args);

@@ -7,11 +7,12 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+const isAuth = require("./middleware/is-auth");
 const { ApolloServer } = require("apollo-server");
 const { typeDefs } = require("./graphql/typeDefs");
 const { resolvers } = require("./graphql/resolvers");
 
-mongoose.connect("mongodb://127.0.0.1:27017/final-project-dci", () =>
+mongoose.connect("mongodb://127.0.0.1:27017/graphql-data", () =>
   console.log("connected to DB")
 );
 // const { typeDefs, resolvers } = require("./graphql/resolvers");
@@ -24,6 +25,8 @@ mongoose.connect("mongodb://127.0.0.1:27017/final-project-dci", () =>
 //   .connect(mongoURL)
 //   .then(() => console.log("successfully connect to the database Atlas"))
 //   .catch((err) => console.log(`error connecting to the database Atlas ${err}`));
+
+app.use(isAuth);
 
 const server = new ApolloServer({
   typeDefs,
