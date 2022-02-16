@@ -29,6 +29,7 @@ const typeDefs = gql`
     description: String!
     jobs: [JobType]
   }
+
   # job type
   type JobType {
     id: ID
@@ -40,6 +41,8 @@ const typeDefs = gql`
     created_by: CompanyType
   }
   type Query {
+    # login user
+    # loginUser(email:string!,password:string!)
     # user Query
     getUsers: [UserType]
     getOneUser(id: ID): UserType
