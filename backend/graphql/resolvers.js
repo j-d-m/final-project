@@ -70,29 +70,34 @@ const resolvers = {
     // company Mutation
     async addCompany(_, args) {
       const schema = Joi.object({
-        company_name: Joi.string().alphanum().min(2).max(50).required(),
-        owner_name: Joi.string().alphanum().min(2).max(50).required(),
-        company_type: Joi.string().alphanum().min(2).max(50).required(),
-        address: Joi.string().alphanum().min(2).max(50).required(),
-        phone: Joi.string().length(10),
-        // .pattern(/^[0-9]+$/),
+        company_name: Joi.string().min(2).max(50).required(),
+        owner_name: Joi.string().min(2).max(50).required(),
+        company_type: Joi.string().min(2).max(50).required(),
+        address: Joi.string().min(2).max(50).required(),
+        phone: Joi.string().pattern(/^[0-9\+]{1,}[0-9\-]{3,15}$/),
         email: Joi.string().email({ tlds: { allow: false } }),
-        password: Joi.string().min(5).max(15).required(),
+        password: Joi.string().regex(
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{5,15}$/
+        ),
         repeatPassword: Joi.any().valid(Joi.ref("password")).required(),
-        // .options({  allowOnly: "must match password" } }),
         description: Joi.string().min(5).max(150).required(),
       });
       const { value, error } = schema.validate(args, { abortEarly: false });
+
       if (error) {
-        console.log(error.details[0].message);
         throw new UserInputError(
-          `cant create company because${error.details[0].message}`,
+          error.details.map((item) => {
+            if (item.message.includes("required pattern")) {
+              item.message = `Your password should have minimum 5 and maximum 15 characters, at least one uppercase letter, one lowercase letter, one number and one special character:`;
+            } else {
+              return item.message;
+            }
+          }),
           {
             validationError: error.details,
           }
         );
       }
-
       const findCompany = await CompanyCollection.findOne({
         email: args.email,
       });
@@ -125,6 +130,33 @@ const resolvers = {
     // user Mutation
 
     async addUser(_, args) {
+      const schema = Joi.object({
+        first_name: Joi.string().min(2).max(50).required(),
+        last_name: Joi.string().min(2).max(50).required(),
+        email: Joi.string().email({ tlds: { allow: false } }),
+        phone: Joi.string().pattern(/^[0-9\+]{1,}[0-9\-]{3,15}$/),
+        password: Joi.string().regex(
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{5,15}$/
+        ),
+        repeatPassword: Joi.any().valid(Joi.ref("password")).required(),
+        hourly_rate: Joi.number(),
+        description: Joi.string().min(5).max(150).required(),
+      });
+      const { value, error } = schema.validate(args, { abortEarly: false });
+      if (error) {
+        throw new UserInputError(
+          error.details.map((item) => {
+            if (item.message.includes("required pattern")) {
+              item.message = `Your password should have minimum 5 and maximum 15 characters, at least one uppercase letter, one lowercase letter, one number and one special character:`;
+            } else {
+              return item.message;
+            }
+          }),
+          {
+            validationError: error.details,
+          }
+        );
+      }
       const findUser = await UserCollection.findOne({ email: args.email });
       if (!findUser) {
         if (args.password === args.repeatPassword) {
