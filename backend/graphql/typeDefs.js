@@ -2,18 +2,18 @@ const { gql } = require("apollo-server");
 
 const typeDefs = gql`
   # user type
-  # type UserType {
-  #   id: ID
-  #   first_name: String!
-  #   last_name: String!
-  #   avatar: String
-  #   email: String!
-  #   phone: String!
-  #   password: String!
-  #   repeatPassword: String!
-  #   hourly_rate: Int
-  #   description: String!
-  # }
+  type UserType {
+    id: ID
+    first_name: String!
+    last_name: String!
+    avatar: String
+    email: String!
+    phone: String!
+    password: String!
+    repeatPassword: String!
+    hourly_rate: Int
+    description: String!
+  }
   #  authenticated type
   type AuthType {
     userId: ID!
@@ -49,11 +49,9 @@ const typeDefs = gql`
     created_by: CompanyType
   }
   type Query {
-    # login user
-    # loginUser(email: String!, password: String!): AuthType!
     # user Query
-    # getUsers: [UserType]
-    # getOneUser(id: ID): UserType
+    getUsers: [UserType]
+    getOneUser(id: ID): UserType
     # company Query
     getCompanies: [CompanyType]
     getOneCompany(id: ID): CompanyType
@@ -64,8 +62,9 @@ const typeDefs = gql`
   type Mutation {
     # login user
     loginUser(email: String!, password: String!): AuthType!
+    # login company
+    loginCompany(email: String!, password: String!): AuthType!
     # user Mutation
-
     addUser(
       first_name: String!
       last_name: String!

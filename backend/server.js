@@ -19,21 +19,14 @@ const { resolvers } = require("./graphql/resolvers");
 
 require("dotenv").config();
 const mongoose = require("mongoose");
+
 const { DB_USER, DB_PASS, DB_HOST, DB_NAME, PORT } = process.env;
 const mongoURL = `mongodb+srv://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}?retryWrites=true&w=majority`;
 mongoose
   .connect(mongoURL)
   .then(() => console.log("successfully connect to the database Atlas"))
   .catch((err) => console.log(`error connecting to the database Atlas ${err}`));
-let count = 0;
-function auth({ req }) {
-  if (req.session.isAuthenticated) {
-    req.session.isAuthenticated = true;
-    return true;
-  } else {
-    return false;
-  }
-}
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,

@@ -5,7 +5,7 @@ const CompanyCollection = require("../models/companySchema");
 const JobCollection = require("../models/jobSchema");
 const Joi = require("@hapi/joi");
 const { UserInputError } = require("apollo-server");
-// let isAuthenticated = false;
+
 const resolvers = {
   Query: {
     // user queries
@@ -68,39 +68,10 @@ const resolvers = {
         throw new Error("no job found");
       }
     },
-    // loginUser: async (_, { email, password }, { req }) => {
-    //   console.log("====================================");
-    //   console.log(req.session);
-    //   console.log("====================================");
-    //   // console.log(req.session.isAuthenticated);
-    //   const user = await UserCollection.findOne({ email: email });
-    //   if (!user) {
-    //     throw new Error("user dos not exist");
-    //   }
-    //   const isMatch = await bcrypt.compare(password, user.password);
-    //   if (!isMatch) {
-    //     throw new Error("password is incorrect");
-    //   }
-    //   const token = jwt.sign(
-    //     { userId: user.id, email: user.email },
-    //     "secret-key",
-    //     {
-    //       expiresIn: "2h",
-    //     }
-    //   );
-    //   req.session.Session.isAuthenticated = true;
-    //   req.session.Session.cookie.token = token;
-
-    //   return { userId: user.id, token: token, tokenExpiration: 2, user: user };
-    // },
   },
   Mutation: {
     // user  login
     loginUser: async (_, { email, password }, { req }) => {
-      // console.log("====================================");
-      // console.log(req.session);
-      // console.log("====================================");
-      // console.log(req.session.isAuthenticated);
       const user = await UserCollection.findOne({ email: email });
       if (!user) {
         throw new Error("user dos not exist");
@@ -120,6 +91,33 @@ const resolvers = {
       req.session.cookie.token = token;
 
       return { userId: user.id, token: token, tokenExpiration: 2, user: user };
+    },
+    // company login
+    loginCompany: async (_, { email, password }, { req }) => {
+      const company = await CompanyCollection.findOne({ email: email });
+      if (!company) {
+        throw new Error("company dos not exist");
+      }
+      const isMatch = await bcrypt.compare(password, company.password);
+      if (!isMatch) {
+        throw new Error("password is incorrect");
+      }
+      const token = jwt.sign(
+        { companyId: company.id, email: company.email },
+        "secret-key",
+        {
+          expiresIn: "2h",
+        }
+      );
+      req.session.isAuthenticated = true;
+      req.session.cookie.token = token;
+
+      return {
+        companyId: company.id,
+        token: token,
+        tokenExpiration: 2,
+        company: company,
+      };
     },
     // company Mutation
     async addCompany(_, args) {
@@ -168,18 +166,28 @@ const resolvers = {
         throw new Error("Company already exist");
       }
     },
-    async updateCompany(_, args) {
-      const updateCompany = await CompanyCollection.findByIdAndUpdate(
-        args.id,
-        { ...args },
-        { new: true }
-      );
+    async updateCompany(_, args, { req }) {
+      if (req.session.isAuthenticated) {
+        const updateCompany = await CompanyCollection.findByIdAndUpdate(
+          args.id,
+          { ...args },
+          { new: true }
+        );
 
-      return updateCompany;
+        return updateCompany;
+      } else {
+        throw new Error("you are not authenticated");
+      }
     },
-    async deleteCompany(_, args) {
-      const deleteCompany = await CompanyCollection.findByIdAndDelete(args.id);
-      return deleteCompany;
+    async deleteCompany(_, args, { req }) {
+      if (req.session.isAuthenticated) {
+        const deleteCompany = await CompanyCollection.findByIdAndDelete(
+          args.id
+        );
+        return deleteCompany;
+      } else {
+        throw new Error("you are not authenticated");
+      }
     },
     // user Mutation
 
@@ -196,6 +204,7 @@ const resolvers = {
         hourly_rate: Joi.number(),
         description: Joi.string().min(5).max(150).required(),
       });
+
       const { value, error } = schema.validate(args, { abortEarly: false });
       if (error) {
         throw new UserInputError(
@@ -222,9 +231,6 @@ const resolvers = {
       }
     },
     async updateUser(_, args, { req }) {
-      // console.log("====================================");
-      console.log(req.session);
-      // console.log("====================================");
       if (req.session.isAuthenticated) {
         const updateUser = await UserCollection.findByIdAndUpdate(
           args.id,
@@ -245,29 +251,35 @@ const resolvers = {
       }
     },
     // job Mutation
-    async addJob(_, args) {
-      const createJob = new JobCollection(args);
-      await createJob.save();
-      // we need to store the job in the database
-      const company = await CompanyCollection.findById(args.created_by);
-      //!  then we need to find the company that created this job using
-      //!   the id for the company we receive it from args when we create the job
-      company.jobs.push(createJob._id);
-      await company.save();
+    async addJob(_, args, { req }) {
+      if (req.session.isAuthenticated) {
+        const createJob = new JobCollection(args);
+        await createJob.save();
+        // we need to store the job in the database
+        const company = await CompanyCollection.findById(args.created_by);
+        //!  then we need to find the company that created this job using
+        //!   the id for the company we receive it from args when we create the job
+        company.jobs.push(createJob._id);
+        await company.save();
 
-      return createJob;
+        return createJob;
+      }
     },
-    async updateJob(_, args) {
-      const updateJob = await JobCollection.findByIdAndUpdate(
-        args.id,
-        { ...args },
-        { new: true }
-      );
-      return updateJob;
+    async updateJob(_, args, { req }) {
+      if (req.session.isAuthenticated) {
+        const updateJob = await JobCollection.findByIdAndUpdate(
+          args.id,
+          { ...args },
+          { new: true }
+        );
+        return updateJob;
+      }
     },
-    async deleteJob(_, args) {
-      const deleteJob = await JobCollection.findByIdAndDelete(args.id);
-      return deleteJob;
+    async deleteJob(_, args, { req }) {
+      if (req.session.isAuthenticated) {
+        const deleteJob = await JobCollection.findByIdAndDelete(args.id);
+        return deleteJob;
+      }
     },
   },
 };
