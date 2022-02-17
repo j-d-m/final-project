@@ -1,10 +1,7 @@
 const express = require("express");
 const app = express();
 const session = require("express-session");
-// for cors policy
-// const cors = require("cors");
-// app.use(cors({ origin: "http://localhost:3000" }));
-// //////
+
 app.use(
   session({
     secret: "secret-key",
@@ -36,14 +33,7 @@ const server = new ApolloServer({
     }
     return context;
   },
-
-  // this ↓
   cors: true,
-  // or this ↓
-  // cors: {
-  //   origin: "*",
-  //   credentials: true,
-  // },
 });
 
 server.start().then(() => {
