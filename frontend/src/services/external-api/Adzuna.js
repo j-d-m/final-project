@@ -9,9 +9,9 @@ const API_CATEGORY = 'category=hospitality-catering-jobs' /* The category tag, a
 const API_PAGE = '1' /* The page number of the results to return. */
 const API_RESULTS_PER_PAGE = 'results_per_page=10' /* The number of results to return per page. */
 
-const API_URL = `https://api.adzuna.com/v1/api/jobs/${API_WEBSITE_COUNTRY}/search/${API_PAGE}?app_id=${API_ID}&app_key=${API_KEY}&${API_RESULTS_PER_PAGE}&${API_KEYWORD_WHAT_AND}&${API_KEYWORD_WHAT_OR}&${API_LOCATION}&${API_CATEGORY}`
+// const API_URL = `https://api.adzuna.com/v1/api/jobs/${API_WEBSITE_COUNTRY}/search/${API_PAGE}?app_id=${API_ID}&app_key=${API_KEY}&${API_RESULTS_PER_PAGE}&${API_KEYWORD_WHAT_AND}&${API_KEYWORD_WHAT_OR}&${API_LOCATION}&${API_CATEGORY}`
 
-// EXAMPLE 'https://api.adzuna.com/v1/api/jobs/de/search/1?app_id=d2c33ab1&app_key=29a3798b05f90a06de46cbde16715be2&results_per_page=50&what_and=freiberuf&what_or=freelance%20freiberuf&where=deutschland&category=hospitality-catering-jobs'
+const API_URL = 'https://api.adzuna.com/v1/api/jobs/de/search/1?app_id=d2c33ab1&app_key=29a3798b05f90a06de46cbde16715be2&results_per_page=10&what_and=freiberuf&what_or=freelance%20freiberuf&where=deutschland&category=hospitality-catering-jobs'
 
 const Adzuna = {
     getJobs: async () => {
