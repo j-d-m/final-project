@@ -1,13 +1,15 @@
 const UserCollection = require("../models/userSchema");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const CompanyCollection = require("../models/companySchema");
 const JobCollection = require("../models/jobSchema");
 const Joi = require("@hapi/joi");
 const { UserInputError } = require("apollo-server");
+// let isAuthenticated = false;
 const resolvers = {
   Query: {
     // user queries
-    getUsers: async (_, args, context) => {
+    getUsers: async (_, args) => {
       const getAllUsers = await UserCollection.find({});
       if (getAllUsers) {
         return getAllUsers;
@@ -16,9 +18,9 @@ const resolvers = {
       }
     },
     async getOneUser(_, { id }, { req }) {
-      req.session.isAuthenticated = false;
-      req.session.cookie.token = true;
-      console.log(req.session);
+      // req.session.isAuthenticated = false;
+      // req.session.cookie.token = true;
+      // console.log(req.session);
       if (req.session.isAuthenticated) {
         const getUser = await UserCollection.findById(id);
         if (getUser) {
@@ -66,8 +68,59 @@ const resolvers = {
         throw new Error("no job found");
       }
     },
+    // loginUser: async (_, { email, password }, { req }) => {
+    //   console.log("====================================");
+    //   console.log(req.session);
+    //   console.log("====================================");
+    //   // console.log(req.session.isAuthenticated);
+    //   const user = await UserCollection.findOne({ email: email });
+    //   if (!user) {
+    //     throw new Error("user dos not exist");
+    //   }
+    //   const isMatch = await bcrypt.compare(password, user.password);
+    //   if (!isMatch) {
+    //     throw new Error("password is incorrect");
+    //   }
+    //   const token = jwt.sign(
+    //     { userId: user.id, email: user.email },
+    //     "secret-key",
+    //     {
+    //       expiresIn: "2h",
+    //     }
+    //   );
+    //   req.session.Session.isAuthenticated = true;
+    //   req.session.Session.cookie.token = token;
+
+    //   return { userId: user.id, token: token, tokenExpiration: 2, user: user };
+    // },
   },
   Mutation: {
+    // user  login
+    loginUser: async (_, { email, password }, { req }) => {
+      // console.log("====================================");
+      // console.log(req.session);
+      // console.log("====================================");
+      // console.log(req.session.isAuthenticated);
+      const user = await UserCollection.findOne({ email: email });
+      if (!user) {
+        throw new Error("user dos not exist");
+      }
+      const isMatch = await bcrypt.compare(password, user.password);
+      if (!isMatch) {
+        throw new Error("password is incorrect");
+      }
+      const token = jwt.sign(
+        { userId: user.id, email: user.email },
+        "secret-key",
+        {
+          expiresIn: "2h",
+        }
+      );
+      req.session.isAuthenticated = true;
+      req.session.cookie.token = token;
+
+      return { userId: user.id, token: token, tokenExpiration: 2, user: user };
+    },
     // company Mutation
     async addCompany(_, args) {
       const schema = Joi.object({
@@ -168,18 +221,28 @@ const resolvers = {
         throw new Error("error creating user");
       }
     },
-    async updateUser(_, args) {
-      const updateUser = await UserCollection.findByIdAndUpdate(
-        args.id,
-        { ...args },
-        { new: true }
-      );
-
-      return updateUser;
+    async updateUser(_, args, { req }) {
+      // console.log("====================================");
+      console.log(req.session);
+      // console.log("====================================");
+      if (req.session.isAuthenticated) {
+        const updateUser = await UserCollection.findByIdAndUpdate(
+          args.id,
+          { ...args },
+          { new: true }
+        );
+        return updateUser;
+      } else {
+        throw new Error("you are not authenticated");
+      }
     },
-    async deleteUser(_, args) {
-      const deleteUser = await UserCollection.findByIdAndDelete(args.id);
-      return deleteUser;
+    async deleteUser(_, args, { req }) {
+      if (req.session.isAuthenticated) {
+        const deleteUser = await UserCollection.findByIdAndDelete(args.id);
+        return deleteUser;
+      } else {
+        throw new Error("you are not authenticated");
+      }
     },
     // job Mutation
     async addJob(_, args) {

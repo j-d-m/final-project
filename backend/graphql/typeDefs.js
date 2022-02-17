@@ -14,7 +14,15 @@ const typeDefs = gql`
     hourly_rate: Int
     description: String!
   }
+  #  authenticated type
+  type AuthType {
+    userId: ID!
+    token: String!
+    tokenExpiration: Int!
+    user: UserType
+  }
   # company type
+
   type CompanyType {
     id: ID
     company_name: String!
@@ -42,7 +50,7 @@ const typeDefs = gql`
   }
   type Query {
     # login user
-    # loginUser(email:string!,password:string!)
+    # loginUser(email: String!, password: String!): AuthType!
     # user Query
     getUsers: [UserType]
     getOneUser(id: ID): UserType
@@ -54,6 +62,8 @@ const typeDefs = gql`
     getOneJob(id: ID): JobType
   }
   type Mutation {
+    # login user
+    loginUser(email: String!, password: String!): AuthType!
     # user Mutation
 
     addUser(
