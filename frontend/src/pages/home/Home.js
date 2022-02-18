@@ -1,30 +1,28 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+
 import Navbar from '../../components/navbar'
 // import Adzuna from '../../services/external-api/Adzuna'
+import API_URL from '../../services/external-api/Adzuna'
 
 
 
 export default function Home() {
-
-    const API_URL = 'https://api.adzuna.com/v1/api/jobs/de/search/1?app_id=d2c33ab1&app_key=29a3798b05f90a06de46cbde16715be2&results_per_page=10&what_and=freiberuf&what_or=freelance%20freiberuf&where=deutschland&category=hospitality-catering-jobs'
-
-    const [jobs, setJobs] = React.useState([])
-
-
+    const [jobs, setJobs] = useState([])
 
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch(API_URL)
             const data = await response.json()
-            console.log(data)
+
+            console.log('=============JOBS ARRAY=======================');
+            console.log(data);
+            console.log('====================================');
+
             setJobs(data.results)
         }
         fetchData()
     }, [])
 
-
-
-    // console.log(API_URL)
 
     return (
 
@@ -34,13 +32,15 @@ export default function Home() {
             <ul>
                 {jobs.map(job => (
                     <li key={job.id}>
-                        <h3>{job.title}</h3>
-                        <p>{job.description}</p>
-                        <em> <p>{job.location.display_name}</p> </em>
-                        <a href={job.redirect_url}>check it out</a>
-                        <br />
-                        <br />
+                        <h4>Company: {job.company.display_name} </h4>
+                        <h5 style={{ textAlign: "center" }} >{job.title}</h5>
+                        <h6>{job.category.label}</h6>
+                        <p style={{ fontSize: "14px" }} >{job.description}</p>
+                        <em> <p>LOCATION: {job.location.display_name} / POSTED ON: {job.created} / SOUNDS GOOD? <a href={job.redirect_url}>Apply Here</a> </p> </em>
+
                         <hr />
+                        <hr />
+
                     </li>
                 ))}
 
@@ -48,7 +48,7 @@ export default function Home() {
             </ul>
 
 
-        </div>
+        </div >
 
 
     )
