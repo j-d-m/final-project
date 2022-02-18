@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import Navbar from '../../components/navbar'
+import Navbar from '../../components/Navbar/navbar'
 // import Adzuna from '../../services/external-api/Adzuna'
 import API_URL from '../../services/external-api/Adzuna'
 
@@ -9,25 +9,30 @@ import API_URL from '../../services/external-api/Adzuna'
 export default function Home() {
     const [jobs, setJobs] = useState([])
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await fetch(API_URL)
-            const data = await response.json()
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         const response = await fetch(API_URL)
+    //         const data = await response.json()
 
-            console.log('=============JOBS ARRAY=======================');
-            console.log(data);
-            console.log('====================================');
+    //         console.log('=============JOBS ARRAY=======================');
+    //         console.log(data);
+    //         console.log('====================================');
 
-            setJobs(data.results)
-        }
-        fetchData()
-    }, [])
+    //         setJobs(data.results)
+    //     }
+    //     fetchData()
+    // }, [])
 
 
     return (
+        <div
+            style={{ height: '100%', width: '100vw', backgroundColor: '#C9cbfb' }}
+        >
 
-        <div>
-            <Navbar />
+            <h1
+                style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '75vh' }}
+            >
+                Home (placeholder)</h1>
 
             <ul>
                 {jobs.map(job => (
