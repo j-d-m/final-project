@@ -9,19 +9,19 @@ import API_URL from '../../services/external-api/Adzuna'
 export default function Home() {
     const [jobs, setJobs] = useState([])
 
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         const response = await fetch(API_URL)
-    //         const data = await response.json()
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch(API_URL)
+            const data = await response.json()
 
-    //         console.log('=============JOBS ARRAY=======================');
-    //         console.log(data);
-    //         console.log('====================================');
+            console.log('=============JOBS ARRAY=======================');
+            console.log(data);
+            console.log('====================================');
 
-    //         setJobs(data.results)
-    //     }
-    //     fetchData()
-    // }, [])
+            setJobs(data.results)
+        }
+        fetchData()
+    }, [])
 
 
     return (
