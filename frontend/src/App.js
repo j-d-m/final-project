@@ -1,12 +1,12 @@
 
 import './App.scss';
-import Navbar from './components/navbar';
+import Topbar from './components/Topbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
     <div className="App">
-    <Navbar />
+    <Topbar />
     </div>
   );
 }
