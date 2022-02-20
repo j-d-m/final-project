@@ -3,14 +3,14 @@ import { Routes, Route } from 'react-router-dom';
 
 //Component imports
 import './App.scss';
-import Home from './pages/home/Home';
-import Navbar from './components/Navbar/navbar';
-import PageNotFound from './pages/not-found/NotFound';
-import Footer from './components/Footer/Footer';
-import CompanyLogin from './pages/company/company-login/CompanyLogin';
-import FreeLancerLogin from './pages/freelancer/freelancer-login/FreelancerLogin';
-import FreelancerProfile from './pages/freelancer/freelancer-profile/FreelancerProfile';
-import CompanyProfile from './pages/company/company-profile/CompanyProfile';
+import Home from './components/home/Home';
+import Navbar from './components/navbar/navbar';
+import PageNotFound from './components/not-found/NotFound';
+import Footer from './components/footer/Footer';
+import CompanyLogin from './components/company/company-login/CompanyLogin';
+import FreeLancerLogin from './components/freelancer/freelancer-login/FreelancerLogin';
+import FreelancerProfile from './components/freelancer/freelancer-profile/FreelancerProfile';
+import CompanyProfile from './components/company/company-profile/CompanyProfile';
 
 // External imports
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -29,8 +29,6 @@ function App() {
           <Route path="/freelancer-login" element={<FreeLancerLogin />} />
           <Route path="/freelancer-profile" element={<FreelancerProfile />} />
           <Route path="/company-profile" element={<CompanyProfile />} />
-
-
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </main>
