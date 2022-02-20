@@ -10,7 +10,7 @@ export default function Topbar() {
   return (
   <Navbar bg="primary" variant={"dark"} expand="lg">
   <Container>
-    <Navbar.Brand href="#home">
+    <Navbar.Brand href="/">
     <img
           alt=""
           src= {logo}
@@ -25,8 +25,8 @@ export default function Topbar() {
     <Navbar.Collapse id="basic-navbar-nav">
 
       <Nav className="mx-auto TopHeader">
-      <Nav.Link href="#link"> Home </Nav.Link>
-      <Nav.Link href="#link"> Jobs </Nav.Link>
+      <Nav.Link href="/"> Home </Nav.Link>
+      <Nav.Link href="/job"> Job </Nav.Link>
 
         <Nav.Link href="#link"> <HiOutlineOfficeBuilding/> For Employers</Nav.Link>
 

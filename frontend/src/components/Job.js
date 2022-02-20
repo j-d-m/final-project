@@ -2,7 +2,7 @@ import React from 'react'
 
 const Women = () => {
   return (
-    <div>Women Page</div>
+    <h1>This is Job page</h1>
   )
 }
 
