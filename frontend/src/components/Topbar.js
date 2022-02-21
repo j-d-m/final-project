@@ -4,6 +4,7 @@ import logo from './logo.svg'
 import { AiOutlineLogin } from 'react-icons/ai';
 import { HiOutlineOfficeBuilding } from 'react-icons/hi';
 import { BsPersonFill } from 'react-icons/bs';
+import { Link } from 'react-router-dom'
 
 
 export default function Topbar() {
@@ -25,8 +26,8 @@ export default function Topbar() {
     <Navbar.Collapse id="basic-navbar-nav">
 
       <Nav className="mx-auto TopHeader">
-      <Nav.Link href="/"> Home </Nav.Link>
-      <Nav.Link href="/job"> Job </Nav.Link>
+     <Link to = "/home"> <Nav.Link> Home </Nav.Link></Link> 
+      <Link to='/job'> <Nav.Link> Job </Nav.Link></Link> 
 
         <Nav.Link href="#link"> <HiOutlineOfficeBuilding/> For Employers</Nav.Link>
 
