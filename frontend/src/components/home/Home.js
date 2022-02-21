@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
-import Navbar from '../navbar/navbar'
+
 // import Adzuna from '../../services/external-api/Adzuna'
 import API_URL from '../../services/external-api/Adzuna'
 
