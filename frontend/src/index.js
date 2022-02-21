@@ -1,21 +1,22 @@
+
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Job from './components/Job';
 import Topbar from './components/Topbar';
 import App from "./App";
+import './index.scss';
+
+
 
 
 
 ReactDOM.render(
-  
-  <Router>
-    <Topbar />
-  <Routes>
-      <Route path='/' element={<App/>}/>
-      <Route path='/job' element={<Job/>} />
-  </Routes>
-</Router>,
-  
-  document.getElementById("root")
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>,
+  document.getElementById('root')
 );
+
