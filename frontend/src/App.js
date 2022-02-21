@@ -4,13 +4,14 @@ import { Routes, Route } from 'react-router-dom';
 //Component imports
 import './App.scss';
 import Home from './components/home/Home';
-import Navbar from './components/navbar/navbar';
+import Header from './components/navbar/Header';
 import PageNotFound from './components/not-found/NotFound';
 import Footer from './components/footer/Footer';
 import CompanyLogin from './components/company/company-login/CompanyLogin';
 import FreeLancerLogin from './components/freelancer/freelancer-login/FreelancerLogin';
 import FreelancerProfile from './components/freelancer/freelancer-profile/FreelancerProfile';
 import CompanyProfile from './components/company/company-profile/CompanyProfile';
+
 
 // External imports
 
@@ -21,7 +22,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <>
-      <Navbar />
+      <Header />
       <main className="container-fluid">
         <Routes>
           <Route path="/" element={<Home />} />

@@ -1,9 +1,7 @@
 
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Job from './components/Job';
-import Topbar from './components/Topbar';
+import { BrowserRouter } from 'react-router-dom';
 import App from "./App";
 import './index.scss';
 
