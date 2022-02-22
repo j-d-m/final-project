@@ -1,14 +1,29 @@
-import React from 'react'
+//native import
+import React, { useEffect, useRef } from "react";
+
+//internal imports
+import lottie404 from "../../assets/animation/page404.json";
+import "./notFound.scss";
+
+// external imports
+import lottie from "lottie-web";
 
 export default function NotFound() {
-    return (
-        <div
-            style={{ height: '100%', width: '100vw', backgroundColor: '#C9cbfb' }}
-        >
-            <h1
-                style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '75vh' }}
-            >
-                PAGE NOT FOUND (placeholder)</h1>
-        </div >
-    )
+  const container404 = useRef(null);
+
+  useEffect(() => {
+    lottie.loadAnimation({
+      container: container404.current,
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+      animationData: lottie404,
+    });
+  }, []);
+
+  return (
+    <div className="container page404">
+      <div className="container404" ref={container404}></div>;
+    </div>
+  );
 }
