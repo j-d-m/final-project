@@ -8,7 +8,7 @@
 // } from "react-icons/md";
 import { useMutation } from "@apollo/client";
 import React from "react";
-import { CREATE_USER_MUTATION } from "./Graphql/mutation";
+import { CREATE_USER_MUTATION } from "../../../graphQL/Mutations";
 
 export default function UserSignUp() {
   let first_name,

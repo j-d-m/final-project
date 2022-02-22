@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { useMutation } from "@apollo/client";
 import { COMPANY_LOGIN } from "../../../graphQL/Mutations";
-import "./companyLogin.scss";
+import "../../../styles/companyLogin.scss";
 export default function CompanyLogin() {
   const formRef = useRef();
   const [loginCompany, { loading, error }] = useMutation(COMPANY_LOGIN);
