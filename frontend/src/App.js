@@ -8,8 +8,10 @@ import Header from "./components/navbar/Header";
 import PageNotFound from "./components/not-found/NotFound";
 import Footer from "./components/footer/Footer";
 import CompanyLogin from "./components/company/company-login/CompanyLogin";
+import CompanySignUp from "./components/company/company-sign-up/CompanySignUp";
 import FreeLancerLogin from "./components/freelancer/freelancer-login/FreelancerLogin";
 import FreelancerProfile from "./components/freelancer/freelancer-profile/FreelancerProfile";
+import FreelancerSignUp from "./components/freelancer/freelancer-sign-up/FreelancerSignUp";
 import CompanyProfile from "./components/company/company-profile/CompanyProfile";
 
 // External imports
@@ -25,8 +27,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/company-login" element={<CompanyLogin />} />
+          <Route path="/company-signUp" element={<CompanySignUp />} />
           <Route path="/freelancer-login" element={<FreeLancerLogin />} />
           <Route path="/freelancer-profile" element={<FreelancerProfile />} />
+          <Route path="/freelancer-signUp" element={<FreelancerSignUp />} />
           <Route path="/company-profile" element={<CompanyProfile />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
