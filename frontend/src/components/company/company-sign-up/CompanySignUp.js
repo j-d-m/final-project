@@ -10,7 +10,7 @@
 // } from "react-icons/md";
 import { useMutation } from "@apollo/client";
 import React from "react";
-import { CREATE_COMPANY_MUTATION } from "./mutation";
+import { CREATE_COMPANY_MUTATION } from "../../../graphQL/Mutations";
 
 export default function CompanySignUp() {
   let company_name,

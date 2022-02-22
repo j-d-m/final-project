@@ -6,7 +6,7 @@ import { AiOutlineLogin } from 'react-icons/ai';
 import { HiOutlineOfficeBuilding } from 'react-icons/hi';
 import { BsPersonFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import '../../utils/styles/navbar.scss'
+import '../../styles/header.scss'
 
 
 
@@ -33,15 +33,15 @@ export default function Header() {
 
         <NavDropdown title={<span><AiOutlineLogin/> Freelancers </span>}  id="basic-nav-dropdown">
           <NavDropdown.Item as={Link} to="/freelancer-login" >Freelancer Login</NavDropdown.Item>
-          <NavDropdown.Item as={Link} to="/home" > Freelancer SignUp</NavDropdown.Item>
+          <NavDropdown.Item as={Link} to="/freelancer-signUp" > Freelancer SignUp</NavDropdown.Item>
         </NavDropdown>
 
         <span className="DisappearI text-light mt-1"> <BsPersonFill/></span>
 
 
         <NavDropdown title={<span><AiOutlineLogin/> Employer </span>}  id="basic-nav-dropdown">
-          <NavDropdown.Item as={Link} to="/freelancer-login" >Employer Login</NavDropdown.Item>
-          <NavDropdown.Item as={Link} to="/home" > Employer SignUp</NavDropdown.Item>
+          <NavDropdown.Item as={Link} to="/company-login" >Employer Login</NavDropdown.Item>
+          <NavDropdown.Item as={Link} to="/company-signUp" > Employer SignUp</NavDropdown.Item>
         </NavDropdown>
 
         <span className="DisappearI text-light mt-1" > <HiOutlineOfficeBuilding/></span>
