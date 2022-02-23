@@ -4,8 +4,15 @@ import { useMutation } from "@apollo/client";
 import { USER_LOGIN } from "../../../graphQL/Mutations";
 
 export default function FreeLancerLogin() {
+
+  
+  
+
+
   const formRef = useRef();
-  const [loginUser, { loading, error }] = useMutation(USER_LOGIN);
+
+  const [loginUser, { loading,  error , data}] = useMutation(USER_LOGIN);
+  console.log(data)
 
   //submit function
   const userLogin = (e) => {

@@ -14,13 +14,17 @@ import FreelancerProfile from "./components/freelancer/freelancer-profile/Freela
 import FreelancerSignUp from "./components/freelancer/freelancer-sign-up/FreelancerSignUp";
 import CompanyProfile from "./components/company/company-profile/CompanyProfile";
 
+
 // External imports
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import ContextContainer from "./Context/ContextContainer";
 
 function App() {
   return (
+    
     <>
+      <ContextContainer>
       <Header />
       <main className="container-fluid">
         <Routes>
@@ -36,6 +40,7 @@ function App() {
         </Routes>
       </main>
       <Footer />
+      </ContextContainer>
     </>
   );
 }
