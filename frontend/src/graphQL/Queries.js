@@ -38,14 +38,15 @@ export const GET_ONE_COMPANY = gql`
   query GetOneCompany($getOneCompanyId: ID) {
     getOneCompany(id: $getOneCompanyId) {
       id
-      first_name
-      last_name
+      company_name
+      owner_name
       avatar
-      email
+      company_type
+      address
       phone
+      email
       password
       repeatPassword
-      hourly_rate
       description
     }
   }
