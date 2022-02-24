@@ -13,7 +13,7 @@ import FreeLancerLogin from "./components/freelancer/freelancer-login/Freelancer
 import FreelancerProfile from "./components/freelancer/freelancer-profile/FreelancerProfile";
 import FreelancerSignUp from "./components/freelancer/freelancer-sign-up/FreelancerSignUp";
 import CompanyProfile from "./components/company/company-profile/CompanyProfile";
-
+import CreateJob from "./components/company/company-profile/company-create-job/CreateJob";
 
 // External imports
 
@@ -26,6 +26,7 @@ function App() {
     <>
       <ContextContainer>
       <Header />
+      <CreateJob/>
       <main className="container-fluid">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -44,5 +45,6 @@ function App() {
     </>
   );
 }
+
 
 export default App;
