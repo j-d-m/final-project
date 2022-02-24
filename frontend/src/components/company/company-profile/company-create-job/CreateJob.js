@@ -2,39 +2,37 @@ import { useMutation } from "@apollo/client";
 import React, { useContext, useState } from "react";
 import { MyContext } from "../../../../Context/Context";
 import { CREATE_JOB } from "../../../../graphQL/Mutations";
+import Swal from "sweetalert2";
 
 function CreateJob() {
-  const [textInput, setTextInput] = useState("");
   const { companyLoginData } = useContext(MyContext);
-  let jobTitle, date, numOfPeopleNeeded, jobDescription, companyName, createdBy;
-
   const [addJob, { data, loading, error }] = useMutation(CREATE_JOB);
-
-  const message = (e) => {
-    e.preventDefault();
-    setTextInput(e.target.value);
-  };
 
   const addJobProfile = (e) => {
     e.preventDefault();
-    console.log(e.target);
     addJob({
       variables: {
-        jobTitle: jobTitle.value,
-        date: date.value,
-        numOfPeopleNeeded: numOfPeopleNeeded.value,
-        jobDescription: textInput,
-        // companyName: companyLoginData.companyId,
-        // createdBy:createdBy.value,
+        jobTitle: e.target.jobTitle.value,
+        startDate: e.target.startDate.value,
+        endDate: e.target.endDate.value,
+        numOfPeopleNeeded: Number(e.target.numOfPeopleNeeded.value),
+        jobDescription: e.target.jobDescription.value,
+        createdBy: companyLoginData?.companyId,
       },
+    }).then((res) => {
+      // setCompanyLoginData(res.data.loginCompany);
+      if (companyLoginData) {
+        // navigate("/");
+        Swal.fire({
+          position: "top",
+          icon: "success",
+          title: "Job created successfully",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      }
     });
   };
-
-  console.log(textInput);
-
-  if (loading) return <p> Loading...</p>;
-  if (error) return <p> there is error</p>;
-  console.log(data, error);
 
   return (
     <div>
@@ -42,7 +40,7 @@ function CreateJob() {
         <div className="mb-3">
           <label className="form-label">Job Title</label>
           <input
-            ref={(value) => (jobTitle = value)}
+            // ref={(value) => (jobTitle = value)}
             name="jobTitle"
             type="text"
             className="form-control"
@@ -50,10 +48,19 @@ function CreateJob() {
           />
         </div>
         <div className="mb-3">
-          <label className="form-label">Date</label>
+          <label className="form-label">Start Date</label>
           <input
-            ref={(value) => (date = value)}
-            name="date"
+            // ref={(value) => (date = value)}
+            name="startDate"
+            type="date"
+            className="form-control"
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">End Date</label>
+          <input
+            // ref={(value) => (date = value)}
+            name="endDate"
             type="date"
             className="form-control"
           />
@@ -61,7 +68,7 @@ function CreateJob() {
         <div className="mb-3">
           <label className="form-label">number of people</label>
           <input
-            ref={(value) => (numOfPeopleNeeded = value)}
+            // ref={(value) => (numOfPeopleNeeded = value)}
             name="numOfPeopleNeeded"
             type="number"
             className="form-control"
@@ -69,7 +76,8 @@ function CreateJob() {
         </div>
         <div className="form-outline">
           <textarea
-            onChange={message}
+            // onChange={message}
+            name="jobDescription"
             className="form-control"
             rows="8"
             cols="60"

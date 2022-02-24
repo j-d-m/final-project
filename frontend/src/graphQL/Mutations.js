@@ -183,26 +183,28 @@ export const UPDATE_USER = gql`
 export const CREATE_JOB = gql`
   mutation AddJob(
     $jobTitle: String!
-    $companyName: String!
-    $date: String!
+    $startDate: String!
+    $endDate: String!
     $numOfPeopleNeeded: Int!
     $jobDescription: String!
     $createdBy: ID!
   ) {
     addJob(
       job_Title: $jobTitle
-      company_Name: $companyName
-      date: $date
+      start_Date: $startDate
+      end_Date: $endDate
       num_of_people_needed: $numOfPeopleNeeded
       job_description: $jobDescription
       created_by: $createdBy
     ) {
-      id
       job_Title
-      company_Name
-      date
+      start_Date
+      end_Date
       num_of_people_needed
       job_description
+      created_by {
+        company_Name
+      }
     }
   }
 `;
@@ -225,23 +227,22 @@ export const UPDATE_JOB = gql`
     $date: String
     $numOfPeopleNeeded: Int
     $jobDescription: String
-    $createdBy: String
   ) {
     updateJob(
       id: $updateJobId
       job_Title: $jobTitle
-      company_Name: $companyName
       date: $date
       num_of_people_needed: $numOfPeopleNeeded
       job_description: $jobDescription
-      created_by: $createdBy
     ) {
       id
       job_Title
-      company_Name
       date
       num_of_people_needed
       job_description
+      created_by {
+        company_Name
+      }
     }
   }
 `;

@@ -5,6 +5,9 @@ import "../../../styles/companyLogin.scss";
 import { MyContext } from "../../../Context/Context";
 import { useNavigate } from "react-router-dom";
 import { GET_ONE_COMPANY } from "../../../graphQL/Queries";
+
+import Swal from "sweetalert2";
+
 export default function CompanyLogin() {
   const formRef = useRef();
   const navigate = useNavigate();
@@ -12,12 +15,13 @@ export default function CompanyLogin() {
 
   //submit function
   const [loginCompany, { loading, error, data }] = useMutation(COMPANY_LOGIN);
-  // const [getOneCompany, { loading1, error1, data1 }] = useQuery(
-  //   GET_ONE_COMPANY,
-  //   {
-  //     variables: companyLoginData.company_name,
-  //   }
-  // );
+  // const [loginCompany, { loading, error, data }] = useMutation(COMPANY_LOGIN, {
+  //   refetchQueries: [
+  //     { query: GET_ONE_COMPANY, variables: { id: companyLoginData.companyId } },
+  //   ],
+  //   awaitRefetchQueries: true,
+  // });
+
   const companyLogin = (e) => {
     e.preventDefault();
 
@@ -28,13 +32,22 @@ export default function CompanyLogin() {
       },
     }).then((res) => {
       setCompanyLoginData(res.data.loginCompany);
-      navigate("/");
+      if (companyLoginData) {
+        navigate("/");
+        Swal.fire({
+          position: "top",
+          icon: "success",
+          title: "Login successfully",
+          showConfirmButton: false,
+          timer: 1000,
+          customClass: "swal-width",
+        });
+      }
     });
   };
 
-  // if (loading) return <p>Loading...</p>;
   if (error) return `${error.message}`;
-  console.log(data);
+  console.log(data, "data");
   console.log(companyLoginData);
 
   return (

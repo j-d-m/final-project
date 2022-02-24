@@ -2,19 +2,25 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink, from } from "@apollo/client";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  HttpLink,
+  from,
+} from "@apollo/client";
+
 import { onError } from "@apollo/client/link/error";
 
 const httpLink = new HttpLink({
-  uri: "https://deploy-final-project-anass.herokuapp.com/graphql"
+  // uri: "https://deploy-final-project-anass.herokuapp.com/graphql"
+  uri: "http://localhost:4000/graphql",
 });
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors)
     graphQLErrors.forEach(({ message, locations, path }) =>
-      console.log(
-        `[GraphQL error]: Message: ${message}`,
-      ),
+      console.log(`[GraphQL error]: Message: ${message}`)
     );
 
   if (networkError) console.log(`[Network error]: ${networkError}`);
@@ -26,11 +32,8 @@ const client = new ApolloClient({
   // The `from` function combines an array of individual links
   // into a link chain
   link: from([errorLink, httpLink]),
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
 });
-
-
-
 
 ReactDOM.render(
   <React.StrictMode>
