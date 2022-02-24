@@ -1,10 +1,13 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { COMPANY_LOGIN } from "../../../graphQL/Mutations";
 import "../../../styles/companyLogin.scss";
+import { MyContext } from "../../../Context/Context";
 export default function CompanyLogin() {
   const formRef = useRef();
-  const [loginCompany, { loading, error }] = useMutation(COMPANY_LOGIN);
+  const [loginCompany, { loading, error, data }] = useMutation(COMPANY_LOGIN);
+  // 2
+  const { companyLoginData, setCompanyLoginData } = useContext(MyContext);
 
   //submit function
   const companyLogin = (e) => {
@@ -14,39 +17,33 @@ export default function CompanyLogin() {
         email: formRef.current.email.value,
         password: formRef.current.password.value,
       },
+    }).then((res) => {
+      setCompanyLoginData(res.data.loginCompany);
     });
   };
-  if (loading) return <p>Loading...</p>;
+
+  // if (loading) return <p>Loading...</p>;
   if (error) return `${error.message}`;
+  console.log(companyLoginData);
 
   return (
     <div className="container company-login">
       <h1 className="company-login-header">Employer Login</h1>
       <form onSubmit={companyLogin} ref={formRef}>
-        <div class="mb-3">
-          <label for="exampleInputTex1" class="form-label">
-            Email
-          </label>
+        <div className="mb-3">
+          <label className="form-label">Email</label>
           <input
             name="email"
             type="email"
-            class="form-control"
-            id="exampleInputTex1"
+            className="form-control"
             aria-describedby="emailHelp"
           />
         </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword2" class="form-label">
-            Password
-          </label>
-          <input
-            name="password"
-            type="password"
-            class="form-control"
-            id="exampleInputPassword2"
-          />
+        <div className="mb-3">
+          <label className="form-label">Password</label>
+          <input name="password" type="password" className="form-control" />
         </div>
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" className="btn btn-primary">
           Submit
         </button>
       </form>
