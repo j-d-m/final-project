@@ -3,7 +3,7 @@ import { gql } from "@apollo/client";
 //add company
 export const CREATE_COMPANY_MUTATION = gql`
   mutation AddCompany(
-    $company_name: String!
+    $company_Name: String!
     $owner_name: String!
     $company_type: String!
     $address: String!
@@ -14,7 +14,7 @@ export const CREATE_COMPANY_MUTATION = gql`
     $description: String!
   ) {
     addCompany(
-      company_name: $company_name
+      company_Name: $company_Name
       owner_name: $owner_name
       company_type: $company_type
       address: $address
@@ -24,7 +24,7 @@ export const CREATE_COMPANY_MUTATION = gql`
       repeatPassword: $repeatPassword
       description: $description
     ) {
-      company_name
+      company_Name
       owner_name
       company_type
       address
@@ -50,7 +50,7 @@ export const COMPANY_LOGIN = gql`
 export const DELETE_COMPANY = gql`
   mutation DeleteCompany($deleteCompanyId: ID) {
     deleteCompany(id: $deleteCompanyId) {
-      company_name
+      company_Name
     }
   }
 `;
@@ -70,7 +70,7 @@ export const UPDATE_COMPANY = gql`
   ) {
     updateCompany(
       id: $updateCompanyId
-      company_name: $companyName
+      company_Name: $companyName
       owner_name: $ownerName
       avatar: $avatar
       company_type: $companyType
@@ -81,7 +81,7 @@ export const UPDATE_COMPANY = gql`
       description: $description
     ) {
       id
-      company_name
+      company_Name
       owner_name
       avatar
       company_type

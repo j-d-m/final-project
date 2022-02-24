@@ -1,17 +1,26 @@
 import React, { useContext, useRef, useState } from "react";
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { COMPANY_LOGIN } from "../../../graphQL/Mutations";
 import "../../../styles/companyLogin.scss";
 import { MyContext } from "../../../Context/Context";
+import { useNavigate } from "react-router-dom";
+import { GET_ONE_COMPANY } from "../../../graphQL/Queries";
 export default function CompanyLogin() {
   const formRef = useRef();
-  const [loginCompany, { loading, error, data }] = useMutation(COMPANY_LOGIN);
-  // 2
+  const navigate = useNavigate();
   const { companyLoginData, setCompanyLoginData } = useContext(MyContext);
 
   //submit function
+  const [loginCompany, { loading, error, data }] = useMutation(COMPANY_LOGIN);
+  // const [getOneCompany, { loading1, error1, data1 }] = useQuery(
+  //   GET_ONE_COMPANY,
+  //   {
+  //     variables: companyLoginData.company_name,
+  //   }
+  // );
   const companyLogin = (e) => {
     e.preventDefault();
+
     loginCompany({
       variables: {
         email: formRef.current.email.value,
@@ -19,11 +28,13 @@ export default function CompanyLogin() {
       },
     }).then((res) => {
       setCompanyLoginData(res.data.loginCompany);
+      navigate("/");
     });
   };
 
   // if (loading) return <p>Loading...</p>;
   if (error) return `${error.message}`;
+  console.log(data);
   console.log(companyLoginData);
 
   return (

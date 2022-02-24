@@ -1,10 +1,11 @@
 import { useMutation } from "@apollo/client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { MyContext } from "../../../../Context/Context";
 import { CREATE_JOB } from "../../../../graphQL/Mutations";
 
 function CreateJob() {
   const [textInput, setTextInput] = useState("");
-
+  const { companyLoginData } = useContext(MyContext);
   let jobTitle, date, numOfPeopleNeeded, jobDescription, companyName, createdBy;
 
   const [addJob, { data, loading, error }] = useMutation(CREATE_JOB);
@@ -23,7 +24,7 @@ function CreateJob() {
         date: date.value,
         numOfPeopleNeeded: numOfPeopleNeeded.value,
         jobDescription: textInput,
-        // companyName: companyName.value,
+        // companyName: companyLoginData.companyId,
         // createdBy:createdBy.value,
       },
     });
