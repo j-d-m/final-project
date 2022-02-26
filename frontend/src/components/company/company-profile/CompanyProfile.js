@@ -1,4 +1,4 @@
-import { useLazyQuery, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import React, { useContext } from "react";
 import { MyContext } from "../../../Context/Context";
 import { GET_ONE_COMPANY } from "../../../graphQL/Queries";

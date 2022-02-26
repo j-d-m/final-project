@@ -2,7 +2,7 @@ import { useQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
 import { GET_JOBS } from "../../graphQL/Queries";
 
-// import Adzuna from '../../services/external-api/Adzuna'
+// import Adzuna from "../../services/external-api/Adzuna";
 // import API_URL from "../../services/external-api/Adzuna";
 
 export default function Home() {
