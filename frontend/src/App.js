@@ -25,7 +25,7 @@ function App() {
     <>
       <ContextContainer>
         <Header />
-        <CreateJob />
+        {/* <CreateJob /> */}
         <main className="container-fluid">
           <Routes>
             <Route path="/" element={<Home />} />
