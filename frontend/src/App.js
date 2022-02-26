@@ -22,29 +22,27 @@ import ContextContainer from "./Context/ContextContainer";
 
 function App() {
   return (
-    
     <>
       <ContextContainer>
-      <Header />
-      <CreateJob/>
-      <main className="container-fluid">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/company-login" element={<CompanyLogin />} />
-          <Route path="/company-signUp" element={<CompanySignUp />} />
-          <Route path="/freelancer-login" element={<FreeLancerLogin />} />
-          <Route path="/freelancer-profile" element={<FreelancerProfile />} />
-          <Route path="/freelancer-signUp" element={<FreelancerSignUp />} />
-          <Route path="/company-profile" element={<CompanyProfile />} />
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
-      </main>
-      <Footer />
+        <Header />
+        <CreateJob />
+        <main className="container-fluid">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/company-login" element={<CompanyLogin />} />
+            <Route path="/company-signUp" element={<CompanySignUp />} />
+            <Route path="/freelancer-login" element={<FreeLancerLogin />} />
+            <Route path="/freelancer-profile" element={<FreelancerProfile />} />
+            <Route path="/freelancer-signUp" element={<FreelancerSignUp />} />
+            <Route path="/company-profile" element={<CompanyProfile />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+        </main>
+        <Footer />
       </ContextContainer>
     </>
   );
 }
-
 
 export default App;

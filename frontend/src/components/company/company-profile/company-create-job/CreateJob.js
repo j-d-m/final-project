@@ -1,12 +1,16 @@
 import { useMutation } from "@apollo/client";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { MyContext } from "../../../../Context/Context";
 import { CREATE_JOB } from "../../../../graphQL/Mutations";
 import Swal from "sweetalert2";
+import { GET_JOBS } from "../../../../graphQL/Queries";
 
 function CreateJob() {
   const { companyLoginData } = useContext(MyContext);
-  const [addJob, { data, loading, error }] = useMutation(CREATE_JOB);
+  const [addJob, { data, loading, error }] = useMutation(CREATE_JOB, {
+    refetchQueries: [{ query: GET_JOBS }],
+    awaitRefetchQueries: true,
+  });
 
   const addJobProfile = (e) => {
     e.preventDefault();
@@ -17,12 +21,10 @@ function CreateJob() {
         endDate: e.target.endDate.value,
         numOfPeopleNeeded: Number(e.target.numOfPeopleNeeded.value),
         jobDescription: e.target.jobDescription.value,
-        createdBy: companyLoginData?.companyId,
+        createdBy: companyLoginData.companyId,
       },
     }).then((res) => {
-      // setCompanyLoginData(res.data.loginCompany);
-      if (companyLoginData) {
-        // navigate("/");
+      if (res.data) {
         Swal.fire({
           position: "top",
           icon: "success",
@@ -31,16 +33,24 @@ function CreateJob() {
           timer: 1000,
         });
       }
+      if (error) {
+        Swal.fire({
+          position: "top",
+          icon: "error",
+          title: "something went wrong",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      }
     });
   };
-
+  console.log(data);
   return (
     <div>
       <form onSubmit={addJobProfile} className="w-75 m-auto">
         <div className="mb-3">
           <label className="form-label">Job Title</label>
           <input
-            // ref={(value) => (jobTitle = value)}
             name="jobTitle"
             type="text"
             className="form-control"
@@ -49,26 +59,15 @@ function CreateJob() {
         </div>
         <div className="mb-3">
           <label className="form-label">Start Date</label>
-          <input
-            // ref={(value) => (date = value)}
-            name="startDate"
-            type="date"
-            className="form-control"
-          />
+          <input name="startDate" type="date" className="form-control" />
         </div>
         <div className="mb-3">
           <label className="form-label">End Date</label>
-          <input
-            // ref={(value) => (date = value)}
-            name="endDate"
-            type="date"
-            className="form-control"
-          />
+          <input name="endDate" type="date" className="form-control" />
         </div>
         <div className="mb-3">
           <label className="form-label">number of people</label>
           <input
-            // ref={(value) => (numOfPeopleNeeded = value)}
             name="numOfPeopleNeeded"
             type="number"
             className="form-control"
@@ -76,7 +75,6 @@ function CreateJob() {
         </div>
         <div className="form-outline">
           <textarea
-            // onChange={message}
             name="jobDescription"
             className="form-control"
             rows="8"

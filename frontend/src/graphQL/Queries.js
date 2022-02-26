@@ -46,8 +46,21 @@ export const GET_ONE_COMPANY = gql`
       phone
       email
       password
-      repeatPassword
       description
+      favorite {
+        first_name
+        last_name
+        avatar
+        email
+        description
+      }
+      jobs {
+        job_Title
+        start_Date
+        end_Date
+        num_of_people_needed
+        job_description
+      }
     }
   }
 `;
@@ -89,6 +102,8 @@ export const GET_JOBS = gql`
     getJobs {
       id
       job_Title
+      # start_Date
+      # end_Date
       issued_At
       num_of_people_needed
       job_description

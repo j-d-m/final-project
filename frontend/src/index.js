@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
+import Swal from "sweetalert2";
 import {
   ApolloClient,
   InMemoryCache,
@@ -13,14 +14,18 @@ import {
 import { onError } from "@apollo/client/link/error";
 
 const httpLink = new HttpLink({
-  // uri: "https://deploy-final-project-anass.herokuapp.com/graphql"
-  uri: "http://localhost:4000/graphql",
+  uri: "https://deploy-final-project-anass.herokuapp.com/graphql",
 });
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors)
     graphQLErrors.forEach(({ message, locations, path }) =>
-      console.log(`[GraphQL error]: Message: ${message}`)
+      Swal.fire({
+        position: "top",
+        icon: "error",
+        title: ` ${message}`,
+        showConfirmButton: true,
+      })
     );
 
   if (networkError) console.log(`[Network error]: ${networkError}`);

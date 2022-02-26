@@ -1,0 +1,13 @@
+.company-profile {
+  border: 1px solid black;
+
+  .company-avatar {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    img {
+      border-radius: 50%;
+    }
+  }
+}
