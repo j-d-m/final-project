@@ -10,10 +10,11 @@
 // } from "react-icons/md";
 import { useMutation } from "@apollo/client";
 import React from "react";
+import Swal from "sweetalert2";
 import { CREATE_COMPANY_MUTATION } from "../../../graphQL/Mutations";
 
 export default function CompanySignUp() {
-  let company_name,
+  let company_Name,
     owner_name,
     company_type,
     address,
@@ -32,7 +33,7 @@ export default function CompanySignUp() {
     e.preventDefault();
     addCompany({
       variables: {
-        company_name: company_name.value,
+        company_Name: company_Name.value,
         owner_name: owner_name.value,
         company_type: company_type.value,
         address: address.value,
@@ -42,10 +43,21 @@ export default function CompanySignUp() {
         repeatPassword: repeatPassword.value,
         description: description.value,
       },
+    }).then((res) => {
+      if (res.data) {
+        Swal.fire({
+          position: "top",
+          icon: "success",
+          title: "account created successfully",
+          showConfirmButton: false,
+          timer: 2000,
+          customClass: "swal-width",
+        });
+      }
     });
   };
 
-  if (error) return <p>Error :(</p>;
+  if (loading) return <p>Loading...</p>;
   console.log(data);
   console.log(error);
 
@@ -64,7 +76,7 @@ export default function CompanySignUp() {
           <input
             type="text"
             placeholder="Company Name"
-            ref={(value) => (company_name = value)}
+            ref={(value) => (company_Name = value)}
           />
           <label> {/* <MdPersonPin /> */} Owner/Manager Name</label>
           <input
