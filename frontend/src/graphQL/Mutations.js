@@ -3,7 +3,7 @@ import { gql } from "@apollo/client";
 //add company
 export const CREATE_COMPANY_MUTATION = gql`
   mutation AddCompany(
-    $company_name: String!
+    $company_Name: String!
     $owner_name: String!
     $company_type: String!
     $address: String!
@@ -14,7 +14,7 @@ export const CREATE_COMPANY_MUTATION = gql`
     $description: String!
   ) {
     addCompany(
-      company_name: $company_name
+      company_Name: $company_Name
       owner_name: $owner_name
       company_type: $company_type
       address: $address
@@ -24,7 +24,7 @@ export const CREATE_COMPANY_MUTATION = gql`
       repeatPassword: $repeatPassword
       description: $description
     ) {
-      company_name
+      company_Name
       owner_name
       company_type
       address
@@ -50,7 +50,7 @@ export const COMPANY_LOGIN = gql`
 export const DELETE_COMPANY = gql`
   mutation DeleteCompany($deleteCompanyId: ID) {
     deleteCompany(id: $deleteCompanyId) {
-      company_name
+      company_Name
     }
   }
 `;
@@ -70,7 +70,7 @@ export const UPDATE_COMPANY = gql`
   ) {
     updateCompany(
       id: $updateCompanyId
-      company_name: $companyName
+      company_Name: $companyName
       owner_name: $ownerName
       avatar: $avatar
       company_type: $companyType
@@ -81,7 +81,7 @@ export const UPDATE_COMPANY = gql`
       description: $description
     ) {
       id
-      company_name
+      company_Name
       owner_name
       avatar
       company_type
@@ -183,26 +183,28 @@ export const UPDATE_USER = gql`
 export const CREATE_JOB = gql`
   mutation AddJob(
     $jobTitle: String!
-    $companyName: String!
-    $date: String!
+    $startDate: String!
+    $endDate: String!
     $numOfPeopleNeeded: Int!
     $jobDescription: String!
     $createdBy: ID!
   ) {
     addJob(
       job_Title: $jobTitle
-      company_Name: $companyName
-      date: $date
+      start_Date: $startDate
+      end_Date: $endDate
       num_of_people_needed: $numOfPeopleNeeded
       job_description: $jobDescription
       created_by: $createdBy
     ) {
-      id
       job_Title
-      company_Name
-      date
+      start_Date
+      end_Date
       num_of_people_needed
       job_description
+      created_by {
+        company_Name
+      }
     }
   }
 `;
@@ -225,23 +227,22 @@ export const UPDATE_JOB = gql`
     $date: String
     $numOfPeopleNeeded: Int
     $jobDescription: String
-    $createdBy: String
   ) {
     updateJob(
       id: $updateJobId
       job_Title: $jobTitle
-      company_Name: $companyName
       date: $date
       num_of_people_needed: $numOfPeopleNeeded
       job_description: $jobDescription
-      created_by: $createdBy
     ) {
       id
       job_Title
-      company_Name
       date
       num_of_people_needed
       job_description
+      created_by {
+        company_Name
+      }
     }
   }
 `;

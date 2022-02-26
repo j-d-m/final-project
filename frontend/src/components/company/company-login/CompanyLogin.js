@@ -1,35 +1,58 @@
-import React, { useContext, useRef, useState } from "react";
-import { useMutation } from "@apollo/client";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { useMutation, useQuery } from "@apollo/client";
 import { COMPANY_LOGIN } from "../../../graphQL/Mutations";
 import "../../../styles/companyLogin.scss";
 import { MyContext } from "../../../Context/Context";
-export default function CompanyLogin() {
-  const formRef = useRef();
-  const [loginCompany, { loading, error, data }] = useMutation(COMPANY_LOGIN);
-  // 2
-  const { companyLoginData, setCompanyLoginData } = useContext(MyContext);
+import { useNavigate } from "react-router-dom";
 
+import Swal from "sweetalert2";
+
+export default function CompanyLogin() {
+  const navigate = useNavigate();
+  const { setCompanyLoginData, setIsCompanyLogin } = useContext(MyContext);
+  const [loginCompany, { loading, error, data }] = useMutation(COMPANY_LOGIN);
   //submit function
+
   const companyLogin = (e) => {
     e.preventDefault();
+
     loginCompany({
       variables: {
-        email: formRef.current.email.value,
-        password: formRef.current.password.value,
+        email: e.target.email.value,
+        password: e.target.password.value,
       },
     }).then((res) => {
-      setCompanyLoginData(res.data.loginCompany);
+      console.log(res.data);
+      if (res.data) {
+        setCompanyLoginData(res.data.loginCompany);
+        Swal.fire({
+          position: "top",
+          icon: "success",
+          title: "Login successfully",
+          showConfirmButton: false,
+          timer: 2000,
+          customClass: "swal-width",
+        });
+        setIsCompanyLogin(true);
+        navigate("/");
+      }
+      if (error) {
+        Swal.fire({
+          position: "top",
+          icon: "error",
+          title: ` ${error}`,
+          showConfirmButton: false,
+          timer: 1000,
+          customClass: "swal-width",
+        });
+      }
     });
   };
-
-  // if (loading) return <p>Loading...</p>;
-  if (error) return `${error.message}`;
-  console.log(companyLoginData);
 
   return (
     <div className="container company-login">
       <h1 className="company-login-header">Employer Login</h1>
-      <form onSubmit={companyLogin} ref={formRef}>
+      <form onSubmit={companyLogin}>
         <div className="mb-3">
           <label className="form-label">Email</label>
           <input
@@ -47,7 +70,6 @@ export default function CompanyLogin() {
           Submit
         </button>
       </form>
-      {/* <Toaster position="top-center" reverseOrder={false} /> */}
     </div>
   );
 }

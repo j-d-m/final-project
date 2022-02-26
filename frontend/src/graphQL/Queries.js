@@ -38,7 +38,7 @@ export const GET_ONE_COMPANY = gql`
   query GetOneCompany($getOneCompanyId: ID) {
     getOneCompany(id: $getOneCompanyId) {
       id
-      company_name
+      company_Name
       owner_name
       avatar
       company_type
@@ -46,8 +46,21 @@ export const GET_ONE_COMPANY = gql`
       phone
       email
       password
-      repeatPassword
       description
+      favorite {
+        first_name
+        last_name
+        avatar
+        email
+        description
+      }
+      jobs {
+        job_Title
+        start_Date
+        end_Date
+        num_of_people_needed
+        job_description
+      }
     }
   }
 `;
@@ -55,7 +68,7 @@ export const GET_COMPANIES = gql`
   query GetCompanies {
     getCompanies {
       id
-      company_name
+      company_Name
       owner_name
       avatar
       company_type
@@ -74,10 +87,13 @@ export const GET_ONE_JOB = gql`
     getOneJob(id: $getOneJobId) {
       id
       job_Title
-      company_Name
-      date
+      issued_At
       num_of_people_needed
       job_description
+      created_by {
+        company_Name
+        email
+      }
     }
   }
 `;
@@ -86,10 +102,15 @@ export const GET_JOBS = gql`
     getJobs {
       id
       job_Title
-      company_Name
-      date
+      # start_Date
+      # end_Date
+      issued_At
       num_of_people_needed
       job_description
+      created_by {
+        company_Name
+        email
+      }
     }
   }
 `;

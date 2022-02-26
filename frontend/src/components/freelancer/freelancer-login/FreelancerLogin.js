@@ -1,8 +1,8 @@
-import React, { useContext, useRef } from "react";
+import React, { /* useContext, */ useRef } from "react";
 import "./freelancerLogin.scss";
 import { useMutation } from "@apollo/client";
 import { USER_LOGIN } from "../../../graphQL/Mutations";
-import { MyContext } from "../../../Context/Context";
+// import { MyContext } from "../../../Context/Context";
 
 export default function FreeLancerLogin() {
   const formRef = useRef();
