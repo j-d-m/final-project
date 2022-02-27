@@ -1,8 +1,10 @@
 @import 'colors';
 @import './mobile';
+@import './fonts';
 
 .slogan-text {
-    font-size: 12px;
+    font-size: 14px;
+    font-family: $font-family-Bebas;
     
 }
 

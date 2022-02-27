@@ -22,7 +22,7 @@ export default function Header() {
             height="40"
             className="d-inline-block align-top"
           />
-          STAFF ROOM <p className="slogan-text"> GASTRONOMY JOBS/PEOPLE WHEN YOU NEED </p> 
+          STAFF ROOM <p className="slogan-text"> GASTRONOMY JOBS / PEOPLE WHEN YOU NEED </p> 
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
