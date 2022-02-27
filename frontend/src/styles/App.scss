@@ -1,0 +1,18 @@
+@import "./_home";
+@import "./_fonts";
+@import "./_colors";
+@import "./_companyProfile";
+@import "./_companyLogin";
+@import "./_notFound";
+@import "./_header";
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body > h1 {
+  font-family: $Bebas-title;
+  background-color: $color-green;
+}

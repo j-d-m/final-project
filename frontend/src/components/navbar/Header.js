@@ -6,7 +6,7 @@ import { AiOutlineLogin } from "react-icons/ai";
 import { HiOutlineOfficeBuilding } from "react-icons/hi";
 import { BsPersonFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import "../../styles/header.scss";
+
 import { MyContext } from "../../Context/Context";
 
 export default function Header() {

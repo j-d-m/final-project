@@ -2,7 +2,7 @@
 import { Routes, Route } from "react-router-dom";
 
 //Component imports
-import "./App.scss";
+import "./styles/App.scss";
 import Home from "./components/home/Home";
 import Header from "./components/navbar/Header";
 import PageNotFound from "./components/not-found/NotFound";
@@ -35,7 +35,13 @@ function App() {
             <Route path="/freelancer-login" element={<FreeLancerLogin />} />
             <Route path="/freelancer-profile" element={<FreelancerProfile />} />
             <Route path="/freelancer-signUp" element={<FreelancerSignUp />} />
-            <Route path="/company-profile" element={<CompanyProfile />} />
+
+            <Route path="/company-profile" element={<CompanyProfile />}>
+              <Route
+                path="/company-profile/create-job"
+                element={<CreateJob />}
+              />
+            </Route>
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </main>

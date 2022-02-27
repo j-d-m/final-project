@@ -1,10 +1,12 @@
 import { useQuery } from "@apollo/client";
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { MyContext } from "../../../Context/Context";
 import { GET_ONE_COMPANY } from "../../../graphQL/Queries";
-import "../../../styles/_companyProfile.scss";
+
 export default function CompanyProfile() {
   const { companyLoginData } = useContext(MyContext);
+  const navigate = useNavigate();
 
   const { loading, error, data } = useQuery(GET_ONE_COMPANY, {
     variables: { getOneCompanyId: companyLoginData.companyId },
@@ -20,6 +22,7 @@ export default function CompanyProfile() {
     );
   let {
     company_Name,
+    owner_name,
     address,
     company_type,
     description,
@@ -31,7 +34,7 @@ export default function CompanyProfile() {
   return (
     <div className="company-profile">
       <div className="company-avatar">
-        <img src={avatar} alt="img" width="200px" />
+        <img src={avatar} alt="img" width="200px" height="200px" />
         <div>
           <input type="file" />
           <p>upload your picture</p>
@@ -39,12 +42,33 @@ export default function CompanyProfile() {
       </div>
 
       <div className="company-info">
-        <h1>Company Profile</h1>
+        <h1>Your Company profile</h1>
+        <div>
+          <p>company name : {company_Name}</p>
+        </div>
+        <div>
+          <p>company type : {company_type}</p>
+        </div>
         <div>
           <p>company address : {address}</p>
         </div>
         <div>
-          <p>company address : {address}</p>
+          <p>Owner : {owner_name}</p>
+        </div>
+        <div>
+          <p>email : {email}</p>
+        </div>
+        <div>
+          <p>phone : {phone}</p>
+        </div>
+        <div className="btn">
+          <input
+            type="submit"
+            value="Post a Job"
+            onClick={() => navigate("/create-job")}
+          />
+
+          <input type="submit" value="Check out the freelancers" />
         </div>
       </div>
     </div>

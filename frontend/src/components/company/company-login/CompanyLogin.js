@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { COMPANY_LOGIN } from "../../../graphQL/Mutations";
-import "../../../styles/companyLogin.scss";
+
 import { MyContext } from "../../../Context/Context";
 import { useNavigate } from "react-router-dom";
 
@@ -34,18 +34,19 @@ export default function CompanyLogin() {
           customClass: "swal-width",
         });
         setIsCompanyLogin(true);
-        navigate("/");
+        navigate("/company-profile");
       }
-      if (error) {
-        Swal.fire({
-          position: "top",
-          icon: "error",
-          title: ` ${error}`,
-          showConfirmButton: false,
-          timer: 1000,
-          customClass: "swal-width",
-        });
-      }
+
+      // if (error) {
+      //   Swal.fire({
+      //     position: "top",
+      //     icon: "error",
+      //     title: ` ${error}`,
+      //     showConfirmButton: false,
+      //     timer: 1000,
+      //     customClass: "swal-width",
+      //   });
+      // }
     });
   };
 
