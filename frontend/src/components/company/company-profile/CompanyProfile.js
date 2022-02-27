@@ -37,35 +37,38 @@ export default function CompanyProfile() {
         <img src={avatar} alt="img" width="200px" height="200px" />
         <div>
           <input type="file" />
-          <p>upload your picture</p>
+          <p>Upload your picture</p>
         </div>
       </div>
 
       <div className="company-info">
         <h1>Your Company profile</h1>
         <div>
-          <p>company name : {company_Name}</p>
+          <p>Company name : {company_Name}</p>
         </div>
         <div>
-          <p>company type : {company_type}</p>
+          <p>Company type : {company_type}</p>
         </div>
         <div>
-          <p>company address : {address}</p>
+          <p>Company address : {address}</p>
         </div>
         <div>
           <p>Owner : {owner_name}</p>
         </div>
         <div>
-          <p>email : {email}</p>
+          <p>Email : {email}</p>
         </div>
         <div>
-          <p>phone : {phone}</p>
+          <p>Phone : {phone}</p>
+        </div>
+        <div>
+          <p>Company Description  : {description}</p>
         </div>
         <div className="btn">
           <input
             type="submit"
             value="Post a Job"
-            onClick={() => navigate("/create-job")}
+            onClick={() => navigate("/company-profile/create-job")}
           />
 
           <input type="submit" value="Check out the freelancers" />

@@ -1,0 +1,31 @@
+@mixin input-banner{
+    width: 600px;
+    padding: 8px 1rem;
+    border-radius: 10px;
+    border: 2px solid $color-white;
+    background: $color-white;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+    font-family: $font-family-Roboto;
+
+    &:focus{
+        border: 2px solid $color-green;
+    }
+}
+@mixin input-banner-mobile{
+    width: 100%;
+    padding: 8px 1rem;
+    border-radius: 10px;
+    border: 2px solid $color-white;
+    background: $color-white;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+    font-family: $font-family-Roboto;
+
+    &:focus{
+        border: 2px solid $color-green;
+    }
+}
+

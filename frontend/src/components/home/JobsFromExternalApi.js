@@ -21,9 +21,9 @@ function JobsFromExternalApi() {
             const response = await fetch(API_URL);
             const data = await response.json();
 
-            console.log('=============JOBS ARRAY=======================');
-            console.log(data);
-            console.log('====================================');
+            // console.log('=============JOBS ARRAY=======================');
+            // console.log(data);
+            // console.log('====================================');
 
             setApiJobs(data.results);
         };
@@ -46,15 +46,15 @@ function JobsFromExternalApi() {
                                 />
 
                                 <Carousel.Caption>
-                                    <h6>{job.title}</h6>
+                                    <h6> {job.title}</h6>
                                     <h4>{job.company.display_name}</h4>
                                     <p>Location: {job.location.display_name}</p>
-                                    <p>issued at :{job.created}</p>
+                                    <p>Job Post: {(new Date(job.created)).toLocaleDateString('de-DE')}</p>
                                     <div className="text-center">
-                                        <Button variant="secondary" size="sm"
+                                        <Button variant="secondary" size="lg"
                                             href={job.redirect_url}
                                         >
-                                            View Job
+                                            More details
                                         </Button>
                                     </div>
                                 </Carousel.Caption>
