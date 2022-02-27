@@ -1,18 +1,18 @@
 import React, { useContext } from "react";
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
-import avatar from "../../assets/img/avatar.svg";
+import avatar from "../../assets/img/avatar.jpg";
 import logo from "../../assets/img/logo.svg";
 import { AiOutlineLogin } from "react-icons/ai";
 import { HiOutlineOfficeBuilding } from "react-icons/hi";
 import { BsPersonFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
-
+import "../../styles/header.scss";
 import { MyContext } from "../../Context/Context";
 
 export default function Header() {
   const { isCompanyLogin, isFreelancerLogin } = useContext(MyContext);
   return (
-    <Navbar bg="primary" variant={"dark"} expand="lg">
+    <Navbar bg="dark" variant={"dark"} expand="lg">
       <Container>
         <Navbar.Brand as={Link} to="/home">
           <img
@@ -22,7 +22,7 @@ export default function Header() {
             height="40"
             className="d-inline-block align-top"
           />
-          Staff Room
+          STAFF ROOM <p className="slogan-text"> GASTRONOMY JOBS/PEOPLE WHEN YOU NEED </p> 
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -133,6 +133,7 @@ export default function Header() {
                 </span>
               </>
             )}
+          </Nav>
             <img
               className="ms-5 DisappearI"
               width="50"
@@ -140,7 +141,6 @@ export default function Header() {
               src={avatar}
               alt=""
             />{" "}
-          </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>

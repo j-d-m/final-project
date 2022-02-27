@@ -1,6 +1,8 @@
 import { useQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
 import { GET_JOBS } from "../../graphQL/Queries";
+import '../../styles/home.scss';
+
 
 // import Adzuna from "../../services/external-api/Adzuna";
 // import API_URL from "../../services/external-api/Adzuna";
@@ -28,6 +30,19 @@ export default function Home() {
 
   return (
     <div className=" jobCardContainer">
+
+<section className="home-container">
+      <div className="banner-container">
+        <div className="search-fields">
+          <form >
+            <input type="text"  placeholder="job title or company name... " />
+            <button type="submit"> Search Jobs</button>
+          </form>
+        </div>
+      </div>
+      </section>
+
+
       {data.getJobs.map((job) => {
         return (
           <div key={job.id} className=" CardDiv ">
@@ -49,7 +64,8 @@ export default function Home() {
                 <input
                   type="button"
                   value="Accept Job"
-                  className="btn btn-primary "
+                  className="btn btn-secondary"
+                  
                 />
               </div>
             </div>
