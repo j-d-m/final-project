@@ -61,14 +61,13 @@ export default function Home() {
   }
 
   return (
-    <div className=" jobCardContainer">
-
+  <div className=" jobCardContainer">
   <section className="home-container">
       <div className="banner-container">
         <div className="search-fields">
           <form  onSubmit={searchHandler} >
             <input name="searchJobTitle" type="text"  placeholder="job title... " />
-            <input  type="submit"  value="Search Jobs" />
+            <input className="search-button" type="submit"  value="Search Jobs" />
           </form>
         </div>
       </div>
