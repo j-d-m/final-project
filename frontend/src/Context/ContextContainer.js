@@ -7,6 +7,9 @@ function ContextContainer({ children }) {
   const [companyLoginData, setCompanyLoginData] = useState({});
   const [isCompanyLogin, setIsCompanyLogin] = useState(false);
   const [isFreelancerLogin, setIsFreelancerLogin] = useState(false);
+  const [isTitleFilter, setIsTitleFilter] = useState(false);
+  const [inputValue, setInputValue] = useState([]);
+
   return (
     <MyContext.Provider
       value={{
@@ -19,6 +22,8 @@ function ContextContainer({ children }) {
         setIsCompanyLogin,
         isFreelancerLogin,
         setIsFreelancerLogin,
+        isTitleFilter, setIsTitleFilter
+        ,inputValue, setInputValue
       }}
     >
       {children}
