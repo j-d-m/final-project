@@ -31,9 +31,16 @@
                 @include input-banner-mobile;
                 }
            }
-           button{
+           .search-button{
                 @include button;
+                width: 200px;
+                padding: 13px;
                 
+                @include mobile {
+                width: 150px;  
+                padding-left: 1rem;
+                }
+               
            }
            
 
