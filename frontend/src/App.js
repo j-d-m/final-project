@@ -35,13 +35,12 @@ function App() {
             <Route path="/freelancer-login" element={<FreeLancerLogin />} />
             <Route path="/freelancer-profile" element={<FreelancerProfile />} />
             <Route path="/freelancer-signUp" element={<FreelancerSignUp />} />
-
-            <Route path="/company-profile" element={<CompanyProfile />}>
+            <Route path="/company-profile" element={<CompanyProfile />}/>
               <Route
                 path="/company-profile/create-job"
                 element={<CreateJob />}
               />
-            </Route>
+            
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </main>
