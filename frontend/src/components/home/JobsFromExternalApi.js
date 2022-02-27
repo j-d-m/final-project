@@ -36,23 +36,26 @@ function JobsFromExternalApi() {
         <div className="ext-api-bg">
             <Carousel fade>
                 {apiJobs.map((job) => {
+                    let charLimitCompany = 35
+                    let charLimitTitle = 50
                     return (
                         <Carousel.Item interval={3000} key={job.id}>
                             <div className="card-body">
                                 <img
-                                    className="d-block "
+                                    className="d-block w-100 "
                                     src={extApiBg}
                                     alt="img"
                                 />
 
                                 <Carousel.Caption>
-                                    <h6> {job.title}</h6>
-                                    <h4>{job.company.display_name}</h4>
+                                    <h6> {(job.title).slice(0, charLimitTitle) + ((job.title).length > charLimitTitle ? "..." : "")}</h6>
+                                    <h4>{(job.company.display_name).slice(0, charLimitCompany) + ((job.company.display_name).length > charLimitCompany ? "..." : "")}</h4>
                                     <p>Location: {job.location.display_name}</p>
                                     <p>Job Post: {(new Date(job.created)).toLocaleDateString('de-DE')}</p>
                                     <div className="text-center">
                                         <Button variant="secondary" size="lg"
                                             href={job.redirect_url}
+                                            target="_blank"
                                         >
                                             More details
                                         </Button>

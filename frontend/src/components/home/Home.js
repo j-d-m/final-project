@@ -36,15 +36,15 @@ export default function Home() {
   return (
     <div className=" jobCardContainer">
 
-      <section className="home-container">
-        <div className="banner-container">
-          <div className="search-fields">
-            <form >
-              <input type="text" placeholder="job title or company name... " />
-              <button type="submit"> Search Jobs</button>
-            </form>
-          </div>
+<section className="home-container">
+      <div className="banner-container">
+        <div className="search-fields">
+          <form >
+            <input type="text"  placeholder="job title or company name... " />
+            <button type="submit"> Search Jobs</button>
+          </form>
         </div>
+      </div>
       </section>
 
 
@@ -70,7 +70,7 @@ export default function Home() {
                   type="button"
                   value="Accept Job"
                   className="btn btn-secondary"
-
+                  
                 />
               </div>
             </div>
