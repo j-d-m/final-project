@@ -11,10 +11,10 @@ import Swal from "sweetalert2";
 // Internal imports
 import { MyContext } from "../../Context/Context";
 import { GET_JOBS } from "../../graphQL/Queries";
-import JobsFromExternalApi from "./JobsFromExternalApi";
-import JobsFromInternalApi from "./JobsFromInternalApi";
 import '../../styles/home.scss';
 import exclamation from "../../assets/img/exclamation.ico";
+import CarouselInternalApi from "./CarouselInternalApi";
+import CarouselExternalApi from "./CarouselExternalApi";
 
 
 export default function Home() {
@@ -50,7 +50,7 @@ export default function Home() {
 
   if (loading) {
     return (
-      <div className="m2-auto text-center">
+      <div className="m2-auto text-center loading-block">
         <img
           src="https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif"
           alt="img"
@@ -137,8 +137,8 @@ export default function Home() {
         );
       })}
       <div className="jobs-combo-box" >
-        <JobsFromInternalApi />
-        <JobsFromExternalApi />
+        <CarouselInternalApi />
+        <CarouselExternalApi />
       </div>
     </div>
   );
