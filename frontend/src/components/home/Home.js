@@ -8,38 +8,34 @@ import JobsFromExternalApi from "./JobsFromExternalApi";
 import JobsFromInternalApi from "./JobsFromInternalApi";
 import '../../styles/home.scss';
 
-
-
-
-// import Adzuna from "../../services/external-api/Adzuna";
-// import API_URL from "../../services/external-api/Adzuna";
-
 export default function Home() {
   const { data, loading, error } = useQuery(GET_JOBS);
 
-  const {isTitleFilter, setIsTitleFilter,inputValue, setInputValue} = useContext(MyContext)
+  const { isTitleFilter, setIsTitleFilter, inputValue, setInputValue } = useContext(MyContext)
 
-  
-  const searchHandler = (e)=> {
+
+  const searchHandler = (e) => {
     e.preventDefault()
-    let inputTitleValue=e.target.searchJobTitle.value
-    
+    let inputTitleValue = e.target.searchJobTitle.value
+
     const filterTitle = data.getJobs.filter((item) => item.job_Title === inputTitleValue);
     // console.log(filterTitle[0].job_description);
 
-    if(filterTitle.length > 0){
-       setInputValue(filterTitle)
-       setIsTitleFilter(true)
-     } else {
+    if (filterTitle.length > 0) {
+      setInputValue(filterTitle)
+      setIsTitleFilter(true)
+    } else {
       Swal.fire({
         position: "top",
         icon: "error",
-        title: "job not available",
+        title: "Error",
+        text: "We could not find a job with this title.",
         showConfirmButton: false,
-        timer: 1000,
+        timer: 2000,
+
       });
-     }
-    
+    }
+
   }
 
   if (loading) {
@@ -61,19 +57,19 @@ export default function Home() {
   }
 
   return (
-  <div className=" jobCardContainer">
-  <section className="home-container">
-      <div className="banner-container">
-        <div className="search-fields">
-          <form  onSubmit={searchHandler} >
-            <input name="searchJobTitle" type="text"  placeholder="job title... " />
-            <input className="search-button" type="submit"  value="Search Jobs" />
-          </form>
+    <div className=" jobCardContainer">
+      <section className="home-container">
+        <div className="banner-container">
+          <div className="search-fields">
+            <form onSubmit={searchHandler} >
+              <input name="searchJobTitle" type="text" placeholder="job title... " />
+              <input className="search-button" type="submit" value="Search Jobs" />
+            </form>
+          </div>
         </div>
-      </div>
       </section>
 
-{isTitleFilter ? inputValue.map((job) => {
+      {isTitleFilter ? inputValue.map((job) => {
         return (
           <div key={job.id} className=" CardDiv ">
             <div className="card-body">
@@ -95,13 +91,13 @@ export default function Home() {
                   type="button"
                   value="Accept Job"
                   className="btn btn-secondary"
-                  
+
                 />
               </div>
             </div>
           </div>
         );
-      }): data.getJobs.map((job) => {
+      }) : data.getJobs.map((job) => {
         return (
           <div key={job.id} className=" CardDiv ">
             <div className="card-body">
@@ -123,7 +119,7 @@ export default function Home() {
                   type="button"
                   value="Accept Job"
                   className="btn btn-secondary"
-                  
+
                 />
               </div>
             </div>

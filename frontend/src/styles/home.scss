@@ -1,54 +1,52 @@
+@import "./colors";
+@import "./fonts";
+@import "./buttons";
+@import "./inputFields";
+@import "./mobile";
 
-@import './colors';
-@import './buttons';
-@import './inputFields';
-@import './mobile';
+.home-container {
+  background-color: $color-sky;
+  width: 100%;
 
+  .banner-container {
+    background: Linear-gradient(
+        to right bottom,
+        rgba(82, 95, 89, 0.4),
+        rgba(237, 234, 228, 0.1)
+      ),
+      url(../assets/img/banner-img.jpg);
+    height: 65vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 55% 45%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-.home-container{
-    background-color: $color-sky;
-    width: 100%;
+    .search-fields {
+      input {
+        @include input-banner;
 
-    .banner-container{
-        background: Linear-gradient(to right bottom, rgba(82, 95, 89, 0.4),rgba(237, 234, 228, 0.1)), url(../assets/img/banner-img.jpg);
-        height: 65vh;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: 55% 45%;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        
+        @include mobile {
+          display: flex;
+          flex-direction: column;
+          @include input-banner-mobile;
+        }
+      }
+      .search-button {
+        @include button;
+        width: 200px;
+        padding: 13px;
 
-       .search-fields {
-           input{
-               @include input-banner;
-
-               @include mobile {
-                display: flex;
-                flex-direction: column;
-                @include input-banner-mobile;
-                }
-           }
-           .search-button{
-                @include button;
-                width: 200px;
-                padding: 13px;
-                
-                @include mobile {
-                width: 150px;  
-                padding-left: 1rem;
-                }
-               
-           }
-           
-
-
-       }
+        @include mobile {
+          width: 150px;
+          padding-left: 1rem;
+        }
+      }
     }
+  }
 }
-
 
 .jobCardContainer {
   display: flex;
@@ -75,4 +73,12 @@
   display: flex;
   justify-content: space-around;
   flex-direction: row;
+}
+
+//Sweet Alert customization
+.swal2-popup {
+  font-size: 1.1rem !important;
+  font-family: $font-family-Roboto;
+  color: $color-green;
+  border-radius: 30px;
 }
