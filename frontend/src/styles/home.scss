@@ -76,9 +76,18 @@
 }
 
 //Sweet Alert customization
+
 .swal2-popup {
-  font-size: 1.1rem !important;
-  font-family: $font-family-Roboto;
   color: $color-green;
   border-radius: 30px;
+  background-color: $color-sky;
+}
+
+.swal2-title {
+  font-size: 1.5rem;
+  font-family: $font-family-Roboto;
+}
+
+.swal2-icon {
+  border: 0 !important;
 }
