@@ -4,6 +4,7 @@ import { MyContext } from "./Context";
 function ContextContainer({ children }) {
   const [user, setUser] = useState(false);
   const [freelancer, setFreelancer] = useState();
+  const [freelancerLoginData, setFreelancerLoginData] = useState({});
   const [companyLoginData, setCompanyLoginData] = useState({});
   const [isCompanyLogin, setIsCompanyLogin] = useState(false);
   const [isFreelancerLogin, setIsFreelancerLogin] = useState(false);
@@ -22,8 +23,12 @@ function ContextContainer({ children }) {
         setIsCompanyLogin,
         isFreelancerLogin,
         setIsFreelancerLogin,
-        isTitleFilter, setIsTitleFilter
-        ,inputValue, setInputValue
+        freelancerLoginData,
+        setFreelancerLoginData,
+        isTitleFilter,
+        setIsTitleFilter,
+        inputValue,
+        setInputValue,
       }}
     >
       {children}

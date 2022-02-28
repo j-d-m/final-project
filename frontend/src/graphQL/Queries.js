@@ -11,9 +11,9 @@ export const GET_ONE_USER = gql`
       email
       phone
       password
-      repeatPassword
       hourly_rate
       description
+      # favorite
     }
   }
 `;

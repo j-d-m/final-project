@@ -117,7 +117,7 @@ export const CREATE_USER_MUTATION = gql`
       hourly_rate: $hourly_rate
       description: $description
     ) {
-      first_name
+      id
     }
   }
 `;

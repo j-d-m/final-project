@@ -1,13 +1,12 @@
-// import {
-//   MdCall,
-//   MdEmail,
-//   MdLocationPin,
-//   MdRestaurant,
-//   MdPersonPin,
-//   MdBusiness,
-//   // MdContactPhone,
-//   MdPassword,
-// } from "react-icons/md";
+import // MdCall,
+// MdEmail,
+// MdLocationPin,
+// MdRestaurant,
+// MdPersonPin,
+// MdBusiness,
+// // MdContactPhone,
+// MdPassword,
+"react-icons/md";
 import { useMutation } from "@apollo/client";
 import React from "react";
 import Swal from "sweetalert2";
@@ -72,31 +71,31 @@ export default function CompanySignUp() {
       </div>
       <div className="form-container">
         <form onSubmit={formSubmitAddCompany}>
-          <label> {/* <MdBusiness /> */} Company Name</label>
+          <label> {/* <MdBusiness />*/} Company Name</label>
           <input
             type="text"
             placeholder="Company Name"
             ref={(value) => (company_Name = value)}
           />
-          <label> {/* <MdPersonPin /> */} Owner/Manager Name</label>
+          <label> {/* <MdPersonPin />*/} Owner/Manager Name</label>
           <input
             type="text"
             placeholder="Owner/Manager"
             ref={(value) => (owner_name = value)}
           />
-          <label> {/* <MdRestaurant /> */} Type of Company</label>
+          <label> {/* <MdRestaurant />*/} Type of Company</label>
           <input
             type="text"
             placeholder="company type"
             ref={(value) => (company_type = value)}
           />
-          <label>{/* <MdLocationPin /> */} Company Address</label>
+          <label>{/* <MdLocationPin />*/} Company Address</label>
           <input
             type="text"
             placeholder="Address"
             ref={(value) => (address = value)}
           />
-          <label> {/* <MdCall />  */}phone</label>
+          <label> {/* <MdCall />*/} phone</label>
           <input
             type="phone"
             placeholder="phone number"
@@ -104,7 +103,7 @@ export default function CompanySignUp() {
           />
           <label>
             {" "}
-            {/*     <MdEmail /> */}
+            {/* <MdEmail /> */}
             Email
           </label>
           <input
@@ -117,13 +116,13 @@ export default function CompanySignUp() {
             <MdContactPhone /> Contact Person
           </label>
           <input type="text" placeholder="contact person" onChange={(e)=>{set}} /> */}
-          <label> {/* <MdPassword /> */} Password</label>
+          <label> {/* <MdPassword />*/} Password</label>
           <input
             type="password"
             placeholder="password"
             ref={(value) => (password = value)}
           />
-          <label> {/*   <MdPassword /> */} Repeat Password</label>
+          <label> {/* <MdPassword />*/} Repeat Password</label>
           <input
             type="password"
             placeholder="repeat password"
