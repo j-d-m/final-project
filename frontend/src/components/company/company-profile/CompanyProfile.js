@@ -12,7 +12,7 @@ export default function CompanyProfile() {
     variables: { getOneCompanyId: companyLoginData.companyId },
     // pollInterval: 500,
   });
-  console.log(data);
+
   if (loading)
     return (
       <img
@@ -62,7 +62,7 @@ export default function CompanyProfile() {
           <p>Phone : {phone}</p>
         </div>
         <div>
-          <p>Company Description  : {description}</p>
+          <p>Company Description : {description}</p>
         </div>
         <div className="btn">
           <input

@@ -1,12 +1,21 @@
+//Native imports
+import React, { useContext, useEffect, useState } from "react";
+
+
+//External imports
 import { useQuery } from "@apollo/client";
 import { logMissingFieldErrors } from "@apollo/client/core/ObservableQuery";
-import React, { useContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
+
+
+// Internal imports
 import { MyContext } from "../../Context/Context";
 import { GET_JOBS } from "../../graphQL/Queries";
-import JobsFromExternalApi from "./JobsFromExternalApi";
-import JobsFromInternalApi from "./JobsFromInternalApi";
 import '../../styles/home.scss';
+import exclamation from "../../assets/img/exclamation.ico";
+import CarouselInternalApi from "./CarouselInternalApi";
+import CarouselExternalApi from "./CarouselExternalApi";
+
 
 export default function Home() {
   const { data, loading, error } = useQuery(GET_JOBS);
@@ -27,12 +36,13 @@ export default function Home() {
     } else {
       Swal.fire({
         position: "top",
-        icon: "error",
-        title: "Error",
-        text: "We could not find a job with this title.",
+        // icon: "error",
+        iconHtml: `<img src=${exclamation}>`,
+        // < a href = "https://www.vecteezy.com/free-vector/do-not-disturb-icon" > Do Not Disturb Icon Vectors by Vecteezy</ >
+        title: "We could not find a job with this title.",
+        // text: "We could not find a job with this title.",
         showConfirmButton: false,
-        timer: 2000,
-
+        timer: 3000,
       });
     }
 
@@ -40,7 +50,7 @@ export default function Home() {
 
   if (loading) {
     return (
-      <div className="m2-auto text-center">
+      <div className="m2-auto text-center loading-block">
         <img
           src="https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif"
           alt="img"
@@ -127,8 +137,8 @@ export default function Home() {
         );
       })}
       <div className="jobs-combo-box" >
-        <JobsFromInternalApi />
-        <JobsFromExternalApi />
+        <CarouselInternalApi />
+        <CarouselExternalApi />
       </div>
     </div>
   );

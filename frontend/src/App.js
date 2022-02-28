@@ -1,6 +1,11 @@
 // Native imports
 import { Routes, Route } from "react-router-dom";
 
+// External imports
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import ContextContainer from "./Context/ContextContainer";
+
 //Component imports
 import "./styles/App.scss";
 import Home from "./components/home/Home";
@@ -15,10 +20,7 @@ import FreelancerSignUp from "./components/freelancer/freelancer-sign-up/Freelan
 import CompanyProfile from "./components/company/company-profile/CompanyProfile";
 import CreateJob from "./components/company/company-profile/company-create-job/CreateJob";
 
-// External imports
 
-import "bootstrap/dist/css/bootstrap.min.css";
-import ContextContainer from "./Context/ContextContainer";
 
 function App() {
   return (
@@ -35,12 +37,12 @@ function App() {
             <Route path="/freelancer-login" element={<FreeLancerLogin />} />
             <Route path="/freelancer-profile" element={<FreelancerProfile />} />
             <Route path="/freelancer-signUp" element={<FreelancerSignUp />} />
-            <Route path="/company-profile" element={<CompanyProfile />}/>
-              <Route
-                path="/company-profile/create-job"
-                element={<CreateJob />}
-              />
-            
+            <Route path="/company-profile" element={<CompanyProfile />} />
+            <Route
+              path="/company-profile/create-job"
+              element={<CreateJob />}
+            />
+
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </main>
