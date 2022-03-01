@@ -16,7 +16,6 @@ import ExtApiCarousel from "./ExtApiCarousel";
 export default function Home() {
   const { data, loading, error } = useQuery(GET_JOBS);
 
-
   const { isTitleFilter, setIsTitleFilter, inputValue, setInputValue } =
     useContext(MyContext);
 
@@ -27,7 +26,6 @@ export default function Home() {
     const filterTitle = data.getJobs.filter(
       (item) => item.job_Title === inputTitleValue
     );
-    // console.log(filterTitle[0].job_description);
 
     if (filterTitle.length > 0) {
       setInputValue(filterTitle);
@@ -87,33 +85,33 @@ export default function Home() {
 
       {isTitleFilter
         ? inputValue.map((job) => {
-          return (
-            <div key={job.id} className=" CardDiv ">
-              <div className="card-body">
-                <img
-                  src={`https://source.unsplash.com/1600x900/?${job.job_Title}`}
-                  alt="img"
-                />
-
-                <p>Title : {job.job_Title}</p>
-                <p>Description : {job.job_description}</p>
-                <p>Number Needed :{job.num_of_people_needed}</p>
-                <p>issued at :{job.issued_At}</p>
-                <div>
-                  <h4>created by : {job.created_by.company_Name}</h4>
-                  <p>email : {job.created_by.email}</p>
-                </div>
-                <div className="text-center">
-                  <input
-                    type="button"
-                    value="Accept Job"
-                    className="btn btn-secondary"
+            return (
+              <div key={job.id} className=" CardDiv ">
+                <div className="card-body">
+                  <img
+                    src={`https://source.unsplash.com/1600x900/?${job.job_Title}`}
+                    alt="img"
                   />
+
+                  <p>Title : {job.job_Title}</p>
+                  <p>Description : {job.job_description}</p>
+                  <p>Number Needed :{job.num_of_people_needed}</p>
+                  <p>issued at :{job.issued_At}</p>
+                  <div>
+                    <h4>created by : {job.created_by.company_Name}</h4>
+                    <p>email : {job.created_by.email}</p>
+                  </div>
+                  <div className="text-center">
+                    <input
+                      type="button"
+                      value="Accept Job"
+                      className="btn btn-secondary"
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })
+            );
+          })
         : null}
       <div className="jobs-combo-box">
         <IntApiCarousel />
@@ -122,8 +120,6 @@ export default function Home() {
     </div>
   );
 }
-
-
 
 //previous Cards
 

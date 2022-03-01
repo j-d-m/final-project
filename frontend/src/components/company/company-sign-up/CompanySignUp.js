@@ -26,6 +26,7 @@ export default function CompanySignUp() {
         description: e.target.description.value,
       },
     }).then((res) => {
+      console.log(res);
       if (res.data) {
         Swal.fire({
           position: "top",
@@ -46,6 +47,8 @@ export default function CompanySignUp() {
         alt="img"
       />
     );
+  console.log(data);
+  console.log(error);
 
   return (
     <>

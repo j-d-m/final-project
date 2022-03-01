@@ -102,6 +102,7 @@ export const GET_JOBS = gql`
     getJobs {
       id
       job_Title
+      #bring in when we have real data
       # start_Date
       # end_Date
       issued_At
