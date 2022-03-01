@@ -61,7 +61,7 @@ export default function FreeLancerLogin() {
           <label className="form-label">Password</label>
           <input name="password" type="password" className="form-control" />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-secondary">
           Submit
         </button>
       </form>
