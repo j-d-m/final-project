@@ -8,15 +8,15 @@ import { CREATE_COMPANY_MUTATION } from "../../../graphQL/Mutations";
 
 
 export default function CompanySignUp() {
-  let company_Name,
-    owner_name,
-    company_type,
-    address,
-    phone,
-    email,
-    password,
-    repeatPassword,
-    description;
+  // let company_Name,
+  //   owner_name,
+  //   company_type,
+  //   address,
+  //   phone,
+  //   email,
+  //   password,
+  //   repeatPassword,
+  //   description;
 
   const [addCompany, { data, loading, error }] = useMutation(
     CREATE_COMPANY_MUTATION
