@@ -16,9 +16,9 @@ import '../../styles/carousel.scss';
 // breakpoints for elastic carousel
 const breakPoints = [
     { width: 1, itemsToShow: 1, itemsToScroll: 1 },
-    { width: 550, itemsToShow: 2, itemsToScroll: 1 },
-    { width: 768, itemsToShow: 3, itemsToScroll: 1 },
-    { width: 1200, itemsToShow: 4, itemsToScroll: 1 },
+    { width: 550, itemsToShow: 2, itemsToScroll: 2 },
+    { width: 768, itemsToShow: 3, itemsToScroll: 3 },
+    { width: 1200, itemsToShow: 4, itemsToScroll: 4 },
 ];
 
 
@@ -38,14 +38,14 @@ export default function IntApiCarousel() {
         );
     }
 
-    let charLimitCompany = 30;
+    let charLimitCompany = 20;
     let charLimitTitle = 30;
     return (
         <div className="jobs-carousel">
             <hr className="separator" />
             <div className="carousel-wrapper">
                 <Carousel breakPoints={breakPoints}>
-                    {data.getJobs.map((job) => (
+                    {data.getJobs.slice(0, 40).map((job) => (
                         <div className="carousel-card" key={job.id}>
                             <h5>
                                 {" "}

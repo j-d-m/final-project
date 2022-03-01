@@ -15,9 +15,9 @@ import "../../styles/carousel.scss";
 
 const breakPoints = [
   { width: 1, itemsToShow: 1, itemsToScroll: 1 },
-  { width: 550, itemsToShow: 2, itemsToScroll: 1 },
-  { width: 768, itemsToShow: 3, itemsToScroll: 1 },
-  { width: 1200, itemsToShow: 4, itemsToScroll: 1 },
+  { width: 550, itemsToShow: 2, itemsToScroll: 2 },
+  { width: 768, itemsToShow: 3, itemsToScroll: 3 },
+  { width: 1200, itemsToShow: 4, itemsToScroll: 4 },
 ];
 
 export default function ExtApiCarousel() {
@@ -37,8 +37,8 @@ export default function ExtApiCarousel() {
     fetchData();
   }, []);
 
-  let charLimitCompany = 30;
-  let charLimitTitle = 30;
+  let charLimitTitle = 20;
+  let charLimitCompany = 25;
 
   return (
     <div className="jobs-carousel">
