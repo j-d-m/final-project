@@ -12,6 +12,12 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { MyContext } from "../../../Context/Context";
 import { CREATE_USER_MUTATION } from "../../../graphQL/Mutations";
+import '../../../styles/freelanceSignUp.scss';
+import logo from '../../../assets/img/logo.svg';
+
+
+
+
 
 export default function UserSignUp() {
   const { setFreelancerLoginData } = useContext(MyContext);
@@ -51,54 +57,116 @@ export default function UserSignUp() {
   if (error) return <p>Error :(</p>;
   console.log(data);
   console.log(error);
+
+
   return (
     <>
-      <div className="Freelancer-sign-container">
-        <h1>Freelancer Signup Page</h1>
-        <h2>Lets find you some work</h2>
-      </div>
-      <div className="form-container">
-        <form onSubmit={formSubmitAddUser}>
-          <label> {/* <MdPersonPin /> */} First Name</label>
-          <input type="text" placeholder="First Name" name="first_name" />
-          <label> {/* <MdRestaurant /> */} Last Name</label>
-          <input type="text" placeholder="Last Name" name="last_name" />
-          <label>
-            {" "}
-            {/*     <MdEmail /> */}
-            Email
-          </label>
-          <input type="email" placeholder="email" name="email" />
-          <label> {/* <MdCall />  */}Phone</label>
-          <input type="Phone" placeholder="phone number" name="phone" />
-          <label> {/* <MdPassword /> */} Password</label>
-          <input type="password" placeholder="password" name="password" />
-          <label> {/*   <MdPassword /> */} Repeat Password</label>
-          <input
-            type="password"
-            placeholder="repeat password"
-            name="repeatPassword"
-          />
-          <label>
-            {" "}
-            {/*     <MdOutlineMoney /> */}
-            Hourly Rate
-          </label>
-          <input
-            type="number"
-            placeholder="Your Hourly Rate"
-            name="hourly_rate"
-          />
-          <label>Describe your what you do/offer</label> <br />
-          <textarea
-            name="description"
-            cols="30"
-            rows="10"
-            placeholder="What do you do?"
-          />
-          <input type="submit" value="signup" />
-        </form>
-      </div>
+    <section className="Freelancer-sign-container ">
+          <div className="Wall-left bg-secondary">
+            <div>
+              <img src={logo} alt="signup logo" />
+            </div>
+          </div>
+
+          <div className="container signUp-form-right">
+            <h2>Freelancer Signup Page</h2>
+            
+            
+            
+                <form className="form-style-4" onSubmit={formSubmitAddUser}>
+                  
+                <legend>Let's find you some work</legend>
+
+                  <label> {/* <MdPersonPin /> */} <span>First Name</span> 
+                  <input
+                    type="text"
+                    name="first_name" 
+                    
+                    
+                  />
+                  </label>
+
+
+                  <label> {/* <MdRestaurant /> */} <span>Last Name</span>
+                  
+                  <input
+                    type="text"
+                    name="last_name"
+                    
+                                        
+                  />
+                  </label>
+
+                  <label>
+                    {" "}
+                    {/*     <MdEmail /> */}
+                   <span>Email</span> 
+                  
+                  <input
+                    type="email"
+                              name="email" 
+                    
+                                  />
+                  </label>
+
+                  <label> {/* <MdCall />  */} <span>Phone</span> 
+                  <input
+                    type="Phone"
+                                     name="phone"
+                    
+                                  />
+                  </label>
+
+                  <label> {/* <MdPassword /> */} <span>Password</span> 
+                  <input
+                    type="password"
+                                 name="password"
+                    
+                                     />
+                  </label>
+
+                  <label> {/*   <MdPassword /> */} <span>Repeat Password</span> 
+                  <input
+                    type="password"
+                      name="repeatPassword"
+                    
+                  
+                  />
+                  </label>
+
+                  <label>
+                    {" "}
+                    {/*     <MdOutlineMoney /> */}
+                    <span>Hourly Rate</span> 
+                  
+                  <input
+                    type="number"
+                    
+                    name="hourly_rate"
+                    
+                    
+                  />
+                  </label>
+
+                  <label > <span>Describe your Roll</span> <br />
+                  <textarea
+                    name="description"
+                    maxLength={500}
+                                        
+                  
+                  />
+                  </label> 
+                  <label>
+                    <span> </span>
+                    <input  type="submit" value="Sign Up" />
+                    
+                  </label>
+                  
+            </form>
+        </div>
+      </section>
+ 
+     
     </>
   );
 }

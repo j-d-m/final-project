@@ -6,3 +6,10 @@ $width: 992px;
         @content
     }
 }
+
+$width-small:576px;
+@mixin mobile-small {
+    @media (max-width:#{$width-small}){
+        @content
+    }
+}
