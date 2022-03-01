@@ -38,6 +38,7 @@ export default function CompanySignUp() {
         description: e.target.description.value,
       },
     }).then((res) => {
+      console.log(res);
       if (res.data) {
         Swal.fire({
           position: "top",
@@ -51,7 +52,13 @@ export default function CompanySignUp() {
     });
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading)
+    return (
+      <img
+        src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/552dd336197347.57136163e85ec.gif"
+        alt="img"
+      />
+    );
   console.log(data);
   console.log(error);
 

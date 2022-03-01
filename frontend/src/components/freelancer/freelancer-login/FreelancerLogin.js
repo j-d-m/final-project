@@ -11,7 +11,6 @@ export default function FreeLancerLogin() {
   const formRef = useRef();
   const { setIsFreelancerLogin, setFreelancerLoginData } =
     useContext(MyContext);
-
   const [loginUser, { loading, error, data }] = useMutation(USER_LOGIN);
 
   //submit function
@@ -41,8 +40,6 @@ export default function FreeLancerLogin() {
       }
     });
   };
-  if (loading) return <p>Loading...</p>;
-  if (error) return `${error.message}`;
 
   return (
     <div className="container freelancer-login">
