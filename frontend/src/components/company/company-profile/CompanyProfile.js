@@ -14,9 +14,6 @@ export default function CompanyProfile() {
     variables: { getOneCompanyId: companyLoginData.companyId },
     // pollInterval: 500,
   });
-  if (error) {
-    return <p>error profile</p>;
-  }
 
   if (loading)
     return (

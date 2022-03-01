@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { MyContext } from "./Context";
 
 function ContextContainer({ children }) {
-  const [user, setUser] = useState(null);
-  const [freelancer, setFreelancer] = useState();
   const [companyLoginData, setCompanyLoginData] = useState({});
   const [isCompanyLogin, setIsCompanyLogin] = useState(false);
   const [isFreelancerLogin, setIsFreelancerLogin] = useState(false);
@@ -39,7 +37,7 @@ function ContextContainer({ children }) {
       .then((res) => res.json())
       .then((result) => {
         setCompanyLoginData({ companyId: result.data.getVerify.user.userId });
-        setFreelancerLoginData({ user: result.data.getVerify.user.userId });
+        setFreelancerLoginData(result.data.getVerify.user.userId);
 
         setIsCompanyLogin(true);
         // setIsFreelancerLogin(true);
@@ -49,9 +47,6 @@ function ContextContainer({ children }) {
   return (
     <MyContext.Provider
       value={{
-        user,
-        setUser,
-        setFreelancer,
         companyLoginData,
         setCompanyLoginData,
         isCompanyLogin,

@@ -2,8 +2,13 @@
 @import "./mobile";
 @import "./fonts";
 
+.logo-text {
+  font-size: 32px;
+  display: inline;
+}
+
 .slogan-text {
-  font-size: 14px;
+  font-size: 18px;
   font-family: $font-family-Bebas;
 }
 

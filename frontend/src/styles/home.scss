@@ -1,54 +1,58 @@
+@import "./colors";
+@import "./fonts";
+@import "./buttons";
+@import "./inputFields";
+@import "./mobile";
 
-@import './colors';
-@import './buttons';
-@import './inputFields';
-@import './mobile';
-
-
-.home-container{
-    background-color: $color-sky;
-    width: 100%;
-
-    .banner-container{
-        background: Linear-gradient(to right bottom, rgba(82, 95, 89, 0.4),rgba(237, 234, 228, 0.1)), url(../assets/img/banner-img.jpg);
-        height: 65vh;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: 55% 45%;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        
-
-       .search-fields {
-           input{
-               @include input-banner;
-
-               @include mobile {
-                display: flex;
-                flex-direction: column;
-                @include input-banner-mobile;
-                }
-           }
-           .search-button{
-                @include button;
-                width: 200px;
-                padding: 13px;
-                
-                @include mobile {
-                width: 150px;  
-                padding-left: 1rem;
-                }
-               
-           }
-           
-
-
-       }
-    }
+.loading-block {
+  //to keep the footer at the botton of the page
+  width: 100%;
+  height: 70vh;
 }
 
+.home-container {
+  background-color: $color-sky;
+  width: 100%;
+
+  .banner-container {
+    background: Linear-gradient(
+        to right bottom,
+        rgba(82, 95, 89, 0.4),
+        rgba(237, 234, 228, 0.1)
+      ),
+      url(../assets/img/banner-img.jpg);
+    height: 65vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 55% 45%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .search-fields {
+      input {
+        @include input-banner;
+
+        @include mobile {
+          display: flex;
+          flex-direction: column;
+          @include input-banner-mobile;
+        }
+      }
+      .search-button {
+        @include button;
+        width: 200px;
+        padding: 13px;
+
+        @include mobile {
+          width: 150px;
+          padding-left: 1rem;
+        }
+      }
+    }
+  }
+}
 
 .jobCardContainer {
   display: flex;
@@ -71,8 +75,28 @@
   }
 }
 
+//carousel
 .jobs-combo-box {
   display: flex;
-  justify-content: space-around;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  padding: 0px;
+}
+
+//Sweet Alert customization
+
+.swal2-popup {
+  color: $color-green;
+  border-radius: 30px;
+  background-color: $color-sky;
+}
+
+.swal2-title {
+  font-size: 1.5rem;
+  font-family: $font-family-Roboto;
+}
+
+.swal2-icon {
+  border: 0 !important;
 }

@@ -32,11 +32,16 @@ export default function Header() {
           <img
             alt=""
             src={logo}
-            width="40"
-            height="40"
+            width="42"
+            height="42"
             className="d-inline-block align-top"
           />
           STAFF ROOM{" "}
+          <p className="slogan-text">
+            {" "}
+            GASTRONOMY JOBS / PEOPLE WHEN YOU NEED{" "}
+          </p>
+          <h1 className="logo-text"> STAFF ROOM</h1>{" "}
           <p className="slogan-text">
             {" "}
             GASTRONOMY JOBS / PEOPLE WHEN YOU NEED{" "}

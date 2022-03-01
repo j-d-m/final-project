@@ -1,11 +1,10 @@
-import React, { /* useContext, */ useContext, useRef } from "react";
-import "./freelancerLogin.scss";
+import React, { useContext, useRef } from "react";
+import "../../../styles/freelancerLogin.scss";
+import { useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { USER_LOGIN } from "../../../graphQL/Mutations";
 import { MyContext } from "../../../Context/Context";
-import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
-// import { MyContext } from "../../../Context/Context";
+import swal from "sweetalert2";
 
 export default function FreeLancerLogin() {
   const navigate = useNavigate();
@@ -23,10 +22,12 @@ export default function FreeLancerLogin() {
         password: formRef.current.password.value,
       },
     }).then((res) => {
-      console.log(res.data);
+      console.log(res.data.loginUser.userId);
+
       if (res.data) {
-        setFreelancerLoginData(res.data);
-        Swal.fire({
+        setFreelancerLoginData(res.data.loginUser);
+
+        swal.fire({
           position: "top",
           icon: "success",
           title: "Login successfully",
@@ -39,8 +40,6 @@ export default function FreeLancerLogin() {
       }
     });
   };
-  // if (loading) return <p>Loading...</p>;
-  // if (error) return `${error.message}`;
 
   return (
     <div className="container freelancer-login">
@@ -59,7 +58,7 @@ export default function FreeLancerLogin() {
           <label className="form-label">Password</label>
           <input name="password" type="password" className="form-control" />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-secondary">
           Submit
         </button>
       </form>

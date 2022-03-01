@@ -1,14 +1,17 @@
+//Native imports
+import React, { useContext, useEffect, useState } from "react";
+
+//External imports
 import { useQuery } from "@apollo/client";
-import React, { useContext } from "react";
 import Swal from "sweetalert2";
+
+// Internal imports
 import { MyContext } from "../../Context/Context";
 import { GET_JOBS } from "../../graphQL/Queries";
-import JobsFromExternalApi from "./JobsFromExternalApi";
-import JobsFromInternalApi from "./JobsFromInternalApi";
 import "../../styles/home.scss";
-
-// import Adzuna from "../../services/external-api/Adzuna";
-// import API_URL from "../../services/external-api/Adzuna";
+import exclamation from "../../assets/img/exclamation.ico";
+import IntApiCarousel from "./IntApiCarousel";
+import ExtApiCarousel from "./ExtApiCarousel";
 
 export default function Home() {
   const { data, loading, error } = useQuery(GET_JOBS);
@@ -30,17 +33,20 @@ export default function Home() {
     } else {
       Swal.fire({
         position: "top",
-        icon: "error",
-        title: "job not available",
+        // icon: "error",
+        iconHtml: `<img src=${exclamation}>`,
+        // < a href = "https://www.vecteezy.com/free-vector/do-not-disturb-icon" > Do Not Disturb Icon Vectors by Vecteezy</ >
+        title: "We could not find a job with this title.",
+        // text: "We could not find a job with this title.",
         showConfirmButton: false,
-        timer: 1000,
+        timer: 3000,
       });
     }
   };
 
   if (loading) {
     return (
-      <div className="m2-auto text-center">
+      <div className="m2-auto text-center loading-block">
         <img
           src="https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif"
           alt="img"
@@ -106,38 +112,42 @@ export default function Home() {
               </div>
             );
           })
-        : data.getJobs.map((job) => {
-            return (
-              <div key={job.id} className=" CardDiv ">
-                <div className="card-body">
-                  <img
-                    src={`https://source.unsplash.com/1600x900/?${job.job_Title}`}
-                    alt="img"
-                  />
-
-                  <p>Title : {job.job_Title}</p>
-                  <p>Description : {job.job_description}</p>
-                  <p>Number Needed :{job.num_of_people_needed}</p>
-                  <p>issued at :{job.issued_At}</p>
-                  <div>
-                    <h4>created by : {job.created_by.company_Name}</h4>
-                    <p>email : {job.created_by.email}</p>
-                  </div>
-                  <div className="text-center">
-                    <input
-                      type="button"
-                      value="Accept Job"
-                      className="btn btn-secondary"
-                    />
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+        : null}
       <div className="jobs-combo-box">
-        <JobsFromInternalApi />
-        <JobsFromExternalApi />
+        <IntApiCarousel />
+        <ExtApiCarousel />
       </div>
     </div>
   );
 }
+
+//previous Cards
+
+// data.getJobs.map((job) => {
+//   return (
+//     <div key={job.id} className=" CardDiv ">
+//       <div className="card-body">
+//         <img
+//           src={`https://source.unsplash.com/1600x900/?${job.job_Title}`}
+//           alt="img"
+//         />
+
+//         <p>Title : {job.job_Title}</p>
+//         <p>Description : {job.job_description}</p>
+//         <p>Number Needed :{job.num_of_people_needed}</p>
+//         <p>issued at :{job.issued_At}</p>
+//         <div>
+//           <h4>created by : {job.created_by.company_Name}</h4>
+//           <p>email : {job.created_by.email}</p>
+//         </div>
+//         <div className="text-center">
+//           <input
+//             type="button"
+//             value="Accept Job"
+//             className="btn btn-secondary"
+//           />
+//         </div>
+//       </div>
+//     </div>
+//   );
+// })
