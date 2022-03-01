@@ -1,11 +1,4 @@
-// import {
-//   MdCall,
-//   MdEmail,
-//   MdPersonPin,
-//   MdContactPhone,
-//   MdPassword,
-//   MdOutlineMoney
-// } from "react-icons/md";
+
 import { useMutation } from "@apollo/client";
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
@@ -77,17 +70,15 @@ export default function UserSignUp() {
                   
                 <legend>Let's find you some work</legend>
 
-                  <label> {/* <MdPersonPin /> */} <span>First Name</span> 
+                  <label><span>First Name</span> 
                   <input
                     type="text"
                     name="first_name" 
-                    
-                    
                   />
                   </label>
 
 
-                  <label> {/* <MdRestaurant /> */} <span>Last Name</span>
+                  <label><span>Last Name</span>
                   
                   <input
                     type="text"
