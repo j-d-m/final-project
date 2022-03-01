@@ -7,12 +7,17 @@ import { GET_ONE_COMPANY } from "../../../graphQL/Queries";
 export default function CompanyProfile() {
   const { companyLoginData } = useContext(MyContext);
   const navigate = useNavigate();
-
+  // if (!companyLoginData) {
+  //   return navigate("/");
+  // }
   const { loading, error, data } = useQuery(GET_ONE_COMPANY, {
     variables: { getOneCompanyId: companyLoginData.companyId },
     // pollInterval: 500,
   });
-  console.log(data);
+  if (error) {
+    return <p>error profile</p>;
+  }
+
   if (loading)
     return (
       <img
@@ -20,6 +25,7 @@ export default function CompanyProfile() {
         alt="img"
       />
     );
+
   let {
     company_Name,
     owner_name,
@@ -62,7 +68,7 @@ export default function CompanyProfile() {
           <p>Phone : {phone}</p>
         </div>
         <div>
-          <p>Company Description  : {description}</p>
+          <p>Company Description : {description}</p>
         </div>
         <div className="btn">
           <input

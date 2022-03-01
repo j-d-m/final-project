@@ -1,14 +1,18 @@
-import React, { /* useContext, */ useRef } from "react";
+import React, { /* useContext, */ useContext, useRef } from "react";
 import "./freelancerLogin.scss";
 import { useMutation } from "@apollo/client";
 import { USER_LOGIN } from "../../../graphQL/Mutations";
+import { MyContext } from "../../../Context/Context";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 // import { MyContext } from "../../../Context/Context";
 
 export default function FreeLancerLogin() {
+  const navigate = useNavigate();
   const formRef = useRef();
-
+  const { setIsFreelancerLogin, setFreelancerLoginData } =
+    useContext(MyContext);
   const [loginUser, { loading, error, data }] = useMutation(USER_LOGIN);
-  console.log(data);
 
   //submit function
   const userLogin = (e) => {
@@ -18,10 +22,25 @@ export default function FreeLancerLogin() {
         email: formRef.current.email.value,
         password: formRef.current.password.value,
       },
+    }).then((res) => {
+      console.log(res.data);
+      if (res.data) {
+        setFreelancerLoginData(res.data);
+        Swal.fire({
+          position: "top",
+          icon: "success",
+          title: "Login successfully",
+          showConfirmButton: false,
+          timer: 2000,
+          customClass: "swal-width",
+        });
+        setIsFreelancerLogin(true);
+        navigate("/freelancer-profile");
+      }
     });
   };
-  if (loading) return <p>Loading...</p>;
-  if (error) return `${error.message}`;
+  // if (loading) return <p>Loading...</p>;
+  // if (error) return `${error.message}`;
 
   return (
     <div className="container freelancer-login">

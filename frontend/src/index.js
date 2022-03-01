@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import Swal from "sweetalert2";
+
 import {
   ApolloClient,
   InMemoryCache,
@@ -11,32 +11,13 @@ import {
   from,
 } from "@apollo/client";
 
-import { onError } from "@apollo/client/link/error";
-
 const httpLink = new HttpLink({
-  uri: "https://deploy-final-project-anass.herokuapp.com/graphql",
+  // uri: "https://deploy-final-project-anass.herokuapp.com/graphql",
+  uri: "http://localhost:4000/graphql",
 });
 
-const errorLink = onError(({ graphQLErrors, networkError }) => {
-  if (graphQLErrors)
-    graphQLErrors.forEach(({ message, locations, path }) =>
-      Swal.fire({
-        position: "top",
-        icon: "error",
-        title: ` ${message}`,
-        showConfirmButton: true,
-      })
-    );
-
-  if (networkError) console.log(`[Network error]: ${networkError}`);
-});
-
-// If you provide a link chain to ApolloClient, you
-// don't provide the `uri` option.
 const client = new ApolloClient({
-  // The `from` function combines an array of individual links
-  // into a link chain
-  link: from([errorLink, httpLink]),
+  link: from([httpLink]),
   cache: new InMemoryCache(),
 });
 

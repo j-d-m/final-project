@@ -10,7 +10,21 @@ import "../../styles/header.scss";
 import { MyContext } from "../../Context/Context";
 
 export default function Header() {
-  const { isCompanyLogin, isFreelancerLogin } = useContext(MyContext);
+  const {
+    isCompanyLogin,
+    isFreelancerLogin,
+    setIsCompanyLogin,
+    setIsFreelancerLogin,
+  } = useContext(MyContext);
+
+  const companyLogout = () => {
+    setIsCompanyLogin(false);
+    localStorage.clear("token");
+  };
+  const freelancerLogout = () => {
+    setIsFreelancerLogin(false);
+    localStorage.clear("token");
+  };
   return (
     <Navbar bg="dark" variant={"dark"} expand="lg">
       <Container>
@@ -22,7 +36,11 @@ export default function Header() {
             height="40"
             className="d-inline-block align-top"
           />
-          STAFF ROOM <p className="slogan-text"> GASTRONOMY JOBS / PEOPLE WHEN YOU NEED </p> 
+          STAFF ROOM{" "}
+          <p className="slogan-text">
+            {" "}
+            GASTRONOMY JOBS / PEOPLE WHEN YOU NEED{" "}
+          </p>
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -43,7 +61,12 @@ export default function Header() {
                   id="basic-nav-dropdown"
                 >
                   <NavDropdown.Item as={Link} to="/freelancer-login">
-                    Freelancer Logout
+                    <input
+                      type="button"
+                      value="Freelancer logout"
+                      onClick={freelancerLogout}
+                      className="logoutFreelancerBtn"
+                    />
                   </NavDropdown.Item>
                   <NavDropdown.Item as={Link} to="/freelancer-profile">
                     Freelancer Profile
@@ -93,8 +116,13 @@ export default function Header() {
                   }
                   id="basic-nav-dropdown"
                 >
-                  <NavDropdown.Item as={Link} to="/company-login">
-                    Employer logout
+                  <NavDropdown.Item as={Link} to="/">
+                    <input
+                      type="button"
+                      value="Employer logout"
+                      onClick={companyLogout}
+                      className="logoutCompanyBtn"
+                    />
                   </NavDropdown.Item>
                   <NavDropdown.Item as={Link} to="/company-profile">
                     Employer Profile
@@ -134,13 +162,13 @@ export default function Header() {
               </>
             )}
           </Nav>
-            <img
-              className="ms-5 DisappearI"
-              width="50"
-              height="50"
-              src={avatar}
-              alt=""
-            />{" "}
+          <img
+            className="ms-5 DisappearI"
+            width="50"
+            height="50"
+            src={avatar}
+            alt=""
+          />{" "}
         </Navbar.Collapse>
       </Container>
     </Navbar>

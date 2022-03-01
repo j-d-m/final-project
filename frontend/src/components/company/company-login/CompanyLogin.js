@@ -1,10 +1,9 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { useMutation, useQuery } from "@apollo/client";
+import React, { useContext } from "react";
+import { useMutation } from "@apollo/client";
 import { COMPANY_LOGIN } from "../../../graphQL/Mutations";
 
 import { MyContext } from "../../../Context/Context";
 import { useNavigate } from "react-router-dom";
-
 
 import Swal from "sweetalert2";
 
@@ -26,6 +25,9 @@ export default function CompanyLogin() {
       console.log(res.data);
       if (res.data) {
         setCompanyLoginData(res.data.loginCompany);
+
+        localStorage.setItem("token", res.data.loginCompany.token);
+
         Swal.fire({
           position: "top",
           icon: "success",
