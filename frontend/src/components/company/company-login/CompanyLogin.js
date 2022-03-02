@@ -22,7 +22,6 @@ export default function CompanyLogin() {
         password: e.target.password.value,
       },
     }).then((res) => {
-      console.log(res.data);
       if (res.data) {
         setCompanyLoginData(res.data.loginCompany.company);
 
@@ -39,17 +38,6 @@ export default function CompanyLogin() {
         setIsCompanyLogin(true);
         navigate("/company-profile");
       }
-
-      // if (error) {
-      //   Swal.fire({
-      //     position: "top",
-      //     icon: "error",
-      //     title: ` ${error}`,
-      //     showConfirmButton: false,
-      //     timer: 1000,
-      //     customClass: "swal-width",
-      //   });
-      // }
     });
   };
 

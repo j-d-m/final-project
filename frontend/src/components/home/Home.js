@@ -1,5 +1,5 @@
 //Native imports
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 
 //External imports
 import { useQuery } from "@apollo/client";

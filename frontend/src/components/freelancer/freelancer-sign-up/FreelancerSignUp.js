@@ -1,16 +1,11 @@
-
 import { useMutation } from "@apollo/client";
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { MyContext } from "../../../Context/Context";
 import { CREATE_USER_MUTATION } from "../../../graphQL/Mutations";
-import '../../../styles/freelanceSignUp.scss';
-import logo from '../../../assets/img/logo.svg';
-
-
-
-
+import "../../../styles/freelanceSignUp.scss";
+import logo from "../../../assets/img/logo.svg";
 
 export default function UserSignUp() {
   const { setFreelancerLoginData } = useContext(MyContext);
@@ -18,7 +13,6 @@ export default function UserSignUp() {
 
   const [addUser, { data, loading, error }] = useMutation(CREATE_USER_MUTATION);
 
-  //query to push the from information to the database
   const formSubmitAddUser = (e) => {
     e.preventDefault();
     addUser({
@@ -43,121 +37,75 @@ export default function UserSignUp() {
           timer: 2000,
           customClass: "swal-width",
         });
+        navigate("/freelancer-login");
       }
     });
   };
 
   if (error) return <p>Error :(</p>;
-  console.log(data);
-  console.log(error);
-
 
   return (
     <>
-    <section className="Freelancer-sign-container ">
-          <div className="Wall-left bg-secondary">
-            <div>
-              <img src={logo} alt="signup logo" />
-            </div>
+      <section className="Freelancer-sign-container ">
+        <div className="Wall-left bg-secondary">
+          <div>
+            <img src={logo} alt="signup logo" />
           </div>
+        </div>
 
-          <div className="container signUp-form-right">
-            <h2>Freelancer Signup Page</h2>
-            
-            
-            
-                <form className="form-style-4" onSubmit={formSubmitAddUser}>
-                  
-                <legend>Let's find you some work</legend>
+        <div className="container signUp-form-right">
+          <h2>Freelancer Signup Page</h2>
 
-                  <label><span>First Name</span> 
-                  <input
-                    type="text"
-                    name="first_name" 
-                  />
-                  </label>
+          <form className="form-style-4" onSubmit={formSubmitAddUser}>
+            <legend>Let's find you some work</legend>
 
+            <label>
+              <span>First Name</span>
+              <input type="text" name="first_name" />
+            </label>
 
-                  <label><span>Last Name</span>
-                  
-                  <input
-                    type="text"
-                    name="last_name"
-                    
-                                        
-                  />
-                  </label>
+            <label>
+              <span>Last Name</span>
 
-                  <label>
-                    {" "}
-                    {/*     <MdEmail /> */}
-                   <span>Email</span> 
-                  
-                  <input
-                    type="email"
-                              name="email" 
-                    
-                                  />
-                  </label>
+              <input type="text" name="last_name" />
+            </label>
 
-                  <label> {/* <MdCall />  */} <span>Phone</span> 
-                  <input
-                    type="Phone"
-                                     name="phone"
-                    
-                                  />
-                  </label>
+            <label>
+              <span>Email</span>
+              <input type="email" name="email" />
+            </label>
 
-                  <label> {/* <MdPassword /> */} <span>Password</span> 
-                  <input
-                    type="password"
-                                 name="password"
-                    
-                                     />
-                  </label>
+            <label>
+              <span>Phone</span>
+              <input type="Phone" name="phone" />
+            </label>
 
-                  <label> {/*   <MdPassword /> */} <span>Repeat Password</span> 
-                  <input
-                    type="password"
-                      name="repeatPassword"
-                    
-                  
-                  />
-                  </label>
+            <label>
+              <span>Password</span>
+              <input type="password" name="password" />
+            </label>
 
-                  <label>
-                    {" "}
-                    {/*     <MdOutlineMoney /> */}
-                    <span>Hourly Rate</span> 
-                  
-                  <input
-                    type="number"
-                    
-                    name="hourly_rate"
-                    
-                    
-                  />
-                  </label>
+            <label>
+              <span>Repeat Password</span>
+              <input type="password" name="repeatPassword" />
+            </label>
 
-                  <label > <span>Describe your Roll</span> <br />
-                  <textarea
-                    name="description"
-                    maxLength={500}
-                                        
-                  
-                  />
-                  </label> 
-                  <label>
-                    <span> </span>
-                    <input  type="submit" value="Sign Up" />
-                    
-                  </label>
-                  
-            </form>
+            <label>
+              <span>Hourly Rate</span>
+              <input type="number" name="hourly_rate" />
+            </label>
+
+            <label>
+              <span>Describe your Roll</span> <br />
+              <textarea name="description" maxLength={500} />
+            </label>
+            <label>
+              <span> </span>
+              <input type="submit" value="Sign Up" />
+            </label>
+          </form>
         </div>
       </section>
- 
-     
     </>
   );
 }
