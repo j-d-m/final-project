@@ -50,11 +50,12 @@ export default function IntApiCarousel() {
               </h5>
               <p p> {job.num_of_people_needed} open position(s)</p>
               <p>
-                posted
+                posted{" "}
                 {moment(
                   new Date(job.issued_At.slice(0, 10) * 1000).toGMTString()
                 ).fromNow()}
               </p>
+
               <p>
                 by{" "}
                 <strong>

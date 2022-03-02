@@ -11,7 +11,7 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 const httpLink = new HttpLink({
-  uri: "http://localhost:4000/graphql",
+  uri: "https://deploy-final-project-anass.herokuapp.com/graphql",
 });
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem("token");
