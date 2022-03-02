@@ -4,19 +4,17 @@ import React from "react";
 import Swal from "sweetalert2";
 import '../../../styles/companySignUp.scss';
 import logo from '../../../assets/img/logo.svg';
+import { MyContext } from "../../../Context/Context";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+
+
 import { CREATE_COMPANY_MUTATION } from "../../../graphQL/Mutations";
 
 
 export default function CompanySignUp() {
-  // let company_Name,
-  //   owner_name,
-  //   company_type,
-  //   address,
-  //   phone,
-  //   email,
-  //   password,
-  //   repeatPassword,
-  //   description;
+  const { setCompanyLoginData } = useContext(MyContext);
+  let navigate = useNavigate();
 
   const [addCompany, { data, loading, error }] = useMutation(
     CREATE_COMPANY_MUTATION
@@ -51,7 +49,9 @@ export default function CompanySignUp() {
     });
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <img src="https://c.tenor.com/gJLmlIn6EvEAAAAM/loading-gif.gif" alt="spinner" /> ;
+  if (error) return `${error.message}`;
+
   console.log(data);
   console.log(error);
 
@@ -131,7 +131,7 @@ export default function CompanySignUp() {
                 <label><span>Repeat Password</span>
                 <input
                   type="password"
-                  name="repeatpassword"
+                  name="repeatPassword"
                 />
                 </label>
 

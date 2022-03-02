@@ -139,7 +139,7 @@ export default function UserSignUp() {
                   />
                   </label>
 
-                  <label > <span>Describe your Roll</span> <br />
+                  <label > <span>Describe your Role</span> <br />
                   <textarea
                     name="description"
                     maxLength={500}
