@@ -10,8 +10,8 @@ function CreateJob() {
     refetchQueries: [{ query: GET_JOBS }],
     awaitRefetchQueries: true,
   });
-  // console.log(data);
   const addJobProfile = (e) => {
+    console.log(companyLoginData.id);
     e.preventDefault();
     addJob({
       variables: {
@@ -20,9 +20,10 @@ function CreateJob() {
         endDate: e.target.endDate.value,
         numOfPeopleNeeded: Number(e.target.numOfPeopleNeeded.value),
         jobDescription: e.target.jobDescription.value,
-        createdBy: companyLoginData.companyId,
+        createdBy: companyLoginData.id,
       },
     }).then((res) => {
+      console.log(res);
       if (res.data) {
         Swal.fire({
           position: "top",

@@ -22,10 +22,11 @@ export default function FreeLancerLogin() {
         password: formRef.current.password.value,
       },
     }).then((res) => {
-      console.log(res.data.loginUser.userId);
+      console.log(res.data.loginUser);
 
       if (res.data) {
-        setFreelancerLoginData(res.data.loginUser);
+        setFreelancerLoginData(res.data.loginUser.user);
+        localStorage.setItem("token", res.data.loginUser.token);
 
         swal.fire({
           position: "top",
