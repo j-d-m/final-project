@@ -8,16 +8,18 @@ import {
   InMemoryCache,
   ApolloProvider,
   HttpLink,
-  from,
 } from "@apollo/client";
-
+import { setContext } from "@apollo/client/link/context";
 const httpLink = new HttpLink({
-  // uri: "https://deploy-final-project-anass.herokuapp.com/graphql",
   uri: "http://localhost:4000/graphql",
 });
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem("token");
 
+  return { headers: { ...headers, token: token ? `${token}` : "" } };
+});
 const client = new ApolloClient({
-  link: from([httpLink]),
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 

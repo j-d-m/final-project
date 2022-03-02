@@ -24,7 +24,7 @@ export default function CompanyLogin() {
     }).then((res) => {
       console.log(res.data);
       if (res.data) {
-        setCompanyLoginData(res.data.loginCompany);
+        setCompanyLoginData(res.data.loginCompany.company);
 
         localStorage.setItem("token", res.data.loginCompany.token);
 

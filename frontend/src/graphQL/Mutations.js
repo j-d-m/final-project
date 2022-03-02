@@ -10,7 +10,6 @@ export const CREATE_COMPANY_MUTATION = gql`
     $phone: String!
     $email: String!
     $password: String!
-    $repeatPassword: String!
     $description: String!
   ) {
     addCompany(
@@ -21,7 +20,6 @@ export const CREATE_COMPANY_MUTATION = gql`
       phone: $phone
       email: $email
       password: $password
-      repeatPassword: $repeatPassword
       description: $description
     ) {
       company_Name
@@ -31,7 +29,6 @@ export const CREATE_COMPANY_MUTATION = gql`
       phone
       email
       password
-      repeatPassword
       description
     }
   }
@@ -40,9 +37,28 @@ export const CREATE_COMPANY_MUTATION = gql`
 export const COMPANY_LOGIN = gql`
   mutation LoginCompany($email: String!, $password: String!) {
     loginCompany(email: $email, password: $password) {
-      companyId
       token
       tokenExpiration
+      company {
+        id
+        company_Name
+        owner_name
+        avatar
+        company_type
+        address
+        phone
+        email
+        description
+        jobs {
+          id
+          job_Title
+          num_of_people_needed
+          job_description
+          issued_At
+          start_Date
+          end_Date
+        }
+      }
     }
   }
 `;
@@ -89,7 +105,6 @@ export const UPDATE_COMPANY = gql`
       phone
       email
       password
-      repeatPassword
       description
     }
   }
@@ -103,7 +118,6 @@ export const CREATE_USER_MUTATION = gql`
     $phone: String!
     $email: String!
     $password: String!
-    $repeatPassword: String!
     $hourly_rate: Int!
     $description: String!
   ) {
@@ -113,7 +127,6 @@ export const CREATE_USER_MUTATION = gql`
       phone: $phone
       email: $email
       password: $password
-      repeatPassword: $repeatPassword
       hourly_rate: $hourly_rate
       description: $description
     ) {
@@ -126,9 +139,25 @@ export const CREATE_USER_MUTATION = gql`
 export const USER_LOGIN = gql`
   mutation LoginUser($email: String!, $password: String!) {
     loginUser(email: $email, password: $password) {
-      userId
       token
       tokenExpiration
+      user {
+        first_name
+        last_name
+        avatar
+        email
+        phone
+        password
+        hourly_rate
+        description
+        id
+        favorite {
+          job_Title
+          start_Date
+          end_Date
+          num_of_people_needed
+        }
+      }
     }
   }
 `;
@@ -173,7 +202,6 @@ export const UPDATE_USER = gql`
       email
       phone
       password
-      repeatPassword
       hourly_rate
       description
     }
