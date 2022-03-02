@@ -11,36 +11,62 @@ function ContextContainer({ children }) {
   const [freelancerLoginData, setFreelancerLoginData] = useState({});
   const navigate = useNavigate();
   useEffect(() => {
+    console.log(localStorage.getItem("token"), "this is the token");
     fetch("http://localhost:4000/graphql", {
       method: "POST",
-      body: JSON.stringify({
-        query: `query{
-          getVerify{
-        user{
-        userId
-        company{
-          company_Name
-          email
-              }
-            }
-         token
-          }
-        }
-      
-        `,
-      }),
       headers: {
         "Content-Type": "application/json",
         token: localStorage.getItem("token"),
       },
+      // املاء الفراغ
+      body: JSON.stringify({
+        query: `query{
+          getVerify{
+        user{
+     first_name
+      last_name
+      avatar
+      email
+      phone
+      password
+      hourly_rate
+      description
+      id
+
+        }
+         company{
+       company_Name
+      owner_name
+      avatar
+      company_type
+      id
+      address
+      phone
+      email
+      password
+      description
+	
+    }
+
+
+        }
+        }
+      
+        `,
+      }),
     })
       .then((res) => res.json())
       .then((result) => {
-        setCompanyLoginData({ companyId: result.data.getVerify.user.userId });
-        setFreelancerLoginData(result.data.getVerify.user.userId);
+        if (result.data.getVerify?.user) {
+          setFreelancerLoginData(result.data.getVerify.user);
+          setIsFreelancerLogin(true);
+        } else if (result.data.getVerify?.company) {
+          setCompanyLoginData(result.data.getVerify.company);
+          setIsCompanyLogin(true);
+        } else {
+          navigate("/");
+        }
 
-        setIsCompanyLogin(true);
-        // setIsFreelancerLogin(true);
         // navigate("/");
       });
   }, []);

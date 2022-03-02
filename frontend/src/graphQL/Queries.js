@@ -27,7 +27,6 @@ export const GET_USERS = gql`
       email
       phone
       password
-      repeatPassword
       hourly_rate
       description
     }
@@ -76,7 +75,6 @@ export const GET_COMPANIES = gql`
       phone
       email
       password
-      repeatPassword
       description
     }
   }
