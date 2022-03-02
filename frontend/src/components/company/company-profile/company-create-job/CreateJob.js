@@ -11,7 +11,6 @@ function CreateJob() {
     awaitRefetchQueries: true,
   });
   const addJobProfile = (e) => {
-    console.log(companyLoginData.id);
     e.preventDefault();
     addJob({
       variables: {
@@ -23,7 +22,6 @@ function CreateJob() {
         createdBy: companyLoginData.id,
       },
     }).then((res) => {
-      console.log(res);
       if (res.data) {
         Swal.fire({
           position: "top",

@@ -11,42 +11,39 @@ function ContextContainer({ children }) {
   const [freelancerLoginData, setFreelancerLoginData] = useState({});
   const navigate = useNavigate();
   useEffect(() => {
-    console.log(localStorage.getItem("token"), "this is the token");
-    fetch("http://localhost:4000/graphql", {
+    fetch("https://deploy-final-project-anass.herokuapp.com/graphql", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         token: localStorage.getItem("token"),
       },
-      // املاء الفراغ
       body: JSON.stringify({
         query: `query{
           getVerify{
-        user{
-     first_name
-      last_name
-      avatar
-      email
-      phone
-      password
-      hourly_rate
-      description
-      id
-
+          user{
+          first_name
+          last_name
+          avatar
+          email
+          phone
+          password
+          hourly_rate
+          description
+          id
         }
-         company{
-       company_Name
-      owner_name
-      avatar
-      company_type
-      id
-      address
-      phone
-      email
-      password
-      description
+          company{
+          company_Name
+          owner_name
+          avatar
+          company_type
+          id
+          address
+          phone
+          email
+          password
+          description
 	
-    }
+        }
 
 
         }
@@ -66,8 +63,6 @@ function ContextContainer({ children }) {
         } else {
           navigate("/");
         }
-
-        // navigate("/");
       });
   }, []);
   return (
