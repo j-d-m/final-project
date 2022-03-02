@@ -10,6 +10,7 @@ function CreateJob() {
     refetchQueries: [{ query: GET_JOBS }],
     awaitRefetchQueries: true,
   });
+  // console.log(data);
   const addJobProfile = (e) => {
     e.preventDefault();
     addJob({
@@ -42,7 +43,7 @@ function CreateJob() {
       }
     });
   };
-  console.log(data);
+
   return (
     <div>
       <form onSubmit={addJobProfile} className="w-75 m-auto">
