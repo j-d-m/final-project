@@ -27,7 +27,6 @@ export const GET_USERS = gql`
       email
       phone
       password
-      repeatPassword
       hourly_rate
       description
     }
@@ -76,7 +75,6 @@ export const GET_COMPANIES = gql`
       phone
       email
       password
-      repeatPassword
       description
     }
   }
@@ -102,6 +100,7 @@ export const GET_JOBS = gql`
     getJobs {
       id
       job_Title
+      #bring in when we have real data
       # start_Date
       # end_Date
       issued_At

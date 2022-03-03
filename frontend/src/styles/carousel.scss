@@ -1,5 +1,6 @@
 @import "./colors";
 @import "./fonts";
+@import "./mobile";
 
 .jobs-carousel {
   display: flex;
@@ -26,11 +27,15 @@
     justify-content: center;
     font-family: $font-family-Roboto;
     background-color: $color-white;
-    border-radius: 35px;
+    border-radius: 15px;
     box-shadow: 5px 5px 20px $color-dark;
     margin: 15px;
     padding: 15px;
     overflow: hidden;
+
+    @include mobile-small {
+      height: 45vh;
+    }
   }
 }
 
@@ -51,6 +56,10 @@ button.rec-dot:focus {
 .jRFJkP {
   background-color: $color-pinky !important;
 
+  @include mobile-small {
+    display: none;
+  }
+
   &:hover {
     background-color: $color-green !important;
   }
@@ -58,6 +67,10 @@ button.rec-dot:focus {
 
 .cNNJIt {
   background-color: $color-pinky !important;
+
+  @include mobile-small {
+    display: none;
+  }
 
   &:hover {
     background-color: $color-green !important;

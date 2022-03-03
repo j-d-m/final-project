@@ -1,10 +1,9 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { useMutation, useQuery } from "@apollo/client";
+import React, { useContext } from "react";
+import { useMutation } from "@apollo/client";
 import { COMPANY_LOGIN } from "../../../graphQL/Mutations";
 
 import { MyContext } from "../../../Context/Context";
 import { useNavigate } from "react-router-dom";
-
 
 import Swal from "sweetalert2";
 
@@ -23,9 +22,11 @@ export default function CompanyLogin() {
         password: e.target.password.value,
       },
     }).then((res) => {
-      console.log(res.data);
       if (res.data) {
-        setCompanyLoginData(res.data.loginCompany);
+        setCompanyLoginData(res.data.loginCompany.company);
+
+        localStorage.setItem("token", res.data.loginCompany.token);
+
         Swal.fire({
           position: "top",
           icon: "success",
@@ -37,17 +38,6 @@ export default function CompanyLogin() {
         setIsCompanyLogin(true);
         navigate("/company-profile");
       }
-
-      // if (error) {
-      //   Swal.fire({
-      //     position: "top",
-      //     icon: "error",
-      //     title: ` ${error}`,
-      //     showConfirmButton: false,
-      //     timer: 1000,
-      //     customClass: "swal-width",
-      //   });
-      // }
     });
   };
 

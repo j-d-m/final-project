@@ -11,14 +11,16 @@ import moment from "moment";
 import API_URL from "../../services/external-api/Adzuna";
 import "../../styles/carousel.scss";
 
+// breakpoints for elastic carousel
+
 const breakPoints = [
   { width: 1, itemsToShow: 1, itemsToScroll: 1 },
-  { width: 550, itemsToShow: 2, itemsToScroll: 1 },
-  { width: 768, itemsToShow: 3, itemsToScroll: 1 },
-  { width: 1200, itemsToShow: 4, itemsToScroll: 1 },
+  { width: 550, itemsToShow: 2, itemsToScroll: 2 },
+  { width: 768, itemsToShow: 3, itemsToScroll: 3 },
+  { width: 1200, itemsToShow: 4, itemsToScroll: 4 },
 ];
 
-function CarouselExternalApi() {
+export default function ExtApiCarousel() {
   const [apiJobs, setApiJobs] = useState([]);
 
   useEffect(() => {
@@ -26,17 +28,17 @@ function CarouselExternalApi() {
       const response = await fetch(API_URL);
       const data = await response.json();
 
-      // console.log('=============JOBS ARRAY=======================');
-      // console.log(data);
-      // console.log('====================================');
+      console.log('=============EXT API CAROUSEL=======================');
+      console.log(data);
+      console.log('====================================');
 
       setApiJobs(data.results);
     };
     fetchData();
   }, []);
 
-  let charLimitCompany = 30;
-  let charLimitTitle = 30;
+  let charLimitTitle = 20;
+  let charLimitCompany = 25;
 
   return (
     <div className="jobs-carousel">
@@ -49,7 +51,6 @@ function CarouselExternalApi() {
                 {job.title.slice(0, charLimitTitle) +
                   (job.title.length > charLimitTitle ? "..." : "")}
               </h5>
-              {/* <h4>{(job.company.display_name).slice(0, charLimitCompany) + ((job.company.display_name).length > charLimitCompany ? "..." : "")}</h4> */}
               <p p> {job.location.display_name}</p>
               <p>posted {moment(job.created).fromNow()}</p>
               <p>
@@ -82,4 +83,3 @@ function CarouselExternalApi() {
   );
 }
 
-export default CarouselExternalApi;

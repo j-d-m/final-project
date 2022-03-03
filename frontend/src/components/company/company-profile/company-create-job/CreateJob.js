@@ -19,7 +19,7 @@ function CreateJob() {
         endDate: e.target.endDate.value,
         numOfPeopleNeeded: Number(e.target.numOfPeopleNeeded.value),
         jobDescription: e.target.jobDescription.value,
-        createdBy: companyLoginData.companyId,
+        createdBy: companyLoginData.id,
       },
     }).then((res) => {
       if (res.data) {
@@ -42,7 +42,7 @@ function CreateJob() {
       }
     });
   };
-  console.log(data);
+
   return (
     <div>
       <form onSubmit={addJobProfile} className="w-75 m-auto">

@@ -11,7 +11,6 @@ export default function FreeLancerLogin() {
   const formRef = useRef();
   const { setIsFreelancerLogin, setFreelancerLoginData } =
     useContext(MyContext);
-
   const [loginUser, { loading, error, data }] = useMutation(USER_LOGIN);
 
   //submit function
@@ -23,10 +22,11 @@ export default function FreeLancerLogin() {
         password: formRef.current.password.value,
       },
     }).then((res) => {
-      console.log(res.data.loginUser.userId);
+      console.log(res.data.loginUser);
 
       if (res.data) {
-        setFreelancerLoginData(res.data.loginUser);
+        setFreelancerLoginData(res.data.loginUser.user);
+        localStorage.setItem("token", res.data.loginUser.token);
 
         swal.fire({
           position: "top",
@@ -41,8 +41,6 @@ export default function FreeLancerLogin() {
       }
     });
   };
-  if (loading) return <p>Loading...</p>;
-  if (error) return `${error.message}`;
 
   return (
     <div className="container freelancer-login">

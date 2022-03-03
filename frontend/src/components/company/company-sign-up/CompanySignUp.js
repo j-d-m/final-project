@@ -1,4 +1,3 @@
-
 import { useMutation } from "@apollo/client";
 import React from "react";
 import Swal from "sweetalert2";
@@ -10,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 
 
 import { CREATE_COMPANY_MUTATION } from "../../../graphQL/Mutations";
-
 
 export default function CompanySignUp() {
   const { setCompanyLoginData } = useContext(MyContext);
@@ -36,6 +34,7 @@ export default function CompanySignUp() {
         description: e.target.description.value,
       },
     }).then((res) => {
+      console.log(res);
       if (res.data) {
         Swal.fire({
           position: "top",
@@ -58,64 +57,50 @@ export default function CompanySignUp() {
   return (
     <>
       <section className="Company-sign-container">
-          <div className="Wall-left bg-secondary">
-            <div>
-              <img src={logo} alt="signup logo" />
-            </div>
+        <div className="Wall-left bg-secondary">
+          <div>
+            <img src={logo} alt="signup logo" />
           </div>
+        </div>
 
-          
         <div className="container signUp-form-right">
-            <h2>Company Signup page</h2>
+          <h2>Company Signup page</h2>
 
           <form className="form-style-5" onSubmit={formSubmitAddCompany}>
+            <legend>
+              Let's get you all set up to find the perfect freelancer !
+            </legend>
 
-                <legend>Let's get you all set up to find the perfect
-                freelancer !</legend>
+            <label>
+              <span>Company Name</span>
+              <input type="text" name="company_Name" />
+            </label>
 
-                <label><span>Company Name</span>
-                <input
-                  type="text"
-                  name="company_Name"
-                />
-                </label>
+            <label>
+              <span>Owner/Manager Name</span>
+              <input type="text" name="owner_name" />
+            </label>
+            <label>
+              <span>Type of Company</span>
+              <input type="text" name="company_type" />
+            </label>
 
-                <label><span>Owner/Manager Name</span>
-                <input
-                  type="text"
-                  name="owner_name"
-                />
-                </label>
-                <label><span>Type of Company</span> 
-                <input
-                  type="text"
-                  name="company_type"
-                />
-                </label>
+            <label>
+              <span>Company Address</span>
+              <input type="text" name="address" />
+            </label>
 
-                <label><span>Company Address</span>   
-                <input
-                  type="text"
-                  name="address"
-                />
-                </label>
+            <label>
+              <span>Phone</span>
+              <input type="phone" name="phone" />
+            </label>
 
-                <label><span>Phone</span>
-                <input
-                  type="phone"
-                  name="phone"
-                />
-                </label>
-
-                <label>
-                  {" "}
-                  <span>Email</span> 
-                <input
-                  type="email"
-                  name="email"
-                />
-                </label>
-                {/* <label>
+            <label>
+              {" "}
+              <span>Email</span>
+              <input type="email" name="email" />
+            </label>
+            {/* <label>
                   {" "}
                   <MdContactPhone /> Contact Person
                 </label>
