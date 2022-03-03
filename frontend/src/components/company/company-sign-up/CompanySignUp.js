@@ -20,45 +20,46 @@ export default function CompanySignUp() {
   //query to push the from information to the database
   const formSubmitAddCompany = (e) => {
     e.preventDefault();
-    let password = e.target.password.value;
-    let repeatPassword = e.target.repeatPassword.value;
 
-    if (password === repeatPassword) {
-      addCompany({
-        variables: {
-          company_Name: e.target.company_Name.value,
-          owner_name: e.target.owner_name.value,
-          company_type: e.target.company_type.value,
-          address: e.target.address.value,
-          phone: e.target.phone.value,
-          email: e.target.email.value,
-          password: e.target.password.value,
-          repeatPassword: e.target.repeatPassword.value,
-          description: e.target.description.value,
-        },
-      }).then((res) => {
-        console.log(res);
-        if (res.data) {
-          Swal.fire({
-            position: "top",
-            icon: "success",
-            title: "account created successfully",
-            showConfirmButton: false,
-            timer: 2000,
-            customClass: "swal-width",
-          });
-        }
-      });
-    } else {
-      Swal.fire({
+    if (e.target.password.value !== e.target.repeatPassword.value) {
+      return Swal.fire({
         position: "top",
         icon: "error",
-        title: "passwords did not match",
+        title: "Your passwords do not match",
         showConfirmButton: false,
-        timer: 1000,
+        timer: 2000,
         customClass: "swal-width",
       });
     }
+
+    addCompany({
+      variables: {
+        company_Name: e.target.company_Name.value,
+        owner_name: e.target.owner_name.value,
+        company_type: e.target.company_type.value,
+        address: e.target.address.value,
+        phone: e.target.phone.value,
+        email: e.target.email.value,
+        password: e.target.password.value,
+        repeatPassword: e.target.repeatPassword.value,
+        description: e.target.description.value,
+      },
+    }).then((res) => {
+      console.log(res);
+      if (
+        res.data &&
+        e.target.password.value === e.target.repeatPassword.value
+      ) {
+        Swal.fire({
+          position: "top",
+          icon: "success",
+          title: "account created successfully",
+          showConfirmButton: false,
+          timer: 2000,
+          customClass: "swal-width",
+        });
+      }
+    });
   };
 
   if (loading)

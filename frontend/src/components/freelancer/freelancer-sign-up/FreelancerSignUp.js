@@ -15,6 +15,16 @@ export default function UserSignUp() {
 
   const formSubmitAddUser = (e) => {
     e.preventDefault();
+    if (e.target.password.value !== e.target.repeatPassword.value) {
+      return Swal.fire({
+        position: "top",
+        icon: "error",
+        title: "Your passwords do not match",
+        showConfirmButton: false,
+        timer: 2000,
+        customClass: "swal-width",
+      });
+    }
     addUser({
       variables: {
         first_name: e.target.first_name.value,
