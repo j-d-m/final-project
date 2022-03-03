@@ -20,14 +20,12 @@ import FreelancerSignUp from "./components/freelancer/freelancer-sign-up/Freelan
 import CompanyProfile from "./components/company/company-profile/CompanyProfile";
 import CreateJob from "./components/company/company-profile/company-create-job/CreateJob";
 
-
-
 function App() {
   return (
     <>
       <ContextContainer>
         <Header />
-        {/* <CreateJob /> */}
+
         <main className="container-fluid">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -38,10 +36,7 @@ function App() {
             <Route path="/freelancer-profile" element={<FreelancerProfile />} />
             <Route path="/freelancer-signUp" element={<FreelancerSignUp />} />
             <Route path="/company-profile" element={<CompanyProfile />} />
-            <Route
-              path="/company-profile/create-job"
-              element={<CreateJob />}
-            />
+            <Route path="/company-profile/create-job" element={<CreateJob />} />
 
             <Route path="*" element={<PageNotFound />} />
           </Routes>

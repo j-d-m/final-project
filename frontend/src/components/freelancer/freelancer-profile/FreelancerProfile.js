@@ -70,7 +70,6 @@ export default function FreelancerProfile() {
             </>
           );
         })()}
-      )
     </div>
   );
 }
