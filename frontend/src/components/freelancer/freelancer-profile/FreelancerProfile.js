@@ -1,17 +1,11 @@
-import { useQuery } from "@apollo/client";
 import React, { useContext } from "react";
-// import { useNavigate } from "react-router-dom";
+
 import { MyContext } from "../../../Context/Context";
-import { GET_ONE_USER } from "../../../graphQL/Queries";
 
 export default function FreelancerProfile() {
   const { freelancerLoginData } = useContext(MyContext);
   console.log(freelancerLoginData);
 
-  // const { loading, error, data } = useQuery(GET_ONE_USER, {
-  //   variables: { getOneUserId: freelancerLoginData.userId },
-  //   // pollInterval: 500,
-  // });
   if (!freelancerLoginData)
     return (
       <img

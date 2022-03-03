@@ -10,7 +10,6 @@ function CreateJob() {
     refetchQueries: [{ query: GET_JOBS }],
     awaitRefetchQueries: true,
   });
-
   const addJobProfile = (e) => {
     e.preventDefault();
     addJob({
