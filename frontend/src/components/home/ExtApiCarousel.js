@@ -51,7 +51,7 @@ export default function ExtApiCarousel() {
                 {job.title.slice(0, charLimitTitle) +
                   (job.title.length > charLimitTitle ? "..." : "")}
               </h5>
-              <p p> {job.location.display_name}</p>
+              <p> {job.location.display_name}</p>
               <p>posted {moment(job.created).fromNow()}</p>
               <p>
                 by{" "}

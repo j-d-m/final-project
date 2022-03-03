@@ -48,7 +48,7 @@ export default function IntApiCarousel() {
                 {job.job_Title.slice(0, charLimitTitle) +
                   (job.job_Title.length > charLimitTitle ? "..." : "")}
               </h5>
-              <p p> {job.num_of_people_needed} open position(s)</p>
+              <p> {job.num_of_people_needed} open position(s)</p>
               <p>
                 posted{" "}
                 {moment(
