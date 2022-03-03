@@ -1,5 +1,5 @@
 //Native imports
-import React, {  } from "react";
+import React, { } from "react";
 
 //External imports
 import { useQuery } from "@apollo/client";
@@ -21,9 +21,9 @@ const breakPoints = [
 export default function IntApiCarousel() {
   const { data, error } = useQuery(GET_JOBS);
 
-  // console.log("===========INT API CAROUSEL=========================");
-  // console.log(data.getJobs);
-  // console.log("====================================");
+  console.log("===========INT API CAROUSEL=========================");
+  console.log(data.getJobs);
+  console.log("====================================");
 
   if (error) {
     return (

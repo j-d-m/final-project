@@ -99,8 +99,9 @@ export default function Home() {
                 <p>issued at :{job.issued_At}</p>
                 <div>
                   <h4>created by : {job.created_by.company_Name}</h4>
-                  <p>email : {job.created_by.email}</p>
-                </div>
+                  <address>
+                    <strong>Email:</strong>  <a href={`mailto:${job.created_by.email}`}>{job.created_by.email}</a>
+                  </address>                </div>
                 <div className="text-center">
                   <input
                     type="button"

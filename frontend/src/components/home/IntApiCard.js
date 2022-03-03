@@ -92,7 +92,9 @@ export default function IntApiCard({ job }) {
                             (job.created_by.company_Name.length > ModalcharLimitCompany ? "..." : "")}
                     </p>
                     <p>
-                        <strong>Email:</strong> {job.created_by.email}
+                        <address>
+                            <strong>Email:</strong>  <a href={`mailto:${job.created_by.email}`}>{job.created_by.email}</a>
+                        </address>
                     </p>
                 </Modal.Body>
                 <Modal.Footer>
