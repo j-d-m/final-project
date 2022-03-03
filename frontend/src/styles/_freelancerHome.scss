@@ -1,0 +1,39 @@
+.freelancer {
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 100vw;
+  .CardUser {
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 20px;
+    font-size: 150%;
+    margin: 20px;
+    &:hover {
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+        rgba(117, 105, 105, 0.3) 0px 18px 36px -18px inset;
+      cursor: pointer;
+    }
+    .BtnDiv {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      .Btn {
+        background-color: black;
+        color: white;
+        font-size: medium;
+        padding: 5px;
+        border-radius: 5px;
+        &:hover {
+          color: black;
+          background-color: white;
+        }
+      }
+      .fa-favorite {
+        color: rgb(0, 0, 0);
+      }
+    }
+  }
+}

@@ -12,12 +12,18 @@ import "../../styles/home.scss";
 import exclamation from "../../assets/img/exclamation.ico";
 import IntApiCarousel from "./IntApiCarousel";
 import ExtApiCarousel from "./ExtApiCarousel";
+import FreelancerHome from "./FreelancerHome";
 
 export default function Home() {
-  const { data, loading, error } = useQuery(GET_JOBS);
+  const { loading, error, data } = useQuery(GET_JOBS);
 
-  const { isTitleFilter, setIsTitleFilter, inputValue, setInputValue } =
-    useContext(MyContext);
+  const {
+    isTitleFilter,
+    setIsTitleFilter,
+    inputValue,
+    setInputValue,
+    isCompanyLogin,
+  } = useContext(MyContext);
 
   const searchHandler = (e) => {
     e.preventDefault();
@@ -63,61 +69,67 @@ export default function Home() {
   }
 
   return (
-    <div className=" jobCardContainer">
-      <section className="home-container">
-        <div className="banner-container">
-          <div className="search-fields">
-            <form onSubmit={searchHandler}>
-              <input
-                name="searchJobTitle"
-                type="text"
-                placeholder="job title... "
-              />
-              <input
-                className="search-button"
-                type="submit"
-                value="Search Jobs"
-              />
-            </form>
+    <>
+      {isCompanyLogin ? (
+        <FreelancerHome />
+      ) : (
+        <div className=" jobCardContainer">
+          <section className="home-container">
+            <div className="banner-container">
+              <div className="search-fields">
+                <form onSubmit={searchHandler}>
+                  <input
+                    name="searchJobTitle"
+                    type="text"
+                    placeholder="job title... "
+                  />
+                  <input
+                    className="search-button"
+                    type="submit"
+                    value="Search Jobs"
+                  />
+                </form>
+              </div>
+            </div>
+          </section>
+
+          {isTitleFilter
+            ? inputValue.map((job) => {
+                return (
+                  <div key={job.id} className=" CardDiv ">
+                    <div className="card-body">
+                      <img
+                        src={`https://source.unsplash.com/1600x900/?${job.job_Title}`}
+                        alt="img"
+                      />
+
+                      <p>Title : {job.job_Title}</p>
+                      <p>Description : {job.job_description}</p>
+                      <p>Number Needed :{job.num_of_people_needed}</p>
+                      <p>issued at :{job.issued_At}</p>
+                      <div>
+                        <h4>created by : {job.created_by.company_Name}</h4>
+                        <p>email : {job.created_by.email}</p>
+                      </div>
+                      <div className="text-center">
+                        <input
+                          type="button"
+                          value="Accept Job"
+                          className="btn btn-secondary"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                );
+              })
+            : null}
+          <div className="jobs-combo-box">
+            <IntApiCarousel />
+            <ExtApiCarousel />
           </div>
         </div>
-      </section>
-
-      {isTitleFilter
-        ? inputValue.map((job) => {
-            return (
-              <div key={job.id} className=" CardDiv ">
-                <div className="card-body">
-                  <img
-                    src={`https://source.unsplash.com/1600x900/?${job.job_Title}`}
-                    alt="img"
-                  />
-
-                  <p>Title : {job.job_Title}</p>
-                  <p>Description : {job.job_description}</p>
-                  <p>Number Needed :{job.num_of_people_needed}</p>
-                  <p>issued at :{job.issued_At}</p>
-                  <div>
-                    <h4>created by : {job.created_by.company_Name}</h4>
-                    <p>email : {job.created_by.email}</p>
-                  </div>
-                  <div className="text-center">
-                    <input
-                      type="button"
-                      value="Accept Job"
-                      className="btn btn-secondary"
-                    />
-                  </div>
-                </div>
-              </div>
-            );
-          })
-        : null}
-      <div className="jobs-combo-box">
-        <IntApiCarousel />
-        <ExtApiCarousel />
-      </div>
-    </div>
+      )}
+    </>
   );
 }
 
