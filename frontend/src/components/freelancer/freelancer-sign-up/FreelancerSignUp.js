@@ -27,10 +27,7 @@ export default function UserSignUp() {
         hourly_rate: Number(e.target.hourly_rate.value),
       },
     }).then((res) => {
-      if (
-        res.data &&
-        e.target.password.value === e.target.repeatPassword.value
-      ) {
+      if (res.data) {
         setFreelancerLoginData(res.data);
         Swal.fire({
           position: "top",
