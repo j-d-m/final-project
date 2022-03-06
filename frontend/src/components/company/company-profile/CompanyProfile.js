@@ -2,6 +2,10 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { MyContext } from "../../../Context/Context";
 
+/*  
+1- we need here to update the company profile using mutation 
+2- update  company avatar as well
+*/
 export default function CompanyProfile() {
   const { companyLoginData } = useContext(MyContext);
   const navigate = useNavigate();
@@ -63,7 +67,11 @@ export default function CompanyProfile() {
                     onClick={() => navigate("/company-profile/create-job")}
                   />
 
-                  <input type="submit" value="Check out the freelancers" />
+                  <input
+                    type="submit"
+                    value="Check out the freelancers"
+                    onClick={() => navigate("/freelancer-view")}
+                  />
                 </div>
               </div>
             </>

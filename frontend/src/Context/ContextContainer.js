@@ -9,6 +9,9 @@ function ContextContainer({ children }) {
   const [isTitleFilter, setIsTitleFilter] = useState(false);
   const [inputValue, setInputValue] = useState([]);
   const [freelancerLoginData, setFreelancerLoginData] = useState({});
+  // store freelancer after clicking on contact button to navigate the company to freelancer profile
+  const [freelancerFind, setFreelancerFind] = useState({});
+  // /////////////////////////////////////////////////////////////////////////
   const navigate = useNavigate();
   useEffect(() => {
     fetch("https://deploy-final-project-anass.herokuapp.com/graphql", {
@@ -80,6 +83,8 @@ function ContextContainer({ children }) {
         setInputValue,
         setFreelancerLoginData,
         freelancerLoginData,
+        freelancerFind,
+        setFreelancerFind,
       }}
     >
       {children}

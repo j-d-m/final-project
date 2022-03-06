@@ -1,0 +1,43 @@
+.freelancer {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  .CardUser {
+    box-shadow: 10px 2px 2px rgb(18, 61, 202);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: start;
+
+    border-radius: 15px;
+    padding: 20px;
+    font-size: 150%;
+    margin: 20px;
+    &:hover {
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+        rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+      cursor: pointer;
+    }
+    img {
+      border-radius: 50%;
+      border: 1px solid rgba(0, 0, 0, 0.116);
+    }
+    .bodyCard {
+      text-align: center;
+      margin: 20px;
+    }
+    .Btn {
+      background-color: black;
+      color: white;
+      font-size: medium;
+      padding: 5px;
+      border-radius: 5px;
+      &:hover {
+        color: black;
+        background-color: white;
+      }
+    }
+    .description {
+      margin-right: 20%;
+    }
+  }
+}
