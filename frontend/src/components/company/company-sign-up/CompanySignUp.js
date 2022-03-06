@@ -1,12 +1,11 @@
 import { useMutation } from "@apollo/client";
 import React from "react";
 import Swal from "sweetalert2";
-import '../../../styles/companySignUp.scss';
-import logo from '../../../assets/img/logo.svg';
+import "../../../styles/companySignUp.scss";
+import logo from "../../../assets/img/logo.svg";
 import { MyContext } from "../../../Context/Context";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-
 
 import { CREATE_COMPANY_MUTATION } from "../../../graphQL/Mutations";
 
@@ -21,6 +20,18 @@ export default function CompanySignUp() {
   //query to push the from information to the database
   const formSubmitAddCompany = (e) => {
     e.preventDefault();
+
+    if (e.target.password.value !== e.target.repeatPassword.value) {
+      return Swal.fire({
+        position: "top",
+        icon: "error",
+        title: "Your passwords do not match",
+        showConfirmButton: false,
+        timer: 2000,
+        customClass: "swal-width",
+      });
+    }
+
     addCompany({
       variables: {
         company_Name: e.target.company_Name.value,
@@ -35,7 +46,10 @@ export default function CompanySignUp() {
       },
     }).then((res) => {
       console.log(res);
-      if (res.data) {
+      if (
+        res.data &&
+        e.target.password.value === e.target.repeatPassword.value
+      ) {
         Swal.fire({
           position: "top",
           icon: "success",
@@ -48,7 +62,13 @@ export default function CompanySignUp() {
     });
   };
 
-  if (loading) return <img src="https://c.tenor.com/gJLmlIn6EvEAAAAM/loading-gif.gif" alt="spinner" /> ;
+  if (loading)
+    return (
+      <img
+        src="https://c.tenor.com/gJLmlIn6EvEAAAAM/loading-gif.gif"
+        alt="spinner"
+      />
+    );
   if (error) return `${error.message}`;
 
   console.log(data);
@@ -106,32 +126,26 @@ export default function CompanySignUp() {
                 </label>
                 <input type="text" placeholder="contact person" onChange={(e)=>{set}} /> */}
 
-                <label><span>Password</span>
-                <input
-                  type="password"
-                  name="password"
-                />
-                </label>
+            <label>
+              <span>Password</span>
+              <input type="password" name="password" />
+            </label>
 
-                <label><span>Repeat Password</span>
-                <input
-                  type="password"
-                  name="repeatPassword"
-                />
-                </label>
+            <label>
+              <span>Repeat Password</span>
+              <input type="password" name="repeatPassword" />
+            </label>
 
-                <label><span>Describe your company</span>  
-                <textarea
-                  name="description"
-                  maxLength={800}
-                />
-                </label>
+            <label>
+              <span>Describe your company</span>
+              <textarea name="description" maxLength={800} />
+            </label>
 
-                <label>
-                <span></span>
-                <input type="submit" value="Sign Up" />
-                </label>
-           </form>
+            <label>
+              <span></span>
+              <input type="submit" value="Sign Up" />
+            </label>
+          </form>
         </div>
       </section>
     </>
