@@ -20,6 +20,7 @@ import FreelancerSignUp from "./components/freelancer/freelancer-sign-up/Freelan
 import CompanyProfile from "./components/company/company-profile/CompanyProfile";
 import CreateJob from "./components/company/company-profile/company-create-job/CreateJob";
 import FreelancerView from "./components/freelancer/freelancer-profile/FreelancerView";
+import CompanyJobs from "./components/company/company-profile/company-see-all-jobs/CompanyJobs";
 
 function App() {
   return (
@@ -39,6 +40,10 @@ function App() {
             <Route path="/freelancer-view" element={<FreelancerView />} />
             <Route path="/company-profile" element={<CompanyProfile />} />
             <Route path="/company-profile/create-job" element={<CreateJob />} />
+            <Route
+              path="/company-profile/company-jobs"
+              element={<CompanyJobs />}
+            />
 
             <Route path="*" element={<PageNotFound />} />
           </Routes>

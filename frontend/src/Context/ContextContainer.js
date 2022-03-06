@@ -45,6 +45,15 @@ function ContextContainer({ children }) {
           email
           password
           description
+       jobs {
+        id
+        job_Title
+        start_Date
+        end_Date
+        issued_At
+        num_of_people_needed
+        job_description
+      }
 	
         }
 
@@ -63,6 +72,7 @@ function ContextContainer({ children }) {
         } else if (result.data.getVerify?.company) {
           setCompanyLoginData(result.data.getVerify.company);
           setIsCompanyLogin(true);
+          console.log(companyLoginData);
         } else {
           navigate("/");
         }

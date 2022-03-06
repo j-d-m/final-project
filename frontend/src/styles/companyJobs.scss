@@ -1,0 +1,77 @@
+.companyJobs {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+
+  h1:first-child {
+    text-align: center;
+    background-color: rgb(219, 219, 219);
+    padding: 10px;
+  }
+
+  .jobsCard {
+    width: 80%;
+    height: 400px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 20px auto;
+    background-size: 100% 100%;
+    background-position: center;
+
+    h1,
+    ul {
+      box-shadow: 10px 10px 10px rgb(68, 66, 66);
+      background-color: rgba(17, 17, 17, 0.781);
+      color: rgba(255, 255, 255, 0.719);
+      width: 320px;
+      margin: 20px;
+      padding: 10px;
+      list-style: none;
+    }
+    li {
+      margin-top: 5px;
+      width: 100%;
+      background-color: rgba(148, 148, 148, 0);
+      display: flex;
+      justify-content: space-between;
+      span {
+        color: rgba(255, 1, 1, 0.719);
+        width: 200px;
+        background-color: black;
+        align-self: flex-end;
+        padding-left: 4px;
+      }
+    }
+    .modifyJobsButton {
+      margin: 20px;
+
+      display: flex;
+      justify-content: space-around;
+      input[type="button"] {
+        background-image: linear-gradient(
+          to right,
+          #404447 0%,
+          #000000 51%,
+          #2b5876 100%
+        );
+
+        margin: 10px;
+        padding: 10px 10px;
+        text-align: center;
+        text-transform: uppercase;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: white;
+        box-shadow: 0 0 20px rgba(238, 238, 238, 0.349);
+        border-radius: 10px;
+        display: block;
+
+        &:hover {
+          background-position: right center;
+          color: #fff;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
