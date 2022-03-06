@@ -24,9 +24,7 @@ export default function CompanyLogin() {
     }).then((res) => {
       if (res.data) {
         setCompanyLoginData(res.data.loginCompany.company);
-
         localStorage.setItem("token", res.data.loginCompany.token);
-
         Swal.fire({
           position: "top",
           icon: "success",

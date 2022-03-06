@@ -1,28 +1,78 @@
 .company-profile {
-  border: 1px solid black;
+  position: relative;
+  box-shadow: 10px 10px 10px black;
 
+  width: 50vw;
+  margin: 0 auto;
+
+  text-align: center;
+  background-color: black;
+  color: white;
+
+  .company-background {
+    width: 100%;
+    height: 200px;
+  }
   .company-avatar {
-    margin: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
+    position: absolute;
+    top: 8%;
+    left: 8%;
+    text-align: start;
     img {
       border-radius: 50%;
       border: 2px solid #ecf7f5;
     }
   }
-  .company-info {
-    // h1 {
-    //   color: $color-lightgray;
-    // }
+  .companyName {
+    padding: 10px;
+    box-shadow: inset 10px 10px 10px rgb(180, 40, 40);
+    border-radius: 0% 0% 0% 70%;
   }
-  .btn {
+
+  .company-info {
+    padding: 30px;
+    width: 80%;
+    text-align: start;
+    margin: 0 auto;
+
+    .Btn {
+      display: flex;
+
+      input {
+        background-image: linear-gradient(
+          to right,
+          #c04848 0%,
+          #480048 51%,
+          #c04848 100%
+        );
+
+        margin: 10px;
+        padding: 15px 5px;
+        text-align: center;
+        // text-transform: uppercase;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: white;
+        box-shadow: 0 0 20px rgba(238, 238, 238, 0.335);
+        border-radius: 10px;
+        display: block;
+
+        &:hover {
+          background-position: right center;
+          color: #fff;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  .company-info > div {
     display: flex;
-    padding: 20px;
-    input {
-      padding: 20px;
-      margin: 20px;
+    justify-content: space-between;
+    border-top: 1px solid white;
+    padding: 10px;
+    span {
+      color: red;
+      width: 200px;
     }
   }
 }
