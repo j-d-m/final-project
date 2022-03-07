@@ -1,13 +1,13 @@
 //Native imports
-import React, { } from "react";
 
 //External imports
 import { useQuery } from "@apollo/client";
 import Carousel from "react-elastic-carousel";
 
+
 //Internal imports
-import { GET_JOBS } from "../../graphQL/Queries";
 import "../../styles/carousel.scss";
+import { GET_JOBS } from "../../graphQL/Queries";
 import IntApiCard from "./IntApiCard";
 
 // breakpoints for elastic carousel
