@@ -14,10 +14,11 @@ export default function ExtApiModalCard({ job }) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    let CharLimitCompanyCarousel = 20;
+    let CharLimitCompanyCarousel = 30;
     let CharLimitTitleCarousel = 20;
+
     let CharLimitCompanyModal = 50
-    let CharLimitTitleModal = 25;
+    let CharLimitTitleModal = 100;
     let CharLimitDescriptionModal = 500;
 
     return (

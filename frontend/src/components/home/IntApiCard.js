@@ -12,11 +12,11 @@ import Modal from "react-bootstrap/Modal";
 import "../../styles/carousel.scss";
 
 
-let CharLimitCompanyCarousel = 20;
+let CharLimitCompanyCarousel = 30;
 let CharLimitTitleCarousel = 20;
 
 let CharLimitCompanyModal = 50
-let CharLimitTitleModal = 25;
+let CharLimitTitleModal = 100;
 let CharLimitDescriptionModal = 500;
 
 
@@ -72,8 +72,8 @@ export default function IntApiModalCard({ job }) {
             >
                 <Modal.Header closeButton>
                     <Modal.Title>
-                        <h3> {job.job_Title.slice(0, CharLimitTitleCarousel) +
-                            (job.job_Title.length > CharLimitTitleCarousel ? "..." : "")}</h3>
+                        <h3> {job.job_Title.slice(0, CharLimitTitleModal) +
+                            (job.job_Title.length > CharLimitTitleModal ? "..." : "")}</h3>
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -102,10 +102,6 @@ export default function IntApiModalCard({ job }) {
                     </Button>
                 </Modal.Footer>
             </Modal>
-
-
-
-
         </div>
     )
 }
