@@ -1,5 +1,6 @@
 @import './colors';
 @import './flexCenter';
+@import './mobile';
 
 
 .Profile-Container{
@@ -7,9 +8,13 @@
     height: calc(100vh - 20vh);
     background: rgb(236,247,245);
     background: radial-gradient(circle, rgba(236,247,245,1) 7%, rgba(197,213,214,1) 84%);
-    padding: 1rem;
+    // padding: 1rem;
     @include flex-center;
     justify-content: center;
+
+    @include mobile{
+        height: 100%;
+    }
 }
 
 .Banner-Container{
@@ -26,12 +31,26 @@
     display: flex;
     justify-content: flex-start;
 
+    @include mobile{
+        width: 80vw;
+        flex-direction: column;
+        line-height: 1.2;
+    }
+
+    @include mobile-small{
+        width:100%;
+        flex-direction: column;
+        height: 100%;
+        line-height: 1.1;
+    }
+
     .Freelance-Avatar{
         flex:0.3;
 
         img{
             border-radius: 50%;
             border: 5px solid $color-white;
+            
         }
        
         input[type='file']{
@@ -45,7 +64,7 @@
             font-weight: 400;
             display: inline-block;
             padding: 6px 12px;
-            margin: 2rem 0 0 1.8rem;
+            margin: 1rem 0 0 1.8rem;
             cursor: pointer;
             transition: 0.2s ease-in;
 
@@ -62,10 +81,18 @@
             h1{
                 font-size: 45px;
                 color:$color-green;
+
+                @include mobile{
+                    font-size: 30px;
+                }
             }
             p{
                 font-size: large;
                 color: $color-green;
+
+                @include mobile{
+                    font-size: smaller;
+                }
             }
 
             input{
