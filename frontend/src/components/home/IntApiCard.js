@@ -1,5 +1,5 @@
 //Native imports
-import React, { useState } from "react";
+import { useState } from "react";
 
 //External imports
 import Button from "react-bootstrap/Button";
@@ -12,15 +12,15 @@ import Modal from "react-bootstrap/Modal";
 import "../../styles/carousel.scss";
 
 
-let charLimitCompany = 20;
-let charLimitTitle = 30;
+let CharLimitCompanyCarousel = 30;
+let CharLimitTitleCarousel = 20;
 
-let ModalcharLimitCompany = 50;
-let ModalcharLimitTitle = 60;
-let ModalcharLimitDescription = 10000000;
+let CharLimitCompanyModal = 50
+let CharLimitTitleModal = 100;
+let CharLimitDescriptionModal = 500;
 
 
-export default function IntApiCard({ job }) {
+export default function IntApiModalCard({ job }) {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -31,8 +31,8 @@ export default function IntApiCard({ job }) {
         <div className="carousel-card">
             <h5>
                 {" "}
-                {job.job_Title.slice(0, charLimitTitle) +
-                    (job.job_Title.length > charLimitTitle ? "..." : "")}
+                {job.job_Title.slice(0, CharLimitTitleCarousel) +
+                    (job.job_Title.length > CharLimitTitleCarousel ? "..." : "")}
             </h5>
             <p> {job.num_of_people_needed} open position(s)</p>
             <p>
@@ -46,8 +46,8 @@ export default function IntApiCard({ job }) {
                 by{" "}
                 <strong>
                     {" "}
-                    {job.created_by.company_Name.slice(0, charLimitCompany) +
-                        (job.created_by.company_Name.length > charLimitCompany
+                    {job.created_by.company_Name.slice(0, CharLimitCompanyCarousel) +
+                        (job.created_by.company_Name.length > CharLimitCompanyCarousel
                             ? "..."
                             : "")}{" "}
                 </strong>
@@ -59,7 +59,7 @@ export default function IntApiCard({ job }) {
                     size="md"
                     onClick={handleShow}
                 >
-                    Accept Job
+                    Details
                 </Button>
             </div>
             <Modal
@@ -72,12 +72,13 @@ export default function IntApiCard({ job }) {
             >
                 <Modal.Header closeButton>
                     <Modal.Title>
-                        <h3>{job.job_Title}</h3>
+                        <h3> {job.job_Title.slice(0, CharLimitTitleModal) +
+                            (job.job_Title.length > CharLimitTitleModal ? "..." : "")}</h3>
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <p> <strong>Job description:</strong>  {job.job_description.slice(0, ModalcharLimitDescription) +
-                        (job.job_description.length > ModalcharLimitDescription ? "..." : "")}
+                    <p> <strong>Job description:</strong>  {job.job_description.slice(0, CharLimitDescriptionModal) +
+                        (job.job_description.length > CharLimitDescriptionModal ? "..." : "")}
                     </p>
                     <p>
                         <strong>Open positions:</strong> {job.num_of_people_needed}
@@ -88,13 +89,11 @@ export default function IntApiCard({ job }) {
                         ).fromNow()}
                     </p>
                     <p>
-                        <strong>Company:</strong> {job.created_by.company_Name.slice(0, ModalcharLimitCompany) +
-                            (job.created_by.company_Name.length > ModalcharLimitCompany ? "..." : "")}
+                        <strong>Company:</strong> {job.created_by.company_Name.slice(0, CharLimitCompanyModal) +
+                            (job.created_by.company_Name.length > CharLimitCompanyModal ? "..." : "")}
                     </p>
                     <p>
-                        <address>
-                            <strong>Email:</strong>  <a href={`mailto:${job.created_by.email}`}>{job.created_by.email}</a>
-                        </address>
+                        <strong>Email:</strong>  <a href={`mailto:${job.created_by.email}`}>{job.created_by.email}</a>
                     </p>
                 </Modal.Body>
                 <Modal.Footer>
@@ -103,10 +102,6 @@ export default function IntApiCard({ job }) {
                     </Button>
                 </Modal.Footer>
             </Modal>
-
-
-
-
         </div>
     )
 }
