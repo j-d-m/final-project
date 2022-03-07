@@ -1,8 +1,9 @@
-// const API_KEY = process.env.REACT_APP_ADZUNA_API_KEY;
-// const API_ID = process.env.REACT_APP_ADZUNA_API_ID;
 
-const API_KEY = "29a3798b05f90a06de46cbde16715be2"
-const API_ID = "d2c33ab1"
+const API_KEY = process.env.REACT_APP_ADZUNA_API_KEY;
+const API_ID = process.env.REACT_APP_ADZUNA_API_ID;
+
+// REACT_APP_ADZUNA_API_KEY = 29a3798b05f90a06de46cbde16715be2
+// REACT_APP_ADZUNA_API_ID = d2c33ab1
 
 
 const API_BASE_URL = 'https://api.adzuna.com/v1/api/jobs';

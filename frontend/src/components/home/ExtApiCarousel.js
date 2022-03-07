@@ -1,18 +1,18 @@
 //Native imports
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 //External imports
 import Button from "react-bootstrap/Button";
 import Carousel from "react-elastic-carousel";
 import moment from "moment";
+import axios from "axios";
 
 //Internal imports
-// import Adzuna from "../../services/external-api/Adzuna";
-import API_URL from "../../services/external-api/Adzuna";
 import "../../styles/carousel.scss";
+import API_URL from "../../services/external-api/Adzuna";
+import ExtApiCard from "./ExtApiCard";
 
 // breakpoints for elastic carousel
-
 const breakPoints = [
   { width: 1, itemsToShow: 1, itemsToScroll: 1 },
   { width: 550, itemsToShow: 2, itemsToScroll: 2 },
@@ -22,64 +22,41 @@ const breakPoints = [
 
 export default function ExtApiCarousel() {
   const [apiJobs, setApiJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(API_URL);
-      const data = await response.json();
-
-      console.log('=============EXT API CAROUSEL=======================');
-      console.log(data);
+      const result = await axios(API_URL);
+      console.log('===================axios=================');
+      console.log(result.data.results);
       console.log('====================================');
-
-      setApiJobs(data.results);
+      setApiJobs(result.data.results);
+      setLoading(false);
     };
     fetchData();
   }, []);
 
-  let charLimitTitle = 20;
-  let charLimitCompany = 25;
-
   return (
-    <div className="jobs-carousel">
-      <div className="carousel-wrapper">
-        <Carousel breakPoints={breakPoints}>
-          {apiJobs.map((job) => (
-            <div className="carousel-card" key={job.id}>
-              <h5>
-                {" "}
-                {job.title.slice(0, charLimitTitle) +
-                  (job.title.length > charLimitTitle ? "..." : "")}
-              </h5>
-              <p> {job.location.display_name}</p>
-              <p>posted {moment(job.created).fromNow()}</p>
-              <p>
-                by{" "}
-                <strong>
-                  {" "}
-                  {job.company.display_name.slice(0, charLimitCompany) +
-                    (job.company.display_name.length > charLimitCompany
-                      ? "..."
-                      : "")}{" "}
-                </strong>
-              </p>
 
-              <div className="text-center">
-                <Button
-                  variant="secondary"
-                  size="md"
-                  href={job.redirect_url}
-                  target="_blank"
-                >
-                  Accept Job
-                </Button>
-              </div>
-            </div>
-          ))}
-        </Carousel>
-      </div>
+    <div className="jobs-carousel">
+      {loading ? (
+        <div className="text-center">
+          <img
+            src="https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif"
+            alt="img"
+          />
+        </div>
+      ) : (
+
+        <div className="carousel-wrapper">
+          <Carousel breakPoints={breakPoints}>
+            {apiJobs.slice(0, 40).map((job) => (
+              <ExtApiCard job={job} key={job.id} />
+            ))}
+          </Carousel>
+        </div>
+      )}
       <hr className="separator" />
     </div>
   );
 }
-
