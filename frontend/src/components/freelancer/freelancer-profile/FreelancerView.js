@@ -3,7 +3,7 @@ import { MyContext } from "../../../Context/Context";
 import { ImHeart } from "react-icons/im";
 import { HiOutlineMail, HiOutlineMailOpen } from "react-icons/hi";
 import { Link } from "react-scroll";
-import "../../../styles/_freelancerView.scss";
+import "../../../styles/freelancerView.scss";
 export default function FreelancerView() {
   /*   1- in this components we need to add email js 
        in order to send message from company to freelancer 
