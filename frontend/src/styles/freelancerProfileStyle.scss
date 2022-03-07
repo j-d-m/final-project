@@ -5,7 +5,8 @@
 .Profile-Container{
     width: 100%;
     height: calc(100vh - 20vh);
-    background-color: $color-lightgray;
+    background: rgb(236,247,245);
+    background: radial-gradient(circle, rgba(236,247,245,1) 7%, rgba(197,213,214,1) 84%);
     padding: 1rem;
     @include flex-center;
     justify-content: center;
@@ -13,7 +14,7 @@
 
 .Banner-Container{
     width:60vw;   
-    background: rgba(255, 255, 255, 0.671);
+    background: rgba(255, 255, 255, 0.4);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(4.7px);
@@ -42,16 +43,13 @@
             border-radius: 10px;
             font-size: smaller;
             font-weight: 400;
-            border: 1px solid #ccc;
             display: inline-block;
             padding: 6px 12px;
             margin: 2rem 0 0 1.8rem;
             cursor: pointer;
             transition: 0.2s ease-in;
 
-
             &:hover{
-                
                 transform: scale(1.1);
             }
         }
@@ -63,10 +61,11 @@
 
             h1{
                 font-size: 45px;
-
+                color:$color-green;
             }
             p{
                 font-size: large;
+                color: $color-green;
             }
 
             input{
@@ -81,10 +80,10 @@
             cursor: pointer;
             transition: 0.2s ease-in;
 
-            &:hover{
-                
-                transform: scale(1.1);
-            }
+                &:hover{
+                    
+                    transform: scale(1.1);
+                }
             }
     }
 }
