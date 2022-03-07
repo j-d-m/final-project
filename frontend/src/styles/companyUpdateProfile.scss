@@ -1,0 +1,27 @@
+.companyProfileUpdate {
+  .modalBody {
+    width: 100%;
+    margin: 20px auto;
+    .modalForm {
+      border: 2px inset black;
+      width: 100%;
+      .modalDiv {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        text-align: center;
+        div {
+          width: 200px;
+          margin: 20px;
+        }
+      }
+      .textInput {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        margin: 20px auto;
+        text-align: center;
+      }
+    }
+  }
+}
