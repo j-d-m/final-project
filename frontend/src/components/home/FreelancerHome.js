@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import React, { useContext } from "react";
 import { GET_USERS } from "../../graphQL/Queries";
-import "../../styles/_freelancerHome.scss";
+import "../../styles/freelancerProfileStyle.scss";
 import { MyContext } from "../../Context/Context";
 import { useNavigate } from "react-router-dom";
 

@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
-
 import { MyContext } from "../../../Context/Context";
+import '../../../styles/freelancerProfileStyle.scss';
+
+
 
 export default function FreelancerProfile() {
   const { freelancerLoginData } = useContext(MyContext);
@@ -15,7 +17,8 @@ export default function FreelancerProfile() {
     );
 
   return (
-    <div className="company-profile">
+    <section className="Profile-Container">
+    <div className="Banner-Container">
       {freelancerLoginData &&
         (() => {
           let {
@@ -29,14 +32,16 @@ export default function FreelancerProfile() {
           } = freelancerLoginData;
           return (
             <>
-              <div className="company-avatar">
+              <div className="Freelance-Avatar">
                 <img src={avatar} alt="img" width="200px" height="200px" />
-                <div>
-                  <input type="file" />
-                  <p>Upload your picture</p>
-                </div>
+                  <label for='file-upload' className="Custom-File-Upload">
+                        <input id="file-upload" type="file" /> Change Image
+
+                  </label>
+                     
               </div>
-              <div className="freelancer-info">
+
+              <div className="Freelance-Right">
                 <h1>Your Staff Room Profile</h1>
                 <div>
                   <p>First name : {first_name}</p>
@@ -57,13 +62,14 @@ export default function FreelancerProfile() {
                 <div>
                   <p>Your position : {description}</p>
                 </div>
-                <div className="btn">
-                  <input type="submit" value="See what gigs are going" />
+                <div className="">
+                  <input type="submit" value="See what gigs are going on" />
                 </div>
               </div>
             </>
           );
         })()}
     </div>
+    </section>
   );
 }
