@@ -13,7 +13,9 @@ export const GET_ONE_USER = gql`
       password
       hourly_rate
       description
-      # favorite
+      favorite {
+        id
+      }
     }
   }
 `;

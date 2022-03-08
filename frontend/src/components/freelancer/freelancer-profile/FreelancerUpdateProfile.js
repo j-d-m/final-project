@@ -1,32 +1,31 @@
 import React, { useContext } from "react";
 import { Modal, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { UPDATE_COMPANY } from "../../../graphQL/Mutations";
+import { UPDATE_USER } from "../../../graphQL/Mutations";
 import { useMutation } from "@apollo/client";
 import Swal from "sweetalert2";
 import { MyContext } from "../../../Context/Context";
-function CompanyUpdateProfile(props) {
-  const { companyLoginData } = useContext(MyContext);
+import { GET_ONE_USER } from "../../../graphQL/Queries";
+function FreelancerUpdateProfile(props) {
+  const { freelancerLoginData } = useContext(MyContext);
 
-  const [UpdateCompany, { data, loading, error }] = useMutation(
-    UPDATE_COMPANY,
-    {
-      awaitRefetchQueries: true,
-    }
-  );
+  const [UpdateUser, { data, loading, error }] = useMutation(UPDATE_USER, {
+    awaitRefetchQueries: true,
+    refetchQueries: GET_ONE_USER,
+  });
   const updateProfile = (e) => {
     e.preventDefault();
-    let companyName, owner, address, phone, email, password, description;
+    let firstName, lastName, hourlyRate, phone, email, password, description;
     if (
-      e.target.companyName.value !== undefined &&
-      e.target.companyName.value !== ""
+      e.target.firstName.value !== undefined &&
+      e.target.firstName.value !== ""
     ) {
-      companyName = e.target.companyName.value;
+      firstName = e.target.firstName.value;
     } else if (
-      e.target.owner.value !== undefined &&
-      e.target.owner.value !== ""
+      e.target.lastName.value !== undefined &&
+      e.target.lastName.value !== ""
     ) {
-      owner = e.target.owner.value;
+      lastName = e.target.lastName.value;
     } else if (
       e.target.email.value !== undefined &&
       e.target.email.value !== ""
@@ -38,10 +37,10 @@ function CompanyUpdateProfile(props) {
     ) {
       password = e.target.password.value;
     } else if (
-      e.target.address.value !== undefined &&
-      e.target.address.value !== ""
+      e.target.hourlyRate.value !== undefined &&
+      e.target.hourlyRate.value !== ""
     ) {
-      address = e.target.address.value;
+      hourlyRate = e.target.hourlyRate.value;
     } else if (
       e.target.phone.value !== undefined &&
       e.target.phone.value !== ""
@@ -64,12 +63,12 @@ function CompanyUpdateProfile(props) {
     }
 
     props.onHide();
-    UpdateCompany({
+    UpdateUser({
       variables: {
-        updateCompanyId: companyLoginData.id,
-        companyName: companyName,
-        ownerName: owner,
-        address: address,
+        updateUserId: freelancerLoginData.id,
+        firstName: firstName,
+        lastName: lastName,
+        hourlyRate: hourlyRate,
         phone: phone,
         email: email,
         password: password,
@@ -105,12 +104,12 @@ function CompanyUpdateProfile(props) {
           <form className="modalForm" onSubmit={updateProfile}>
             <div className="modalDiv">
               <div>
-                <label>Company Name :</label>
-                <input type="text" name="companyName" />
+                <label>First Name :</label>
+                <input type="text" name="firstName" />
               </div>
               <div>
-                <label>Owner :</label>
-                <input type="text" name="owner" />
+                <label>Last Name :</label>
+                <input type="text" name="lastName" />
               </div>
             </div>
             <div className="modalDiv">
@@ -125,8 +124,8 @@ function CompanyUpdateProfile(props) {
             </div>
             <div className="modalDiv">
               <div>
-                <label>Address:</label>
-                <input type="text" name="address" />
+                <label>hourly_rate:</label>
+                <input type="number" name="hourlyRate" />
               </div>
               <div>
                 <label>Phone :</label>
@@ -148,4 +147,4 @@ function CompanyUpdateProfile(props) {
   );
 }
 
-export default CompanyUpdateProfile;
+export default FreelancerUpdateProfile;

@@ -1,117 +1,120 @@
-@import './colors';
-@import './flexCenter';
-@import './mobile';
+@import "./colors";
+@import "./flexCenter";
+@import "./mobile";
 
+.Profile-Container {
+  width: 100%;
+  height: calc(100vh - 20vh);
+  background: rgb(236, 247, 245);
+  background: radial-gradient(
+    circle,
+    rgba(236, 247, 245, 1) 7%,
+    rgba(197, 213, 214, 1) 84%
+  );
+  // padding: 1rem;
+  @include flex-center;
+  justify-content: center;
 
-.Profile-Container{
+  @include mobile {
+    height: 100%;
+  }
+}
+
+.Banner-Container {
+  width: 60vw;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4.7px);
+  -webkit-backdrop-filter: blur(3.7px);
+  border: 1px solid rgba(251, 249, 249, 0.3);
+  padding: 1.5rem;
+  line-height: 2;
+
+  display: flex;
+  justify-content: flex-start;
+
+  @include mobile {
+    width: 80vw;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  @include mobile-small {
     width: 100%;
-    height: calc(100vh - 20vh);
-    background: rgb(236,247,245);
-    background: radial-gradient(circle, rgba(236,247,245,1) 7%, rgba(197,213,214,1) 84%);
-    // padding: 1rem;
-    @include flex-center;
-    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    line-height: 1.1;
+  }
 
-    @include mobile{
-        height: 100%;
+  .Freelance-Avatar {
+    flex: 0.3;
+
+    img {
+      border-radius: 50%;
+      border: 5px solid $color-white;
     }
+
+    input[type="file"] {
+      display: none;
+    }
+    .Custom-File-Upload {
+      background-color: $color-pepper;
+      color: $color-white;
+      border-radius: 10px;
+      font-size: smaller;
+      font-weight: 400;
+      display: inline-block;
+      padding: 6px 12px;
+      margin: 1rem 0 0 1.8rem;
+      cursor: pointer;
+      transition: 0.2s ease-in;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .Freelance-Right {
+    flex: 0.7;
+
+    h1 {
+      font-size: 45px;
+      color: $color-green;
+
+      @include mobile {
+        font-size: 30px;
+      }
+    }
+    p {
+      font-size: large;
+      color: $color-green;
+
+      @include mobile {
+        font-size: smaller;
+      }
+    }
+
+    input {
+      background-color: $color-pepper;
+      color: $color-white;
+      border-radius: 10px;
+      font-size: smaller;
+      font-weight: 400;
+      border: 1px solid #ccc;
+      display: inline-block;
+      padding: 6px 12px;
+      cursor: pointer;
+      transition: 0.2s ease-in;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+    .ModalBtnFreelancerProfile {
+      display: flex;
+      justify-content: space-around;
+    }
+  }
 }
-
-.Banner-Container{
-    width:60vw;   
-    background: rgba(255, 255, 255, 0.4);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(4.7px);
-    -webkit-backdrop-filter: blur(3.7px);
-    border: 1px solid rgba(251, 249, 249, 0.3);
-    padding: 1.5rem;
-    line-height: 2;
-
-    display: flex;
-    justify-content: flex-start;
-
-    @include mobile{
-        width: 80vw;
-        flex-direction: column;
-        line-height: 1.2;
-    }
-
-    @include mobile-small{
-        width:100%;
-        flex-direction: column;
-        height: 100%;
-        line-height: 1.1;
-    }
-
-    .Freelance-Avatar{
-        flex:0.3;
-
-        img{
-            border-radius: 50%;
-            border: 5px solid $color-white;
-            
-        }
-       
-        input[type='file']{
-            display: none;
-        }
-        .Custom-File-Upload {
-            background-color:$color-pepper;
-            color: $color-white;
-            border-radius: 10px;
-            font-size: smaller;
-            font-weight: 400;
-            display: inline-block;
-            padding: 6px 12px;
-            margin: 1rem 0 0 1.8rem;
-            cursor: pointer;
-            transition: 0.2s ease-in;
-
-            &:hover{
-                transform: scale(1.1);
-            }
-        }
-
-    }
-
-    .Freelance-Right{
-        flex:0.7;
-
-            h1{
-                font-size: 45px;
-                color:$color-green;
-
-                @include mobile{
-                    font-size: 30px;
-                }
-            }
-            p{
-                font-size: large;
-                color: $color-green;
-
-                @include mobile{
-                    font-size: smaller;
-                }
-            }
-
-            input{
-            background-color:$color-pepper;
-            color: $color-white;
-            border-radius: 10px;
-            font-size: smaller;
-            font-weight: 400;
-            border: 1px solid #ccc;
-            display: inline-block;
-            padding: 6px 12px;
-            cursor: pointer;
-            transition: 0.2s ease-in;
-
-                &:hover{
-                    
-                    transform: scale(1.1);
-                }
-            }
-    }
-}
-

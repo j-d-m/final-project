@@ -98,13 +98,6 @@ export default function CompanyProfile() {
                     onHide={() => setModalShow(false)}
                   />
 
-                  {/*
-                  need to fix it delete is working but have 
-                  problem with job created by company delete it 
-                  we have to delete the jobs as well 
-
-                  dont delete any company till we fix this problem 
-
                   <Button
                     id={id}
                     variant="primary"
@@ -118,7 +111,7 @@ export default function CompanyProfile() {
                   <DeleteCompanyAccount
                     show={modalShow1}
                     onHide={() => setModalShow1(false)}
-                  /> */}
+                  />
                 </div>
                 <div className="Btn">
                   <input
