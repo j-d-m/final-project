@@ -1,23 +1,37 @@
-import React, { useContext } from "react";
+import { useQuery } from "@apollo/client";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MyContext } from "../../../Context/Context";
-
+import { GET_ONE_COMPANY } from "../../../graphQL/Queries";
+import CompanyUpdateProfile from "./CompanyUpdateProfile";
+import { Button } from "react-bootstrap";
+import DeleteCompanyAccount from "./DeleteCompanyAccount";
 /*  
 1- we need here to update the company profile using mutation 
+this is done 
+
 2- update  company avatar as well
 */
 export default function CompanyProfile() {
-  const { companyLoginData } = useContext(MyContext);
+  const [modalShow, setModalShow] = useState();
+  const [modalShow1, setModalShow1] = useState();
   const navigate = useNavigate();
-  if (!companyLoginData) {
-    return navigate("/company-login");
+  const { companyLoginData } = useContext(MyContext);
+  const { loading, error, data } = useQuery(GET_ONE_COMPANY, {
+    variables: { getOneCompanyId: companyLoginData.id },
+  });
+
+  if (loading) {
+    return <p>is loading</p>;
   }
 
+  console.log(data);
   return (
     <div className="company-profile ">
-      {companyLoginData &&
+      {data &&
         (() => {
           let {
+            id,
             company_Name,
             owner_name,
             address,
@@ -26,7 +40,7 @@ export default function CompanyProfile() {
             email,
             phone,
             avatar,
-          } = companyLoginData;
+          } = data.getOneCompany;
           return (
             <>
               <div className="avatarContainer">
@@ -34,11 +48,6 @@ export default function CompanyProfile() {
                   className="company-background"
                   style={{
                     backgroundImage: `url(https://loremflickr.com/320/240/${company_type})`,
-                    webkitClipPath: "polygon(100% 0%, 0% 0%, 100%,100%)",
-                    clipPath: "polygon(100% 0%, 0% 0%, 100% 200%)",
-                    backgroundRepeat: "no-repeat",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
                   }}
                 ></div>
                 <div className="company-avatar">
@@ -72,6 +81,37 @@ export default function CompanyProfile() {
                 <div>
                   <p>Company Description :</p>
                   <span>{description}</span>
+                </div>
+                <div className="ModalBtnCompanyProfile">
+                  <Button
+                    id={id}
+                    variant="primary"
+                    onClick={() => {
+                      setModalShow(true);
+                    }}
+                  >
+                    Edit Profile
+                  </Button>
+
+                  <CompanyUpdateProfile
+                    show={modalShow}
+                    onHide={() => setModalShow(false)}
+                  />
+
+                  <Button
+                    id={id}
+                    variant="primary"
+                    onClick={() => {
+                      setModalShow1(true);
+                    }}
+                  >
+                    Delete Account
+                  </Button>
+
+                  <DeleteCompanyAccount
+                    show={modalShow1}
+                    onHide={() => setModalShow1(false)}
+                  />
                 </div>
                 <div className="Btn">
                   <input

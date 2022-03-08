@@ -13,7 +13,9 @@ export const GET_ONE_USER = gql`
       password
       hourly_rate
       description
-      # favorite
+      favorite {
+        id
+      }
     }
   }
 `;
@@ -101,8 +103,8 @@ export const GET_JOBS = gql`
       id
       job_Title
       #bring in when we have real data
-      # start_Date
-      # end_Date
+      start_Date
+      end_Date
       issued_At
       num_of_people_needed
       job_description
