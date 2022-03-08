@@ -72,9 +72,11 @@ function ContextContainer({ children }) {
         } else if (result.data.getVerify?.company) {
           setCompanyLoginData(result.data.getVerify.company);
           setIsCompanyLogin(true);
+          console.log('================FROM: ContextContainer.js====================');
           console.log(companyLoginData);
+          console.log('====================================');
         } else {
-          navigate("/");
+          navigate(1) //changed to navigate(1), instead of navigate("/") because it was affecting the notFound page
         }
       });
   }, []);

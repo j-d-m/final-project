@@ -1,13 +1,12 @@
 //native import
 import React, { useEffect, useRef } from "react";
 
-//internal imports
-import lottie404 from "../../assets/animation/page404.json";
-import '../../styles/notFound.scss';
-
 // external imports
 import lottie from "lottie-web";
 
+//internal imports
+import lottie404 from "../../assets/animation/page404.json";
+import '../../styles/notFound.scss';
 
 export default function NotFound() {
   const container404 = useRef(null);
