@@ -8,7 +8,7 @@ import Carousel from "react-elastic-carousel";
 //Internal imports
 import "../../styles/carousel.scss";
 import { GET_JOBS } from "../../graphQL/Queries";
-import IntApiCard from "./IntApiCard";
+import IntApiCard from "./IntApiCarouselCardModal";
 
 // breakpoints for elastic carousel
 const breakPoints = [

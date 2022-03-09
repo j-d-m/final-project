@@ -9,7 +9,7 @@ import Modal from "react-bootstrap/Modal";
 //Internal imports
 import "../../styles/carousel.scss";
 
-export default function ExtApiModalCard({ job }) {
+export default function ExtApiCarouselCardModal({ job }) {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
