@@ -43,9 +43,15 @@ export default function Header() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mx-auto TopHeader ">
-            <Nav.Link as={Link} to="/home">
-              Jobs
-            </Nav.Link>
+            {isCompanyLogin ? (
+              <Nav.Link as={Link} to="/home">
+                Freelancer
+              </Nav.Link>
+            ) : (
+              <Nav.Link as={Link} to="/home">
+                Jobs
+              </Nav.Link>
+            )}
             {/* freelancer link start here */}
             {isFreelancerLogin ? (
               <>
