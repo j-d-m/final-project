@@ -6,10 +6,10 @@ import Button from "react-bootstrap/Button";
 import moment from "moment";
 import Modal from "react-bootstrap/Modal";
 
-
-
 //Internal imports
 import "../../styles/carousel.scss";
+import "./ContactForm"
+import Contact from "./ContactForm";
 
 
 let CharLimitCompanyCarousel = 30;
@@ -20,12 +20,14 @@ let CharLimitTitleModal = 100;
 let CharLimitDescriptionModal = 500;
 
 
-export default function IntApiModalCard({ job }) {
+export default function IntApiCarouselCardModal({ job }) {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
+    const [showContact, setShowContact] = useState(false);
+    const handleCloseContact = () => setShowContact(false);
+    const handleShowContact = () => setShowContact(true);
 
     return (
         <div className="carousel-card">
@@ -95,7 +97,19 @@ export default function IntApiModalCard({ job }) {
                     <p>
                         <strong>Email:</strong>  <a href={`mailto:${job.created_by.email}`}>{job.created_by.email}</a>
                     </p>
+
+
+                    <div className="d-grid gap-2">
+                        <Button onClick={handleShowContact} variant="outline-primary" size="lg"   >
+                            Contact
+                        </Button>
+                    </div>
                 </Modal.Body>
+                <Contact
+                    show={showContact}
+                    onHide={handleCloseContact}
+                    job={job}
+                />
                 <Modal.Footer>
                     <Button onClick={handleClose} variant='secondary' >
                         Close

@@ -125,7 +125,7 @@ export default function Home() {
             : null}
           <div className="jobs-combo-box">
             <IntApiCarousel />
-            <ExtApiCarousel />
+            {/* <ExtApiCarousel /> */}
           </div>
         </div>
       )}
