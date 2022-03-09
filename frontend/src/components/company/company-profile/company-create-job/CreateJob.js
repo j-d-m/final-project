@@ -4,7 +4,9 @@ import { MyContext } from "../../../../Context/Context";
 import { CREATE_JOB } from "../../../../graphQL/Mutations";
 import Swal from "sweetalert2";
 import { GET_JOBS } from "../../../../graphQL/Queries";
+import { useNavigate } from "react-router-dom";
 function CreateJob() {
+  const navigate = useNavigate();
   const { companyLoginData } = useContext(MyContext);
   const [addJob, { data, loading, error }] = useMutation(CREATE_JOB, {
     refetchQueries: [{ query: GET_JOBS }],
@@ -30,6 +32,9 @@ function CreateJob() {
           showConfirmButton: false,
           timer: 1000,
         });
+        setTimeout(() => {
+          navigate("/company-profile");
+        }, 2000);
       }
       if (error) {
         Swal.fire({

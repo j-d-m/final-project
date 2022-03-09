@@ -66,7 +66,7 @@ export const COMPANY_LOGIN = gql`
 export const DELETE_COMPANY = gql`
   mutation DeleteCompany($deleteCompanyId: ID) {
     deleteCompany(id: $deleteCompanyId) {
-      company_Name
+      success
     }
   }
 `;
@@ -165,9 +165,7 @@ export const USER_LOGIN = gql`
 export const DELETE_USER = gql`
   mutation DeleteUser($deleteUserId: ID) {
     deleteUser(id: $deleteUserId) {
-      id
-      first_name
-      last_name
+      success
     }
   }
 `;
@@ -241,7 +239,7 @@ export const CREATE_JOB = gql`
 export const DELETE_JOB = gql`
   mutation DeleteJob($deleteJobId: ID) {
     deleteJob(id: $deleteJobId) {
-      job_Title
+      success
     }
   }
 `;
@@ -251,26 +249,25 @@ export const UPDATE_JOB = gql`
   mutation UpdateJob(
     $updateJobId: ID!
     $jobTitle: String
-    $companyName: String
-    $date: String
+    $startDate: String
+    $endDate: String
     $numOfPeopleNeeded: Int
     $jobDescription: String
   ) {
     updateJob(
       id: $updateJobId
       job_Title: $jobTitle
-      date: $date
+      start_Date: $startDate
+      end_Date: $endDate
       num_of_people_needed: $numOfPeopleNeeded
       job_description: $jobDescription
     ) {
       id
       job_Title
-      date
+      start_Date
+      end_Date
       num_of_people_needed
       job_description
-      created_by {
-        company_Name
-      }
     }
   }
 `;

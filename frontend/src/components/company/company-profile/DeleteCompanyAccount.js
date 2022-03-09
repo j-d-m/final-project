@@ -1,46 +1,26 @@
 import { useMutation } from "@apollo/client";
 import React, { useContext } from "react";
 import { Button, Modal } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { MyContext } from "../../../Context/Context";
 import { DELETE_COMPANY } from "../../../graphQL/Mutations";
 
 function DeleteCompanyAccount(props) {
-  const { companyLoginData } = useContext(MyContext);
+  const navigate = useNavigate();
+  const { companyLoginData, setCompanyLoginData, setIsCompanyLogin } =
+    useContext(MyContext);
 
-  const [deleteCompany, { data, loading, error }] = useMutation(
-    DELETE_COMPANY,
-    {
-      awaitRefetchQueries: true,
-    }
-  );
+  const [deleteCompany, { data, loading, error }] = useMutation(DELETE_COMPANY);
   const deleteAccount = () => {
-    //     Swal.fire({
-    //       title: "Do you want to save the changes?",
-    //       showDenyButton: true,
-    //       showCancelButton: true,
-    //       confirmButtonText: "Save",
-    //       denyButtonText: `Don't save`,
-    //     }).then((result) => {
-    //       /* Read more about isConfirmed, isDenied below */
-    //       if (result.isConfirmed) {
-    //         Swal.fire("Saved!", "", "success");
-    //       } else if (result.isDenied) {
-    //         Swal.fire("Changes are not saved", "", "info");
-    //       }
-    //     });
     deleteCompany({
       variables: { deleteCompanyId: companyLoginData.id },
     }).then((res) => {
-      if (res.data) {
-        console.log(res.data);
-        Swal.fire({
-          position: "top",
-          icon: "success",
-          title: "profile updated successfully",
-          showConfirmButton: false,
-          timer: 1000,
-        });
+      if (res.data.deleteCompany.success) {
+        navigate("/company-login");
+        props.onHide();
+        setCompanyLoginData(null);
+        setIsCompanyLogin(false);
       }
       if (error) {
         Swal.fire({

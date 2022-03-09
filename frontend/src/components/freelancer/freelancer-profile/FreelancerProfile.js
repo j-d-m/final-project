@@ -16,7 +16,7 @@ export default function FreelancerProfile() {
   const { loading, error, data } = useQuery(GET_ONE_USER, {
     variables: { getOneUserId: freelancerLoginData.id },
   });
-  console.log(data);
+
   if (loading)
     return (
       <img

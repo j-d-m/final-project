@@ -3,24 +3,17 @@ import React from "react";
 import Swal from "sweetalert2";
 import "../../../styles/companySignUp.scss";
 import logo from "../../../assets/img/logo.svg";
-import { MyContext } from "../../../Context/Context";
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { CREATE_COMPANY_MUTATION } from "../../../graphQL/Mutations";
 
 export default function CompanySignUp() {
-  const { setCompanyLoginData } = useContext(MyContext);
   let navigate = useNavigate();
-
   const [addCompany, { data, loading, error }] = useMutation(
     CREATE_COMPANY_MUTATION
   );
-
-  //query to push the from information to the database
   const formSubmitAddCompany = (e) => {
     e.preventDefault();
-
     if (e.target.password.value !== e.target.repeatPassword.value) {
       return Swal.fire({
         position: "top",
@@ -58,6 +51,7 @@ export default function CompanySignUp() {
           timer: 2000,
           customClass: "swal-width",
         });
+        navigate("/company-login");
       }
     });
   };
