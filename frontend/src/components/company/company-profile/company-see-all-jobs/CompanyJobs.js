@@ -1,7 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { MyContext } from "../../../../Context/Context";
+import CompanyUpdateJobs from "../company-update-jobs/CompanyUpdateJobs";
+import DeleteJob from "./DeleteJob";
 
 function CompanyJobs() {
+  const [modalShow, setModalShow] = useState();
+  const [modalShow1, setModalShow1] = useState();
+  const [companyJobId, setCompanyJobId] = useState();
   const { companyLoginData } = useContext(MyContext);
   return (
     <div className="companyJobs">
@@ -24,7 +29,7 @@ function CompanyJobs() {
                 backgroundImage: `url(https://source.unsplash.com/1600x900/?${job_Title})`,
               }}
             >
-              <h1>{job_Title.toUpperCase()}</h1>
+              <h1>{job_Title}</h1>
               <ul>
                 <li>
                   Start : <span>{start_Date}</span>
@@ -39,8 +44,36 @@ function CompanyJobs() {
                   Description : <span> {job_description}</span>
                 </li>
                 <div className="modifyJobsButton">
-                  <input type="button" value="Update Job" />
-                  <input type="button" value="Delete Job" />
+                  <input
+                    type="button"
+                    value=" Edit Job"
+                    id={id}
+                    variant="primary"
+                    onClick={() => {
+                      setModalShow(true);
+                      setCompanyJobId(id);
+                    }}
+                  />
+                  <CompanyUpdateJobs
+                    show={modalShow}
+                    job={companyJobId}
+                    onHide={() => setModalShow(false)}
+                  />
+                  <input
+                    type="button"
+                    value="Delete Job"
+                    id={id}
+                    variant="primary"
+                    onClick={() => {
+                      setModalShow1(true);
+                      setCompanyJobId(id);
+                    }}
+                  />
+                  <DeleteJob
+                    show={modalShow1}
+                    job={companyJobId}
+                    onHide={() => setModalShow1(false)}
+                  />
                 </div>
               </ul>
             </div>

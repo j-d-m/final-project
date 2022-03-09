@@ -73,7 +73,7 @@ export default function FreelancerView() {
           <form
             id="submit"
             className={
-              showContactForm
+              !showContactForm
                 ? "d-none "
                 : "d-block  animate__animated animate__fadeInDownBig"
             }

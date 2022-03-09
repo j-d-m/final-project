@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MyContext } from "../../../Context/Context";
 import { GET_ONE_COMPANY } from "../../../graphQL/Queries";
@@ -17,6 +17,11 @@ export default function CompanyProfile() {
   const [modalShow1, setModalShow1] = useState();
   const navigate = useNavigate();
   const { companyLoginData } = useContext(MyContext);
+  useEffect(() => {
+    if (!companyLoginData) {
+      navigate("/company-login");
+    }
+  }, [companyLoginData]);
   const { loading, error, data } = useQuery(GET_ONE_COMPANY, {
     variables: { getOneCompanyId: companyLoginData.id },
   });
@@ -25,7 +30,6 @@ export default function CompanyProfile() {
     return <p>is loading</p>;
   }
 
-  console.log(data);
   return (
     <div className="company-profile ">
       {data &&

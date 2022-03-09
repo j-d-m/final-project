@@ -5,12 +5,14 @@ import { UPDATE_COMPANY } from "../../../graphQL/Mutations";
 import { useMutation } from "@apollo/client";
 import Swal from "sweetalert2";
 import { MyContext } from "../../../Context/Context";
+import { GET_ONE_COMPANY } from "../../../graphQL/Queries";
 function CompanyUpdateProfile(props) {
   const { companyLoginData } = useContext(MyContext);
 
   const [UpdateCompany, { data, loading, error }] = useMutation(
     UPDATE_COMPANY,
     {
+      refetchQueries: { query: GET_ONE_COMPANY },
       awaitRefetchQueries: true,
     }
   );
@@ -77,7 +79,6 @@ function CompanyUpdateProfile(props) {
       },
     }).then((res) => {
       if (res.data) {
-        console.log(res.data);
         Swal.fire({
           position: "top",
           icon: "success",

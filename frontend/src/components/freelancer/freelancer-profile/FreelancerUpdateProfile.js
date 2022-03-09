@@ -40,7 +40,7 @@ function FreelancerUpdateProfile(props) {
       e.target.hourlyRate.value !== undefined &&
       e.target.hourlyRate.value !== ""
     ) {
-      hourlyRate = e.target.hourlyRate.value;
+      hourlyRate = Number(e.target.hourlyRate.value);
     } else if (
       e.target.phone.value !== undefined &&
       e.target.phone.value !== ""
@@ -76,7 +76,6 @@ function FreelancerUpdateProfile(props) {
       },
     }).then((res) => {
       if (res.data) {
-        console.log(res.data);
         Swal.fire({
           position: "top",
           icon: "success",

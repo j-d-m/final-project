@@ -13,7 +13,6 @@ export default function FreeLancerLogin() {
     useContext(MyContext);
   const [loginUser, { loading, error, data }] = useMutation(USER_LOGIN);
 
-  //submit function
   const userLogin = (e) => {
     e.preventDefault();
     loginUser({
@@ -22,8 +21,6 @@ export default function FreeLancerLogin() {
         password: formRef.current.password.value,
       },
     }).then((res) => {
-      console.log(res.data.loginUser);
-
       if (res.data) {
         setFreelancerLoginData(res.data.loginUser.user);
         localStorage.setItem("token", res.data.loginUser.token);

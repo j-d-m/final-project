@@ -4,14 +4,13 @@ import { MyContext } from "./Context";
 
 function ContextContainer({ children }) {
   const [companyLoginData, setCompanyLoginData] = useState({});
+
   const [isCompanyLogin, setIsCompanyLogin] = useState(false);
   const [isFreelancerLogin, setIsFreelancerLogin] = useState(false);
   const [isTitleFilter, setIsTitleFilter] = useState(false);
   const [inputValue, setInputValue] = useState([]);
   const [freelancerLoginData, setFreelancerLoginData] = useState({});
-  // store freelancer after clicking on contact button to navigate the company to freelancer profile
   const [freelancerFind, setFreelancerFind] = useState({});
-  // /////////////////////////////////////////////////////////////////////////
   const navigate = useNavigate();
   useEffect(() => {
     fetch("https://deploy-final-project-anass.herokuapp.com/graphql", {
@@ -72,11 +71,13 @@ function ContextContainer({ children }) {
         } else if (result.data.getVerify?.company) {
           setCompanyLoginData(result.data.getVerify.company);
           setIsCompanyLogin(true);
-          console.log('================FROM: ContextContainer.js====================');
+          console.log(
+            "================FROM: ContextContainer.js===================="
+          );
           console.log(companyLoginData);
-          console.log('====================================');
+          console.log("====================================");
         } else {
-          navigate(1) //changed to navigate(1), instead of navigate("/") because it was affecting the notFound page
+          navigate(1); //changed to navigate(1), instead of navigate("/") because it was affecting the notFound page
         }
       });
   }, []);
