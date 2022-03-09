@@ -70,10 +70,11 @@ export default function FreelancerProfile() {
                   <div>
                     <p>Your position : {description}</p>
                   </div>
+                  <section>
                   <div className="ModalBtnFreelancerProfile">
                     <Button
                       id={id}
-                      variant="primary"
+                      variant="secondary"
                       onClick={() => {
                         setModalShow(true);
                       }}
@@ -87,7 +88,7 @@ export default function FreelancerProfile() {
 
                     <Button
                       id={id}
-                      variant="primary"
+                      variant="secondary"
                       onClick={() => {
                         setModalShow1(true);
                       }}
@@ -99,15 +100,15 @@ export default function FreelancerProfile() {
                       show={modalShow1}
                       onHide={() => setModalShow1(false)}
                     />
+                    <input 
+                        type="submit"
+                        value="Check Jobs"
+                        onClick={() => navigate("/home")}
+                        className="bg-secondary bg-secondary"
+                      />
                   </div>
-                  <div className="">
-                    <input type="submit" value="See what gigs are going on" />
-                    <input
-                      type="submit"
-                      value="Check jobs"
-                      onClick={() => navigate("/home")}
-                    />
-                  </div>
+                  </section>
+                 
                 </div>
               </>
             );

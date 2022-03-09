@@ -1,11 +1,10 @@
 import React, { useContext } from "react";
 import { useMutation } from "@apollo/client";
 import { COMPANY_LOGIN } from "../../../graphQL/Mutations";
-
 import { MyContext } from "../../../Context/Context";
 import { useNavigate } from "react-router-dom";
-
 import Swal from "sweetalert2";
+import "../../../styles/companyLoginStyle.scss";
 
 export default function CompanyLogin() {
   const navigate = useNavigate();
@@ -56,7 +55,7 @@ export default function CompanyLogin() {
           <label className="form-label">Password</label>
           <input name="password" type="password" className="form-control" />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-secondary">
           Submit
         </button>
       </form>
