@@ -5,14 +5,14 @@ export default function Footer() {
   return (
     <div className="footer-container">
       <div className="Footer-Left">
-        <h1>footer left</h1>
+        <p>footer left</p>
       </div>
       <div className="Footer-Center">
-        <h1>Footer Center</h1>
+        <p>Footer Center</p>
       </div>
 
       <div className="Footer-Right">
-        <h1>footer right</h1>
+        <p>footer right</p>
       </div>
     </div>
   );

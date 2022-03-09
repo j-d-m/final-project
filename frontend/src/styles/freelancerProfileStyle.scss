@@ -5,12 +5,16 @@
 .Profile-Container {
   width: 100%;
   height: calc(100vh - 20vh);
-  background: rgb(236, 247, 245);
-  background: radial-gradient(
-    circle,
-    rgba(236, 247, 245, 1) 7%,
-    rgba(197, 213, 214, 1) 84%
-  );
+  // background: rgb(236, 247, 245);
+  // background: radial-gradient(
+  //   circle,
+  //   rgba(236, 247, 245, 1) 7%,
+  //   rgba(197, 213, 214, 1) 84%
+  // );
+  background-image: url("https://github.com/keycloak/keycloak/blob/main/themes/src/main/resources/theme/keycloak/login/resources/img/keycloak-bg.png?raw=true");
+  background-repeat:no-repeat;
+  background-size: cover;
+  opacity: 0.875;
   // padding: 1rem;
   @include flex-center;
   justify-content: center;
@@ -22,7 +26,7 @@
 
 .Banner-Container {
   width: 60vw;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(4.7px);
@@ -81,7 +85,7 @@
 
     h1 {
       font-size: 45px;
-      color: $color-green;
+      color: $color-white;
 
       @include mobile {
         font-size: 30px;
@@ -89,8 +93,8 @@
     }
     p {
       font-size: large;
-      color: $color-green;
-
+      color: $color-white;
+      
       @include mobile {
         font-size: smaller;
       }

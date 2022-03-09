@@ -91,7 +91,7 @@ export default function Home() {
                 </form>
               </div>
             </div>
-          </section>
+          </section> 
 
           {isTitleFilter
             ? inputValue.map((job) => {

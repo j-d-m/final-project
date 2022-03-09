@@ -101,12 +101,13 @@ export default function FreelancerProfile() {
                     />
                   </div>
                   <div className="">
-                    <input type="submit" value="See what gigs are going on" />
-                    <input
-                      type="submit"
-                      value="Check jobs"
-                      onClick={() => navigate("/home")}
-                    />
+                  
+                      <input 
+                        type="submit"
+                        value="Check Jobs"
+                        onClick={() => navigate("/home")}
+                      />
+                    
                   </div>
                 </div>
               </>
