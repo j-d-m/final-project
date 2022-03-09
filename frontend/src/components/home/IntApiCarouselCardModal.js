@@ -1,15 +1,24 @@
 //Native imports
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 //External imports
 import Button from "react-bootstrap/Button";
 import moment from "moment";
 import Modal from "react-bootstrap/Modal";
+import { AiOutlineArrowUp, AiOutlineFileText } from 'react-icons/ai';
+import { BsFillPersonFill } from "react-icons/bs";
+import { HiOutlineOfficeBuilding } from "react-icons/hi";
+import { MdOutlineToday } from "react-icons/md";
+
 
 //Internal imports
 import "../../styles/carousel.scss";
 import "./ContactForm"
 import Contact from "./ContactForm";
+import { MyContext } from "../../Context/Context"
+
 
 
 let CharLimitCompanyCarousel = 30;
@@ -21,13 +30,18 @@ let CharLimitDescriptionModal = 500;
 
 
 export default function IntApiCarouselCardModal({ job }) {
-
+    const navigate = useNavigate();
+    const { isFreelancerLogin } = useContext(MyContext);
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [showContact, setShowContact] = useState(false);
-    const handleCloseContact = () => setShowContact(false);
-    const handleShowContact = () => setShowContact(true);
+    const toggleShowContact = () => setShowContact(!showContact);
+
+    function redirectToLogin() {
+        navigate("/freelancer-login")
+    }
+
 
     return (
         <div className="carousel-card">
@@ -61,8 +75,9 @@ export default function IntApiCarouselCardModal({ job }) {
                     size="md"
                     onClick={handleShow}
                 >
-                    Details
+                    Details <AiOutlineArrowUp />
                 </Button>
+
             </div>
             <Modal
                 show={show}
@@ -72,49 +87,56 @@ export default function IntApiCarouselCardModal({ job }) {
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
             >
-                <Modal.Header closeButton>
+                <Modal.Header className="modalHeader" closeButton>
                     <Modal.Title>
                         <h3> {job.job_Title.slice(0, CharLimitTitleModal) +
                             (job.job_Title.length > CharLimitTitleModal ? "..." : "")}</h3>
                     </Modal.Title>
                 </Modal.Header>
+
+
+
                 <Modal.Body>
-                    <p> <strong>Job description:</strong>  {job.job_description.slice(0, CharLimitDescriptionModal) +
-                        (job.job_description.length > CharLimitDescriptionModal ? "..." : "")}
-                    </p>
-                    <p>
-                        <strong>Open positions:</strong> {job.num_of_people_needed}
-                    </p>
-                    <p>
-                        <strong>Posted:</strong> {moment(
-                            new Date(job.issued_At.slice(0, 10) * 1000).toGMTString()
-                        ).fromNow()}
-                    </p>
-                    <p>
-                        <strong>Company:</strong> {job.created_by.company_Name.slice(0, CharLimitCompanyModal) +
-                            (job.created_by.company_Name.length > CharLimitCompanyModal ? "..." : "")}
-                    </p>
-                    <p>
-                        <strong>Email:</strong>  <a href={`mailto:${job.created_by.email}`}>{job.created_by.email}</a>
-                    </p>
+
+                    {showContact ||
+                        <>
+                            <p>< AiOutlineFileText />  <strong>Job description:</strong>  {job.job_description.slice(0, CharLimitDescriptionModal) +
+                                (job.job_description.length > CharLimitDescriptionModal ? "..." : "")}
+                            </p>
+                            <p>
+                                <BsFillPersonFill />  <strong>Open positions:</strong> {job.num_of_people_needed}
+                            </p>
+                            <p>
+                                <MdOutlineToday />  <strong>Posted:</strong> {moment(
+                                    new Date(job.issued_At.slice(0, 10) * 1000).toGMTString()
+                                ).fromNow()}
+                            </p>
+                            <p>
+                                <HiOutlineOfficeBuilding />  <strong>Company:</strong> {job.created_by.company_Name.slice(0, CharLimitCompanyModal) +
+                                    (job.created_by.company_Name.length > CharLimitCompanyModal ? "..." : "")}
+                            </p>
+                        </>
+                    }
+
+                    <div className="text-center m-2">
+
+                        {isFreelancerLogin ? (
+                            <Button onClick={toggleShowContact} variant="secondary  col-6"  >
+                                {showContact ? "Return to job description" : "Contact"}
+                            </Button>
+                        ) :
+
+                            <Button onClick={redirectToLogin} variant="secondary  col-6"
+                            >You should be logged to contact this company.
+                            </Button>
 
 
-                    <div className="d-grid gap-2">
-                        <Button onClick={handleShowContact} variant="outline-primary" size="lg"   >
-                            Contact
-                        </Button>
+                        }
+
                     </div>
                 </Modal.Body>
-                <Contact
-                    show={showContact}
-                    onHide={handleCloseContact}
-                    job={job}
-                />
-                <Modal.Footer>
-                    <Button onClick={handleClose} variant='secondary' >
-                        Close
-                    </Button>
-                </Modal.Footer>
+
+                {showContact && <Contact job={job} />}
             </Modal>
         </div>
     )

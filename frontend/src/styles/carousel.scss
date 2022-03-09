@@ -2,6 +2,10 @@
 @import "./fonts";
 @import "./mobile";
 
+.modalHeader {
+  background-color: $color-pinky;
+}
+
 .jobs-carousel {
   display: flex;
   flex-direction: column;
