@@ -10,7 +10,7 @@ import FreelancerUpdateProfile from "./FreelancerUpdateProfile";
 
 export default function FreelancerProfile() {
   const navigate = useNavigate();
-  const { freelancerLoginData } = useContext(MyContext);
+  const { freelancerLoginData, setFreelancerLoginData } = useContext(MyContext);
   const [modalShow, setModalShow] = useState();
   const [modalShow1, setModalShow1] = useState();
   const { loading, error, data } = useQuery(GET_ONE_USER, {
@@ -24,7 +24,9 @@ export default function FreelancerProfile() {
         alt="img"
       />
     );
-
+  if (data) {
+    setFreelancerLoginData(data.getOneUser);
+  }
   return (
     <section className="Profile-Container">
       <div className="Banner-Container">
@@ -71,44 +73,43 @@ export default function FreelancerProfile() {
                     <p>Your position : {description}</p>
                   </div>
                   <section>
-                  <div className="ModalBtnFreelancerProfile">
-                    <Button
-                      id={id}
-                      variant="secondary"
-                      onClick={() => {
-                        setModalShow(true);
-                      }}
-                    >
-                      Edit Profile
-                    </Button>
-                    <FreelancerUpdateProfile
-                      show={modalShow}
-                      onHide={() => setModalShow(false)}
-                    />
+                    <div className="ModalBtnFreelancerProfile">
+                      <Button
+                        id={id}
+                        variant="secondary"
+                        onClick={() => {
+                          setModalShow(true);
+                        }}
+                      >
+                        Edit Profile
+                      </Button>
+                      <FreelancerUpdateProfile
+                        show={modalShow}
+                        onHide={() => setModalShow(false)}
+                      />
 
-                    <Button
-                      id={id}
-                      variant="secondary"
-                      onClick={() => {
-                        setModalShow1(true);
-                      }}
-                    >
-                      Delete Account
-                    </Button>
+                      <Button
+                        id={id}
+                        variant="secondary"
+                        onClick={() => {
+                          setModalShow1(true);
+                        }}
+                      >
+                        Delete Account
+                      </Button>
 
-                    <DeleteFreelancerAccount
-                      show={modalShow1}
-                      onHide={() => setModalShow1(false)}
-                    />
-                    <input 
+                      <DeleteFreelancerAccount
+                        show={modalShow1}
+                        onHide={() => setModalShow1(false)}
+                      />
+                      <input
                         type="submit"
                         value="Check Jobs"
                         onClick={() => navigate("/home")}
                         className="bg-secondary bg-secondary"
                       />
-                  </div>
+                    </div>
                   </section>
-                 
                 </div>
               </>
             );

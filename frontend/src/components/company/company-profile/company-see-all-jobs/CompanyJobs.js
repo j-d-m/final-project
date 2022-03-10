@@ -6,8 +6,12 @@ import DeleteJob from "./DeleteJob";
 function CompanyJobs() {
   const [modalShow, setModalShow] = useState();
   const [modalShow1, setModalShow1] = useState();
-  const [companyJobId, setCompanyJobId] = useState();
-  const { companyLoginData } = useContext(MyContext);
+
+  const { companyLoginData, setOneCompanyJob } = useContext(MyContext);
+  const updateSingleJob = (id) => {
+    let findOneJob = companyLoginData.jobs.find((item) => item.id === id);
+    setOneCompanyJob(findOneJob);
+  };
   return (
     <div className="companyJobs">
       <h1> Jobs List</h1>
@@ -51,12 +55,11 @@ function CompanyJobs() {
                     variant="primary"
                     onClick={() => {
                       setModalShow(true);
-                      setCompanyJobId(id);
+                      updateSingleJob(id);
                     }}
                   />
                   <CompanyUpdateJobs
                     show={modalShow}
-                    job={companyJobId}
                     onHide={() => setModalShow(false)}
                   />
                   <input
@@ -66,12 +69,11 @@ function CompanyJobs() {
                     variant="primary"
                     onClick={() => {
                       setModalShow1(true);
-                      setCompanyJobId(id);
+                      updateSingleJob(id);
                     }}
                   />
                   <DeleteJob
                     show={modalShow1}
-                    job={companyJobId}
                     onHide={() => setModalShow1(false)}
                   />
                 </div>

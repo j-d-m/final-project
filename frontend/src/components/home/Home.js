@@ -92,43 +92,43 @@ export default function Home() {
                 </form>
               </div>
             </div>
-          </section> 
+          </section>
 
           {isTitleFilter
             ? inputValue.map((job) => {
-              return (
-                <div key={job.id} className=" CardDiv ">
-                  <div className="card-body">
-                    <img
-                      src={`https://source.unsplash.com/1600x900/?${job.job_Title}`}
-                      alt="img"
-                    />
-
-                    <p>Title : {job.job_Title}</p>
-                    <p>Description : {job.job_description}</p>
-                    <p>Number Needed :{job.num_of_people_needed}</p>
-                    <p>issued at :{job.issued_At}</p>
-                    <div>
-                      <h4>created by : {job.created_by.company_Name}</h4>
-                      <p>email : {job.created_by.email}</p>
-                    </div>
-                    <div className="text-center">
-                      <input
-                        type="button"
-                        value="Accept Job"
-                        className="btn btn-secondary"
+                return (
+                  <div key={job.id} className=" CardDiv ">
+                    <div className="card-body">
+                      <img
+                        src={`https://source.unsplash.com/1600x900/?${job.job_Title}`}
+                        alt="img"
                       />
+
+                      <p>Title : {job.job_Title}</p>
+                      <p>Description : {job.job_description}</p>
+                      <p>Number Needed :{job.num_of_people_needed}</p>
+                      <p>issued at :{job.issued_At}</p>
+                      <div>
+                        <h4>created by : {job.created_by.company_Name}</h4>
+                        <p>email : {job.created_by.email}</p>
+                      </div>
+                      <div className="text-center">
+                        <input
+                          type="button"
+                          value="Accept Job"
+                          className="btn btn-secondary"
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })
+                );
+              })
             : null}
           <div className="jobs-combo-box">
             <IntApiCarousel />
             <ExtApiCarousel />
           </div>
-          <ThreeSteps/>
+          <ThreeSteps />
         </div>
       )}
     </>

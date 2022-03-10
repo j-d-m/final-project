@@ -56,6 +56,7 @@ export const GET_ONE_COMPANY = gql`
         description
       }
       jobs {
+        id
         job_Title
         start_Date
         end_Date

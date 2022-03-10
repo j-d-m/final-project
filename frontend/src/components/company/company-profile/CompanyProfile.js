@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MyContext } from "../../../Context/Context";
 import { GET_ONE_COMPANY } from "../../../graphQL/Queries";
@@ -13,15 +13,11 @@ this is done
 2- update  company avatar as well
 */
 export default function CompanyProfile() {
+  const navigate = useNavigate();
+  const { companyLoginData, setCompanyLoginData } = useContext(MyContext);
   const [modalShow, setModalShow] = useState();
   const [modalShow1, setModalShow1] = useState();
-  const navigate = useNavigate();
-  const { companyLoginData } = useContext(MyContext);
-  useEffect(() => {
-    if (!companyLoginData) {
-      navigate("/company-login");
-    }
-  }, [companyLoginData]);
+
   const { loading, error, data } = useQuery(GET_ONE_COMPANY, {
     variables: { getOneCompanyId: companyLoginData.id },
   });
@@ -29,7 +25,9 @@ export default function CompanyProfile() {
   if (loading) {
     return <p>is loading</p>;
   }
-
+  if (data) {
+    setCompanyLoginData(data.getOneCompany);
+  }
   return (
     <div className="company-profile ">
       {data &&

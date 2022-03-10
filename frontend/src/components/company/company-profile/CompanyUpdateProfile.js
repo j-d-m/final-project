@@ -107,36 +107,65 @@ function CompanyUpdateProfile(props) {
             <div className="modalDiv">
               <div>
                 <label>Company Name :</label>
-                <input type="text" name="companyName" />
+                <input
+                  type="text"
+                  name="companyName"
+                  placeholder={companyLoginData.company_Name}
+                />
               </div>
               <div>
                 <label>Owner :</label>
-                <input type="text" name="owner" />
+                <input
+                  type="text"
+                  name="owner"
+                  placeholder={companyLoginData.owner_name}
+                />
               </div>
             </div>
             <div className="modalDiv">
               <div>
                 <label>Email :</label>
-                <input type="email" name="email" />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder={companyLoginData.email}
+                />
               </div>
               <div>
                 <label>Password :</label>
-                <input type="password" name="password" />
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="your new password....."
+                />
               </div>
             </div>
             <div className="modalDiv">
               <div>
                 <label>Address:</label>
-                <input type="text" name="address" />
+                <input
+                  type="text"
+                  name="address"
+                  placeholder={companyLoginData.address}
+                />
               </div>
               <div>
                 <label>Phone :</label>
-                <input type="tel" name="phone" />
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder={companyLoginData.phone}
+                />
               </div>
             </div>
             <div className="textInput">
               <label>Description :</label>
-              <textarea name="description" cols="22" rows="5" />
+              <textarea
+                name="description"
+                cols="22"
+                rows="5"
+                placeholder={companyLoginData.description}
+              />
             </div>
             <Modal.Footer>
               <Button onClick={props.onHide}>Close</Button>

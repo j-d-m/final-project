@@ -1,16 +1,28 @@
 import { useMutation } from "@apollo/client";
-import React from "react";
+import React, { useContext } from "react";
 import { Button, Modal } from "react-bootstrap";
 import Swal from "sweetalert2";
+import { MyContext } from "../../../../Context/Context";
 import { DELETE_JOB } from "../../../../graphQL/Mutations";
+import { GET_JOBS, GET_ONE_COMPANY } from "../../../../graphQL/Queries";
 
 function DeleteJob(props) {
-  const [deleteJob, { data, loading, error }] = useMutation(DELETE_JOB);
+  const { oneCompanyJob, companyLoginData } = useContext(MyContext);
+  const [deleteJob, { data, loading, error }] = useMutation(DELETE_JOB, {
+    refetchQueries: [
+      { query: GET_JOBS },
+      {
+        query: GET_ONE_COMPANY,
+        variables: { getOneCompanyId: companyLoginData.id },
+      },
+    ],
+    awaitRefetchQueries: true,
+  });
+
   const deleteOneJob = () => {
     deleteJob({
-      variables: { deleteJobId: props.job },
+      variables: { deleteJobId: oneCompanyJob.id },
     }).then((res) => {
-      console.log(res.data, "this is res");
       if (res.data.deleteJob.success) {
         props.onHide();
         Swal.fire({
@@ -34,7 +46,7 @@ function DeleteJob(props) {
   };
   return (
     <div>
-      <Modal {...props} size="lg" centered className="companyProfileUpdate">
+      <Modal {...props} size="md" centered className="companyProfileUpdate">
         <Modal.Body className="text-center">
           <h4>Are you sure you want to Delete This Job</h4>
         </Modal.Body>
