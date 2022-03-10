@@ -132,7 +132,7 @@ export default function CompanySignUp() {
 
             <label>
               <span>Describe your company</span>
-              <textarea name="description" maxLength={800} />
+              <textarea name="description" maxLength={500} />
             </label>
 
             <label>

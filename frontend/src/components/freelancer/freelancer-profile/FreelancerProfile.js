@@ -53,6 +53,10 @@ export default function FreelancerProfile() {
 
                 <div className="Freelance-Right">
                   <h1>Your Staff Room Profile</h1>
+                  <span>
+                    here you can edit your profile, delete account or go to the
+                    job search page
+                  </span>
                   <div>
                     <p>First name : {first_name}</p>
                   </div>
@@ -102,12 +106,12 @@ export default function FreelancerProfile() {
                         show={modalShow1}
                         onHide={() => setModalShow1(false)}
                       />
-                      <input
-                        type="submit"
-                        value="Check Jobs"
+                      <Button
                         onClick={() => navigate("/home")}
-                        className="bg-secondary bg-secondary"
-                      />
+                        variant="secondary"
+                      >
+                        Check Jobs
+                      </Button>
                     </div>
                   </section>
                 </div>

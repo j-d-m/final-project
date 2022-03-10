@@ -15,18 +15,8 @@ import { MdOutlineToday } from "react-icons/md";
 
 //Internal imports
 import "../../styles/carousel.scss";
-import "./ContactForm"
 import Contact from "./ContactForm";
 import { MyContext } from "../../Context/Context"
-
-
-
-let CharLimitCompanyCarousel = 30;
-let CharLimitTitleCarousel = 20;
-
-let CharLimitCompanyModal = 50
-let CharLimitTitleModal = 100;
-let CharLimitDescriptionModal = 500;
 
 
 export default function IntApiCarouselCardModal({ job }) {
@@ -42,6 +32,12 @@ export default function IntApiCarouselCardModal({ job }) {
         navigate("/freelancer-login")
     }
 
+    let CharLimitCompanyCarousel = 30;
+    let CharLimitTitleCarousel = 20;
+
+    let CharLimitCompanyModal = 50
+    let CharLimitTitleModal = 100;
+    let CharLimitDescriptionModal = 500;
 
     return (
         <div className="carousel-card">
@@ -93,11 +89,7 @@ export default function IntApiCarouselCardModal({ job }) {
                             (job.job_Title.length > CharLimitTitleModal ? "..." : "")}</h3>
                     </Modal.Title>
                 </Modal.Header>
-
-
-
                 <Modal.Body>
-
                     {showContact ||
                         <>
                             <p>< AiOutlineFileText />  <strong>Job description:</strong>  {job.job_description.slice(0, CharLimitDescriptionModal) +

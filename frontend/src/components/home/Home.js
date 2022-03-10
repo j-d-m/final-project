@@ -126,9 +126,9 @@ export default function Home() {
             : null}
           <div className="jobs-combo-box">
             <IntApiCarousel />
+            <ThreeSteps />
             <ExtApiCarousel />
           </div>
-          <ThreeSteps />
         </div>
       )}
     </>
