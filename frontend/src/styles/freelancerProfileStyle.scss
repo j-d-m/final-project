@@ -5,11 +5,9 @@
 .Profile-Container {
   width: 100%;
   height: calc(100vh - 20vh);
-  background-image: url("../assets/img/krish02.png");
+  background-image: url("../assets/img/bgfreelance.png");
   background-repeat:no-repeat;
   background-size: cover;
-  opacity: 0.875;
-  // padding: 1rem;
   @include flex-center;
   justify-content: center;
 
@@ -20,10 +18,10 @@
 
 .Banner-Container {
   width: 60vw;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(4.7px);
+  backdrop-filter: blur(3.7px);
   -webkit-backdrop-filter: blur(3.7px);
   border: 1px solid rgba(251, 249, 249, 0.3);
   padding: 1.5rem;
@@ -53,7 +51,7 @@
 
     img {
       border-radius: 50%;
-      border: 5px solid $color-dark;
+      border: 10px solid $color-white;
     }
 
     input[type="file"] {
@@ -79,17 +77,28 @@
 
   .Freelance-Right {
     flex: 0.7;
+    span{
+      color: $color-green;
+      font-size: large;
+      font-weight: 400;
+
+      @include mobile {
+        display: none;
+      }
+    }
 
     h1 {
-      font-size: 45px;
+      font-size: 42px;
       color: $color-green;
+      margin-bottom: -5px;
 
       @include mobile {
         font-size: 30px;
+        margin-bottom: 0;
       }
     }
     p {
-      font-size: large;
+      font-size: x-large;
       color: $color-dark;
       
       @include mobile {
@@ -97,26 +106,12 @@
       }
     }
 
-    input {
-      color: $color-white;
-      border-radius: 5px;
-      font-size: medium;
-      font-weight: 400;
-      border: 1px solid #6c757d;
-      display: inline-block;
-      padding: 6px 12px;
-      cursor: pointer;
-      transition: 0.2s ease-in;
-      opacity: .96;
-
-      &:hover {
-        opacity: 1;
-        background-color: #6c757d;
-      }
-    }
     .ModalBtnFreelancerProfile {
-      display: flex;
+      @include flex-center;
       justify-content: space-around;
+      margin-top: 2rem;
+
     }
+     
   }
 }

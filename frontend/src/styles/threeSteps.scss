@@ -1,11 +1,11 @@
 @import './colors';
 @import './flexCenter';
+@import './mobile';
 
 
 .main {
     width: 100%;
-    height: 55vh;
-    padding-bottom:10rem;
+    padding-bottom:2rem;
     background-color: $color-lightgray;
 
 
@@ -27,6 +27,11 @@
         justify-content: space-around;
         gap: 3rem;
         text-align: center;
+
+        @include mobile{
+        grid-template-columns: 1fr;
+        padding: 5px;
+        }
 
         h4{
             color: $color-green;
