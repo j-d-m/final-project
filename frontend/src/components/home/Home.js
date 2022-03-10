@@ -13,6 +13,7 @@ import exclamation from "../../assets/img/exclamation.ico";
 import IntApiCarousel from "./IntApiCarousel";
 import ExtApiCarousel from "./ExtApiCarousel";
 import FreelancerHome from "./FreelancerHome";
+import ThreeSteps from "./ThreeSteps";
 
 export default function Home() {
   const { loading, error, data } = useQuery(GET_JOBS);
@@ -127,6 +128,7 @@ export default function Home() {
             <IntApiCarousel />
             <ExtApiCarousel />
           </div>
+          <ThreeSteps/>
         </div>
       )}
     </>
