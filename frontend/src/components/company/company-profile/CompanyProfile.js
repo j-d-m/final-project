@@ -6,6 +6,8 @@ import { GET_ONE_COMPANY } from "../../../graphQL/Queries";
 import CompanyUpdateProfile from "./CompanyUpdateProfile";
 import { Button } from "react-bootstrap";
 import DeleteCompanyAccount from "./DeleteCompanyAccount";
+import '../../../styles/companyProfile.scss';
+
 /*  
 1- we need here to update the company profile using mutation 
 this is done 
@@ -31,7 +33,8 @@ export default function CompanyProfile() {
   }
 
   return (
-    <div className="company-profile ">
+    <section className="Profile-Container">
+      <div className=".Banner-Container">
       {data &&
         (() => {
           let {
@@ -47,98 +50,104 @@ export default function CompanyProfile() {
           } = data.getOneCompany;
           return (
             <>
-              <div className="avatarContainer">
-                <div
+              <div className="Freelance-Avatar">
+                {/* <div
                   className="company-background"
                   style={{
                     backgroundImage: `url(https://loremflickr.com/320/240/${company_type})`,
+                    
                   }}
-                ></div>
-                <div className="company-avatar">
-                  <img src={avatar} alt="img" width="150px" height="150px" />
-                </div>
+                ></div> */}
+                <img src={avatar} alt="img" width="200px" height="200px" />
+                  <label htmlFor="file-upload" className="Custom-File-Upload">
+                    <input id="file-upload" type="file" /> Change Image
+                  </label>
               </div>
-              <div className="companyName">
-                <h1>{company_Name}</h1>
-              </div>
-              <div className="company-info">
-                <div>
-                  <p>Company type :</p>
-                  <span> {company_type}</span>
-                </div>
-                <div>
-                  <p>Company address :</p>
-                  <span>{address}</span>
-                </div>
-                <div>
-                  <p>Owner :</p>
-                  <span> {owner_name}</span>
-                </div>
-                <div>
-                  <p>Email :</p>
-                  <span>{email}</span>
-                </div>
-                <div>
-                  <p>Phone :</p>
-                  <span>{phone}</span>
-                </div>
-                <div>
-                  <p>Company Description :</p>
-                  <span>{description}</span>
-                </div>
-                <div className="ModalBtnCompanyProfile">
-                  <Button
-                    id={id}
-                    variant="primary"
-                    onClick={() => {
-                      setModalShow(true);
-                    }}
-                  >
-                    Edit Profile
-                  </Button>
 
-                  <CompanyUpdateProfile
-                    show={modalShow}
-                    onHide={() => setModalShow(false)}
-                  />
 
-                  <Button
-                    id={id}
-                    variant="primary"
-                    onClick={() => {
-                      setModalShow1(true);
-                    }}
-                  >
-                    Delete Account
-                  </Button>
+              <div className="Freelance-Right">
+                    <h1>{company_Name}</h1>
+                  
+                  <div className="company-info">
+                    <div>
+                      <p>Company type :</p>
+                      <span> {company_type}</span>
+                    </div>
+                    <div>
+                      <p>Company address :</p>
+                      <span>{address}</span>
+                    </div>
+                    <div>
+                      <p>Owner :</p>
+                      <span> {owner_name}</span>
+                    </div>
+                    <div>
+                      <p>Email :</p>
+                      <span>{email}</span>
+                    </div>
+                    <div>
+                      <p>Phone :</p>
+                      <span>{phone}</span>
+                    </div>
+                    <div>
+                      <p>Company Description :</p>
+                      <span>{description}</span>
+                    </div>
+                  <section>
+                  
+                    <div className="ModalBtnCompanyProfile">
+                        <Button
+                          id={id}
+                          variant="primary"
+                          onClick={() => {
+                            setModalShow(true);
+                          }}
+                        >
+                          Edit Profile
+                        </Button>
+                        <CompanyUpdateProfile
+                          show={modalShow}
+                          onHide={() => setModalShow(false)}
+                        />
+                        <Button
+                          id={id}
+                          variant="primary"
+                          onClick={() => {
+                            setModalShow1(true);
+                          }}
+                        >
+                          Delete Account
+                        </Button>
+                        <DeleteCompanyAccount
+                          show={modalShow1}
+                          onHide={() => setModalShow1(false)}
+                        />
+                      
+                      
+                        <input
+                          type="submit"
+                          value="Post a Job"
+                          onClick={() => navigate("/company-profile/create-job")}
+                        />
+                        <input
+                          type="submit"
+                          value="Check freelancers"
+                          onClick={() => navigate("/home")}
+                        />
+                        <input
+                          type="submit"
+                          value="Jobs List"
+                          onClick={() => navigate("/company-profile/company-jobs")}
+                        />
+                      </div>
+                 </section>
 
-                  <DeleteCompanyAccount
-                    show={modalShow1}
-                    onHide={() => setModalShow1(false)}
-                  />
-                </div>
-                <div className="Btn">
-                  <input
-                    type="submit"
-                    value="Post a Job"
-                    onClick={() => navigate("/company-profile/create-job")}
-                  />
-
-                  <input
-                    type="submit"
-                    value="Check freelancers"
-                    onClick={() => navigate("/home")}
-                  />
-                  <input
-                    type="submit"
-                    value="Jobs List"
-                    onClick={() => navigate("/company-profile/company-jobs")}
-                  />
                 </div>
               </div>
             </>
           );
         })()}
-    </div>
+        </div>
+    </section>
   );
 }

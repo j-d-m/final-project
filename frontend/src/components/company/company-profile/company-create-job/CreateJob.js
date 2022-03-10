@@ -85,7 +85,7 @@ function CreateJob() {
           />
           <label className="form-label">Message</label>
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-secondary">
           Submit
         </button>
       </form>
