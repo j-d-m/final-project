@@ -4,14 +4,15 @@ import { MyContext } from "./Context";
 
 function ContextContainer({ children }) {
   const [companyLoginData, setCompanyLoginData] = useState({});
-
   const [isCompanyLogin, setIsCompanyLogin] = useState(false);
   const [isFreelancerLogin, setIsFreelancerLogin] = useState(false);
   const [isTitleFilter, setIsTitleFilter] = useState(false);
   const [inputValue, setInputValue] = useState([]);
   const [freelancerLoginData, setFreelancerLoginData] = useState({});
   const [freelancerFind, setFreelancerFind] = useState({});
+  const [oneCompanyJob, setOneCompanyJob] = useState({});
   const navigate = useNavigate();
+
   useEffect(() => {
     fetch("https://deploy-final-project-anass.herokuapp.com/graphql", {
       method: "POST",
@@ -98,6 +99,8 @@ function ContextContainer({ children }) {
         freelancerLoginData,
         freelancerFind,
         setFreelancerFind,
+        oneCompanyJob,
+        setOneCompanyJob,
       }}
     >
       {children}
