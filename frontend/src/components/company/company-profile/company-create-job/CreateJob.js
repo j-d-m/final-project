@@ -82,6 +82,7 @@ function CreateJob() {
             className="form-control"
             rows="8"
             cols="60"
+            maxLength={500}
           />
           <label className="form-label">Message</label>
         </div>

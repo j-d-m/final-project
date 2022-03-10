@@ -66,13 +66,13 @@ export default function Header() {
                   <NavDropdown.Item as={Link} to="/freelancer-login">
                     <input
                       type="button"
-                      value="Freelancer logout"
+                      value="Logout"
                       onClick={freelancerLogout}
                       className="logoutFreelancerBtn"
                     />
                   </NavDropdown.Item>
                   <NavDropdown.Item as={Link} to="/freelancer-profile">
-                    Freelancer Profile
+                    Profile
                   </NavDropdown.Item>
                 </NavDropdown>
                 <span className="DisappearI text-light mt-1">
@@ -91,10 +91,10 @@ export default function Header() {
                   id="basic-nav-dropdown"
                 >
                   <NavDropdown.Item as={Link} to="/freelancer-login">
-                    Freelancer Login
+                    Login
                   </NavDropdown.Item>
                   <NavDropdown.Item as={Link} to="/freelancer-signUp">
-                    Freelancer SignUp
+                    SignUp
                   </NavDropdown.Item>
                 </NavDropdown>
                 <span
@@ -122,13 +122,13 @@ export default function Header() {
                   <NavDropdown.Item as={Link} to="/">
                     <input
                       type="button"
-                      value="Employer logout"
+                      value="Logout"
                       onClick={companyLogout}
                       className="logoutCompanyBtn"
                     />
                   </NavDropdown.Item>
                   <NavDropdown.Item as={Link} to="/company-profile">
-                    Employer Profile
+                    Profile
                   </NavDropdown.Item>
                 </NavDropdown>
                 <span className="DisappearI text-light mt-1">
@@ -147,10 +147,10 @@ export default function Header() {
                   id="basic-nav-dropdown"
                 >
                   <NavDropdown.Item as={Link} to="/company-login">
-                    Employer Login
+                    Login
                   </NavDropdown.Item>
                   <NavDropdown.Item as={Link} to="/company-signUp">
-                    Employer SignUp
+                    SignUp
                   </NavDropdown.Item>
                 </NavDropdown>
                 <span
