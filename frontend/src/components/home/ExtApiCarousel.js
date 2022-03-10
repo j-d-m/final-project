@@ -10,7 +10,7 @@ import axios from "axios";
 //Internal imports
 import "../../styles/carousel.scss";
 import API_URL from "../../services/external-api/Adzuna";
-import ExtApiCard from "./ExtApiCard";
+import ExtApiCard from "./ExtApiCarouselCardModal";
 
 // breakpoints for elastic carousel
 const breakPoints = [
