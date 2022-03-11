@@ -7,7 +7,7 @@ import { GET_JOBS, GET_ONE_COMPANY } from "../../../../graphQL/Queries";
 import { useNavigate } from "react-router-dom";
 function CreateJob() {
   const navigate = useNavigate();
-  const { companyLoginData } = useContext(MyContext);
+  const { companyLoginData, setCompanyLoginData } = useContext(MyContext);
 
   const [addJob, { data, loading, error }] = useMutation(CREATE_JOB, {
     refetchQueries: [
@@ -32,6 +32,12 @@ function CreateJob() {
       },
     }).then((res) => {
       if (res.data) {
+        let companyUpdatedLoginData = {
+          ...companyLoginData,
+          jobs: res.data.CreateJob,
+        };
+
+        setCompanyLoginData(companyUpdatedLoginData);
         Swal.fire({
           position: "top",
           icon: "success",

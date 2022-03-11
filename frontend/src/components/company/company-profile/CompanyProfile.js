@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MyContext } from "../../../Context/Context";
 import { GET_ONE_COMPANY } from "../../../graphQL/Queries";
@@ -25,9 +25,13 @@ export default function CompanyProfile() {
   if (loading) {
     return <p>is loading</p>;
   }
-  if (data) {
-    setCompanyLoginData(data.getOneCompany);
-  }
+
+  setTimeout(() => {
+    if (data) {
+      setCompanyLoginData(data.getOneCompany);
+    }
+  }, 100);
+
   return (
     <div className="company-profile ">
       {data &&

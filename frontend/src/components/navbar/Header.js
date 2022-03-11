@@ -5,11 +5,12 @@ import logo from "../../assets/img/logo.svg";
 import { AiOutlineLogin } from "react-icons/ai";
 import { HiOutlineOfficeBuilding } from "react-icons/hi";
 import { BsPersonFill } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/header.scss";
 import { MyContext } from "../../Context/Context";
 
 export default function Header() {
+  const navigate = useNavigate();
   const {
     isCompanyLogin,
     isFreelancerLogin,
@@ -20,6 +21,7 @@ export default function Header() {
   const companyLogout = () => {
     setIsCompanyLogin(false);
     localStorage.clear("token");
+    navigate("/");
   };
   const freelancerLogout = () => {
     setIsFreelancerLogin(false);
@@ -119,14 +121,14 @@ export default function Header() {
                   }
                   id="basic-nav-dropdown"
                 >
-                  <NavDropdown.Item as={Link} to="/">
-                    <input
-                      type="button"
-                      value="Logout"
-                      onClick={companyLogout}
-                      className="logoutCompanyBtn"
-                    />
-                  </NavDropdown.Item>
+                  {/* <NavDropdown.Item as={Link} to="/"> */}
+                  <input
+                    type="button"
+                    value="Logout"
+                    onClick={companyLogout}
+                    className="logoutCompanyBtn"
+                  />
+                  {/* </NavDropdown.Item> */}
                   <NavDropdown.Item as={Link} to="/company-profile">
                     Profile
                   </NavDropdown.Item>
