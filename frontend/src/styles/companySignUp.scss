@@ -6,6 +6,8 @@
 
 .Company-sign-container{
     display: flex;
+    height: 80vh;
+
     
     // left side wall
 
@@ -13,9 +15,10 @@
         flex:0.2;
         @include flex-center;
         justify-content: center;
-        height: 100vh;
         border-top:5px solid white;
         border-bottom:5px solid white;
+        background-image: url(../assets/img/hp-bg-1.jpeg);
+        background-size: cover;
         
         img {
             width: 10rem;
@@ -37,8 +40,8 @@
         padding: 2rem;
 
              h2{
-                 padding: 60px 0;
-                 margin-top: -100px;
+                 padding: 1rem 0;
+                 margin-top: -50px;
                  color:$color-green;
                 //  font-family: $font-family-Roboto;
 
@@ -58,9 +61,9 @@
     .form-style-5{
         width: 800px;
         font-size: 18px;
-        background: #6c757d;
+        background: #c5d5d6;
         padding: 30px 30px 15px 30px;
-        border: 5px solid #6c757d;
+        border: 5px solid #c5d5d6;
 
         @include mobile-small {
             
@@ -76,7 +79,7 @@
     {
         font-family: $font-family-Roboto, "Times New Roman", Times, serif;
         font-size: 18px;
-        color: $color-white;
+        color: $color-green;
     
     }
     .form-style-5 legend {
@@ -103,7 +106,7 @@
         width: 275px;
         outline: none;
         padding: 0px 0px 0px 0px;
-        color: $color-white;
+        color: $color-green;
     }
     .form-style-5 textarea{
         
@@ -133,15 +136,15 @@
     
     .form-style-5 input[type=submit],
     .form-style-5 input[type=button]{
-        background: $color-green;
+        background: $color-white;
         border: none;
         padding: 8px 10px 8px 10px;
         border-radius: 5px;
-        color: $color-white;
+        color: $color-green;
     }
     .form-style-5 input[type=submit]:hover,
     .form-style-5 input[type=button]:hover{
-    background: $color-dark;
+    background: $color-sky;
     }
     }
 }
