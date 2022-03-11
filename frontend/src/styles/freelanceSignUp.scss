@@ -6,6 +6,8 @@
 
 .Freelancer-sign-container{
     display: flex;
+    height: 80vh;
+
     
     // left side wall
 
@@ -13,7 +15,6 @@
         flex:0.2;
         @include flex-center;
         justify-content: center;
-        height: 100vh;
         border-top:5px solid white;
         border-bottom:5px solid white;
         background-image: url(../assets/img/hp-bg-1.jpeg);
@@ -41,7 +42,7 @@
 
              h2{
                  padding: 1rem 0;
-                 margin-top: -200px;
+                 margin-top: -50px;
                  color:$color-green;
                 //  font-family: $font-family-Roboto;
 
@@ -107,7 +108,7 @@
         width: 275px;
         outline: none;
         padding: 0px 0px 0px 0px;
-        color: $color-white;
+        color: $color-green;
     }
     .form-style-4 textarea{
         
