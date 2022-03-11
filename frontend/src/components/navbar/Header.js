@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import avatar from "../../assets/img/avatar.jpg";
 import logo from "../../assets/img/logo.svg";
+import hiring from "../../assets/img/hiring.svg";
 import { AiOutlineLogin } from "react-icons/ai";
 import { HiOutlineOfficeBuilding } from "react-icons/hi";
 import { BsPersonFill } from "react-icons/bs";
