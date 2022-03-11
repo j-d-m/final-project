@@ -88,7 +88,7 @@ export default function Home() {
                   <input
                     name="searchJobTitle"
                     type="text"
-                    placeholder="job title... "
+                    placeholder="Search by job title, description or company name"
                   />
                   <input
                     className="search-button"
