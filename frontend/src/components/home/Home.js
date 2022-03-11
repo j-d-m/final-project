@@ -14,6 +14,7 @@ import IntApiCarousel from "./IntApiCarousel";
 import ExtApiCarousel from "./ExtApiCarousel";
 import FreelancerHome from "./FreelancerHome";
 import ThreeSteps from "./ThreeSteps";
+import SearchCard from "./SearchCard";
 
 export default function Home() {
   const { loading, error, data } = useQuery(GET_JOBS);
@@ -30,11 +31,14 @@ export default function Home() {
     e.preventDefault();
     let inputTitleValue = e.target.searchJobTitle.value;
 
-    const filterTitle = data.getJobs.filter(
-      (item) => item.job_Title === inputTitleValue
-    );
+    let filterTitle = data.getJobs.filter(item => item.job_Title.toLowerCase().includes(inputTitleValue.toLowerCase()) ||
+      item.job_description.toLowerCase().includes(inputTitleValue.toLowerCase()) ||
+      item.created_by.company_Name.toLowerCase().includes(inputTitleValue.toLowerCase()));
 
-    if (filterTitle.length > 0) {
+
+
+
+    if (inputTitleValue.length > 2 && filterTitle.length > 0) {
       setInputValue(filterTitle);
       setIsTitleFilter(true);
     } else {
@@ -46,9 +50,11 @@ export default function Home() {
         title: "We could not find a job with this title.",
         // text: "We could not find a job with this title.",
         showConfirmButton: false,
-        timer: 3000,
+        timer: 1000,
       });
+      setIsTitleFilter(false);
     }
+
   };
 
   if (loading) {
@@ -74,8 +80,8 @@ export default function Home() {
       {isCompanyLogin ? (
         <FreelancerHome />
       ) : (
-        <div className=" jobCardContainer">
-          <section className="home-container">
+        <div className=" homeContainer">
+          <section className="jobSearchContainer">
             <div className="banner-container">
               <div className="search-fields">
                 <form onSubmit={searchHandler}>
@@ -91,43 +97,20 @@ export default function Home() {
                   />
                 </form>
               </div>
+
+            </div>
+            <div className="jobSearchBox">
+              {isTitleFilter &&
+                inputValue.slice(0, 20).map((job) => (
+                  <SearchCard job={job} key={job.id} />
+                ))}
             </div>
           </section>
 
-          {isTitleFilter
-            ? inputValue.map((job) => {
-                return (
-                  <div key={job.id} className=" CardDiv ">
-                    <div className="card-body">
-                      <img
-                        src={`https://source.unsplash.com/1600x900/?${job.job_Title}`}
-                        alt="img"
-                      />
-
-                      <p>Title : {job.job_Title}</p>
-                      <p>Description : {job.job_description}</p>
-                      <p>Number Needed :{job.num_of_people_needed}</p>
-                      <p>issued at :{job.issued_At}</p>
-                      <div>
-                        <h4>created by : {job.created_by.company_Name}</h4>
-                        <p>email : {job.created_by.email}</p>
-                      </div>
-                      <div className="text-center">
-                        <input
-                          type="button"
-                          value="Accept Job"
-                          className="btn btn-secondary"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                );
-              })
-            : null}
           <div className="jobs-combo-box">
             <IntApiCarousel />
             <ThreeSteps />
-            <ExtApiCarousel />
+            {/* <ExtApiCarousel /> */}
           </div>
         </div>
       )}
