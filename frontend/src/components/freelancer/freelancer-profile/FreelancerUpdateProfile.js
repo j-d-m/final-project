@@ -10,9 +10,12 @@ function FreelancerUpdateProfile(props) {
   const { freelancerLoginData } = useContext(MyContext);
 
   const [UpdateUser, { data, loading, error }] = useMutation(UPDATE_USER, {
-    awaitRefetchQueries: true,
     refetchQueries: GET_ONE_USER,
+    awaitRefetchQueries: true,
   });
+  console.log("====================================");
+  console.log(freelancerLoginData);
+  console.log("====================================");
   const updateProfile = (e) => {
     e.preventDefault();
     let firstName, lastName, hourlyRate, phone, email, password, description;
@@ -76,6 +79,7 @@ function FreelancerUpdateProfile(props) {
       },
     }).then((res) => {
       if (res.data) {
+        console.log(res.data);
         Swal.fire({
           position: "top",
           icon: "success",
@@ -104,36 +108,65 @@ function FreelancerUpdateProfile(props) {
             <div className="modalDiv">
               <div>
                 <label>First Name :</label>
-                <input type="text" name="firstName" />
+                <input
+                  type="text"
+                  name="firstName"
+                  placeholder={freelancerLoginData.first_name}
+                />
               </div>
               <div>
                 <label>Last Name :</label>
-                <input type="text" name="lastName" />
+                <input
+                  type="text"
+                  name="lastName"
+                  placeholder={freelancerLoginData.last_name}
+                />
               </div>
             </div>
             <div className="modalDiv">
               <div>
                 <label>Email :</label>
-                <input type="email" name="email" />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder={freelancerLoginData.email}
+                />
               </div>
               <div>
                 <label>Password :</label>
-                <input type="password" name="password" />
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="your new password...."
+                />
               </div>
             </div>
             <div className="modalDiv">
               <div>
                 <label>hourly_rate:</label>
-                <input type="number" name="hourlyRate" />
+                <input
+                  type="number"
+                  name="hourlyRate"
+                  placeholder={freelancerLoginData.hourly_rate}
+                />
               </div>
               <div>
                 <label>Phone :</label>
-                <input type="tel" name="phone" />
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder={freelancerLoginData.phone}
+                />
               </div>
             </div>
             <div className="textInput">
               <label>Description :</label>
-              <textarea name="description" cols="22" rows="5" />
+              <textarea
+                name="description"
+                cols="22"
+                rows="5"
+                placeholder={freelancerLoginData.description}
+              />
             </div>
             <Modal.Footer>
               <Button onClick={props.onHide}>Close</Button>

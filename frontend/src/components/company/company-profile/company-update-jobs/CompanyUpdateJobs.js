@@ -5,12 +5,22 @@ import { useMutation } from "@apollo/client";
 import Swal from "sweetalert2";
 import { UPDATE_JOB } from "../../../../graphQL/Mutations";
 import { MyContext } from "../../../../Context/Context";
+import { GET_JOBS, GET_ONE_COMPANY } from "../../../../graphQL/Queries";
 
 function CompanyUpdateJobs(props) {
-  const { companyLoginData, setCompanyLoginData } = useContext(MyContext);
+  const { companyLoginData, setCompanyLoginData, oneCompanyJob } =
+    useContext(MyContext);
 
-  const [UpdateJob, { data, loading, error }] = useMutation(UPDATE_JOB);
-
+  const [UpdateJob, { data, loading, error }] = useMutation(UPDATE_JOB, {
+    refetchQueries: [
+      { query: GET_JOBS },
+      {
+        query: GET_ONE_COMPANY,
+        variables: { getOneCompanyId: companyLoginData.id },
+      },
+    ],
+    awaitRefetchQueries: true,
+  });
   const updateJobs = (e) => {
     e.preventDefault();
     let jobTitle, startDate, endDate, numOfPeopleNeeded, jobDescription;
@@ -49,10 +59,11 @@ function CompanyUpdateJobs(props) {
       });
       return props.onHide();
     }
+
     props.onHide();
     UpdateJob({
       variables: {
-        updateJobId: props.job,
+        updateJobId: oneCompanyJob.id,
         jobTitle: jobTitle,
         startDate: startDate,
         endDate: endDate,
@@ -101,27 +112,48 @@ function CompanyUpdateJobs(props) {
             <div className="modalDiv">
               <div>
                 <label>Job Title :</label>
-                <input type="text" name="jobTitle" />
+                <input
+                  type="text"
+                  name="jobTitle"
+                  placeholder={oneCompanyJob.job_Title}
+                />
               </div>
               <div>
                 <label>Start Date :</label>
-                <input type="text" name="startDate" />
+                <input
+                  type="text"
+                  name="startDate"
+                  placeholder={oneCompanyJob.start_Date}
+                />
               </div>
             </div>
             <div className="modalDiv">
               <div>
                 <label>End Date :</label>
-                <input type="text" name="endDate" />
+                <input
+                  type="text"
+                  name="endDate"
+                  placeholder={oneCompanyJob.end_Date}
+                />
               </div>
               <div>
                 <label>People Needed :</label>
-                <input type="number" name="numOfPeopleNeeded" />
+                <input
+                  type="number"
+                  name="numOfPeopleNeeded"
+                  placeholder={oneCompanyJob.num_of_people_needed}
+                />
               </div>
             </div>
 
             <div className="textInput">
               <label> Job Description :</label>
-              <textarea name="jobDescription" cols="22" rows="5" />
+              <textarea
+                name="jobDescription"
+                cols="22"
+                rows="5"
+                placeholder={oneCompanyJob.job_description}
+              />
             </div>
             <Modal.Footer>
               <Button onClick={props.onHide}>Close</Button>

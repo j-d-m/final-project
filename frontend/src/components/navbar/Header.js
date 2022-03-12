@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import avatar from "../../assets/img/avatar.jpg";
 import logo from "../../assets/img/logo.svg";
+import hiring from "../../assets/img/hiring.svg";
 import { AiOutlineLogin } from "react-icons/ai";
 import { HiOutlineOfficeBuilding } from "react-icons/hi";
 import { BsPersonFill } from "react-icons/bs";
@@ -26,7 +27,7 @@ export default function Header() {
     localStorage.clear("token");
   };
   return (
-    <Navbar bg="dark" variant={"dark"} expand="lg">
+    <Navbar bg="dark" variant={"dark"} expand="lg" id="goTop">
       <Container>
         <Navbar.Brand as={Link} to="/home">
           <img
@@ -66,13 +67,13 @@ export default function Header() {
                   <NavDropdown.Item as={Link} to="/freelancer-login">
                     <input
                       type="button"
-                      value="Freelancer logout"
+                      value="Logout"
                       onClick={freelancerLogout}
                       className="logoutFreelancerBtn"
                     />
                   </NavDropdown.Item>
                   <NavDropdown.Item as={Link} to="/freelancer-profile">
-                    Freelancer Profile
+                    Profile
                   </NavDropdown.Item>
                 </NavDropdown>
                 <span className="DisappearI text-light mt-1">
@@ -91,10 +92,10 @@ export default function Header() {
                   id="basic-nav-dropdown"
                 >
                   <NavDropdown.Item as={Link} to="/freelancer-login">
-                    Freelancer Login
+                    Login
                   </NavDropdown.Item>
                   <NavDropdown.Item as={Link} to="/freelancer-signUp">
-                    Freelancer SignUp
+                    SignUp
                   </NavDropdown.Item>
                 </NavDropdown>
                 <span
@@ -122,13 +123,13 @@ export default function Header() {
                   <NavDropdown.Item as={Link} to="/">
                     <input
                       type="button"
-                      value="Employer logout"
+                      value="Logout"
                       onClick={companyLogout}
                       className="logoutCompanyBtn"
                     />
                   </NavDropdown.Item>
                   <NavDropdown.Item as={Link} to="/company-profile">
-                    Employer Profile
+                    Profile
                   </NavDropdown.Item>
                 </NavDropdown>
                 <span className="DisappearI text-light mt-1">
@@ -147,10 +148,10 @@ export default function Header() {
                   id="basic-nav-dropdown"
                 >
                   <NavDropdown.Item as={Link} to="/company-login">
-                    Employer Login
+                    Login
                   </NavDropdown.Item>
                   <NavDropdown.Item as={Link} to="/company-signUp">
-                    Employer SignUp
+                    SignUp
                   </NavDropdown.Item>
                 </NavDropdown>
                 <span

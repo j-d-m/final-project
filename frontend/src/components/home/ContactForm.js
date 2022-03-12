@@ -39,73 +39,73 @@ export default function Contact({ job }) {
                     <form
                         onSubmit={sendEmail}
                     >
-                        <div class="form-row align-items-center">
-                            <div class="form-group col-auto">
-                                <label for="name">Company Name</label>
+                        <div className="form-row align-items-center">
+                            <div className="form-group col-auto">
+                                <label htmlFor="name">Company Name</label>
                                 <input
                                     type="text"
                                     name="to_name"
-                                    class="form-control"
+                                    className="form-control"
                                     value={job.created_by.company_Name}
                                     readOnly
                                 />
                             </div>
-                            <div class="form-group col-auto">
-                                <label for="email">Company Email</label>
+                            <div className="form-group col-auto">
+                                <label htmlFor="email">Company Email</label>
                                 <input
                                     type="email"
                                     name="to_email"
-                                    class="form-control"
+                                    className="form-control"
                                     value={job.created_by.email}
                                     readOnly
                                 />
                             </div>
 
                         </div>
-                        <div class="form-row align-items-center">
-                            <div class="form-group col-auto">
-                                <label for="name">Your Name</label>
+                        <div className="form-row align-items-center">
+                            <div className="form-group col-auto">
+                                <label htmlFor="name">Your Name</label>
                                 <input
                                     type="text"
                                     name="from_name"
-                                    class="form-control"
-                                    placeholder="Name"
-                                    maxlength="50"
+                                    className="form-control"
+                                    placeholder="Max Mustermann"
+                                    maxLength="50"
                                     required
                                 />
                             </div>
-                            <div class="form-group col-auto">
-                                <label for="email">Your Email</label>
+                            <div className="form-group col-auto">
+                                <label htmlFor="email">Email Address</label>
                                 <input
                                     type="email"
                                     name="from_email"
-                                    class="form-control"
-                                    placeholder="Email"
-                                    maxlength="50"
+                                    className="form-control"
+                                    placeholder="max@mustermann.com"
+                                    maxLength="50"
                                 />
                             </div>
 
                         </div>
 
-                        <div class="form-row">
-                            <div class="form-group col-auto">
-                                <label for="phone">Your Phone</label>
+                        <div className="form-row">
+                            <div className="form-group col-auto">
+                                <label htmlFor="phone">Contact Number</label>
                                 <input
                                     type="tel"
                                     name="from_phone"
-                                    class="form-control"
-                                    placeholder="Phone"
-                                    maxlength="20"
+                                    className="form-control"
+                                    placeholder="+49 123456789"
+                                    maxLength="20"
                                 />
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-12">
-                                <label for="message">Message</label>
+                        <div className="form-row">
+                            <div className="form-group col-md-12">
+                                <label htmlFor="message">Message</label>
                                 <textarea
                                     type="textarea"
                                     name="from_message"
-                                    class="form-control"
+                                    className="form-control"
                                     placeholder="Message"
                                     required
                                     rows={5}
@@ -116,7 +116,7 @@ export default function Contact({ job }) {
                         <div className="text-end m-2">
                             <button
                                 type="submit"
-                                class="btn btn-outline-secondary col-3 "
+                                className="btn btn-outline-secondary col-3 "
                                 value="Send"
 
 
