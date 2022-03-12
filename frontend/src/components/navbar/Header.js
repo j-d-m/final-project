@@ -18,6 +18,14 @@ export default function Header() {
     setIsFreelancerLogin,
   } = useContext(MyContext);
 
+  // const test = () => {
+  //   console.log("====================================");
+  //   console.log("companyLogin func");
+  //   console.log("====================================");
+  //   setIsCompanyLogin(false);
+  //   localStorage.clear("token");
+  //   navigate("/");
+  // };
   const companyLogout = () => {
     setIsCompanyLogin(false);
     localStorage.clear("token");
@@ -26,6 +34,7 @@ export default function Header() {
   const freelancerLogout = () => {
     setIsFreelancerLogin(false);
     localStorage.clear("token");
+    navigate("/");
   };
   return (
     <Navbar bg="dark" variant={"dark"} expand="lg" id="goTop">
@@ -65,7 +74,7 @@ export default function Header() {
                   }
                   id="basic-nav-dropdown"
                 >
-                  <NavDropdown.Item as={Link} to="/freelancer-login">
+                  <NavDropdown.Item>
                     <input
                       type="button"
                       value="Logout"
@@ -121,14 +130,14 @@ export default function Header() {
                   }
                   id="basic-nav-dropdown"
                 >
-                  {/* <NavDropdown.Item as={Link} to="/"> */}
-                  <input
-                    type="button"
-                    value="Logout"
-                    onClick={companyLogout}
-                    className="logoutCompanyBtn"
-                  />
-                  {/* </NavDropdown.Item> */}
+                  <NavDropdown.Item>
+                    <input
+                      type="button"
+                      value="Logout"
+                      onClick={companyLogout}
+                      className="logoutCompanyBtn"
+                    />
+                  </NavDropdown.Item>
                   <NavDropdown.Item as={Link} to="/company-profile">
                     Profile
                   </NavDropdown.Item>
