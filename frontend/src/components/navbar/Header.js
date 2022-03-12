@@ -4,8 +4,6 @@ import avatar from "../../assets/img/avatar.jpg";
 import logo from "../../assets/img/logo.svg";
 import hiring from "../../assets/img/hiring.svg";
 import { AiOutlineLogin } from "react-icons/ai";
-import { HiOutlineOfficeBuilding } from "react-icons/hi";
-import { BsPersonFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import "../../styles/header.scss";
 import { MyContext } from "../../Context/Context";
@@ -76,9 +74,7 @@ export default function Header() {
                     Profile
                   </NavDropdown.Item>
                 </NavDropdown>
-                <span className="DisappearI text-light mt-1">
-                  <BsPersonFill />
-                </span>
+               
               </>
             ) : (
               <>
@@ -105,7 +101,7 @@ export default function Header() {
                       : "DisappearI text-light mt-1"
                   }
                 >
-                  <BsPersonFill />
+                 
                 </span>
               </>
             )}
@@ -132,9 +128,7 @@ export default function Header() {
                     Profile
                   </NavDropdown.Item>
                 </NavDropdown>
-                <span className="DisappearI text-light mt-1">
-                  <HiOutlineOfficeBuilding />
-                </span>
+              
               </>
             ) : (
               <>
@@ -161,7 +155,7 @@ export default function Header() {
                       : "DisappearI text-light mt-1"
                   }
                 >
-                  <HiOutlineOfficeBuilding />
+                  
                 </span>
               </>
             )}
