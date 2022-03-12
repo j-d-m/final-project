@@ -50,8 +50,12 @@ export default function FreelancerProfile() {
                 </div>
 
                 <div className="Freelance-Right">
-                  <h1>Your Staff Room Profile</h1>
-                  <span>here you can edit your profile, delete account or go to the job search page</span>
+
+                  <div className="textProfile">
+                    <h1>Your Staff Room Profile</h1>
+                    <p>here you can edit your profile, delete account or go to the job search page</p>
+                  </div>
+
                   <div>
                     <p>First name : {first_name}</p>
                   </div>

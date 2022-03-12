@@ -2,10 +2,10 @@
 @import "./flexCenter";
 @import "./mobile";
 
-.Profile-Container {
+.Profile-Container-Comp {
   width: 100%;
   height: calc(100vh - 20vh);
-  background-image: url("../assets/img/bgfreelance.png");
+  background-image: url("../assets/img/bgglass.png");
   background-repeat:no-repeat;
   background-size: cover;
   @include flex-center;
@@ -16,16 +16,16 @@
   }
 }
 
-.Banner-Container {
+.Banner-Container-Comp {
   width: 60vw;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.4);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(3.7px);
   -webkit-backdrop-filter: blur(3.7px);
   border: 1px solid rgba(251, 249, 249, 0.3);
   padding: 1.5rem;
-  line-height: 2;
+  line-height: 1.5;
 
   display: flex;
   justify-content: flex-start;
@@ -43,7 +43,7 @@
     line-height: 1.1;
   }
 
-  .Freelance-Avatar {
+  .Freelance-Avatar-Comp{
     flex: 0.25;
     display: flex;
     align-items: center;
@@ -75,22 +75,12 @@
     }
   }
 
-  .Freelance-Right {
+  .Freelance-Right-Comp {
     flex: 0.7;
-    span{
-      color: $color-green;
-      font-size: large;
-      font-weight: 400;
-
-      @include mobile {
-        display: none;
-      }
-    }
-
+  
     h1 {
       font-size: 42px;
       color: $color-green;
-      margin-bottom: -5px;
 
       @include mobile {
         font-size: 30px;
@@ -98,7 +88,7 @@
       }
     }
     p {
-      font-size: x-large;
+      font-size: 20px;
       color: $color-dark;
       
       @include mobile {
@@ -106,11 +96,14 @@
       }
     }
 
-    .ModalBtnFreelancerProfile {
+    .ModalBtnCompanyProfile {
       @include flex-center;
       justify-content: space-around;
       margin-top: 2rem;
 
+      @include mobile {
+        flex-direction: column;
+      }
     }
      
   }

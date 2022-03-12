@@ -33,8 +33,8 @@ export default function CompanyProfile() {
   }
 
   return (
-    <section className="Profile-Container">
-      <div className=".Banner-Container">
+    <section className="Profile-Container-Comp">
+      <div className="Banner-Container-Comp">
       {data &&
         (() => {
           let {
@@ -50,7 +50,7 @@ export default function CompanyProfile() {
           } = data.getOneCompany;
           return (
             <>
-              <div className="Freelance-Avatar">
+              <div className="Freelance-Avatar-Comp">
                 {/* <div
                   className="company-background"
                   style={{
@@ -65,85 +65,88 @@ export default function CompanyProfile() {
               </div>
 
 
-              <div className="Freelance-Right">
+              <div className="Freelance-Right-Comp">
                     <h1>{company_Name}</h1>
                   
-                  <div className="company-info">
                     <div>
-                      <p>Company type :</p>
-                      <span> {company_type}</span>
+                      <p>Company type : {company_type} </p>
+                      
                     </div>
                     <div>
-                      <p>Company address :</p>
-                      <span>{address}</span>
+                      <p>Company address : {address} </p>
+                      
                     </div>
                     <div>
-                      <p>Owner :</p>
-                      <span> {owner_name}</span>
+                      <p>Owner : {owner_name}</p>
+                      
                     </div>
                     <div>
-                      <p>Email :</p>
-                      <span>{email}</span>
+                      <p>Email : {email}</p>
+                      
                     </div>
                     <div>
-                      <p>Phone :</p>
-                      <span>{phone}</span>
+                      <p>Phone : {phone}</p>
+                      
                     </div>
                     <div>
-                      <p>Company Description :</p>
-                      <span>{description}</span>
+                      <p>Company Description : {description} </p>
+                      
                     </div>
                   <section>
                   
                     <div className="ModalBtnCompanyProfile">
                         <Button
                           id={id}
-                          variant="primary"
+                          variant="secondary"
                           onClick={() => {
                             setModalShow(true);
                           }}
                         >
                           Edit Profile
                         </Button>
+
                         <CompanyUpdateProfile
                           show={modalShow}
                           onHide={() => setModalShow(false)}
                         />
                         <Button
                           id={id}
-                          variant="primary"
+                          variant="secondary"
                           onClick={() => {
                             setModalShow1(true);
                           }}
                         >
                           Delete Account
                         </Button>
+
                         <DeleteCompanyAccount
                           show={modalShow1}
                           onHide={() => setModalShow1(false)}
                         />
                       
-                      
-                        <input
-                          type="submit"
+                        <Button
+                          variant="secondary"
                           value="Post a Job"
                           onClick={() => navigate("/company-profile/create-job")}
-                        />
-                        <input
-                          type="submit"
+                        > Post Job
+                        </Button>
+                        <Button
                           value="Check freelancers"
                           onClick={() => navigate("/home")}
-                        />
-                        <input
-                          type="submit"
+                          variant="secondary"
+                        >Check Freelancers
+                        </Button>
+                        <Button
                           value="Jobs List"
+                          variant="secondary"
                           onClick={() => navigate("/company-profile/company-jobs")}
-                        />
+                        >Job lists
+                        </Button>
                       </div>
                  </section>
 
                 </div>
-              </div>
+             
             </>
           );
         })()}
