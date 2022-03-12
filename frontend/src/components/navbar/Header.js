@@ -4,11 +4,12 @@ import avatar from "../../assets/img/avatar.jpg";
 import logo from "../../assets/img/logo.svg";
 import hiring from "../../assets/img/hiring.svg";
 import { AiOutlineLogin } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/header.scss";
 import { MyContext } from "../../Context/Context";
 
 export default function Header() {
+  const navigate = useNavigate();
   const {
     isCompanyLogin,
     isFreelancerLogin,
@@ -19,10 +20,12 @@ export default function Header() {
   const companyLogout = () => {
     setIsCompanyLogin(false);
     localStorage.clear("token");
+    navigate("/");
   };
   const freelancerLogout = () => {
     setIsFreelancerLogin(false);
     localStorage.clear("token");
+    navigate("/");
   };
   return (
     <Navbar bg="dark" variant={"dark"} expand="lg" id="goTop">
@@ -62,7 +65,7 @@ export default function Header() {
                   }
                   id="basic-nav-dropdown"
                 >
-                  <NavDropdown.Item as={Link} to="/freelancer-login">
+                  <NavDropdown.Item>
                     <input
                       type="button"
                       value="Logout"
@@ -74,7 +77,6 @@ export default function Header() {
                     Profile
                   </NavDropdown.Item>
                 </NavDropdown>
-               
               </>
             ) : (
               <>
@@ -100,9 +102,7 @@ export default function Header() {
                       ? "DisappearI text-light mt-1 d-none"
                       : "DisappearI text-light mt-1"
                   }
-                >
-                 
-                </span>
+                ></span>
               </>
             )}
             {/* company login start */}
@@ -116,7 +116,7 @@ export default function Header() {
                   }
                   id="basic-nav-dropdown"
                 >
-                  <NavDropdown.Item as={Link} to="/">
+                  <NavDropdown.Item>
                     <input
                       type="button"
                       value="Logout"
@@ -128,7 +128,6 @@ export default function Header() {
                     Profile
                   </NavDropdown.Item>
                 </NavDropdown>
-              
               </>
             ) : (
               <>
@@ -154,9 +153,7 @@ export default function Header() {
                       ? "DisappearI text-light mt-1 d-none"
                       : "DisappearI text-light mt-1"
                   }
-                >
-                  
-                </span>
+                ></span>
               </>
             )}
           </Nav>

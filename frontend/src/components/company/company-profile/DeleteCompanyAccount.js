@@ -35,7 +35,7 @@ function DeleteCompanyAccount(props) {
   };
   return (
     <div>
-      <Modal {...props} size="lg" centered className="companyProfileUpdate">
+      <Modal {...props} size="m" centered className="companyProfileUpdate">
         <Modal.Body className="text-center">
           <h4>Are you sure you want to Delete your company account</h4>
         </Modal.Body>
