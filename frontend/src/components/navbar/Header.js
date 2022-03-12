@@ -2,9 +2,8 @@ import React, { useContext } from "react";
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import avatar from "../../assets/img/avatar.jpg";
 import logo from "../../assets/img/logo.svg";
+import hiring from "../../assets/img/hiring.svg";
 import { AiOutlineLogin } from "react-icons/ai";
-import { HiOutlineOfficeBuilding } from "react-icons/hi";
-import { BsPersonFill } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/header.scss";
 import { MyContext } from "../../Context/Context";
@@ -18,14 +17,6 @@ export default function Header() {
     setIsFreelancerLogin,
   } = useContext(MyContext);
 
-  // const test = () => {
-  //   console.log("====================================");
-  //   console.log("companyLogin func");
-  //   console.log("====================================");
-  //   setIsCompanyLogin(false);
-  //   localStorage.clear("token");
-  //   navigate("/");
-  // };
   const companyLogout = () => {
     setIsCompanyLogin(false);
     localStorage.clear("token");
@@ -86,9 +77,6 @@ export default function Header() {
                     Profile
                   </NavDropdown.Item>
                 </NavDropdown>
-                <span className="DisappearI text-light mt-1">
-                  <BsPersonFill />
-                </span>
               </>
             ) : (
               <>
@@ -114,9 +102,7 @@ export default function Header() {
                       ? "DisappearI text-light mt-1 d-none"
                       : "DisappearI text-light mt-1"
                   }
-                >
-                  <BsPersonFill />
-                </span>
+                ></span>
               </>
             )}
             {/* company login start */}
@@ -142,9 +128,6 @@ export default function Header() {
                     Profile
                   </NavDropdown.Item>
                 </NavDropdown>
-                <span className="DisappearI text-light mt-1">
-                  <HiOutlineOfficeBuilding />
-                </span>
               </>
             ) : (
               <>
@@ -170,9 +153,7 @@ export default function Header() {
                       ? "DisappearI text-light mt-1 d-none"
                       : "DisappearI text-light mt-1"
                   }
-                >
-                  <HiOutlineOfficeBuilding />
-                </span>
+                ></span>
               </>
             )}
           </Nav>

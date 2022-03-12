@@ -10,68 +10,66 @@
   height: 70vh;
 }
 
-.home-container {
-  background-color: $color-sky;
-  width: 100%;
+.homeContainer {
+  padding: 20px;
 
-  .banner-container {
-    background: Linear-gradient(
-        to right bottom,
-        rgba(82, 95, 89, 0.4),
-        rgba(237, 234, 228, 0.1)
-      ),
-      url(../assets/img/banner-img.jpg);
-    // url(../assets/img/hp-bg-1.jpeg);
-    height: 65vh;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 55% 45%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .jobSearchContainer {
+    // background-color: $color-sky;
+    width: 100%;
 
-    .search-fields {
-      input {
-        @include input-banner;
+    .banner-container {
+      background: Linear-gradient(
+          to right bottom,
+          rgba(82, 95, 89, 0.4),
+          rgba(237, 234, 228, 0.1)
+        ),
+        url(../assets/img/banner-img.jpg);
+      // url(../assets/img/hp-bg-1.jpeg);
+      height: 65vh;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: 55% 45%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      // margin-bottom: 10px;
 
-        @include mobile {
-          display: flex;
-          flex-direction: column;
-          @include input-banner-mobile;
+      .search-fields {
+        //search bar
+        input {
+          @include input-banner;
+          background-image: url(../assets/img/searchIc.png);
+          background-position: left center;
+          background-repeat: no-repeat;
+          background-size: 30px 30px;
+          
+
+
+          @include mobile {
+            display: flex;
+            flex-direction: column;
+            @include input-banner-mobile;
+          }
         }
-      }
-      .search-button {
-        @include button;
-        width: 200px;
-        padding: 13px;
+        .search-button {
+          @include button;
+          width: 200px;
+          padding: 13px;
 
-        @include mobile {
-          width: 150px;
-          padding-left: 1rem;
+          @include mobile {
+            width: 150px;
+            padding-left: 1rem;
+          }
         }
       }
     }
-  }
-}
-
-.jobCardContainer {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 100%;
-  padding: 20px;
-  .CardDiv {
-    // box-shadow: 10px 10px 10px black;
-    border: 2px solid black;
-    padding: 10px;
-    width: 18rem;
-    // height: 83vh;
-    margin: 20px 20px 30px;
-
-    img {
+    .jobSearchBox {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
       width: 100%;
-      height: 200px;
+      background-color: $color-pinky;
     }
   }
 }
@@ -86,16 +84,16 @@
 }
 
 //Sweet Alert customization
-
 .swal2-popup {
   color: $color-green;
-  border-radius: 30px;
-  background-color: $color-sky;
+  // border-radius: 30px;
+  // background-color: $color-sky;
 }
 
 .swal2-title {
   font-size: 1.5rem;
-  font-family: $font-family-Roboto;
+  letter-spacing: 2px;
+  font-family: $font-family-Bebas;
 }
 
 .swal2-icon {

@@ -1,83 +1,110 @@
-.company-profile {
-  position: relative;
-  box-shadow: 10px 10px 10px black;
+@import "./colors";
+@import "./flexCenter";
+@import "./mobile";
 
-  width: 50vw;
-  margin: 0 auto;
+.Profile-Container-Comp {
+  width: 100%;
+  height: calc(100vh - 20vh);
+  background-image: url("../assets/img/bgglass.png");
+  background-repeat:no-repeat;
+  background-size: cover;
+  @include flex-center;
+  justify-content: center;
 
-  text-align: center;
-  background-color: black;
-  color: white;
-
-  .company-background {
-    -webkitclippath: polygon(100% 0%, 0% 0%, 100%, 100%);
-    clip-path: polygon(100% 0%, 0% 0%, 100% 200%);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    height: 200px;
+  @include mobile {
+    height: 100%;
   }
-  .company-avatar {
-    position: absolute;
-    top: 8%;
-    left: 8%;
-    text-align: start;
+}
+
+.Banner-Container-Comp {
+  width: 60vw;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.7px);
+  -webkit-backdrop-filter: blur(3.7px);
+  border: 1px solid rgba(251, 249, 249, 0.3);
+  padding: 1.5rem;
+  line-height: 1.5;
+
+  display: flex;
+  justify-content: flex-start;
+
+  @include mobile {
+    width: 80vw;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  @include mobile-small {
+    width: 100%;
+    flex-direction: column;
+    height: 100%;
+    line-height: 1.1;
+  }
+
+  .Freelance-Avatar-Comp{
+    flex: 0.25;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
     img {
       border-radius: 50%;
-      border: 2px solid #ecf7f5;
+      border: 10px solid $color-white;
     }
-  }
-  .companyName {
-    padding: 10px;
-    box-shadow: inset 10px 10px 10px rgb(180, 40, 40);
-    border-radius: 0% 0% 0% 70%;
-  }
 
-  .company-info {
-    padding: 30px;
-    width: 80%;
-    text-align: start;
-    margin: 0 auto;
+    input[type="file"] {
+      display: none;
+    }
+    .Custom-File-Upload {
+      background-color: #6c757d;
+      color: $color-white;
+      border-radius: 5px;
+      font-size: medium;
+      font-weight: 400;
+      display: inline-block;
+      padding: 0.375rem 0.75rem;
+      margin: 1.5rem 0 0 1rem;
+      cursor: pointer;
+      transition: 0.2s ease-in;
 
-    .Btn {
-      display: flex;
-
-      input {
-        background-image: linear-gradient(
-          to right,
-          #c04848 0%,
-          #480048 51%,
-          #c04848 100%
-        );
-
-        margin: 10px;
-        padding: 15px 5px;
-        text-align: center;
-        // text-transform: uppercase;
-        transition: 0.5s;
-        background-size: 200% auto;
-        color: white;
-        box-shadow: 0 0 20px rgba(238, 238, 238, 0.335);
-        border-radius: 10px;
-        display: block;
-
-        &:hover {
-          background-position: right center;
-          color: #fff;
-          text-decoration: none;
-        }
+      &:hover {
+      opacity: .8;
       }
     }
   }
-  .company-info > div {
-    display: flex;
-    justify-content: space-between;
-    border-top: 1px solid white;
-    padding: 10px;
-    span {
-      color: red;
-      width: 200px;
+
+  .Freelance-Right-Comp {
+    flex: 0.7;
+  
+    h1 {
+      font-size: 42px;
+      color: $color-green;
+
+      @include mobile {
+        font-size: 30px;
+        margin-bottom: 0;
+      }
     }
+    p {
+      font-size: 20px;
+      color: $color-dark;
+      
+      @include mobile {
+        font-size: smaller;
+      }
+    }
+
+    .ModalBtnCompanyProfile {
+      @include flex-center;
+      justify-content: space-around;
+      margin-top: 2rem;
+
+      @include mobile {
+        flex-direction: column;
+      }
+    }
+     
   }
 }
