@@ -5,17 +5,24 @@ import { UPDATE_COMPANY } from "../../../graphQL/Mutations";
 import { useMutation } from "@apollo/client";
 import Swal from "sweetalert2";
 import { MyContext } from "../../../Context/Context";
-import { GET_ONE_COMPANY } from "../../../graphQL/Queries";
+import { GET_JOBS, GET_ONE_COMPANY } from "../../../graphQL/Queries";
 function CompanyUpdateProfile(props) {
   const { companyLoginData } = useContext(MyContext);
 
   const [UpdateCompany, { data, loading, error }] = useMutation(
     UPDATE_COMPANY,
     {
-      refetchQueries: { query: GET_ONE_COMPANY },
+      refetchQueries: [
+        { query: GET_JOBS },
+        {
+          query: GET_ONE_COMPANY,
+          variables: { getOneCompanyId: companyLoginData.id },
+        },
+      ],
       awaitRefetchQueries: true,
     }
   );
+
   const updateProfile = (e) => {
     e.preventDefault();
     let companyName, owner, address, phone, email, password, description;
