@@ -36,8 +36,15 @@
       // margin-bottom: 10px;
 
       .search-fields {
+        //search bar
         input {
           @include input-banner;
+          background-image: url(../assets/img/searchIc.png);
+          background-position: left center;
+          background-repeat: no-repeat;
+          background-size: 30px 30px;
+          
+
 
           @include mobile {
             display: flex;
