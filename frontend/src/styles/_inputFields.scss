@@ -1,6 +1,9 @@
+
+@import './colors';
+// search bar
 @mixin input-banner{
     width: 600px;
-    padding: 8px 1rem;
+    padding: 8px 1.5rem;
     border-radius: 10px;
     border: 2px solid $color-white;
     background: $color-white;

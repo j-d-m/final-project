@@ -7,7 +7,8 @@ import { DELETE_JOB } from "../../../../graphQL/Mutations";
 import { GET_JOBS, GET_ONE_COMPANY } from "../../../../graphQL/Queries";
 
 function DeleteJob(props) {
-  const { oneCompanyJob, companyLoginData } = useContext(MyContext);
+  const { oneCompanyJob, companyLoginData, setCompanyLoginData } =
+    useContext(MyContext);
   const [deleteJob, { data, loading, error }] = useMutation(DELETE_JOB, {
     refetchQueries: [
       { query: GET_JOBS },
@@ -24,6 +25,14 @@ function DeleteJob(props) {
       variables: { deleteJobId: oneCompanyJob.id },
     }).then((res) => {
       if (res.data.deleteJob.success) {
+        let companyUpdatedLoginData = {
+          ...companyLoginData,
+          jobs: companyLoginData.jobs.filter(
+            (job) => job.id !== oneCompanyJob.id
+          ),
+        };
+        setCompanyLoginData(companyUpdatedLoginData);
+
         props.onHide();
         Swal.fire({
           position: "top",
@@ -44,6 +53,7 @@ function DeleteJob(props) {
       }
     });
   };
+
   return (
     <div>
       <Modal {...props} size="md" centered className="companyProfileUpdate">
