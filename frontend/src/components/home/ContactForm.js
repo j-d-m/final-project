@@ -1,19 +1,14 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router';
 import emailjs from '@emailjs/browser';
+import waiterSmile from "../../assets/img/waiter-smile.svg"
 
 export default function Contact({ job }) {
-    // const notify = () => toast.success("Great! Thanks for the message!");
-    // console.log(notify);
-
     const [emailSent, setEmailSent] = useState(false);
-
-    let navigate = useNavigate();
 
     const sendEmail = (e) => {
         e.preventDefault();
         emailjs.sendForm(
-            "service_9tlcpdi",
+            process.env.REACT_APP_EMAILJS_SERVICE_ID,
             process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
             e.target,
             process.env.REACT_APP_EMAILJS_USER_ID
@@ -25,15 +20,23 @@ export default function Contact({ job }) {
         e.target.reset();
         setEmailSent(true);
     };
-    // console.log(formRef.current);
+
+
     return (
         <>
             {emailSent ? (
                 <div className="alert text-center" role="alert">
                     Your message was sent!
+
+                    <img
+                        alt=""
+                        src={waiterSmile}
+                        width="150"
+                        height="150"
+                        className=""
+                    />
                 </div>
             ) : (
-
                 <div className="container contact-form-freelancer">
                     <h4>Contact the Company</h4>
                     <form
@@ -60,7 +63,6 @@ export default function Contact({ job }) {
                                     readOnly
                                 />
                             </div>
-
                         </div>
                         <div className="form-row align-items-center">
                             <div className="form-group col-auto">
@@ -86,7 +88,6 @@ export default function Contact({ job }) {
                             </div>
 
                         </div>
-
                         <div className="form-row">
                             <div className="form-group col-auto">
                                 <label htmlFor="phone">Contact Number</label>
@@ -118,8 +119,6 @@ export default function Contact({ job }) {
                                 type="submit"
                                 className="btn btn-outline-secondary col-3 "
                                 value="Send"
-
-
                             >Send</button>
                         </div>
                     </form>
