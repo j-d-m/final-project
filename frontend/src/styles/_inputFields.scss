@@ -1,6 +1,6 @@
 
 @import './colors';
-// search bar
+// only for search bar
 @mixin input-banner{
     width: 600px;
     padding: 8px 1.5rem;
@@ -17,7 +17,7 @@
     }
 }
 @mixin input-banner-mobile{
-    width: 100%;
+    width: 80vw;
     padding: 8px 1rem;
     border-radius: 10px;
     border: 2px solid $color-white;

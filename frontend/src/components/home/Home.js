@@ -96,7 +96,7 @@ export default function Home() {
       {isCompanyLogin ? (
         <FreelancerHome />
       ) : (
-        <div className=" homeContainer">
+        <div className="homeContainer">
           <section className="jobSearchContainer">
             <div
               className="banner-container"
