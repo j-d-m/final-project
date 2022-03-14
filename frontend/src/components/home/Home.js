@@ -23,6 +23,9 @@ import ExtApiCarousel from "./ExtApiCarousel";
 import FreelancerHome from "./FreelancerHome";
 import ThreeSteps from "./ThreeSteps";
 import SearchCard from "./SearchCard";
+import "animate.css";
+
+
 
 export default function Home() {
 
@@ -98,18 +101,29 @@ export default function Home() {
       ) : (
         <div className="homeContainer">
           <section className="jobSearchContainer">
+          
             <div
               className="banner-container"
-
+              
               style={{
                 backgroundImage: `url(' ${resultBg}')`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
                 animation: "fadeIn 3s ease-in-out",
-
+                
               }}
-            >
+              >
+                <h4
+                className="animate__animated animate__fadeInLeftBig animate__delay-2s"
+                > GASTRONOMY JOBS
+                </h4>
+                <h5
+                className="animate__animated animate__fadeInLeftBig animate__delay-3s animate__repeat-2"
+                > PEOPLE WHEN YOU NEED
+                </h5>
+               
+              {/* Search bar Hero and search button hero */}
               <div className="search-fields">
                 <form onSubmit={searchHandler}>
                   <input
@@ -124,6 +138,8 @@ export default function Home() {
                   />
                 </form>
               </div>
+              {/* Search bar ends here */}
+
             </div>
             <div className="jobSearchBox">
               {isTitleFilter &&

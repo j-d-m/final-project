@@ -141,7 +141,7 @@ export default function CompanyProfile() {
                         className="btn btn-secondary btn-circle btn-xl"
                       >
                         <GiCook />
-                        <span>Staffs</span>
+                        <span>Staff</span>
                       </Button>
                       <Button
                         value="Jobs List"
@@ -155,29 +155,6 @@ export default function CompanyProfile() {
                       </Button>
                     </div>
                   </section>
-
-                  <Button
-                    variant="secondary"
-                    value="Post a Job"
-                    onClick={() => navigate("/company-profile/create-job")}
-                  >
-                    {" "}
-                    Post Job
-                  </Button>
-                  <Button
-                    value="Check freelancers"
-                    onClick={() => navigate("/home")}
-                    variant="secondary"
-                  >
-                    Check Freelancers
-                  </Button>
-                  <Button
-                    value="Jobs List"
-                    variant="secondary"
-                    onClick={() => navigate("/company-profile/company-jobs")}
-                  >
-                    Job lists
-                  </Button>
                 </div>
               </>
             );
