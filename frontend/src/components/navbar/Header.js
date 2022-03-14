@@ -117,11 +117,13 @@ export default function Header() {
                   id="basic-nav-dropdown"
                 >
                   {/* <NavDropdown.Item> */}
+                  {/* bootstrap component omitted to prevent bug happening with the company logout  */}
                   <input
                     type="button"
                     value="Logout"
                     onClick={companyLogout}
-                    className="logoutCompanyBtn"
+                    className="logoutCompanyBtn ms-3"
+                  // ms-3 (margin-left: 3px) added to fix style after <NavDropdown.Item> was removed
                   />
                   {/* </NavDropdown.Item> */}
                   <NavDropdown.Item as={Link} to="/company-profile">
