@@ -18,16 +18,6 @@
     width: 100%;
 
     .banner-container {
-      // background: Linear-gradient(
-      // to right bottom,
-      // rgba(82, 95, 89, 0.4),
-      // rgba(237, 234, 228, 0.1)
-      // ),
-      // url(../assets/img/banner-img.jpg);
-      // url(../assets/img/hp-bg-1.jpeg);
-
-      // background-image: contain;
-
       height: 65vh;
       background-repeat: no-repeat;
       background-size: cover;
@@ -37,8 +27,6 @@
       align-items: center;
       justify-content: center;
       // margin-bottom: 10px;
-
-   
 
       .search-fields {
         //search bar
@@ -53,7 +41,6 @@
             display: flex;
             flex-direction: column;
             @include input-banner-mobile;
-           
           }
         }
         .search-button {

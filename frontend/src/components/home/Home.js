@@ -100,13 +100,13 @@ export default function Home() {
           <section className="jobSearchContainer">
             <div
               className="banner-container"
+
               style={{
                 backgroundImage: `url(' ${resultBg}')`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
-                opacity: "0.8",
-                animation: "fadeIn 1s ease-in-out",
+                animation: "fadeIn 3s ease-in-out",
 
               }}
             >
