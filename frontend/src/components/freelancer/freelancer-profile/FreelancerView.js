@@ -56,13 +56,13 @@ export default function FreelancerView() {
               delay={500}
             >
               {showContactForm ? (
-                <HiOutlineMail
+                <HiOutlineMailOpen
                   onClick={() => setShowContactForm(false)}
                   size="35px"
                   style={{ cursor: "pointer" }}
                 />
               ) : (
-                <HiOutlineMailOpen
+                <HiOutlineMail
                   onClick={() => setShowContactForm(true)}
                   size="35px"
                   style={{ cursor: "pointer" }}
@@ -78,25 +78,29 @@ export default function FreelancerView() {
                 : "d-block  animate__animated animate__fadeInDownBig"
             }
           >
-            <h1 className="text-danger">Contact Me</h1>
+            <h1 className="text-white bg-dark text-center">Contact Me</h1>
             <input
               name="name"
               type="text"
-              className="feedback-input"
+              className="feedback-input text-dark"
               placeholder="Name"
             />
             <input
               name="email"
               type="text"
-              className="feedback-input"
+              className="feedback-input text-dark"
               placeholder="Email"
             />
             <textarea
               name="text"
-              className="feedback-input"
+              className="feedback-input text-dark"
               placeholder="Comment"
             ></textarea>
-            <input type="submit" value="SUBMIT" className="bg-danger" />
+            <input
+              type="submit"
+              value="Contact"
+              className="text-white bg-dark"
+            />
           </form>
         </div>
       </div>

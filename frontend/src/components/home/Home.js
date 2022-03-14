@@ -52,9 +52,16 @@ export default function Home() {
     e.preventDefault();
     let inputTitleValue = e.target.searchJobTitle.value;
 
-    let filterTitle = data.getJobs.filter(item => item.job_Title.toLowerCase().includes(inputTitleValue.toLowerCase()) ||
-      item.job_description.toLowerCase().includes(inputTitleValue.toLowerCase()) ||
-      item.created_by.company_Name.toLowerCase().includes(inputTitleValue.toLowerCase()));
+    let filterTitle = data.getJobs.filter(
+      (item) =>
+        item.job_Title.toLowerCase().includes(inputTitleValue.toLowerCase()) ||
+        item.job_description
+          .toLowerCase()
+          .includes(inputTitleValue.toLowerCase()) ||
+        item.created_by.company_Name
+          .toLowerCase()
+          .includes(inputTitleValue.toLowerCase())
+    );
 
     if (inputTitleValue.length > 0 && filterTitle.length > 0) {
       setInputValue(filterTitle);
@@ -100,13 +107,13 @@ export default function Home() {
           <section className="jobSearchContainer">
             <div
               className="banner-container"
+
               style={{
                 backgroundImage: `url(' ${resultBg}')`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
-                opacity: "0.8",
-                animation: "fadeIn 1s ease-in-out",
+                animation: "fadeIn 3s ease-in-out",
 
               }}
             >
@@ -127,9 +134,9 @@ export default function Home() {
             </div>
             <div className="jobSearchBox">
               {isTitleFilter &&
-                inputValue.slice(0, 20).map((job) => (
-                  <SearchCard job={job} key={job.id} />
-                ))}
+                inputValue
+                  .slice(0, 20)
+                  .map((job) => <SearchCard job={job} key={job.id} />)}
             </div>
           </section>
           <div className="jobs-combo-box">
