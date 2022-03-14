@@ -7,6 +7,9 @@ import CompanyUpdateProfile from "./CompanyUpdateProfile";
 import { Button } from "react-bootstrap";
 import DeleteCompanyAccount from "./DeleteCompanyAccount";
 import '../../../styles/companyProfile.scss';
+import { AiOutlineEdit, AiOutlineDelete, AiOutlineUnorderedList, AiOutlinePlusCircle } from 'react-icons/ai';
+import { GiCook } from 'react-icons/gi';
+
 
 /*  
 1- we need here to update the company profile using mutation 
@@ -99,12 +102,11 @@ export default function CompanyProfile() {
                     <div className="ModalBtnCompanyProfile">
                         <Button
                           id={id}
-                          variant="secondary"
+                          className="btn btn-secondary btn-circle btn-xl"
                           onClick={() => {
                             setModalShow(true);
                           }}
-                        >
-                          Edit Profile
+                        ><AiOutlineEdit /><span>Edit</span>
                         </Button>
 
                         <CompanyUpdateProfile
@@ -113,36 +115,34 @@ export default function CompanyProfile() {
                         />
                         <Button
                           id={id}
-                          variant="secondary"
+                          className="btn btn-secondary btn-circle btn-xl"
                           onClick={() => {
                             setModalShow1(true);
                           }}
-                        >
-                          Delete Account
+                        ><AiOutlineDelete /><span>Delete</span>
                         </Button>
 
                         <DeleteCompanyAccount
                           show={modalShow1}
                           onHide={() => setModalShow1(false)}
                         />
-                      
                         <Button
-                          variant="secondary"
                           value="Post a Job"
+                          className="btn btn-secondary btn-circle btn-xl"
                           onClick={() => navigate("/company-profile/create-job")}
-                        > Post Job
+                        ><AiOutlinePlusCircle/><span>Create</span> 
                         </Button>
                         <Button
                           value="Check freelancers"
                           onClick={() => navigate("/home")}
-                          variant="secondary"
-                        >Check Freelancers
+                          className="btn btn-secondary btn-circle btn-xl"
+                        ><GiCook/><span>Staffs</span>
                         </Button>
                         <Button
                           value="Jobs List"
-                          variant="secondary"
                           onClick={() => navigate("/company-profile/company-jobs")}
-                        >Job lists
+                          className="btn btn-secondary btn-circle btn-xl"
+                        ><AiOutlineUnorderedList/><span>Jobs</span>
                         </Button>
                       </div>
                  </section>

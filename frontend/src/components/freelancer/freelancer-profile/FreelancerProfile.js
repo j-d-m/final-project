@@ -110,7 +110,7 @@ export default function FreelancerProfile() {
                         onClick={() => {
                           setModalShow(true);
                         }}
-                      ><AiOutlineEdit />
+                      ><AiOutlineEdit /><span>Edit</span>
                       </Button>
                       <FreelancerUpdateProfile
                         show={modalShow}
@@ -123,7 +123,7 @@ export default function FreelancerProfile() {
                         onClick={() => {
                           setModalShow1(true);
                         }}
-                      > <AiOutlineDelete />
+                      > <AiOutlineDelete /><span>Delete</span>
                         
                       </Button>
 
@@ -134,7 +134,7 @@ export default function FreelancerProfile() {
                       <Button
                         onClick={() => navigate("/home")}
                         className="btn btn-secondary btn-circle btn-xl"
-                      > <AiOutlineUnorderedList/>
+                      > <AiOutlineUnorderedList/><span>Jobs</span>
                       </Button>
                     </div>
                   </section>
