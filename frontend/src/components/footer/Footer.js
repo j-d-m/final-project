@@ -1,19 +1,73 @@
 import React from "react";
+import { Link as LinkDom } from "react-router-dom";
 import { Link } from "react-scroll";
 import "../../styles/footer.scss";
-import { BsArrowUpCircle } from "react-icons/bs";
+import {
+  BsArrowUpCircle,
+  BsFacebook,
+  BsInstagram,
+  BsTwitter,
+} from "react-icons/bs";
+
 export default function Footer() {
   return (
-    <div className="footer-container">
-      <div className="Footer-Left">
-        <p>footer left</p>
-      </div>
-      <div className="Footer-Center">
-        <p>Footer Center</p>
-      </div>
+    <div className="FooterParent">
+      <footer className="Footer">
+        <div className="Footer-LEFT">
+          <h5>Staff Room</h5>
+          <p>
+            Staff Room is a portal to connect freelancers looking for gig work
+            /Employers looking for short term event or shift cover.
+          </p>
+        </div>
 
-      <div className="Footer-Right">
-        <p>footer right</p>
+        <div className="Footer-MIDDLE">
+          <h5>Get Started</h5>
+
+          <p>Freelancer looking for work or Employer looking for staff?</p>
+          <span>
+            <LinkDom to="freelancer-signUp">
+              Sign Up Now as a freelancer
+            </LinkDom>
+          </span>
+          <span>
+            <LinkDom to="company-signUp">Sign Up Now as an Employer</LinkDom>
+          </span>
+        </div>
+
+        <div className="FOOTER-RIGHT">
+          <h5>Contact Us</h5>
+
+          <span>
+            <a href="mailto:staff.room.server@gmail.com">
+              staff.room.service@gmail.com
+            </a>
+          </span>
+          <ul className="Social-Footer">
+            <li>
+              <a href="https://www.facebook.com/" title="Facebook">
+                <BsFacebook className="SocialIcons" />
+                <img alt="Facebook" width="30" height="30" src="" />
+              </a>
+            </li>
+            <li>
+              <a href="https://twitter.com" title="Twitter">
+                <BsTwitter className="SocialIcons" />
+                <img alt="Twitter" width="30" height="30" src="" />
+              </a>
+            </li>
+            <li>
+              <a title="instagram" href="https://www.instagram.com/">
+                <BsInstagram className="SocialIcons" />
+                <img alt="instagram" width="30" height="30" src="" />
+              </a>
+            </li>
+          </ul>
+        </div>
+      </footer>
+      <div className="Footer-Copyright">
+        <p>Staff Room © 2021. All rights reserved.</p>
+
         <Link
           to="goTop"
           spy={true}

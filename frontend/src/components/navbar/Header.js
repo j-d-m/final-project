@@ -18,6 +18,7 @@ export default function Header() {
   } = useContext(MyContext);
 
   const companyLogout = () => {
+    console.log("hello");
     setIsCompanyLogin(false);
     localStorage.clear("token");
     navigate("/");
@@ -116,14 +117,14 @@ export default function Header() {
                   }
                   id="basic-nav-dropdown"
                 >
-                  <NavDropdown.Item>
-                    <input
-                      type="button"
-                      value="Logout"
-                      onClick={companyLogout}
-                      className="logoutCompanyBtn"
-                    />
-                  </NavDropdown.Item>
+                  {/* <NavDropdown.Item> */}
+                  <input
+                    type="button"
+                    value="Logout"
+                    onClick={companyLogout}
+                    className="logoutCompanyBtn"
+                  />
+                  {/* </NavDropdown.Item> */}
                   <NavDropdown.Item as={Link} to="/company-profile">
                     Profile
                   </NavDropdown.Item>
