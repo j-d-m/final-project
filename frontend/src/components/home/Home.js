@@ -114,14 +114,15 @@ export default function Home() {
                 
               }}
               >
-                <h4
-                className="animate__animated animate__fadeInLeftBig animate__delay-2s"
-                > GASTRONOMY JOBS
-                </h4>
-                <h5
-                className="animate__animated animate__fadeInLeftBig animate__delay-3s animate__repeat-2"
-                > PEOPLE WHEN YOU NEED
-                </h5>
+                  <h4
+                  className="animate__animated animate__fadeInLeftBig animate__delay-2s"
+                  > GASTRONOMY JOBS 
+                  </h4>
+                  <h5
+                  className="animate__animated animate__fadeInLeftBig animate__delay-3s animate__repeat-2"
+                  > PEOPLE WHEN YOU NEED
+                  </h5>
+                
                
               {/* Search bar Hero and search button hero */}
               <div className="search-fields">

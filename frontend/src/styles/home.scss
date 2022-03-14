@@ -26,21 +26,35 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      // margin-bottom: 10px;
+      
+      
 
       h4{
         position: absolute;
-        left: 200px;
-        top: 300px;
+        font-size: 50px;
+        left: 11.25rem;
+        top: 9.9rem;
         font-family: $font-family-Bebas;
-        color:$color-white;
+        background: -webkit-linear-gradient(#0aafb9, #1d2624);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        
+        @include mobile{
+          display: none;
+        }
       }
       h5{
         position: absolute;
-        left: 250px;
-        top: 330px;
+        font-size: 40px;
+        left: 14.375rem;
+        top: 12rem;
         font-family: $font-family-Bebas;
-        color:$color-white;
+        background: -webkit-linear-gradient(#0aafb9, #1d2624);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        @include mobile{
+          display: none;
+        }
       }
 
       .search-fields {
