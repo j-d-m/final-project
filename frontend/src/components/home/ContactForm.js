@@ -1,38 +1,33 @@
-import React, { useContext, useState } from "react";
-// import { useNavigate } from "react-router";
+import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
-import { MyContext } from "../../Context/Context";
-export default function Contact({ job }) {
-  const { jobAccepted, setJobAccepted } = useContext(MyContext);
+import waiterSmile from "../../assets/img/waiter-smile.svg";
 
+export default function Contact({ job }) {
   const [emailSent, setEmailSent] = useState(false);
 
-  // let navigate = useNavigate();
-  console.log(job);
   const sendEmail = (e) => {
     e.preventDefault();
     emailjs
       .sendForm(
-        process.env.REACT_APP_EMAILJS_USER_ID,
         process.env.REACT_APP_EMAILJS_SERVICE_ID,
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
         e.target,
-        process.env.REACT_APP_EMAILJS_TEMPLATE_ID
+        process.env.REACT_APP_EMAILJS_USER_ID
       )
       .then((result) => {
-        setJobAccepted(job);
-        console.log(jobAccepted);
         console.log(result.text);
       })
       .catch((err) => console.log(err));
     e.target.reset();
     setEmailSent(true);
   };
-  // console.log(formRef.current);
+
   return (
     <>
       {emailSent ? (
         <div className="alert text-center" role="alert">
           Your message was sent!
+          <img alt="" src={waiterSmile} width="150" height="150" className="" />
         </div>
       ) : (
         <div className="container contact-form-freelancer">
@@ -83,7 +78,6 @@ export default function Contact({ job }) {
                 />
               </div>
             </div>
-
             <div className="form-row">
               <div className="form-group col-auto">
                 <label htmlFor="phone">Contact Number</label>

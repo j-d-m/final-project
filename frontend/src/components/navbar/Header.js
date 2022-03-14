@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import avatar from "../../assets/img/avatar.jpg";
 import logo from "../../assets/img/logo.svg";
-import hiring from "../../assets/img/hiring.svg";
 import { AiOutlineLogin } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/header.scss";
@@ -118,11 +117,13 @@ export default function Header() {
                   id="basic-nav-dropdown"
                 >
                   {/* <NavDropdown.Item> */}
+                  {/* bootstrap component omitted to prevent bug happening with the company logout  */}
                   <input
                     type="button"
                     value="Logout"
                     onClick={companyLogout}
-                    className="logoutCompanyBtn"
+                    className="logoutCompanyBtn ms-3"
+                  // ms-3 (margin-left: 3px) added to fix style after <NavDropdown.Item> was removed
                   />
                   {/* </NavDropdown.Item> */}
                   <NavDropdown.Item as={Link} to="/company-profile">

@@ -2,9 +2,6 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-
-
-
 //External imports
 import Button from "react-bootstrap/Button";
 import moment from "moment";
@@ -22,7 +19,6 @@ import Contact from "./ContactForm";
 import "../../styles/searchCard.scss";
 
 
-
 export default function SearchCard({ job }) {
     const navigate = useNavigate();
     const { isFreelancerLogin } = useContext(MyContext);
@@ -34,9 +30,6 @@ export default function SearchCard({ job }) {
     const handleShow = () => setShow(true);
     const toggleIconHover = () => setIconHover(!iconHover);
     const toggleShowContact = () => setShowContact(!showContact);
-
-
-
 
     function redirectToLogin() {
         navigate("/freelancer-login")
@@ -66,7 +59,6 @@ export default function SearchCard({ job }) {
                         new Date(job.issued_At.slice(0, 10) * 1000).toGMTString()
                     ).fromNow()}
                 </p>
-
                 <p>
                     by{" "}
                     <strong>
@@ -77,7 +69,6 @@ export default function SearchCard({ job }) {
                                 : "")}{" "}
                     </strong>
                 </p>
-
                 <div className="text-center" >
                     <Button
                         variant="secondary"
@@ -85,7 +76,6 @@ export default function SearchCard({ job }) {
                         onClick={handleShow}
 
                     >
-
                         Details <AiOutlineArrowUp />
 
                     </Button>
@@ -125,7 +115,6 @@ export default function SearchCard({ job }) {
                                 </p>
                             </>
                         }
-
                         <div className="text-center m-2">
 
                             {isFreelancerLogin ? (
@@ -136,21 +125,14 @@ export default function SearchCard({ job }) {
                                     {iconHover ? <FaConciergeBell /> :
                                         showContact ? "Return to job description" : "  Contact"
                                     }
-
-
                                 </Button>
                             ) :
-
                                 <Button onClick={redirectToLogin} variant="secondary  col-6"
                                 >You should be logged to contact this company.
                                 </Button>
-
-
                             }
-
                         </div>
                     </Modal.Body>
-
                     {showContact && <Contact job={job} />}
                 </Modal>
             </div>
