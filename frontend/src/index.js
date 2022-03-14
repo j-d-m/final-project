@@ -2,26 +2,34 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
+import { createUploadLink } from "apollo-upload-client";
 import "animate.css";
-
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  HttpLink,
+  ApolloLink,
 } from "@apollo/client";
-import { setContext } from "@apollo/client/link/context";
-const httpLink = new HttpLink({
-  uri: "https://deploy-final-project-anass.herokuapp.com/graphql",
-});
-const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem("token");
 
-  return { headers: { ...headers, token: token ? `${token}` : "" } };
+// new middlewareLink to attach the token in headers similar to authLink
+const middlewareLink = new ApolloLink((operation, forward) => {
+  operation.setContext({
+    headers: {
+      token: localStorage.getItem("token") || null,
+    },
+  });
+  console.log(forward);
+  return forward(operation);
 });
+
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
+  link: ApolloLink.from([
+    middlewareLink,
+    createUploadLink({
+      uri: "https://deploy-final-project-anass.herokuapp.com/graphql",
+    }),
+  ]),
 });
 
 ReactDOM.render(
