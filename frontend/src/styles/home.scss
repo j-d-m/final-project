@@ -18,13 +18,16 @@
     width: 100%;
 
     .banner-container {
-      background: Linear-gradient(
-          to right bottom,
-          rgba(82, 95, 89, 0.4),
-          rgba(237, 234, 228, 0.1)
-        ),
-        url(../assets/img/banner-img.jpg);
+      // background: Linear-gradient(
+      // to right bottom,
+      // rgba(82, 95, 89, 0.4),
+      // rgba(237, 234, 228, 0.1)
+      // ),
+      // url(../assets/img/banner-img.jpg);
       // url(../assets/img/hp-bg-1.jpeg);
+
+      // background-image: contain;
+
       height: 65vh;
       background-repeat: no-repeat;
       background-size: cover;
@@ -35,6 +38,8 @@
       justify-content: center;
       // margin-bottom: 10px;
 
+   
+
       .search-fields {
         //search bar
         input {
@@ -43,8 +48,6 @@
           background-position: left center;
           background-repeat: no-repeat;
           background-size: 30px 30px;
-          
-
 
           @include mobile {
             display: flex;
@@ -81,21 +84,4 @@
   justify-content: center;
   width: 100%;
   padding: 0px;
-}
-
-//Sweet Alert customization
-.swal2-popup {
-  color: $color-green;
-  // border-radius: 30px;
-  // background-color: $color-sky;
-}
-
-.swal2-title {
-  font-size: 1.5rem;
-  letter-spacing: 2px;
-  font-family: $font-family-Bebas;
-}
-
-.swal2-icon {
-  border: 0 !important;
 }
