@@ -47,19 +47,19 @@ export default function Footer() {
             <li>
               <a href="https://www.facebook.com/" title="Facebook">
                 <BsFacebook className="SocialIcons" />
-                <img alt="Facebook" width="30" height="30" src="" />
+                Facebook
               </a>
             </li>
             <li>
               <a href="https://twitter.com" title="Twitter">
                 <BsTwitter className="SocialIcons" />
-                <img alt="Twitter" width="30" height="30" src="" />
+                Twitter
               </a>
             </li>
             <li>
               <a title="instagram" href="https://www.instagram.com/">
                 <BsInstagram className="SocialIcons" />
-                <img alt="instagram" width="30" height="30" src="" />
+                Instagram
               </a>
             </li>
           </ul>
