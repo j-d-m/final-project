@@ -8,7 +8,7 @@ export default function Contact({ job }) {
   const [emailSent, setEmailSent] = useState(false);
 
   // let navigate = useNavigate();
-  console.log(process.env.REACT_APP_EMAILJS_TEMPLATE_ID);
+  console.log(job);
   const sendEmail = (e) => {
     e.preventDefault();
     emailjs

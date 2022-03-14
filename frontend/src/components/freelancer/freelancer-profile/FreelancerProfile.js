@@ -12,7 +12,7 @@ export default function FreelancerProfile() {
   const navigate = useNavigate();
   const { freelancerLoginData, setFreelancerLoginData, jobAccepted } =
     useContext(MyContext);
-  //logging result of the job contact from to pass it to the profile on successfull contact of the company
+  //logging result of the job contact from to pass it to the profile on successful contact of the company
   console.log(jobAccepted);
   const [modalShow, setModalShow] = useState();
   const [modalShow1, setModalShow1] = useState();
@@ -44,7 +44,9 @@ export default function FreelancerProfile() {
               hourly_rate,
               description,
               avatar,
+              favorite,
             } = data.getOneUser;
+            console.log(data);
             return (
               <>
                 <div className="Freelance-Avatar">
@@ -83,7 +85,20 @@ export default function FreelancerProfile() {
                     <p>Your position : {description}</p>
                   </div>
                   <div className="JobHistory">
-                    This is your job history on Staff Room
+                    {favorite.length === 0 ? (
+                      <p>you have not applied for any jobs</p>
+                    ) : (
+                      <section>
+                        {favorite.map((job) => {
+                          return (
+                            <div>
+                              <h5>{job.job_Title}</h5>
+                              <p>{job.start_Date}</p>
+                            </div>
+                          );
+                        })}
+                      </section>
+                    )}
                   </div>
                   <section>
                     <div className="ModalBtnFreelancerProfile">
