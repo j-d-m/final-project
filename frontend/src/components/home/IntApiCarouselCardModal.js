@@ -11,7 +11,7 @@ import { AiOutlineArrowUp, AiOutlineFileText } from 'react-icons/ai';
 import { BsFillPersonFill } from "react-icons/bs";
 import { HiOutlineOfficeBuilding } from "react-icons/hi";
 import { MdOutlineToday } from "react-icons/md";
-
+import { FaConciergeBell } from "react-icons/fa";
 
 //Internal imports
 import "../../styles/carousel.scss";
@@ -23,9 +23,12 @@ export default function IntApiCarouselCardModal({ job }) {
     const navigate = useNavigate();
     const { isFreelancerLogin } = useContext(MyContext);
     const [show, setShow] = useState(false);
+    const [showContact, setShowContact] = useState(false);
+    const [iconHover, setIconHover] = useState(false);
+
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const [showContact, setShowContact] = useState(false);
+    const toggleIconHover = () => setIconHover(!iconHover);
     const toggleShowContact = () => setShowContact(!showContact);
 
     function redirectToLogin() {
@@ -113,8 +116,13 @@ export default function IntApiCarouselCardModal({ job }) {
                     <div className="text-center m-2">
 
                         {isFreelancerLogin ? (
-                            <Button onClick={toggleShowContact} variant="secondary  col-6"  >
-                                {showContact ? "Return to job description" : "Contact"}
+                            <Button onClick={toggleShowContact} variant="secondary  col-6"
+                                onMouseEnter={toggleIconHover}
+                                onMouseLeave={toggleIconHover}
+                            >
+                                {iconHover ? <FaConciergeBell /> :
+                                    showContact ? "Return to job description" : "  Contact"
+                                }
                             </Button>
                         ) :
 
