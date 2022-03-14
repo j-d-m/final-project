@@ -104,19 +104,23 @@ function FreelancerUpdateProfile(props) {
     <div>
       <Modal {...props} size="lg" centered className="ProfileUpdate">
         <Modal.Body className="modalBody">
-          <form className="modalForm" onSubmit={updateProfile}>
-            <div className="modalDiv">
+          <form className="container modalForm" onSubmit={updateProfile}>
+            <div className="modalDiv form-group">
               <div>
-                <label>First Name :</label>
+                <label for="inputOne1">First Name :</label>
                 <input
+                  id="inputOne1"
+                  className="form-control"
                   type="text"
                   name="firstName"
                   placeholder={freelancerLoginData.first_name}
                 />
               </div>
               <div>
-                <label>Last Name :</label>
+                <label for="inputTwo2">Last Name :</label>
                 <input
+                  id="inputTwo2"
+                  className="form-control"
                   type="text"
                   name="lastName"
                   placeholder={freelancerLoginData.last_name}
@@ -125,16 +129,20 @@ function FreelancerUpdateProfile(props) {
             </div>
             <div className="modalDiv">
               <div>
-                <label>Email :</label>
+                <label for="inputThree3">Email :</label>
                 <input
+                  id="inputThree3"
+                  className="form-control"
                   type="email"
                   name="email"
                   placeholder={freelancerLoginData.email}
                 />
               </div>
               <div>
-                <label>Password :</label>
+                <label for="inputFour4">Password :</label>
                 <input
+                  id="inputFour4"
+                  className="form-control"
                   type="password"
                   name="password"
                   placeholder="your new password...."
@@ -143,16 +151,20 @@ function FreelancerUpdateProfile(props) {
             </div>
             <div className="modalDiv">
               <div>
-                <label>hourly_rate:</label>
+                <label for="inputFive5">hourly_rate:</label>
                 <input
+                  id="inputFive5"
+                  className="form-control"
                   type="number"
                   name="hourlyRate"
                   placeholder={freelancerLoginData.hourly_rate}
                 />
               </div>
               <div>
-                <label>Phone :</label>
+                <label for="inputSix6">Phone :</label>
                 <input
+                  id="inputSix6"
+                  className="form-control"
                   type="tel"
                   name="phone"
                   placeholder={freelancerLoginData.phone}
@@ -169,8 +181,8 @@ function FreelancerUpdateProfile(props) {
               />
             </div>
             <Modal.Footer>
-              <Button onClick={props.onHide}>Close</Button>
-              <input type="submit" value="Save" className="btn btn-primary" />
+              <Button variant="secondary" onClick={props.onHide}>Close</Button>
+              <input type="submit" value="Save" className="btn btn-secondary" />
             </Modal.Footer>
           </form>
         </Modal.Body>

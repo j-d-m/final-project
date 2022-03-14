@@ -7,6 +7,14 @@ import Swal from "sweetalert2";
 
 // Internal imports
 import "../../styles/home.scss";
+import "../../styles/_sweetAlert.scss"
+import background1 from '../../assets/img/homeBg1.jpg'
+import background2 from '../../assets/img/homeBg2.jpg'
+import background3 from '../../assets/img/homeBg3.jpg'
+import background4 from '../../assets/img/homeBg4.jpg'
+import background5 from '../../assets/img/homeBg5.jpg'
+
+
 import { MyContext } from "../../Context/Context";
 import { GET_JOBS } from "../../graphQL/Queries";
 import exclamation from "../../assets/img/exclamation.ico";
@@ -17,6 +25,19 @@ import ThreeSteps from "./ThreeSteps";
 import SearchCard from "./SearchCard";
 
 export default function Home() {
+
+  const BgArray = [background1, background2, background3, background4, background5]
+
+  const randomBg = function () {
+    return Math.floor(Math.random() * 5)
+  }
+
+  const resultBg = BgArray[randomBg()]
+
+  console.log(resultBg)
+
+
+
   const { loading, error, data } = useQuery(GET_JOBS);
 
   const {
@@ -35,10 +56,7 @@ export default function Home() {
       item.job_description.toLowerCase().includes(inputTitleValue.toLowerCase()) ||
       item.created_by.company_Name.toLowerCase().includes(inputTitleValue.toLowerCase()));
 
-
-
-
-    if (inputTitleValue.length > 2 && filterTitle.length > 0) {
+    if (inputTitleValue.length > 0 && filterTitle.length > 0) {
       setInputValue(filterTitle);
       setIsTitleFilter(true);
     } else {
@@ -46,15 +64,13 @@ export default function Home() {
         position: "top",
         // icon: "error",
         iconHtml: `<img src=${exclamation}>`,
-        // < a href = "https://www.vecteezy.com/free-vector/do-not-disturb-icon" > Do Not Disturb Icon Vectors by Vecteezy</ >
-        title: "We could not find a job with this title.",
+        title: "No job found",
         // text: "We could not find a job with this title.",
         showConfirmButton: false,
-        timer: 1000,
+        timer: 2000,
       });
       setIsTitleFilter(false);
     }
-
   };
 
   if (loading) {
@@ -82,7 +98,18 @@ export default function Home() {
       ) : (
         <div className=" homeContainer">
           <section className="jobSearchContainer">
-            <div className="banner-container">
+            <div
+              className="banner-container"
+              style={{
+                backgroundImage: `url(' ${resultBg}')`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                opacity: "0.8",
+                animation: "fadeIn 1s ease-in-out",
+
+              }}
+            >
               <div className="search-fields">
                 <form onSubmit={searchHandler}>
                   <input
@@ -97,7 +124,6 @@ export default function Home() {
                   />
                 </form>
               </div>
-
             </div>
             <div className="jobSearchBox">
               {isTitleFilter &&
@@ -106,7 +132,6 @@ export default function Home() {
                 ))}
             </div>
           </section>
-
           <div className="jobs-combo-box">
             <IntApiCarousel />
             <ThreeSteps />

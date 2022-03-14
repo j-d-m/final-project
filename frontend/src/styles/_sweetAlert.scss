@@ -1,0 +1,22 @@
+@import "./colors";
+@import "./fonts";
+@import "./buttons";
+@import "./inputFields";
+@import "./mobile";
+
+//Sweet Alert customization
+.swal2-popup {
+  color: $color-green;
+  border-radius: 30px;
+  background-color: $color-pinky;
+}
+
+.swal2-title {
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  font-family: $font-family-Bebas;
+}
+
+.swal2-icon {
+  border: 0 !important;
+}

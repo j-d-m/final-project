@@ -17,15 +17,14 @@ import "../../styles/carousel.scss";
 import { MyContext } from "../../Context/Context"
 
 
-
-
 export default function ExtApiCarouselCardModal({ job }) {
     const navigate = useNavigate();
     const { isFreelancerLogin } = useContext(MyContext);
     const [show, setShow] = useState(false);
+    const [showUrl, setShowUrl] = useState(false);
+
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const [showUrl, setShowUrl] = useState(false);
     const toggleShowUrl = () => setShowUrl(!showUrl);
 
     function redirectToLogin() {
@@ -39,6 +38,7 @@ export default function ExtApiCarouselCardModal({ job }) {
     let CharLimitTitleModal = 100;
     let CharLimitDescriptionModal = 500;
 
+
     return (
         <div className="carousel-card">
             <h5>
@@ -48,7 +48,6 @@ export default function ExtApiCarouselCardModal({ job }) {
             </h5>
             <p> {job.location.display_name}</p>
             <p>posted {moment(job.created).fromNow()}</p>
-
             <p>
                 by{" "}
                 <strong>
@@ -59,7 +58,6 @@ export default function ExtApiCarouselCardModal({ job }) {
                             : "")}{" "}
                 </strong>
             </p>
-
             <div className="text-center">
                 <Button
                     variant="secondary"
@@ -104,7 +102,6 @@ export default function ExtApiCarouselCardModal({ job }) {
                             </p>
                         </>
                     }
-
                     <div className="text-center m-2">
 
                         {isFreelancerLogin ? (
@@ -116,12 +113,8 @@ export default function ExtApiCarouselCardModal({ job }) {
                             <Button onClick={redirectToLogin} variant="secondary  col-6"
                             >You should be logged to contact this company.
                             </Button>
-
-
                         }
-
                     </div>
-
                 </Modal.Body>
             </Modal>
         </div>

@@ -7,13 +7,14 @@ import CompanyUpdateProfile from "./CompanyUpdateProfile";
 import { Button } from "react-bootstrap";
 import DeleteCompanyAccount from "./DeleteCompanyAccount";
 import "../../../styles/companyProfile.scss";
+import {
+  AiOutlineEdit,
+  AiOutlineDelete,
+  AiOutlineUnorderedList,
+  AiOutlinePlusCircle,
+} from "react-icons/ai";
+import { GiCook } from "react-icons/gi";
 
-/*  
-1- we need here to update the company profile using mutation 
-this is done 
-
-2- update  company avatar as well
-*/
 export default function CompanyProfile() {
   const [companyImage, setCompanyImage] = useState(null);
   const navigate = useNavigate();
@@ -98,60 +99,85 @@ export default function CompanyProfile() {
                     <div className="ModalBtnCompanyProfile">
                       <Button
                         id={id}
-                        variant="secondary"
+                        className="btn btn-secondary btn-circle btn-xl"
                         onClick={() => {
                           setModalShow(true);
                         }}
                       >
-                        Edit Profile
+                        <AiOutlineEdit />
+                        <span>Edit</span>
                       </Button>
 
                       <CompanyUpdateProfile
                         show={modalShow}
                         onHide={() => setModalShow(false)}
-                        image={companyImage}
                       />
                       <Button
                         id={id}
-                        variant="secondary"
+                        className="btn btn-secondary btn-circle btn-xl"
                         onClick={() => {
                           setModalShow1(true);
                         }}
                       >
-                        Delete Account
+                        <AiOutlineDelete />
+                        <span>Delete</span>
                       </Button>
 
                       <DeleteCompanyAccount
                         show={modalShow1}
                         onHide={() => setModalShow1(false)}
                       />
-
                       <Button
-                        variant="secondary"
                         value="Post a Job"
+                        className="btn btn-secondary btn-circle btn-xl"
                         onClick={() => navigate("/company-profile/create-job")}
                       >
-                        {" "}
-                        Post Job
+                        <AiOutlinePlusCircle />
+                        <span>Create</span>
                       </Button>
                       <Button
                         value="Check freelancers"
                         onClick={() => navigate("/home")}
-                        variant="secondary"
+                        className="btn btn-secondary btn-circle btn-xl"
                       >
-                        Check Freelancers
+                        <GiCook />
+                        <span>Staffs</span>
                       </Button>
                       <Button
                         value="Jobs List"
-                        variant="secondary"
                         onClick={() =>
                           navigate("/company-profile/company-jobs")
                         }
+                        className="btn btn-secondary btn-circle btn-xl"
                       >
-                        Job lists
+                        <AiOutlineUnorderedList />
+                        <span>Jobs</span>
                       </Button>
                     </div>
                   </section>
+
+                  <Button
+                    variant="secondary"
+                    value="Post a Job"
+                    onClick={() => navigate("/company-profile/create-job")}
+                  >
+                    {" "}
+                    Post Job
+                  </Button>
+                  <Button
+                    value="Check freelancers"
+                    onClick={() => navigate("/home")}
+                    variant="secondary"
+                  >
+                    Check Freelancers
+                  </Button>
+                  <Button
+                    value="Jobs List"
+                    variant="secondary"
+                    onClick={() => navigate("/company-profile/company-jobs")}
+                  >
+                    Job lists
+                  </Button>
                 </div>
               </>
             );

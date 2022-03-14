@@ -111,19 +111,23 @@ function CompanyUpdateProfile(props) {
     <div>
       <Modal {...props} size="lg" centered className="ProfileUpdate">
         <Modal.Body className="modalBody">
-          <form className="modalForm" onSubmit={updateProfile}>
-            <div className="modalDiv">
+          <form className="container modalForm" onSubmit={updateProfile}>
+            <div className="modalDiv form-group">
               <div>
-                <label>Company Name :</label>
+                <label for="inputOne1">Company Name :</label>
                 <input
+                  id="inputOne1"
+                  className="form-control"
                   type="text"
                   name="companyName"
                   placeholder={companyLoginData.company_Name}
                 />
               </div>
               <div>
-                <label>Owner :</label>
+                <label for="inputTwo2">Owner :</label>
                 <input
+                  id="inputTwo2"
+                  className="form-control"
                   type="text"
                   name="owner"
                   placeholder={companyLoginData.owner_name}
@@ -132,16 +136,20 @@ function CompanyUpdateProfile(props) {
             </div>
             <div className="modalDiv">
               <div>
-                <label>Email :</label>
+                <label for="inputThree3">Email :</label>
                 <input
+                  id="inputThree3"
+                  className="form-control"
                   type="email"
                   name="email"
                   placeholder={companyLoginData.email}
                 />
               </div>
               <div>
-                <label>Password :</label>
+                <label for="inputFour4">Password :</label>
                 <input
+                  id="inputFour4"
+                  className="form-control"
                   type="password"
                   name="password"
                   placeholder="your new password....."
@@ -150,16 +158,20 @@ function CompanyUpdateProfile(props) {
             </div>
             <div className="modalDiv">
               <div>
-                <label>Address:</label>
+                <label for="inputFive5">Address:</label>
                 <input
+                  id="inputFive5"
+                  className="form-control"
                   type="text"
                   name="address"
                   placeholder={companyLoginData.address}
                 />
               </div>
               <div>
-                <label>Phone :</label>
+                <label for="inputSix6">Phone :</label>
                 <input
+                  id="inputSix6"
+                  className="form-control"
                   type="tel"
                   name="phone"
                   placeholder={companyLoginData.phone}
@@ -176,8 +188,8 @@ function CompanyUpdateProfile(props) {
               />
             </div>
             <Modal.Footer>
-              <Button onClick={props.onHide}>Close</Button>
-              <input type="submit" value="Save" className="btn btn-primary" />
+              <Button variant="secondary" onClick={props.onHide}>Close</Button>
+              <input type="submit" value="Save" className="btn btn-secondary" />
             </Modal.Footer>
           </form>
         </Modal.Body>
