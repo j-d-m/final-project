@@ -62,7 +62,7 @@ export default function FreeLancerLogin() {
           Submit
         </button>
       </form>
-      {/* <Toaster position="top-center" reve rseOrder={false} /> */}
+      {/* <Toaster position="top-center" reverseOrder={false} /> */}
     </div>
   );
 }
