@@ -10,7 +10,10 @@ import FreelancerUpdateProfile from "./FreelancerUpdateProfile";
 
 export default function FreelancerProfile() {
   const navigate = useNavigate();
-  const { freelancerLoginData, setFreelancerLoginData } = useContext(MyContext);
+  const { freelancerLoginData, setFreelancerLoginData, jobAccepted } =
+    useContext(MyContext);
+  //logging result of the job contact from to pass it to the profile on successfull contact of the company
+  console.log(jobAccepted);
   const [modalShow, setModalShow] = useState();
   const [modalShow1, setModalShow1] = useState();
   const { loading, error, data } = useQuery(GET_ONE_USER, {
@@ -52,10 +55,12 @@ export default function FreelancerProfile() {
                 </div>
 
                 <div className="Freelance-Right">
-
                   <div className="textProfile">
                     <h1>Your Staff Room Profile</h1>
-                    <p>here you can edit your profile, delete account or go to the job search page</p>
+                    <p>
+                      here you can edit your profile, delete account or go to
+                      the job search page
+                    </p>
                   </div>
 
                   <div>
@@ -76,6 +81,9 @@ export default function FreelancerProfile() {
                   </div>
                   <div>
                     <p>Your position : {description}</p>
+                  </div>
+                  <div className="JobHistory">
+                    This is your job history on Staff Room
                   </div>
                   <section>
                     <div className="ModalBtnFreelancerProfile">
