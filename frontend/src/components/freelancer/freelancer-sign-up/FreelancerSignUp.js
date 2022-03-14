@@ -64,7 +64,8 @@ export default function UserSignUp() {
         </div>
 
         <div className="container signUp-form-right">
-          <h2>Freelancer Signup Page</h2>
+          <h2>Are you a freelancer?</h2>
+          <h3>Create an Account</h3>
 
           <form className="form-style-4" onSubmit={formSubmitAddUser}>
             <legend>Let's find you some work</legend>
