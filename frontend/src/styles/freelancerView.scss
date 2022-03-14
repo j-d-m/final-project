@@ -1,8 +1,8 @@
 .freelancerView {
   .freelancerViewContainer {
-    // height: 70vh;
-    // border: 3px solid black;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
     .card {
       width: 380px;
       border: none;

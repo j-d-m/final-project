@@ -6,15 +6,17 @@ import { GET_ONE_COMPANY } from "../../../graphQL/Queries";
 import CompanyUpdateProfile from "./CompanyUpdateProfile";
 import { Button } from "react-bootstrap";
 import DeleteCompanyAccount from "./DeleteCompanyAccount";
-import '../../../styles/companyProfile.scss';
+import "../../../styles/companyProfile.scss";
+import {
+  AiOutlineEdit,
+  AiOutlineDelete,
+  AiOutlineUnorderedList,
+  AiOutlinePlusCircle,
+} from "react-icons/ai";
+import { GiCook } from "react-icons/gi";
 
-/*  
-1- we need here to update the company profile using mutation 
-this is done 
-
-2- update  company avatar as well
-*/
 export default function CompanyProfile() {
+  const [companyImage, setCompanyImage] = useState(null);
   const navigate = useNavigate();
   const { companyLoginData, setCompanyLoginData } = useContext(MyContext);
   const [modalShow, setModalShow] = useState();
@@ -37,122 +39,150 @@ export default function CompanyProfile() {
   return (
     <section className="Profile-Container-Comp">
       <div className="Banner-Container-Comp">
-      {data &&
-        (() => {
-          let {
-            id,
-            company_Name,
-            owner_name,
-            address,
-            company_type,
-            description,
-            email,
-            phone,
-            avatar,
-          } = data.getOneCompany;
-          return (
-            <>
-              <div className="Freelance-Avatar-Comp">
-                {/* <div
+        {data &&
+          (() => {
+            let {
+              id,
+              company_Name,
+              owner_name,
+              address,
+              company_type,
+              description,
+              email,
+              phone,
+              avatar,
+            } = data.getOneCompany;
+            return (
+              <>
+                <div className="Freelance-Avatar-Comp">
+                  {/* <div
                   className="company-background"
                   style={{
                     backgroundImage: `url(https://loremflickr.com/320/240/${company_type})`,
                     
                   }}
                 ></div> */}
-                <img src={avatar} alt="img" width="200px" height="200px" />
+                  <img src={avatar} alt="img" width="200px" height="200px" />
                   <label htmlFor="file-upload" className="Custom-File-Upload">
-                    <input id="file-upload" type="file" /> Change Image
+                    <input
+                      id="file-upload"
+                      name="file"
+                      type="file"
+                      onChange={(e) => setCompanyImage(e.target.files[0])}
+                    />
+                    Change Image
                   </label>
-              </div>
-
-
-              <div className="Freelance-Right-Comp">
-                    <h1>{company_Name}</h1>
-                  
-                    <div>
-                      <p>Company type : {company_type} </p>
-                      
-                    </div>
-                    <div>
-                      <p>Company address : {address} </p>
-                      
-                    </div>
-                    <div>
-                      <p>Owner : {owner_name}</p>
-                      
-                    </div>
-                    <div>
-                      <p>Email : {email}</p>
-                      
-                    </div>
-                    <div>
-                      <p>Phone : {phone}</p>
-                      
-                    </div>
-                    <div>
-                      <p>Company Description : {description} </p>
-                      
-                    </div>
-                  <section>
-                  
-                    <div className="ModalBtnCompanyProfile">
-                        <Button
-                          id={id}
-                          variant="secondary"
-                          onClick={() => {
-                            setModalShow(true);
-                          }}
-                        >
-                          Edit Profile
-                        </Button>
-
-                        <CompanyUpdateProfile
-                          show={modalShow}
-                          onHide={() => setModalShow(false)}
-                        />
-                        <Button
-                          id={id}
-                          variant="secondary"
-                          onClick={() => {
-                            setModalShow1(true);
-                          }}
-                        >
-                          Delete Account
-                        </Button>
-
-                        <DeleteCompanyAccount
-                          show={modalShow1}
-                          onHide={() => setModalShow1(false)}
-                        />
-                      
-                        <Button
-                          variant="secondary"
-                          value="Post a Job"
-                          onClick={() => navigate("/company-profile/create-job")}
-                        > Post Job
-                        </Button>
-                        <Button
-                          value="Check freelancers"
-                          onClick={() => navigate("/home")}
-                          variant="secondary"
-                        >Check Freelancers
-                        </Button>
-                        <Button
-                          value="Jobs List"
-                          variant="secondary"
-                          onClick={() => navigate("/company-profile/company-jobs")}
-                        >Job lists
-                        </Button>
-                      </div>
-                 </section>
-
                 </div>
-             
-            </>
-          );
-        })()}
-        </div>
+
+                <div className="Freelance-Right-Comp">
+                  <h1>{company_Name}</h1>
+
+                  <div>
+                    <p>Company type : {company_type} </p>
+                  </div>
+                  <div>
+                    <p>Company address : {address} </p>
+                  </div>
+                  <div>
+                    <p>Owner : {owner_name}</p>
+                  </div>
+                  <div>
+                    <p>Email : {email}</p>
+                  </div>
+                  <div>
+                    <p>Phone : {phone}</p>
+                  </div>
+                  <div>
+                    <p>Company Description : {description} </p>
+                  </div>
+                  <section>
+                    <div className="ModalBtnCompanyProfile">
+                      <Button
+                        id={id}
+                        className="btn btn-secondary btn-circle btn-xl"
+                        onClick={() => {
+                          setModalShow(true);
+                        }}
+                      >
+                        <AiOutlineEdit />
+                        <span>Edit</span>
+                      </Button>
+
+                      <CompanyUpdateProfile
+                        show={modalShow}
+                        onHide={() => setModalShow(false)}
+                      />
+                      <Button
+                        id={id}
+                        className="btn btn-secondary btn-circle btn-xl"
+                        onClick={() => {
+                          setModalShow1(true);
+                        }}
+                      >
+                        <AiOutlineDelete />
+                        <span>Delete</span>
+                      </Button>
+
+                      <DeleteCompanyAccount
+                        show={modalShow1}
+                        onHide={() => setModalShow1(false)}
+                      />
+                      <Button
+                        value="Post a Job"
+                        className="btn btn-secondary btn-circle btn-xl"
+                        onClick={() => navigate("/company-profile/create-job")}
+                      >
+                        <AiOutlinePlusCircle />
+                        <span>Create</span>
+                      </Button>
+                      <Button
+                        value="Check freelancers"
+                        onClick={() => navigate("/home")}
+                        className="btn btn-secondary btn-circle btn-xl"
+                      >
+                        <GiCook />
+                        <span>Staffs</span>
+                      </Button>
+                      <Button
+                        value="Jobs List"
+                        onClick={() =>
+                          navigate("/company-profile/company-jobs")
+                        }
+                        className="btn btn-secondary btn-circle btn-xl"
+                      >
+                        <AiOutlineUnorderedList />
+                        <span>Jobs</span>
+                      </Button>
+                    </div>
+                  </section>
+
+                  <Button
+                    variant="secondary"
+                    value="Post a Job"
+                    onClick={() => navigate("/company-profile/create-job")}
+                  >
+                    {" "}
+                    Post Job
+                  </Button>
+                  <Button
+                    value="Check freelancers"
+                    onClick={() => navigate("/home")}
+                    variant="secondary"
+                  >
+                    Check Freelancers
+                  </Button>
+                  <Button
+                    value="Jobs List"
+                    variant="secondary"
+                    onClick={() => navigate("/company-profile/company-jobs")}
+                  >
+                    Job lists
+                  </Button>
+                </div>
+              </>
+            );
+          })()}
+      </div>
     </section>
   );
 }

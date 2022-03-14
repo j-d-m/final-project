@@ -76,7 +76,7 @@ export const UPDATE_COMPANY = gql`
     $updateCompanyId: ID!
     $companyName: String
     $ownerName: String
-    $avatar: String
+    $file: Upload
     $companyType: String
     $address: String
     $phone: String
@@ -88,7 +88,7 @@ export const UPDATE_COMPANY = gql`
       id: $updateCompanyId
       company_Name: $companyName
       owner_name: $ownerName
-      avatar: $avatar
+      file: $file
       company_type: $companyType
       address: $address
       phone: $phone
