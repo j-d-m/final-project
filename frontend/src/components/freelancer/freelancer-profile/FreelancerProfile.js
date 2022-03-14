@@ -7,6 +7,7 @@ import { GET_ONE_USER } from "../../../graphQL/Queries";
 import "../../../styles/freelancerProfileStyle.scss";
 import DeleteFreelancerAccount from "./DeleteFreelancerAccount";
 import FreelancerUpdateProfile from "./FreelancerUpdateProfile";
+import { AiOutlineEdit, AiOutlineDelete, AiOutlineUnorderedList } from 'react-icons/ai';
 
 export default function FreelancerProfile() {
   const navigate = useNavigate();
@@ -103,13 +104,13 @@ export default function FreelancerProfile() {
                   <section>
                     <div className="ModalBtnFreelancerProfile">
                       <Button
+                        type="button"
+                        className="btn btn-secondary btn-circle btn-xl"
                         id={id}
-                        variant="secondary"
                         onClick={() => {
                           setModalShow(true);
                         }}
-                      >
-                        Edit Profile
+                      ><AiOutlineEdit /><span>Edit</span>
                       </Button>
                       <FreelancerUpdateProfile
                         show={modalShow}
@@ -118,12 +119,12 @@ export default function FreelancerProfile() {
 
                       <Button
                         id={id}
-                        variant="secondary"
+                        className="btn btn-secondary btn-circle btn-xl"
                         onClick={() => {
                           setModalShow1(true);
                         }}
-                      >
-                        Delete Account
+                      > <AiOutlineDelete /><span>Delete</span>
+                        
                       </Button>
 
                       <DeleteFreelancerAccount
@@ -132,9 +133,8 @@ export default function FreelancerProfile() {
                       />
                       <Button
                         onClick={() => navigate("/home")}
-                        variant="secondary"
-                      >
-                        Check Jobs
+                        className="btn btn-secondary btn-circle btn-xl"
+                      > <AiOutlineUnorderedList/><span>Jobs</span>
                       </Button>
                     </div>
                   </section>

@@ -104,7 +104,7 @@ export default function Home() {
           <div className="jobs-combo-box">
             <IntApiCarousel />
             <ThreeSteps />
-            <ExtApiCarousel />
+            {/* <ExtApiCarousel /> */}
           </div>
         </div>
       )}
