@@ -35,10 +35,7 @@ export default function Home() {
       item.job_description.toLowerCase().includes(inputTitleValue.toLowerCase()) ||
       item.created_by.company_Name.toLowerCase().includes(inputTitleValue.toLowerCase()));
 
-
-
-
-    if (inputTitleValue.length > 2 && filterTitle.length > 0) {
+    if (inputTitleValue.length > 0 && filterTitle.length > 0) {
       setInputValue(filterTitle);
       setIsTitleFilter(true);
     } else {
@@ -54,7 +51,6 @@ export default function Home() {
       });
       setIsTitleFilter(false);
     }
-
   };
 
   if (loading) {
@@ -97,7 +93,6 @@ export default function Home() {
                   />
                 </form>
               </div>
-
             </div>
             <div className="jobSearchBox">
               {isTitleFilter &&
@@ -106,11 +101,10 @@ export default function Home() {
                 ))}
             </div>
           </section>
-
           <div className="jobs-combo-box">
             <IntApiCarousel />
             <ThreeSteps />
-            {/* <ExtApiCarousel /> */}
+            <ExtApiCarousel />
           </div>
         </div>
       )}
