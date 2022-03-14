@@ -11,15 +11,11 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-
-  // .separator {
-  //   width: 100%;
-  // }
 }
 
 .searchCard-card {
-  height: 25vh;
-  width: 25vh;
+  height: 220px;
+  width: 310px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,46 +32,8 @@
     transform: scale(1.1);
   }
 
-  @include mobile-small {
-    height: 45vh;
-    width: 80vw;
-  }
-}
-
-button.rec-dot {
-  background-color: $color-pinky;
-  box-shadow: 0 0 1px 3px rgba(82, 95, 89, 0.5);
-}
-
-button.rec-dot:hover,
-button.rec-dot:active,
-button.rec-dot:focus {
-  background-color: $color-green;
-  box-shadow: 0 0 1px 3px rgba(82, 95, 89, 0.5);
-}
-
-//Carousel Arrows
-
-.jRFJkP {
-  background-color: $color-pinky !important;
-
-  @include mobile-small {
-    display: none;
-  }
-
-  &:hover {
-    background-color: $color-green !important;
-  }
-}
-
-.cNNJIt {
-  background-color: $color-pinky !important;
-
-  @include mobile-small {
-    display: none;
-  }
-
-  &:hover {
-    background-color: $color-green !important;
-  }
+  // @include mobile-small {
+  //   height: 45vh;
+  //   width: 80vw;
+  // }
 }

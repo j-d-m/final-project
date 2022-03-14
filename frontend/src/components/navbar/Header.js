@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import avatar from "../../assets/img/avatar.jpg";
 import logo from "../../assets/img/logo.svg";
-import hiring from "../../assets/img/hiring.svg";
 import { AiOutlineLogin } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/header.scss";
