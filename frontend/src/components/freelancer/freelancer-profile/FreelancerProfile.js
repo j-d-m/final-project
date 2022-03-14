@@ -11,7 +11,10 @@ import { AiOutlineEdit, AiOutlineDelete, AiOutlineUnorderedList } from 'react-ic
 
 export default function FreelancerProfile() {
   const navigate = useNavigate();
-  const { freelancerLoginData, setFreelancerLoginData } = useContext(MyContext);
+  const { freelancerLoginData, setFreelancerLoginData, jobAccepted } =
+    useContext(MyContext);
+  //logging result of the job contact from to pass it to the profile on successful contact of the company
+  console.log(jobAccepted);
   const [modalShow, setModalShow] = useState();
   const [modalShow1, setModalShow1] = useState();
   const { loading, error, data } = useQuery(GET_ONE_USER, {
@@ -42,7 +45,9 @@ export default function FreelancerProfile() {
               hourly_rate,
               description,
               avatar,
+              favorite,
             } = data.getOneUser;
+            console.log(data);
             return (
               <>
                 <div className="Freelance-Avatar">
@@ -53,10 +58,12 @@ export default function FreelancerProfile() {
                 </div>
 
                 <div className="Freelance-Right">
-
                   <div className="textProfile">
                     <h1>Your Staff Room Profile</h1>
-                    <p>here you can edit your profile, delete account or go to the job search page</p>
+                    <p>
+                      here you can edit your profile, delete account or go to
+                      the job search page
+                    </p>
                   </div>
 
                   <div>
@@ -77,6 +84,22 @@ export default function FreelancerProfile() {
                   </div>
                   <div>
                     <p>Your position : {description}</p>
+                  </div>
+                  <div className="JobHistory">
+                    {favorite.length === 0 ? (
+                      <p>you have not applied for any jobs</p>
+                    ) : (
+                      <section>
+                        {favorite.map((job) => {
+                          return (
+                            <div>
+                              <h5>{job.job_Title}</h5>
+                              <p>{job.start_Date}</p>
+                            </div>
+                          );
+                        })}
+                      </section>
+                    )}
                   </div>
                   <section>
                     <div className="ModalBtnFreelancerProfile">

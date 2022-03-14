@@ -11,6 +11,7 @@ function ContextContainer({ children }) {
   const [freelancerLoginData, setFreelancerLoginData] = useState({});
   const [freelancerFind, setFreelancerFind] = useState({});
   const [oneCompanyJob, setOneCompanyJob] = useState({});
+  const [jobAccepted, setJobAccepted] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -101,6 +102,8 @@ function ContextContainer({ children }) {
         setFreelancerFind,
         oneCompanyJob,
         setOneCompanyJob,
+        jobAccepted,
+        setJobAccepted,
       }}
     >
       {children}
