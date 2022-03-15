@@ -34,12 +34,12 @@ export default function Header() {
           <img
             alt=""
             src={logo}
-            width="42"
-            height="42"
-            className="d-inline-block align-top"
-          />
-          STAFF ROOM{" "}
-          <p className="slogan-text"> GASTRONOMY JOBS / PEOPLE WHEN YOU NEED</p>
+            width="60"
+            height="60"
+            className="d-inline-block align-center"
+          /> <span>STAFF ROOM{" "}</span> 
+         
+          
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

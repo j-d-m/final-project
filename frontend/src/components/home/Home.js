@@ -23,6 +23,9 @@ import ExtApiCarousel from "./ExtApiCarousel";
 import FreelancerHome from "./FreelancerHome";
 import ThreeSteps from "./ThreeSteps";
 import SearchCard from "./SearchCard";
+import "animate.css";
+
+
 
 export default function Home() {
   const BgArray = [background1, background2, background3, background4, background5]
@@ -103,6 +106,16 @@ export default function Home() {
 
             }}
           >
+
+                  <h4
+                  className="animate__animated animate__fadeInLeftBig animate__delay-2s"
+                  > GASTRONOMY JOBS 
+                  </h4>
+                  <h5
+                  className="animate__animated animate__fadeInLeftBig animate__delay-3s animate__repeat-2"
+                  > PEOPLE WHEN YOU NEED
+                  </h5>
+
             <div className="search-fields">
               <form onSubmit={searchHandler}>
                 <input
@@ -132,5 +145,6 @@ export default function Home() {
         </div>
       </div>
     </>
-  );
+  
+  )
 }
