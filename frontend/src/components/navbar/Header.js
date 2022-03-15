@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
-import avatar from "../../assets/img/avatar.jpg";
+import avatar from "../../assets/img/avatar-placeholder.png";
 import logo from "../../assets/img/logo.svg";
 import { AiOutlineLogin } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
