@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MyContext } from "../../../Context/Context";
 import { GET_ONE_COMPANY } from "../../../graphQL/Queries";
@@ -16,11 +16,11 @@ import {
 import { GiCook } from "react-icons/gi";
 
 export default function CompanyProfile() {
-  const [companyImage, setCompanyImage] = useState(null);
   const navigate = useNavigate();
   const { companyLoginData, setCompanyLoginData } = useContext(MyContext);
   const [modalShow, setModalShow] = useState();
   const [modalShow1, setModalShow1] = useState();
+  const [companyImage, setCompanyImage] = useState(null);
 
   const { loading, error, data } = useQuery(GET_ONE_COMPANY, {
     variables: { getOneCompanyId: companyLoginData.id },
@@ -111,6 +111,7 @@ export default function CompanyProfile() {
                       <CompanyUpdateProfile
                         show={modalShow}
                         onHide={() => setModalShow(false)}
+                        image={companyImage}
                       />
                       <Button
                         id={id}
@@ -141,7 +142,7 @@ export default function CompanyProfile() {
                         className="btn btn-secondary btn-circle btn-xl"
                       >
                         <GiCook />
-                        <span>Staffs</span>
+                        <span>Staff</span>
                       </Button>
                       <Button
                         value="Jobs List"
@@ -155,29 +156,6 @@ export default function CompanyProfile() {
                       </Button>
                     </div>
                   </section>
-
-                  <Button
-                    variant="secondary"
-                    value="Post a Job"
-                    onClick={() => navigate("/company-profile/create-job")}
-                  >
-                    {" "}
-                    Post Job
-                  </Button>
-                  <Button
-                    value="Check freelancers"
-                    onClick={() => navigate("/home")}
-                    variant="secondary"
-                  >
-                    Check Freelancers
-                  </Button>
-                  <Button
-                    value="Jobs List"
-                    variant="secondary"
-                    onClick={() => navigate("/company-profile/company-jobs")}
-                  >
-                    Job lists
-                  </Button>
                 </div>
               </>
             );
