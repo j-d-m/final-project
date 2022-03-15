@@ -1,10 +1,16 @@
-import { useMutation } from "@apollo/client";
+//Native Imports
 import React, { useContext } from "react";
-import { Button, Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+
+//External Imports
+import { useMutation } from "@apollo/client";
+import { Button, Modal } from "react-bootstrap";
 import Swal from "sweetalert2";
+
+//Internal Imports
 import { MyContext } from "../../../Context/Context";
 import { DELETE_COMPANY } from "../../../graphQL/Mutations";
+import hotelCheckout from "../../../assets/img/hotelCheckout.svg"
 
 function DeleteCompanyAccount(props) {
   const navigate = useNavigate();
@@ -37,16 +43,25 @@ function DeleteCompanyAccount(props) {
     <div>
       <Modal {...props} size="m" centered className="companyProfileUpdate">
         <Modal.Body className="text-center">
-          <h4>Are you sure you want to Delete your company account</h4>
+          <h4>Leaving us?  </h4>
+          <img alt="" src={hotelCheckout} width="150" height="150" className="" />
+          <hr />
+          <p> Are you sure you want to delete this COMPANY account?</p>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
-          <input
-            type="submit"
-            value="Delete"
-            className="btn btn-danger"
+          <Button
+            onClick={props.onHide}
+            variant="secondary"
+            className="btn-block"
+          >
+            Close
+          </Button>
+          <Button
+            className="btn-block btn-pepper"
             onClick={deleteAccount}
-          />
+          >
+            Delete
+          </Button>
         </Modal.Footer>
       </Modal>
     </div>
