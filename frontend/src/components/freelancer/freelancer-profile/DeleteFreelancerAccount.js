@@ -47,11 +47,11 @@ function DeleteFreelancerAccount(props) {
   };
   return (
     <div>
-      <Modal {...props} size="md" centered className="ProfileUpdate">
+      <Modal {...props} size="lg" centered className="ProfileUpdate">
         <Modal.Body className="text-center">
           <h4>Leaving us?</h4>
           <img alt="" src={hotelCheckout} width="150" height="150" className="" />
-<hr />
+          <hr />
           <p> Are you sure you want to delete this FREELANCER account?</p>
         </Modal.Body>
         <Modal.Footer>

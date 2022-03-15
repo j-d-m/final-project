@@ -1,0 +1,10 @@
+@import "./fonts";
+
+.create-jobs-title {
+  h3 {
+    font-family: $font-family-Bebas;
+    letter-spacing: 2px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+}
