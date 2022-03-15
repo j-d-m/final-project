@@ -14,6 +14,8 @@ export default function Header() {
     isFreelancerLogin,
     setIsCompanyLogin,
     setIsFreelancerLogin,
+    companyLoginData,
+    freelancerLoginData,
   } = useContext(MyContext);
 
   const companyLogout = () => {
@@ -37,9 +39,8 @@ export default function Header() {
             width="60"
             height="60"
             className="d-inline-block align-center"
-          /> <span>STAFF ROOM{" "}</span> 
-         
-          
+          />{" "}
+          <span>STAFF ROOM </span>
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -123,7 +124,7 @@ export default function Header() {
                     value="Logout"
                     onClick={companyLogout}
                     className="logoutCompanyBtn ms-3"
-                  // ms-3 (margin-left: 3px) added to fix style after <NavDropdown.Item> was removed
+                    // ms-3 (margin-left: 3px) added to fix style after <NavDropdown.Item> was removed
                   />
                   {/* </NavDropdown.Item> */}
                   <NavDropdown.Item as={Link} to="/company-profile">
@@ -159,13 +160,31 @@ export default function Header() {
               </>
             )}
           </Nav>
-          <img
-            className="ms-5 DisappearI"
-            width="50"
-            height="50"
-            src={avatar}
-            alt=""
-          />{" "}
+          {isCompanyLogin ? (
+            <img
+              className="ms-5 DisappearI"
+              width="50"
+              height="50"
+              src={companyLoginData.avatar}
+              alt="img"
+            />
+          ) : isFreelancerLogin ? (
+            <img
+              className="ms-5 DisappearI"
+              width="50"
+              height="50"
+              src={freelancerLoginData.avatar}
+              alt="img"
+            />
+          ) : (
+            <img
+              className="ms-5 DisappearI"
+              width="50"
+              height="50"
+              src={avatar}
+              alt="img"
+            />
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>
