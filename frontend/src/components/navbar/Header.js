@@ -165,7 +165,7 @@ export default function Header() {
               className="ms-5 DisappearI"
               width="50"
               height="50"
-              src={companyLoginData.avatar}
+              src={companyLoginData?.avatar}
               alt="img"
             />
           ) : isFreelancerLogin ? (
@@ -173,7 +173,7 @@ export default function Header() {
               className="ms-5 DisappearI"
               width="50"
               height="50"
-              src={freelancerLoginData.avatar}
+              src={freelancerLoginData?.avatar}
               alt="img"
             />
           ) : (
