@@ -175,7 +175,7 @@ export const UPDATE_USER = gql`
     $updateUserId: ID!
     $firstName: String
     $lastName: String
-    $avatar: String
+    $file: Upload
     $email: String
     $password: String
     $phone: String
@@ -186,7 +186,7 @@ export const UPDATE_USER = gql`
       id: $updateUserId
       first_name: $firstName
       last_name: $lastName
-      avatar: $avatar
+      file: $file
       email: $email
       password: $password
       phone: $phone

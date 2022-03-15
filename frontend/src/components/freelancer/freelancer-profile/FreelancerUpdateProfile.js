@@ -13,48 +13,57 @@ function FreelancerUpdateProfile(props) {
     refetchQueries: GET_ONE_USER,
     awaitRefetchQueries: true,
   });
-  console.log("====================================");
-  console.log(freelancerLoginData);
-  console.log("====================================");
+
   const updateProfile = (e) => {
     e.preventDefault();
+
     let firstName, lastName, hourlyRate, phone, email, password, description;
     if (
       e.target.firstName.value !== undefined &&
       e.target.firstName.value !== ""
     ) {
       firstName = e.target.firstName.value;
-    } else if (
+    }
+
+    if (
       e.target.lastName.value !== undefined &&
       e.target.lastName.value !== ""
     ) {
       lastName = e.target.lastName.value;
-    } else if (
-      e.target.email.value !== undefined &&
-      e.target.email.value !== ""
-    ) {
+    }
+    if (e.target.email.value !== undefined && e.target.email.value !== "") {
       email = e.target.email.value;
-    } else if (
+    }
+    if (
       e.target.password.value !== undefined &&
       e.target.password.value !== ""
     ) {
       password = e.target.password.value;
-    } else if (
+    }
+    if (
       e.target.hourlyRate.value !== undefined &&
       e.target.hourlyRate.value !== ""
     ) {
       hourlyRate = Number(e.target.hourlyRate.value);
-    } else if (
-      e.target.phone.value !== undefined &&
-      e.target.phone.value !== ""
-    ) {
+    }
+    if (e.target.phone.value !== undefined && e.target.phone.value !== "") {
       phone = e.target.phone.value;
-    } else if (
+    }
+    if (
       e.target.description.value !== undefined &&
       e.target.description.value !== ""
     ) {
       description = e.target.description.value;
-    } else {
+    }
+    if (
+      firstName &&
+      lastName &&
+      hourlyRate &&
+      phone &&
+      email &&
+      password &&
+      description === undefined
+    ) {
       Swal.fire({
         position: "top",
         icon: "error",
@@ -107,7 +116,7 @@ function FreelancerUpdateProfile(props) {
           <form className="container modalForm" onSubmit={updateProfile}>
             <div className="modalDiv form-group">
               <div>
-                <label for="inputOne1">First Name :</label>
+                <label htmlFor="inputOne1">First Name :</label>
                 <input
                   id="inputOne1"
                   className="form-control"
@@ -117,7 +126,7 @@ function FreelancerUpdateProfile(props) {
                 />
               </div>
               <div>
-                <label for="inputTwo2">Last Name :</label>
+                <label htmlFor="inputTwo2">Last Name :</label>
                 <input
                   id="inputTwo2"
                   className="form-control"
@@ -129,7 +138,7 @@ function FreelancerUpdateProfile(props) {
             </div>
             <div className="modalDiv">
               <div>
-                <label for="inputThree3">Email :</label>
+                <label htmlFor="inputThree3">Email :</label>
                 <input
                   id="inputThree3"
                   className="form-control"
@@ -139,7 +148,7 @@ function FreelancerUpdateProfile(props) {
                 />
               </div>
               <div>
-                <label for="inputFour4">Password :</label>
+                <label htmlFor="inputFour4">Password :</label>
                 <input
                   id="inputFour4"
                   className="form-control"
@@ -151,7 +160,7 @@ function FreelancerUpdateProfile(props) {
             </div>
             <div className="modalDiv">
               <div>
-                <label for="inputFive5">hourly_rate:</label>
+                <label htmlFor="inputFive5">hourly_rate:</label>
                 <input
                   id="inputFive5"
                   className="form-control"
@@ -161,7 +170,7 @@ function FreelancerUpdateProfile(props) {
                 />
               </div>
               <div>
-                <label for="inputSix6">Phone :</label>
+                <label htmlFor="inputSix6">Phone :</label>
                 <input
                   id="inputSix6"
                   className="form-control"
@@ -181,7 +190,9 @@ function FreelancerUpdateProfile(props) {
               />
             </div>
             <Modal.Footer>
-              <Button variant="secondary" onClick={props.onHide}>Close</Button>
+              <Button variant="secondary" onClick={props.onHide}>
+                Close
+              </Button>
               <input type="submit" value="Save" className="btn btn-secondary" />
             </Modal.Footer>
           </form>

@@ -23,7 +23,6 @@ import CompanyUpdateProfile from "./CompanyUpdateProfile";
 import CompanyCreateJob from "../company-profile/company-create-job/CreateJob";
 import "../../../styles/companyProfile.scss";
 
-
 export default function CompanyProfile() {
   const navigate = useNavigate();
   const { companyLoginData, setCompanyLoginData } = useContext(MyContext);
@@ -35,7 +34,6 @@ export default function CompanyProfile() {
     useMutation(UPDATE_COMPANY);
   const updateAvatar = (e) => {
     e.preventDefault();
-
     UpdateCompany({
       variables: {
         updateCompanyId: companyLoginData.id,
@@ -151,7 +149,6 @@ export default function CompanyProfile() {
                       <CompanyUpdateProfile
                         show={modalShowEdit}
                         onHide={() => setModalShowEdit(false)}
-                        image={companyImage}
                       />
                       <Button
                         id={id}
@@ -182,7 +179,7 @@ export default function CompanyProfile() {
                       <CompanyCreateJob
                         show={modalShowCreate}
                         onHide={() => setModalShowCreate(false)}
-                      // image={companyImage}
+                        // image={companyImage}
                       />
                       <Button
                         value="Check freelancers"

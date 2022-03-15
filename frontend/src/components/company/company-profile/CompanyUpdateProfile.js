@@ -39,37 +39,40 @@ function CompanyUpdateProfile(props) {
       e.target.companyName.value !== ""
     ) {
       companyName = e.target.companyName.value;
-    } else if (
-      e.target.owner.value !== undefined &&
-      e.target.owner.value !== ""
-    ) {
+    }
+    if (e.target.owner.value !== undefined && e.target.owner.value !== "") {
       owner = e.target.owner.value;
-    } else if (
-      e.target.email.value !== undefined &&
-      e.target.email.value !== ""
-    ) {
+    }
+    if (e.target.email.value !== undefined && e.target.email.value !== "") {
       email = e.target.email.value;
-    } else if (
+    }
+    if (
       e.target.password.value !== undefined &&
       e.target.password.value !== ""
     ) {
       password = e.target.password.value;
-    } else if (
-      e.target.address.value !== undefined &&
-      e.target.address.value !== ""
-    ) {
+    }
+    if (e.target.address.value !== undefined && e.target.address.value !== "") {
       address = e.target.address.value;
-    } else if (
-      e.target.phone.value !== undefined &&
-      e.target.phone.value !== ""
-    ) {
+    }
+    if (e.target.phone.value !== undefined && e.target.phone.value !== "") {
       phone = e.target.phone.value;
-    } else if (
+    }
+    if (
       e.target.description.value !== undefined &&
       e.target.description.value !== ""
     ) {
       description = e.target.description.value;
-    } else {
+    }
+    if (
+      companyName &&
+      owner &&
+      address &&
+      phone &&
+      email &&
+      password &&
+      description === undefined
+    ) {
       Swal.fire({
         position: "top",
         icon: "error",
