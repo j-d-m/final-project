@@ -4,6 +4,7 @@ import { GET_USERS } from "../../graphQL/Queries";
 import "../../styles/freelancerProfileStyle.scss";
 import { MyContext } from "../../Context/Context";
 import { useNavigate } from "react-router-dom";
+import "../../styles/freelanceHome.scss";
 
 export default function FreelancerHome() {
   const navigate = useNavigate();
@@ -24,27 +25,29 @@ export default function FreelancerHome() {
   };
 
   return (
-    <div className="freelancer">
+    <div className="F">
       {data &&
         data.getUsers.map((user) => {
           return (
-            <section
-              className="CardUser animate__animated animate__backInLeft"
-              key={user.id}
-            >
-              <img src={user.avatar} alt="img" width="150px" height="150px" />
+            <section className="MainContainer" key={user.id}>
               <div className="bodyCard">
+                <img src={user.avatar} alt="img" />
                 <h2 className="name">{`${user.first_name} ${user.last_name}`}</h2>
-                <p> {user.email}</p>
-                <input
-                  type="button"
-                  value="contact"
-                  className="Btn"
-                  onClick={() => contactFreelancer(user.id)}
-                />
+                <p> Freelancer's Email: {user.email}</p>
+                <p> Freelancer's Phone: {user.phone}</p>
+                <div className="OpenContact">
+                  <input
+                    type="button"
+                    value="contact this freelancer"
+                    className="Btn"
+                    onClick={() => contactFreelancer(user.id)}
+                  />
+                </div>
               </div>
-              <div className="description">
-                <p>Description</p>
+              <div className="Description Skills">
+                <h5>
+                  {user.first_name} is a looking for / has experience doing:
+                </h5>{" "}
                 <p>{user.description}</p>
               </div>
             </section>

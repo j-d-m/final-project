@@ -18,7 +18,6 @@ const middlewareLink = new ApolloLink((operation, forward) => {
       token: localStorage.getItem("token") || null,
     },
   });
-
   return forward(operation);
 });
 

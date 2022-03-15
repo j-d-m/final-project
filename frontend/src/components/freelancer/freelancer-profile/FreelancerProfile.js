@@ -139,6 +139,7 @@ export default function FreelancerProfile() {
                           return (
                             <div>
                               <h5>{job.job_Title}</h5>
+                              <p>{job.company_Name}</p>
                               <p>{job.start_Date}</p>
                             </div>
                           );
