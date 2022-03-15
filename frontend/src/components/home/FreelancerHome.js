@@ -4,6 +4,7 @@ import { GET_USERS } from "../../graphQL/Queries";
 import "../../styles/freelancerProfileStyle.scss";
 import { MyContext } from "../../Context/Context";
 import { useNavigate } from "react-router-dom";
+import "../../styles/freelanceHome.scss";
 
 export default function FreelancerHome() {
   const navigate = useNavigate();
@@ -24,28 +25,31 @@ export default function FreelancerHome() {
   };
 
   return (
-    <div className="freelancer">
+    <div className="freelancer container-fluid ">
       {data &&
         data.getUsers.map((user) => {
           return (
             <section
-              className="CardUser animate__animated animate__backInLeft"
+              className="CardUser animate__animated animate__backInLeft 
+              MainContainer"
               key={user.id}
             >
-              <img src={user.avatar} alt="img" width="150px" height="150px" />
               <div className="bodyCard">
+                <img src={user.avatar} alt="img" width="150px" height="150px" />
                 <h2 className="name">{`${user.first_name} ${user.last_name}`}</h2>
-                <p> {user.email}</p>
+                <p> freelancer's Email: {user.email}</p>
+              </div>
+              <div className="description Skills">
+                <h5>They are a looking for / have experience with:</h5>{" "}
+                <p>{user.description}</p>
+              </div>
+              <div className="OpenContact">
                 <input
                   type="button"
                   value="contact"
                   className="Btn"
                   onClick={() => contactFreelancer(user.id)}
                 />
-              </div>
-              <div className="description">
-                <p>Description</p>
-                <p>{user.description}</p>
               </div>
             </section>
           );

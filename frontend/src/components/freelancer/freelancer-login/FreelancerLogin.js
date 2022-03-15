@@ -34,7 +34,7 @@ export default function FreeLancerLogin() {
           customClass: "swal-width",
         });
         setIsFreelancerLogin(true);
-        navigate(-1);
+        navigate("/");
       }
     });
   };
@@ -54,9 +54,7 @@ export default function FreeLancerLogin() {
         </div>
         <div className="mb-3">
           <label className="form-label">Password</label>
-          <input name="password"
-            type="password"
-            className="form-control" />
+          <input name="password" type="password" className="form-control" />
         </div>
         <button type="submit" className="btn btn-secondary">
           Submit

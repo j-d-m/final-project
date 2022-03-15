@@ -7,13 +7,18 @@ import { GET_ONE_USER } from "../../../graphQL/Queries";
 import "../../../styles/freelancerProfileStyle.scss";
 import DeleteFreelancerAccount from "./DeleteFreelancerAccount";
 import FreelancerUpdateProfile from "./FreelancerUpdateProfile";
-import { AiOutlineEdit, AiOutlineDelete, AiOutlineUnorderedList } from 'react-icons/ai';
+import {
+  AiOutlineEdit,
+  AiOutlineDelete,
+  AiOutlineUnorderedList,
+} from "react-icons/ai";
 
 export default function FreelancerProfile() {
   const navigate = useNavigate();
   const { freelancerLoginData, setFreelancerLoginData, jobAccepted } =
     useContext(MyContext);
   //logging result of the job contact from to pass it to the profile on successful contact of the company
+  //TODO - Freelancer favorite
   console.log(jobAccepted);
   const [modalShow, setModalShow] = useState();
   const [modalShow1, setModalShow1] = useState();
@@ -94,6 +99,7 @@ export default function FreelancerProfile() {
                           return (
                             <div>
                               <h5>{job.job_Title}</h5>
+                              <p>{job.company_Name}</p>
                               <p>{job.start_Date}</p>
                             </div>
                           );
@@ -110,7 +116,9 @@ export default function FreelancerProfile() {
                         onClick={() => {
                           setModalShow(true);
                         }}
-                      ><AiOutlineEdit /><span>Edit</span>
+                      >
+                        <AiOutlineEdit />
+                        <span>Edit</span>
                       </Button>
                       <FreelancerUpdateProfile
                         show={modalShow}
@@ -123,8 +131,10 @@ export default function FreelancerProfile() {
                         onClick={() => {
                           setModalShow1(true);
                         }}
-                      > <AiOutlineDelete /><span>Delete</span>
-                        
+                      >
+                        {" "}
+                        <AiOutlineDelete />
+                        <span>Delete</span>
                       </Button>
 
                       <DeleteFreelancerAccount
@@ -134,7 +144,10 @@ export default function FreelancerProfile() {
                       <Button
                         onClick={() => navigate("/home")}
                         className="btn btn-secondary btn-circle btn-xl"
-                      > <AiOutlineUnorderedList/><span>Jobs</span>
+                      >
+                        {" "}
+                        <AiOutlineUnorderedList />
+                        <span>Jobs</span>
                       </Button>
                     </div>
                   </section>

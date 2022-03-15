@@ -1,0 +1,27 @@
+@import "./fonts";
+@import "./mobile";
+@import "./buttons";
+
+.MainContainer {
+  // border: 1px solid red;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  flex: 1;
+
+  .Skills {
+    border: 1px solid red;
+    flex: 1;
+  }
+
+  .bodyCard {
+    border: 1px solid green;
+  }
+  .OpenContact {
+    border: 3px solid yellow;
+    height: 100%;
+    width: 150px;
+    display: flex;
+  }
+}
