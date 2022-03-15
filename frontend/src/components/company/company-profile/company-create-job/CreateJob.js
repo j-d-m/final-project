@@ -108,7 +108,7 @@ function CreateJob(props) {
               <input name="endDate" type="date" className="form-control" />
             </div>
             <div className="mb-3">
-              <label className="form-label">Amount of people needed</label>
+              <label className="form-label">Amount of People Needed</label>
               <input
                 name="numOfPeopleNeeded"
                 type="number"
