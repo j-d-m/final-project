@@ -1,27 +1,33 @@
-@import './fonts';
+@import "./fonts";
 
 @mixin button {
-            background: $color-green;
-            font-family: $font-family-Roboto;
-            font-size: 19.5px;
-            border-radius: 20px;
-            color: $color-white;
-            cursor: pointer;
-            border: none;
-            margin-top: 1rem;
-            margin-left: 1.5rem;
-            padding: 10px 1rem;
-            opacity: 1;
-            transition: 0.3s ease-in-out;
+  background: $color-green;
+  font-family: $font-family-Roboto;
+  font-size: 19.5px;
+  border-radius: 20px;
+  color: $color-white;
+  cursor: pointer;
+  border: none;
+  margin-top: 1rem;
+  margin-left: 1.5rem;
+  padding: 10px 1rem;
+  opacity: 1;
+  transition: 0.3s ease-in-out;
 
-            &:hover {
-            color: $color-white;
-            background-color: $color-dark;
-            opacity: 0.6;
-        }
-      
+  &:hover {
+    color: $color-white;
+    background-color: $color-dark;
+    opacity: 0.6;
+  }
 
-            @include mobile {
-                    margin-left: 0;
-            }
-    }
+  @include mobile {
+    margin-left: 0;
+  }
+}
+
+.btn-pepper {
+  background: rgba($color-pepper, 0.9);
+  &:hover {
+    background: $color-pepper;
+  }
+}

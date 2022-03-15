@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
-import avatar from "../../assets/img/avatar.jpg";
+import avatar from "../../assets/img/avatar-placeholder.png";
 import logo from "../../assets/img/logo.svg";
 import { AiOutlineLogin } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
@@ -14,6 +14,8 @@ export default function Header() {
     isFreelancerLogin,
     setIsCompanyLogin,
     setIsFreelancerLogin,
+    companyLoginData,
+    freelancerLoginData,
   } = useContext(MyContext);
 
   const companyLogout = () => {
@@ -34,12 +36,11 @@ export default function Header() {
           <img
             alt=""
             src={logo}
-            width="42"
-            height="42"
-            className="d-inline-block align-top"
-          />
-          STAFF ROOM{" "}
-          <p className="slogan-text"> GASTRONOMY JOBS / PEOPLE WHEN YOU NEED</p>
+            width="60"
+            height="60"
+            className="d-inline-block align-center"
+          />{" "}
+          <span>STAFF ROOM </span>
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -123,7 +124,7 @@ export default function Header() {
                     value="Logout"
                     onClick={companyLogout}
                     className="logoutCompanyBtn ms-3"
-                  // ms-3 (margin-left: 3px) added to fix style after <NavDropdown.Item> was removed
+                    // ms-3 (margin-left: 3px) added to fix style after <NavDropdown.Item> was removed
                   />
                   {/* </NavDropdown.Item> */}
                   <NavDropdown.Item as={Link} to="/company-profile">
@@ -159,13 +160,31 @@ export default function Header() {
               </>
             )}
           </Nav>
-          <img
-            className="ms-5 DisappearI"
-            width="50"
-            height="50"
-            src={avatar}
-            alt=""
-          />{" "}
+          {isCompanyLogin ? (
+            <img
+              className="ms-5 DisappearI"
+              width="50"
+              height="50"
+              src={companyLoginData?.avatar}
+              alt="img"
+            />
+          ) : isFreelancerLogin ? (
+            <img
+              className="ms-5 DisappearI"
+              width="50"
+              height="50"
+              src={freelancerLoginData?.avatar}
+              alt="img"
+            />
+          ) : (
+            <img
+              className="ms-5 DisappearI"
+              width="50"
+              height="50"
+              src={avatar}
+              alt="img"
+            />
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>

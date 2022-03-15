@@ -7,11 +7,6 @@
   display: inline;
 }
 
-.slogan-text {
-  font-size: 18px;
-  font-family: $font-family-Bebas;
-}
-
 .DisappearI {
   object-fit: cover;
   border-radius: 50%;
@@ -22,6 +17,14 @@
   }
 }
 .logoutCompanyBtn {
+  outline: none;
+  border: none;
+  background: none;
+  &:focus {
+    background: none;
+  }
+}
+.logoutFreelancerBtn {
   outline: none;
   border: none;
   background: none;

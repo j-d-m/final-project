@@ -25,31 +25,30 @@ export default function FreelancerHome() {
   };
 
   return (
-    <div className="freelancer container-fluid ">
+    <div className="F">
       {data &&
         data.getUsers.map((user) => {
           return (
-            <section
-              className="CardUser animate__animated animate__backInLeft 
-              MainContainer"
-              key={user.id}
-            >
+            <section className="MainContainer" key={user.id}>
               <div className="bodyCard">
-                <img src={user.avatar} alt="img" width="150px" height="150px" />
+                <img src={user.avatar} alt="img" />
                 <h2 className="name">{`${user.first_name} ${user.last_name}`}</h2>
-                <p> freelancer's Email: {user.email}</p>
+                <p> Freelancer's Email: {user.email}</p>
+                <p> Freelancer's Phone: {user.phone}</p>
+                <div className="OpenContact">
+                  <input
+                    type="button"
+                    value="contact this freelancer"
+                    className="Btn"
+                    onClick={() => contactFreelancer(user.id)}
+                  />
+                </div>
               </div>
-              <div className="description Skills">
-                <h5>They are a looking for / have experience with:</h5>{" "}
+              <div className="Description Skills">
+                <h5>
+                  {user.first_name} is a looking for / has experience doing:
+                </h5>{" "}
                 <p>{user.description}</p>
-              </div>
-              <div className="OpenContact">
-                <input
-                  type="button"
-                  value="contact"
-                  className="Btn"
-                  onClick={() => contactFreelancer(user.id)}
-                />
               </div>
             </section>
           );

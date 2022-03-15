@@ -15,3 +15,17 @@ h2,
 p {
   font-family: $font-family-Roboto;
 }
+
+//changes all placeholders to Italic
+::-webkit-input-placeholder {
+  font-style: italic;
+}
+:-moz-placeholder {
+  font-style: italic;
+}
+::-moz-placeholder {
+  font-style: italic;
+}
+:-ms-input-placeholder {
+  font-style: italic;
+}

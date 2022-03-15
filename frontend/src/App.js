@@ -2,56 +2,110 @@
 import { Routes, Route } from "react-router-dom";
 
 // External imports
-
+import { lazy, Suspense } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ContextContainer from "./Context/ContextContainer";
-
-//Component imports
 import "./styles/App.scss";
-import Home from "./components/home/Home";
-import Header from "./components/navbar/Header";
-import PageNotFound from "./components/not-found/NotFound";
-import Footer from "./components/footer/Footer";
-import CompanyLogin from "./components/company/company-login/CompanyLogin";
-import CompanySignUp from "./components/company/company-sign-up/CompanySignUp";
-import FreeLancerLogin from "./components/freelancer/freelancer-login/FreelancerLogin";
-import FreelancerProfile from "./components/freelancer/freelancer-profile/FreelancerProfile";
-import FreelancerSignUp from "./components/freelancer/freelancer-sign-up/FreelancerSignUp";
-import CompanyProfile from "./components/company/company-profile/CompanyProfile";
-import CreateJob from "./components/company/company-profile/company-create-job/CreateJob";
-import FreelancerView from "./components/freelancer/freelancer-profile/FreelancerView";
-import CompanyJobs from "./components/company/company-profile/company-see-all-jobs/CompanyJobs";
-import FreelancerHome from "./components/home/FreelancerHome";
+
+const HomeComponent = lazy(() => import("./components/home/Home"));
+
+const HeaderComponent = lazy(() => import("./components/navbar/Header"));
+
+const PageNotFoundComponent = lazy(() =>
+  import("./components/not-found/NotFound")
+);
+const FooterComponent = lazy(() => import("./components/footer/Footer"));
+const CompanyLoginComponent = lazy(() =>
+  import("./components/company/company-login/CompanyLogin")
+);
+const CompanySignUpComponent = lazy(() =>
+  import("./components/company/company-sign-up/CompanySignUp")
+);
+const FreeLancerLoginComponent = lazy(() =>
+  import("./components/freelancer/freelancer-login/FreelancerLogin")
+);
+const FreelancerProfileComponent = lazy(() =>
+  import("./components/freelancer/freelancer-profile/FreelancerProfile")
+);
+const FreelancerSignUpComponent = lazy(() =>
+  import("./components/freelancer/freelancer-sign-up/FreelancerSignUp")
+);
+const CompanyProfileComponent = lazy(() =>
+  import("./components/company/company-profile/CompanyProfile")
+);
+const CreateJobComponent = lazy(() =>
+  import("./components/company/company-profile/company-create-job/CreateJob")
+);
+const FreelancerViewComponent = lazy(() =>
+  import("./components/freelancer/freelancer-profile/FreelancerView")
+);
+const CompanyJobsComponent = lazy(() =>
+  import(
+    "./components/company/company-profile/company-see-all-jobs/CompanyJobs"
+  )
+);
+const FreelancerHomeComponent = lazy(() =>
+  import("./components/home/FreelancerHome")
+);
 
 function App() {
   return (
     <>
-      <ContextContainer>
-        <Header />
+      <Suspense fallback={<h2>loading......</h2>}>
+        <ContextContainer>
+          <HeaderComponent />
 
-        <main className="container-fluid">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/company-login" element={<CompanyLogin />} />
-            <Route path="/company-signUp" element={<CompanySignUp />} />
-            <Route path="/freelancer-login" element={<FreeLancerLogin />} />
-            <Route path="/freelancer-profile" element={<FreelancerProfile />} />
-            <Route path="/freelancer-signUp" element={<FreelancerSignUp />} />
-            <Route path="/freelancer-list" element={<FreelancerHome />} />
-            <Route path="/freelancer-view" element={<FreelancerView />} />
-            <Route path="/company-profile" element={<CompanyProfile />} />
-            <Route path="/company-profile/create-job" element={<CreateJob />} />
-            <Route
-              path="/company-profile/company-jobs"
-              element={<CompanyJobs />}
-            />
+          <main className="container-fluid">
+            <Routes>
+              <Route path="/" element={<HomeComponent />} />
+              <Route path="/home" element={<HomeComponent />} />
+              <Route
+                path="/company-login"
+                element={<CompanyLoginComponent />}
+              />
+              <Route
+                path="/company-signUp"
+                element={<CompanySignUpComponent />}
+              />
+              <Route
+                path="/freelancer-login"
+                element={<FreeLancerLoginComponent />}
+              />
+              <Route
+                path="/freelancer-profile"
+                element={<FreelancerProfileComponent />}
+              />
+              <Route
+                path="/freelancer-signUp"
+                element={<FreelancerSignUpComponent />}
+              />
+              <Route
+                path="/freelancer-list"
+                element={<FreelancerHomeComponent />}
+              />
+              <Route
+                path="/freelancer-view"
+                element={<FreelancerViewComponent />}
+              />
+              <Route
+                path="/company-profile"
+                element={<CompanyProfileComponent />}
+              />
+              <Route
+                path="/company-profile/create-job"
+                element={<CreateJobComponent />}
+              />
+              <Route
+                path="/company-profile/company-jobs"
+                element={<CompanyJobsComponent />}
+              />
 
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
-        </main>
-        <Footer />
-      </ContextContainer>
+              <Route path="*" element={<PageNotFoundComponent />} />
+            </Routes>
+          </main>
+          <FooterComponent />
+        </ContextContainer>
+      </Suspense>
     </>
   );
 }
