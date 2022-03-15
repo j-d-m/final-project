@@ -114,7 +114,7 @@ function CompanyUpdateProfile(props) {
           <form className="container modalForm" onSubmit={updateProfile}>
             <div className="modalDiv form-group">
               <div>
-                <label for="inputOne1">Company Name :</label>
+                <label htmlFor="inputOne1">Company Name :</label>
                 <input
                   id="inputOne1"
                   className="form-control"
@@ -124,7 +124,7 @@ function CompanyUpdateProfile(props) {
                 />
               </div>
               <div>
-                <label for="inputTwo2">Owner :</label>
+                <label htmlFor="inputTwo2">Owner :</label>
                 <input
                   id="inputTwo2"
                   className="form-control"
@@ -136,7 +136,7 @@ function CompanyUpdateProfile(props) {
             </div>
             <div className="modalDiv">
               <div>
-                <label for="inputThree3">Email :</label>
+                <label htmlFor="inputThree3">Email :</label>
                 <input
                   id="inputThree3"
                   className="form-control"
@@ -146,7 +146,7 @@ function CompanyUpdateProfile(props) {
                 />
               </div>
               <div>
-                <label for="inputFour4">Password :</label>
+                <label htmlFor="inputFour4">Password :</label>
                 <input
                   id="inputFour4"
                   className="form-control"
@@ -158,7 +158,7 @@ function CompanyUpdateProfile(props) {
             </div>
             <div className="modalDiv">
               <div>
-                <label for="inputFive5">Address:</label>
+                <label htmlFor="inputFive5">Address:</label>
                 <input
                   id="inputFive5"
                   className="form-control"
@@ -168,7 +168,7 @@ function CompanyUpdateProfile(props) {
                 />
               </div>
               <div>
-                <label for="inputSix6">Phone :</label>
+                <label htmlFor="inputSix6">Phone :</label>
                 <input
                   id="inputSix6"
                   className="form-control"
@@ -188,7 +188,9 @@ function CompanyUpdateProfile(props) {
               />
             </div>
             <Modal.Footer>
-              <Button variant="secondary" onClick={props.onHide}>Close</Button>
+              <Button variant="secondary" onClick={props.onHide}>
+                Close
+              </Button>
               <input type="submit" value="Save" className="btn btn-secondary" />
             </Modal.Footer>
           </form>
