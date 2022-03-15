@@ -21,6 +21,7 @@ import CompanyProfile from "./components/company/company-profile/CompanyProfile"
 import CreateJob from "./components/company/company-profile/company-create-job/CreateJob";
 import FreelancerView from "./components/freelancer/freelancer-profile/FreelancerView";
 import CompanyJobs from "./components/company/company-profile/company-see-all-jobs/CompanyJobs";
+import FreelancerHome from "./components/home/FreelancerHome";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <Route path="/freelancer-login" element={<FreeLancerLogin />} />
             <Route path="/freelancer-profile" element={<FreelancerProfile />} />
             <Route path="/freelancer-signUp" element={<FreelancerSignUp />} />
+            <Route path="/freelancer-list" element={<FreelancerHome />} />
             <Route path="/freelancer-view" element={<FreelancerView />} />
             <Route path="/company-profile" element={<CompanyProfile />} />
             <Route path="/company-profile/create-job" element={<CreateJob />} />

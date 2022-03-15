@@ -138,7 +138,7 @@ export default function CompanyProfile() {
                       </Button>
                       <Button
                         value="Check freelancers"
-                        onClick={() => navigate("/home")}
+                        onClick={() => navigate("/freelancer-list")}
                         className="btn btn-secondary btn-circle btn-xl"
                       >
                         <GiCook />

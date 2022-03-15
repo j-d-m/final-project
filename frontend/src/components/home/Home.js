@@ -25,18 +25,9 @@ import ThreeSteps from "./ThreeSteps";
 import SearchCard from "./SearchCard";
 
 export default function Home() {
-
   const BgArray = [background1, background2, background3, background4, background5]
-
-  const randomBg = function () {
-    return Math.floor(Math.random() * 5)
-  }
-
+  const randomBg = function () { return Math.floor(Math.random() * 5) }
   const resultBg = BgArray[randomBg()]
-
-  console.log(resultBg)
-
-
 
   const { loading, error, data } = useQuery(GET_JOBS);
 
@@ -52,9 +43,16 @@ export default function Home() {
     e.preventDefault();
     let inputTitleValue = e.target.searchJobTitle.value;
 
-    let filterTitle = data.getJobs.filter(item => item.job_Title.toLowerCase().includes(inputTitleValue.toLowerCase()) ||
-      item.job_description.toLowerCase().includes(inputTitleValue.toLowerCase()) ||
-      item.created_by.company_Name.toLowerCase().includes(inputTitleValue.toLowerCase()));
+    let filterTitle = data.getJobs.filter(
+      (item) =>
+        item.job_Title.toLowerCase().includes(inputTitleValue.toLowerCase()) ||
+        item.job_description
+          .toLowerCase()
+          .includes(inputTitleValue.toLowerCase()) ||
+        item.created_by.company_Name
+          .toLowerCase()
+          .includes(inputTitleValue.toLowerCase())
+    );
 
     if (inputTitleValue.length > 0 && filterTitle.length > 0) {
       setInputValue(filterTitle);
@@ -84,61 +82,55 @@ export default function Home() {
     );
   }
   if (error) {
-    return (
-      <div>
-        <h1>No Job Available</h1>
-      </div>
-    );
+    console.log('========GraphQL Fetch Error============================');
+    console.log(error);
+    console.log('====================================');
   }
 
   return (
     <>
-      {isCompanyLogin ? (
-        <FreelancerHome />
-      ) : (
-        <div className=" homeContainer">
-          <section className="jobSearchContainer">
-            <div
-              className="banner-container"
-              style={{
-                backgroundImage: `url(' ${resultBg}')`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-                opacity: "0.8",
-                animation: "fadeIn 1s ease-in-out",
+      <div className=" homeContainer">
+        <section className="jobSearchContainer">
+          <div
+            className="banner-container"
 
-              }}
-            >
-              <div className="search-fields">
-                <form onSubmit={searchHandler}>
-                  <input
-                    name="searchJobTitle"
-                    type="text"
-                    placeholder="Search by job title, description or company name"
-                  />
-                  <input
-                    className="search-button"
-                    type="submit"
-                    value="Search Jobs"
-                  />
-                </form>
-              </div>
+            style={{
+              backgroundImage: `url(' ${resultBg}')`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              animation: "fadeIn 3s ease-in-out",
+
+            }}
+          >
+            <div className="search-fields">
+              <form onSubmit={searchHandler}>
+                <input
+                  name="searchJobTitle"
+                  type="text"
+                  placeholder="Search by job title, description or company name"
+                />
+                <input
+                  className="search-button"
+                  type="submit"
+                  value="Search Jobs"
+                />
+              </form>
             </div>
-            <div className="jobSearchBox">
-              {isTitleFilter &&
-                inputValue.slice(0, 20).map((job) => (
-                  <SearchCard job={job} key={job.id} />
-                ))}
-            </div>
-          </section>
-          <div className="jobs-combo-box">
-            <IntApiCarousel />
-            <ThreeSteps />
-            {/* <ExtApiCarousel /> */}
           </div>
+          <div className="jobSearchBox">
+            {isTitleFilter &&
+              inputValue
+                .slice(0, 20)
+                .map((job) => <SearchCard job={job} key={job.id} />)}
+          </div>
+        </section>
+        <div className="jobs-combo-box">
+          <IntApiCarousel />
+          <ThreeSteps />
+          {/* <ExtApiCarousel /> */}
         </div>
-      )}
+      </div>
     </>
   );
 }
