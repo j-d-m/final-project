@@ -7,8 +7,7 @@
 .Freelancer-sign-container{
     display: flex;
     height: 80vh;
-
-    
+   
     // left side wall
 
     .Wall-left {
@@ -21,13 +20,11 @@
         background-size: cover;
         img {
             width: 10rem;
-            
         }
-
         @include mobile {
-           display: none;
-            }
-    }
+         display: none;
+           }
+        }
 
     // form section 
 
@@ -37,28 +34,36 @@
         justify-content: center;
         flex-direction: column;
         padding: 2rem;
+        height:80vh;
         
-        
-
-             h2{
-                 padding: 1rem 0;
-                 margin-top: -50px;
+             h2,h3{
                  color:$color-green;
-                //  font-family: $font-family-Roboto;
-
              }
+
              @include mobile {
-                flex:1;
-                
-                h2{
-                    margin-top:-10px;
-                    padding: 5px;
-                    font-weight: 300;
+                 flex:1;
+                 height:80vh;
+                 margin-top: -2rem;
+                 margin-bottom: 2rem;
+          
+                h2,h3{
+                    font-weight: 400;
                     font-size: 20px;
                 }
                  }
 
-   
+             @include mobile-small {
+                 flex: 1;
+                 height:80vh;
+                 overflow: scroll;
+                 padding-top: 15rem;
+
+                 h2,h3{
+                     font-weight: 200;
+                     font-size: 18px;
+                 }
+                  }
+                
     .form-style-4{
         width: 800px;
         font-size: 18px;
@@ -67,9 +72,14 @@
         border: 5px solid #c5d5d6;
         border-radius: 10px;
 
+        @include mobile {
+            padding: 20px 20px 10px 20px;
+            width: 100%;
+        }
+        
         @include mobile-small {
-            
-            width: 400px;
+            width: 100%;
+            padding: 5px 5px 3px 5px;
         }
     }
     .form-style-4 input[type=submit],
@@ -109,6 +119,9 @@
         outline: none;
         padding: 0px 0px 0px 0px;
         color: $color-green;
+        @include mobile-small {
+            width: 250px;
+        }
     }
     .form-style-4 textarea{
         
@@ -123,8 +136,7 @@
         height:120px;
 
         @include mobile-small {
-           
-            width: 330px;
+            width: 250px;
         }
     }
     
@@ -143,6 +155,7 @@
         padding: 8px 10px 8px 10px;
         border-radius: 5px;
         color: $color-green;
+        
     }
     .form-style-4 input[type=submit]:hover,
     .form-style-4 input[type=button]:hover{

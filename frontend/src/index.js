@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import App from "./App";
 import { createUploadLink } from "apollo-upload-client";
 import "animate.css";
@@ -18,7 +18,6 @@ const middlewareLink = new ApolloLink((operation, forward) => {
       token: localStorage.getItem("token") || null,
     },
   });
-
   return forward(operation);
 });
 
@@ -35,9 +34,9 @@ const client = new ApolloClient({
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <BrowserRouter>
+      <HashRouter>
         <App />
-      </BrowserRouter>
+      </HashRouter>
     </ApolloProvider>
   </React.StrictMode>,
   document.getElementById("root")

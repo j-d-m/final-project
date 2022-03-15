@@ -1,4 +1,4 @@
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import React, { useContext, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -7,16 +7,52 @@ import { GET_ONE_USER } from "../../../graphQL/Queries";
 import "../../../styles/freelancerProfileStyle.scss";
 import DeleteFreelancerAccount from "./DeleteFreelancerAccount";
 import FreelancerUpdateProfile from "./FreelancerUpdateProfile";
-import { AiOutlineEdit, AiOutlineDelete, AiOutlineUnorderedList } from 'react-icons/ai';
+import {
+  AiOutlineEdit,
+  AiOutlineDelete,
+  AiOutlineUnorderedList,
+} from "react-icons/ai";
+import { UPDATE_USER } from "../../../graphQL/Mutations";
+import Swal from "sweetalert2";
 
 export default function FreelancerProfile() {
   const navigate = useNavigate();
   const { freelancerLoginData, setFreelancerLoginData, jobAccepted } =
     useContext(MyContext);
-  //logging result of the job contact from to pass it to the profile on successful contact of the company
-  console.log(jobAccepted);
+  //logging result of the job contact form to pass it to the profile on successful contact of the company
+
   const [modalShow, setModalShow] = useState();
   const [modalShow1, setModalShow1] = useState();
+  const [UpdateUser, { data1, loading1, error1 }] = useMutation(UPDATE_USER);
+  const updateAvatar = (e) => {
+    e.preventDefault();
+    UpdateUser({
+      variables: {
+        updateUserId: freelancerLoginData.id,
+        file: e.target.files[0],
+      },
+    }).then((res) => {
+      if (res.data) {
+        Swal.fire({
+          position: "top",
+          icon: "success",
+          title: "profile updated successfully",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      }
+      if (error) {
+        Swal.fire({
+          position: "top",
+          icon: "error",
+          title: "something went wrong",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      }
+    });
+  };
+
   const { loading, error, data } = useQuery(GET_ONE_USER, {
     variables: { getOneUserId: freelancerLoginData.id },
   });
@@ -28,9 +64,13 @@ export default function FreelancerProfile() {
         alt="img"
       />
     );
-  if (data) {
-    setFreelancerLoginData(data.getOneUser);
-  }
+
+  setTimeout(() => {
+    if (data) {
+      setFreelancerLoginData(data.getOneUser);
+    }
+  }, 100);
+
   return (
     <section className="Profile-Container">
       <div className="Banner-Container">
@@ -47,13 +87,18 @@ export default function FreelancerProfile() {
               avatar,
               favorite,
             } = data.getOneUser;
-            console.log(data);
+
             return (
               <>
                 <div className="Freelance-Avatar">
                   <img src={avatar} alt="img" width="200px" height="200px" />
                   <label htmlFor="file-upload" className="Custom-File-Upload">
-                    <input id="file-upload" type="file" /> Change Image
+                    <input
+                      id="file-upload"
+                      type="file"
+                      onChange={updateAvatar}
+                    />
+                    Change Image
                   </label>
                 </div>
 
@@ -94,6 +139,7 @@ export default function FreelancerProfile() {
                           return (
                             <div>
                               <h5>{job.job_Title}</h5>
+                              <p>{job.company_Name}</p>
                               <p>{job.start_Date}</p>
                             </div>
                           );
@@ -110,7 +156,9 @@ export default function FreelancerProfile() {
                         onClick={() => {
                           setModalShow(true);
                         }}
-                      ><AiOutlineEdit /><span>Edit</span>
+                      >
+                        <AiOutlineEdit />
+                        <span>Edit</span>
                       </Button>
                       <FreelancerUpdateProfile
                         show={modalShow}
@@ -123,8 +171,10 @@ export default function FreelancerProfile() {
                         onClick={() => {
                           setModalShow1(true);
                         }}
-                      > <AiOutlineDelete /><span>Delete</span>
-                        
+                      >
+                        {" "}
+                        <AiOutlineDelete />
+                        <span>Delete</span>
                       </Button>
 
                       <DeleteFreelancerAccount
@@ -134,7 +184,10 @@ export default function FreelancerProfile() {
                       <Button
                         onClick={() => navigate("/home")}
                         className="btn btn-secondary btn-circle btn-xl"
-                      > <AiOutlineUnorderedList/><span>Jobs</span>
+                      >
+                        {" "}
+                        <AiOutlineUnorderedList />
+                        <span>Jobs</span>
                       </Button>
                     </div>
                   </section>

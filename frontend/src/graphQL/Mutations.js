@@ -135,6 +135,26 @@ export const CREATE_USER_MUTATION = gql`
   }
 `;
 
+export const USER_FAVORITE = gql`
+  mutation UpdateUserFavorite($userId: ID!, $job: JobInputType) {
+    userId
+    first_name
+    last_name
+    email
+    favorite {
+      job_Title
+      start_Date
+      end_Date
+      issued_At
+      created_by {
+        company_Name
+        company_type
+        email
+      }
+    }
+  }
+`;
+
 //login as user
 export const USER_LOGIN = gql`
   mutation LoginUser($email: String!, $password: String!) {
@@ -175,7 +195,7 @@ export const UPDATE_USER = gql`
     $updateUserId: ID!
     $firstName: String
     $lastName: String
-    $avatar: String
+    $file: Upload
     $email: String
     $password: String
     $phone: String
@@ -186,7 +206,7 @@ export const UPDATE_USER = gql`
       id: $updateUserId
       first_name: $firstName
       last_name: $lastName
-      avatar: $avatar
+      file: $file
       email: $email
       password: $password
       phone: $phone
