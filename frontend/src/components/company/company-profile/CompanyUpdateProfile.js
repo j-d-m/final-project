@@ -83,7 +83,6 @@ function CompanyUpdateProfile(props) {
         email: email,
         password: password,
         description: description,
-        file: props.image,
       },
     }).then((res) => {
       if (res.data) {

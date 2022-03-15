@@ -1,4 +1,4 @@
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MyContext } from "../../../Context/Context";
@@ -14,6 +14,8 @@ import {
   AiOutlinePlusCircle,
 } from "react-icons/ai";
 import { GiCook } from "react-icons/gi";
+import { UPDATE_COMPANY } from "../../../graphQL/Mutations";
+import Swal from "sweetalert2";
 
 export default function CompanyProfile() {
   const navigate = useNavigate();
@@ -21,6 +23,37 @@ export default function CompanyProfile() {
   const [modalShow, setModalShow] = useState();
   const [modalShow1, setModalShow1] = useState();
   const [companyImage, setCompanyImage] = useState(null);
+  const [UpdateCompany, { data1, loading1, error1 }] =
+    useMutation(UPDATE_COMPANY);
+  const updateAvatar = (e) => {
+    e.preventDefault();
+
+    UpdateCompany({
+      variables: {
+        updateCompanyId: companyLoginData.id,
+        file: e.target.files[0],
+      },
+    }).then((res) => {
+      if (res.data) {
+        Swal.fire({
+          position: "top",
+          icon: "success",
+          title: "profile updated successfully",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      }
+      if (error) {
+        Swal.fire({
+          position: "top",
+          icon: "error",
+          title: "something went wrong",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      }
+    });
+  };
 
   const { loading, error, data } = useQuery(GET_ONE_COMPANY, {
     variables: { getOneCompanyId: companyLoginData.id },
@@ -68,7 +101,8 @@ export default function CompanyProfile() {
                       id="file-upload"
                       name="file"
                       type="file"
-                      onChange={(e) => setCompanyImage(e.target.files[0])}
+                      // onChange={(e) => setCompanyImage(e.target.files[0])}
+                      onChange={updateAvatar}
                     />
                     Change Image
                   </label>
