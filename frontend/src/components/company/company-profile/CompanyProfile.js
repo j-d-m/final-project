@@ -27,7 +27,6 @@ export default function CompanyProfile() {
     useMutation(UPDATE_COMPANY);
   const updateAvatar = (e) => {
     e.preventDefault();
-
     UpdateCompany({
       variables: {
         updateCompanyId: companyLoginData.id,
@@ -145,7 +144,7 @@ export default function CompanyProfile() {
                       <CompanyUpdateProfile
                         show={modalShow}
                         onHide={() => setModalShow(false)}
-                        image={companyImage}
+                        // image={companyImage}
                       />
                       <Button
                         id={id}

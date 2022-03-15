@@ -13,48 +13,57 @@ function FreelancerUpdateProfile(props) {
     refetchQueries: GET_ONE_USER,
     awaitRefetchQueries: true,
   });
-  console.log("====================================");
-  console.log(freelancerLoginData);
-  console.log("====================================");
+
   const updateProfile = (e) => {
     e.preventDefault();
+
     let firstName, lastName, hourlyRate, phone, email, password, description;
     if (
       e.target.firstName.value !== undefined &&
       e.target.firstName.value !== ""
     ) {
       firstName = e.target.firstName.value;
-    } else if (
+    }
+
+    if (
       e.target.lastName.value !== undefined &&
       e.target.lastName.value !== ""
     ) {
       lastName = e.target.lastName.value;
-    } else if (
-      e.target.email.value !== undefined &&
-      e.target.email.value !== ""
-    ) {
+    }
+    if (e.target.email.value !== undefined && e.target.email.value !== "") {
       email = e.target.email.value;
-    } else if (
+    }
+    if (
       e.target.password.value !== undefined &&
       e.target.password.value !== ""
     ) {
       password = e.target.password.value;
-    } else if (
+    }
+    if (
       e.target.hourlyRate.value !== undefined &&
       e.target.hourlyRate.value !== ""
     ) {
       hourlyRate = Number(e.target.hourlyRate.value);
-    } else if (
-      e.target.phone.value !== undefined &&
-      e.target.phone.value !== ""
-    ) {
+    }
+    if (e.target.phone.value !== undefined && e.target.phone.value !== "") {
       phone = e.target.phone.value;
-    } else if (
+    }
+    if (
       e.target.description.value !== undefined &&
       e.target.description.value !== ""
     ) {
       description = e.target.description.value;
-    } else {
+    }
+    if (
+      firstName &&
+      lastName &&
+      hourlyRate &&
+      phone &&
+      email &&
+      password &&
+      description === undefined
+    ) {
       Swal.fire({
         position: "top",
         icon: "error",
@@ -181,7 +190,9 @@ function FreelancerUpdateProfile(props) {
               />
             </div>
             <Modal.Footer>
-              <Button variant="secondary" onClick={props.onHide}>Close</Button>
+              <Button variant="secondary" onClick={props.onHide}>
+                Close
+              </Button>
               <input type="submit" value="Save" className="btn btn-secondary" />
             </Modal.Footer>
           </form>
