@@ -48,7 +48,7 @@ function DeleteCompanyAccount(props) {
           <hr />
           <p> Are you sure you want to delete this COMPANY account?</p>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className="modal-footer border-0" >
           <Button
             onClick={props.onHide}
             variant="secondary"
