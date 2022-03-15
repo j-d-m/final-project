@@ -35,9 +35,8 @@
         left: 11.25rem;
         top: 9.9rem;
         font-family: $font-family-Bebas;
-        background: -webkit-linear-gradient(#0aafb9, #1d2624);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        text-shadow: 1px 7px 2px rgba(29,38,36,0.38);
+        color: #FFFFFF;
         
         @include mobile{
           display: none;
@@ -49,9 +48,8 @@
         left: 14.375rem;
         top: 12rem;
         font-family: $font-family-Bebas;
-        background: -webkit-linear-gradient(#0aafb9, #1d2624);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        text-shadow: 1px 7px 2px rgba(29,38,36,0.38);
+        color: #FFFFFF;
         @include mobile{
           display: none;
         }
