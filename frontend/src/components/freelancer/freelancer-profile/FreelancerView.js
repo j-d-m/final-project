@@ -96,11 +96,7 @@ export default function FreelancerView() {
               className="feedback-input text-dark"
               placeholder="Comment"
             ></textarea>
-            <input
-              type="submit"
-              value="Contact"
-              className="text-white bg-dark"
-            />
+            <input type="submit" value="Send" className="text-white bg-dark" />
           </form>
         </div>
       </div>

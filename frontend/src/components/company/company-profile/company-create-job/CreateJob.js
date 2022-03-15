@@ -1,11 +1,21 @@
-import { useMutation } from "@apollo/client";
+//Native Imports
 import React, { useContext } from "react";
-import { MyContext } from "../../../../Context/Context";
-import { CREATE_JOB } from "../../../../graphQL/Mutations";
-import Swal from "sweetalert2";
-import { GET_JOBS, GET_ONE_COMPANY } from "../../../../graphQL/Queries";
 import { useNavigate } from "react-router-dom";
-function CreateJob() {
+
+
+//External Imports
+import { useMutation } from "@apollo/client";
+import Swal from "sweetalert2";
+import { Button, Modal } from "react-bootstrap";
+
+//Internal Imports
+import { MyContext } from "../../../../Context/Context";
+import { GET_JOBS, GET_ONE_COMPANY } from "../../../../graphQL/Queries";
+import { CREATE_JOB } from "../../../../graphQL/Mutations";
+import hiring from "../../../../assets/img/hiring.svg"
+import "../../../../styles/createJobs.scss"
+
+function CreateJob(props) {
   const navigate = useNavigate();
   const { companyLoginData, setCompanyLoginData } = useContext(MyContext);
 
@@ -63,47 +73,65 @@ function CreateJob() {
 
   return (
     <div>
-      <form onSubmit={addJobProfile} className="w-75 m-auto">
-        <div className="mb-3">
-          <label className="form-label">Job Title</label>
-          <input
-            name="jobTitle"
-            type="text"
-            className="form-control"
-            aria-describedby="emailHelp"
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Start Date</label>
-          <input name="startDate" type="date" className="form-control" />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">End Date</label>
-          <input name="endDate" type="date" className="form-control" />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">number of people</label>
-          <input
-            name="numOfPeopleNeeded"
-            type="number"
-            className="form-control"
-          />
-        </div>
-        <div className="form-outline">
-          <textarea
-            name="jobDescription"
-            className="form-control"
-            rows="8"
-            cols="60"
-            maxLength={500}
-          />
-          <label className="form-label">Message</label>
-        </div>
-        <button type="submit" className="btn btn-secondary">
-          Submit
-        </button>
-      </form>
-    </div>
+      <Modal
+        {...props}
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        size="lg"
+      >
+        <Modal.Header
+          closeButton>
+          <Modal.Title className="contained-modal-title-vcenter w-100" >
+            <div className="create-jobs-title d-flex align-items-center justify-content-around">
+              <h3>Post a job offer </h3>
+              <img alt="" src={hiring} width="80" height="80" />
+            </div>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <form onSubmit={addJobProfile} className="w-75 m-auto">
+            <div className="mb-3">
+              <label className="form-label">Job Title</label>
+              <input
+                name="jobTitle"
+                type="text"
+                className="form-control"
+                aria-describedby="emailHelp"
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Start Date</label>
+              <input name="startDate" type="date" className="form-control" />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">End Date</label>
+              <input name="endDate" type="date" className="form-control" />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Amount of People Needed</label>
+              <input
+                name="numOfPeopleNeeded"
+                type="number"
+                className="form-control"
+              />
+            </div>
+            <div className="form-outline">
+              <label className="form-label">Job Description</label>
+              <textarea
+                name="jobDescription"
+                className="form-control"
+                rows="8"
+                cols="60"
+                maxLength={500}
+              />
+            </div>
+            <Modal.Footer className="modal-footer border-0">
+              <input type="submit" value="Submit" className="btn btn-secondary mt-3" />
+            </Modal.Footer>
+          </form>
+        </Modal.Body>
+      </Modal>
+    </div >
   );
 }
 export default CreateJob;

@@ -21,7 +21,6 @@ export default function FreelancerProfile() {
     useContext(MyContext);
   //logging result of the job contact form to pass it to the profile on successful contact of the company
 
-  console.log(jobAccepted);
   const [modalShow, setModalShow] = useState();
   const [modalShow1, setModalShow1] = useState();
   const [UpdateUser, { data1, loading1, error1 }] = useMutation(UPDATE_USER);
@@ -65,9 +64,13 @@ export default function FreelancerProfile() {
         alt="img"
       />
     );
-  if (data) {
-    setFreelancerLoginData(data.getOneUser);
-  }
+
+  setTimeout(() => {
+    if (data) {
+      setFreelancerLoginData(data.getOneUser);
+    }
+  }, 100);
+
   return (
     <section className="Profile-Container">
       <div className="Banner-Container">
@@ -84,7 +87,7 @@ export default function FreelancerProfile() {
               avatar,
               favorite,
             } = data.getOneUser;
-            console.log(data);
+
             return (
               <>
                 <div className="Freelance-Avatar">

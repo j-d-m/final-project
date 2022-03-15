@@ -116,7 +116,7 @@ function FreelancerUpdateProfile(props) {
           <form className="container modalForm" onSubmit={updateProfile}>
             <div className="modalDiv form-group">
               <div>
-                <label for="inputOne1">First Name :</label>
+                <label htmlFor="inputOne1">First Name :</label>
                 <input
                   id="inputOne1"
                   className="form-control"
@@ -126,7 +126,7 @@ function FreelancerUpdateProfile(props) {
                 />
               </div>
               <div>
-                <label for="inputTwo2">Last Name :</label>
+                <label htmlFor="inputTwo2">Last Name :</label>
                 <input
                   id="inputTwo2"
                   className="form-control"
@@ -138,7 +138,7 @@ function FreelancerUpdateProfile(props) {
             </div>
             <div className="modalDiv">
               <div>
-                <label for="inputThree3">Email :</label>
+                <label htmlFor="inputThree3">Email :</label>
                 <input
                   id="inputThree3"
                   className="form-control"
@@ -148,7 +148,7 @@ function FreelancerUpdateProfile(props) {
                 />
               </div>
               <div>
-                <label for="inputFour4">Password :</label>
+                <label htmlFor="inputFour4">Password :</label>
                 <input
                   id="inputFour4"
                   className="form-control"
@@ -160,7 +160,7 @@ function FreelancerUpdateProfile(props) {
             </div>
             <div className="modalDiv">
               <div>
-                <label for="inputFive5">hourly_rate:</label>
+                <label htmlFor="inputFive5">hourly_rate:</label>
                 <input
                   id="inputFive5"
                   className="form-control"
@@ -170,7 +170,7 @@ function FreelancerUpdateProfile(props) {
                 />
               </div>
               <div>
-                <label for="inputSix6">Phone :</label>
+                <label htmlFor="inputSix6">Phone :</label>
                 <input
                   id="inputSix6"
                   className="form-control"

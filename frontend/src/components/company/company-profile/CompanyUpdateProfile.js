@@ -1,11 +1,19 @@
+//Native Imports
 import React, { useContext } from "react";
+
+//Externa Imports
 import { Modal, Button } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { UPDATE_COMPANY } from "../../../graphQL/Mutations";
 import { useMutation } from "@apollo/client";
 import Swal from "sweetalert2";
+// import "bootstrap/dist/css/bootstrap.min.css";
+
+//Internal Imports
+import { UPDATE_COMPANY } from "../../../graphQL/Mutations";
 import { MyContext } from "../../../Context/Context";
 import { GET_JOBS, GET_ONE_COMPANY } from "../../../graphQL/Queries";
+import hotPan from "../../../assets/img/hotPan.svg"
+
+
 function CompanyUpdateProfile(props) {
   const { companyLoginData } = useContext(MyContext);
 
@@ -111,12 +119,26 @@ function CompanyUpdateProfile(props) {
 
   return (
     <div>
-      <Modal {...props} size="lg" centered className="ProfileUpdate">
+      <Modal
+        {...props}
+        size="lg"
+        centered
+        className="ProfileUpdate"
+      >
+        <Modal.Header
+          closeButton>
+          <Modal.Title className="contained-modal-title-vcenter w-100" >
+            <div className="update-jobs-title d-flex align-items-center justify-content-around">
+              <h3>Update your profile </h3>
+              <img alt="" src={hotPan} width="80" height="80" />
+            </div>
+          </Modal.Title>
+        </Modal.Header>
         <Modal.Body className="modalBody">
           <form className="container modalForm" onSubmit={updateProfile}>
             <div className="modalDiv form-group">
               <div>
-                <label htmlFor="inputOne1">Company Name :</label>
+                <label htmlFor="inputOne1">Company Name</label>
                 <input
                   id="inputOne1"
                   className="form-control"
@@ -126,7 +148,7 @@ function CompanyUpdateProfile(props) {
                 />
               </div>
               <div>
-                <label htmlFor="inputTwo2">Owner :</label>
+                <label htmlFor="inputTwo2">Contact Person</label>
                 <input
                   id="inputTwo2"
                   className="form-control"
@@ -138,7 +160,7 @@ function CompanyUpdateProfile(props) {
             </div>
             <div className="modalDiv">
               <div>
-                <label htmlFor="inputThree3">Email :</label>
+                <label htmlFor="inputThree3">Email</label>
                 <input
                   id="inputThree3"
                   className="form-control"
@@ -148,7 +170,7 @@ function CompanyUpdateProfile(props) {
                 />
               </div>
               <div>
-                <label htmlFor="inputFour4">Password :</label>
+                <label htmlFor="inputFour4">Password</label>
                 <input
                   id="inputFour4"
                   className="form-control"
@@ -160,7 +182,7 @@ function CompanyUpdateProfile(props) {
             </div>
             <div className="modalDiv">
               <div>
-                <label htmlFor="inputFive5">Address:</label>
+                <label htmlFor="inputFive5">Address</label>
                 <input
                   id="inputFive5"
                   className="form-control"
@@ -170,7 +192,7 @@ function CompanyUpdateProfile(props) {
                 />
               </div>
               <div>
-                <label htmlFor="inputSix6">Phone :</label>
+                <label htmlFor="inputSix6">Phone</label>
                 <input
                   id="inputSix6"
                   className="form-control"
@@ -181,19 +203,17 @@ function CompanyUpdateProfile(props) {
               </div>
             </div>
             <div className="textInput">
-              <label>Description :</label>
+              <label>Description</label>
               <textarea
                 name="description"
-                cols="22"
-                rows="5"
+                cols="60"
+                rows="8"
                 placeholder={companyLoginData.description}
+                maxLength="500"
               />
             </div>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={props.onHide}>
-                Close
-              </Button>
-              <input type="submit" value="Save" className="btn btn-secondary" />
+            <Modal.Footer className="modal-footer border-0">
+              <input type="submit" value="Save" className="btn btn-secondary ps-3 pe-3" />
             </Modal.Footer>
           </form>
         </Modal.Body>
