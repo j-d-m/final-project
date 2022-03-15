@@ -46,27 +46,37 @@ export default function CompanySignUp() {
         Swal.fire({
           position: "top",
           icon: "success",
-          title: "account created successfully",
+          title: "Account Created",
           showConfirmButton: false,
           timer: 2000,
           customClass: "swal-width",
         });
-        navigate("/company-login");
+        navigate("/company-profile");
       }
     });
   };
 
-  if (loading)
-    return (
-      <img
-        src="https://c.tenor.com/gJLmlIn6EvEAAAAM/loading-gif.gif"
-        alt="spinner"
-      />
-    );
-  if (error) return `${error.message}`;
+  // if (loading)
+  //   return (
+  //     <img
+  //       src="https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif"
+  //       alt="img"
+  //     />
+  //   );
 
-  console.log(data);
-  console.log(error);
+
+  // Error handling needs to be reviewed: When there is an error it needs to show
+  // Sweeet Alert and dont make the user loses everything he has entered so far 
+
+  if (error) {
+    console.log("data", data);
+    console.log("error", error);
+    return `${error.message}`;
+  }  
+  
+  
+  
+
 
   return (
     <>
@@ -87,57 +97,107 @@ export default function CompanySignUp() {
 
             <label>
               <span>Company Name</span>
-              <input type="text" name="company_Name" />
+              <input
+                type="text"
+                name="company_Name"
+                required
+                maxLength="50"
+                minLength="2"
+              />
             </label>
 
             <label>
               <span>Owner/Manager Name</span>
-              <input type="text" name="owner_name" />
+              <input
+                type="text"
+                name="owner_name"
+                required
+                minLength="2"
+                maxLength="50"
+              />
             </label>
             <label>
-              <span>Type of Company</span>
-              <input type="text" name="company_type" />
+              <span>Type of Business</span>
+              <input
+                type="text"
+                name="company_type"
+                required
+                minLength="2"
+                maxLength="20"
+              />
             </label>
 
             <label>
               <span>Company Address</span>
-              <input type="text" name="address" />
+              <input
+                type="text"
+                name="address"
+                required
+                minLength="2"
+                maxLength="50"
+              />
             </label>
 
             <label>
               <span>Phone</span>
-              <input type="phone" name="phone" />
+              <input
+                type="phone"
+                name="phone"
+                required
+                minLength="2"
+                maxLength="50"
+              />
             </label>
 
             <label>
               {" "}
               <span>Email</span>
-              <input type="email" name="email" />
+              <input
+                type="email"
+                name="email"
+                required
+                minLength="2"
+                maxLength="50"
+              />
             </label>
-            {/* <label>
-                  {" "}
-                  <MdContactPhone /> Contact Person
-                </label>
-                <input type="text" placeholder="contact person" onChange={(e)=>{set}} /> */}
-
             <label>
               <span>Password</span>
-              <input type="password" name="password" />
+              <input
+                type="password"
+                name="password"
+                required
+                minLength="2"
+                maxLength="50"
+              />
             </label>
 
             <label>
               <span>Repeat Password</span>
-              <input type="password" name="repeatPassword" />
+              <input
+                type="password"
+                name="repeatPassword"
+                required
+                minLength="2"
+                maxLength="50"
+              />
             </label>
 
             <label>
-              <span>Describe your company</span>
-              <textarea name="description" maxLength={500} />
+              <span>Company Summary</span>
+              <textarea
+                name="description"
+                required
+                minLength={5}
+                maxLength={500}
+              />
             </label>
 
             <label>
               <span></span>
-              <input type="submit" value="Sign Up" />
+              <input
+                type="submit"
+                value="Sign Up"
+              />
             </label>
           </form>
         </div>

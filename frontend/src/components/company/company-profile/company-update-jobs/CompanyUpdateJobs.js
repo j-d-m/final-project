@@ -116,6 +116,9 @@ function CompanyUpdateJobs(props) {
                   type="text"
                   name="jobTitle"
                   placeholder={oneCompanyJob.job_Title}
+                  required
+                  minLength="2"
+                  maxLength="50"
                 />
               </div>
               <div>
@@ -153,6 +156,9 @@ function CompanyUpdateJobs(props) {
                 cols="22"
                 rows="5"
                 placeholder={oneCompanyJob.job_description}
+                required
+                minLength="2"
+                maxLength="50"
               />
             </div>
             <Modal.Footer>
