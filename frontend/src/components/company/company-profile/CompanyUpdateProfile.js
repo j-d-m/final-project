@@ -73,7 +73,7 @@ function CompanyUpdateProfile(props) {
       Swal.fire({
         position: "top",
         icon: "error",
-        title: "nothing change",
+        title: "Nothing changed",
         showConfirmButton: false,
         timer: 1000,
       });
@@ -97,7 +97,7 @@ function CompanyUpdateProfile(props) {
         Swal.fire({
           position: "top",
           icon: "success",
-          title: "profile updated successfully",
+          title: "Profile updated successfully",
           showConfirmButton: false,
           timer: 1000,
         });
@@ -106,7 +106,7 @@ function CompanyUpdateProfile(props) {
         Swal.fire({
           position: "top",
           icon: "error",
-          title: "something went wrong",
+          title: "Something went wrong",
           showConfirmButton: false,
           timer: 1000,
         });
@@ -142,6 +142,9 @@ function CompanyUpdateProfile(props) {
                   type="text"
                   name="companyName"
                   placeholder={companyLoginData.company_Name}
+                  required
+                  minLength="2"
+                  maxLength="50"
                 />
               </div>
               <div>
@@ -152,6 +155,9 @@ function CompanyUpdateProfile(props) {
                   type="text"
                   name="owner"
                   placeholder={companyLoginData.owner_name}
+                  required
+                  minLength="2"
+                  maxLength="50"
                 />
               </div>
             </div>
@@ -164,6 +170,9 @@ function CompanyUpdateProfile(props) {
                   type="email"
                   name="email"
                   placeholder={companyLoginData.email}
+                  required
+                  minLength="2"
+                  maxLength="50"
                 />
               </div>
               <div>
@@ -174,6 +183,9 @@ function CompanyUpdateProfile(props) {
                   type="password"
                   name="password"
                   placeholder="your new password....."
+                  required
+                  minLength="2"
+                  maxLength="50"
                 />
               </div>
             </div>
@@ -186,6 +198,9 @@ function CompanyUpdateProfile(props) {
                   type="text"
                   name="address"
                   placeholder={companyLoginData.address}
+                  required
+                  minLength="2"
+                  maxLength="50"
                 />
               </div>
               <div>
@@ -196,6 +211,9 @@ function CompanyUpdateProfile(props) {
                   type="tel"
                   name="phone"
                   placeholder={companyLoginData.phone}
+                  required
+                  minLength="2"
+                  maxLength="50"
                 />
               </div>
             </div>
@@ -206,6 +224,8 @@ function CompanyUpdateProfile(props) {
                 cols="60"
                 rows="8"
                 placeholder={companyLoginData.description}
+                required
+                minLength="5"
                 maxLength="500"
               />
             </div>
