@@ -5,7 +5,7 @@
 
 .main {
     width: 100%;
-    padding-bottom:2rem;
+    padding-bottom:1.2rem;
     background-color: $color-lightgray;
 
 
@@ -15,13 +15,13 @@
 
         h2 {
             color: $color-green;
-            margin-top: 2rem;
+            padding-top: 2rem;
             font-size: 2rem;
         }
     }
 
     .allExp{
-        margin-top: 4rem;
+        margin-top: 3rem;
         display: grid;
         grid-template-columns: repeat(3,400px);
         justify-content: space-around;
@@ -51,10 +51,9 @@
                 img {
                     border-radius: 50%;
                     background-color: $color-white;
-                    width: 12rem;
+                    width: 10rem;
                     object-fit: scale-down;
                     margin: 15px;
-                    
                 }
             }
         }

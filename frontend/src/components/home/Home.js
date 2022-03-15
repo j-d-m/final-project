@@ -106,16 +106,16 @@ export default function Home() {
 
             }}
           >
-
+              {/* flying texts */}
                   <h4
-                  className="animate__animated animate__fadeInLeftBig animate__delay-2s"
+                  className="animate__animated animate__fadeInLeftBig animate__delay-2s animate__slow"
                   > GASTRONOMY JOBS 
                   </h4>
                   <h5
-                  className="animate__animated animate__fadeInLeftBig animate__delay-3s animate__repeat-2"
+                  className="animate__animated animate__fadeInLeftBig animate__delay-3s animate__slower"
                   > PEOPLE WHEN YOU NEED
                   </h5>
-
+              {/* searchbar and button starts*/}
             <div className="search-fields">
               <form onSubmit={searchHandler}>
                 <input
@@ -130,6 +130,8 @@ export default function Home() {
                 />
               </form>
             </div>
+              {/* searchbar and button ends*/}
+
           </div>
           <div className="jobSearchBox">
             {isTitleFilter &&
