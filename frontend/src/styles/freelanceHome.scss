@@ -1,6 +1,6 @@
 @import "./fonts";
 @import "./mobile";
-@import "./buttons";
+// @import "./buttons";
 @import "./colors";
 
 .MainContainer {
@@ -13,12 +13,15 @@
   color: white;
   border-bottom: 1px solid $color-dark;
   margin-top: 5px;
+  @include mobile {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
   .Skills {
     display: flex;
-
     flex-direction: column;
-
     flex: 1;
     color: black;
     padding-top: 20px;
@@ -48,6 +51,9 @@
       margin-top: 5px;
       text-align: center;
     }
+    @include mobile {
+      width: 100%;
+    }
   }
   .Description {
     padding-left: 50px;
@@ -55,11 +61,15 @@
   .OpenContact {
     & input {
       padding: 10px;
-      background: black;
-      color: white;
+      background: $color-lightgray;
+      color: $color-dark;
       border-radius: 8px;
       border: none;
       margin-bottom: 10px;
+    }
+    &:hover {
+      opacity: 0.4;
+      transition: 0.4s ease-in-out;
     }
   }
 }
