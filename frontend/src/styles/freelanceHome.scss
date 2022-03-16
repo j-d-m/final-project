@@ -1,7 +1,37 @@
 @import "./fonts";
 @import "./mobile";
-@import "./buttons";
+// @import "./buttons";
 @import "./colors";
+.FreelancerSearch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  margin: 0 auto;
+  height: 100px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  .Title {
+    margin-top: 10px;
+  }
+
+  .Search-Form > input {
+    padding: 20px;
+    width: 100%;
+    margin-bottom: 5px;
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid $color-dark;
+    border-radius: 8px;
+
+    &:focus {
+      color: $color-pepper;
+      outline: none;
+    }
+  }
+}
 
 .MainContainer {
   // border: 1px solid red;
@@ -13,12 +43,15 @@
   color: white;
   border-bottom: 1px solid $color-dark;
   margin-top: 5px;
+  @include mobile {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
   .Skills {
     display: flex;
-
     flex-direction: column;
-
     flex: 1;
     color: black;
     padding-top: 20px;
@@ -34,6 +67,7 @@
     background-color: $color-dark;
     padding-top: 10px;
     margin-bottom: 5px;
+    margin-top: 5px;
     & img {
       object-fit: cover;
       border-radius: 50%;
@@ -48,6 +82,9 @@
       margin-top: 5px;
       text-align: center;
     }
+    @include mobile {
+      width: 100%;
+    }
   }
   .Description {
     padding-left: 50px;
@@ -55,11 +92,15 @@
   .OpenContact {
     & input {
       padding: 10px;
-      background: black;
-      color: white;
+      background: $color-lightgray;
+      color: $color-dark;
       border-radius: 8px;
       border: none;
       margin-bottom: 10px;
+    }
+    &:hover {
+      opacity: 0.4;
+      transition: 0.4s ease-in-out;
     }
   }
 }

@@ -12,7 +12,8 @@ export default function FreelancerView() {
        */
   const { freelancerFind } = useContext(MyContext);
   const [showContactForm, setShowContactForm] = useState(false);
-  let { first_name, last_name, hourly_rate, email, avatar } = freelancerFind;
+  let { first_name, last_name, hourly_rate, email, phone, avatar } =
+    freelancerFind;
   console.log(showContactForm);
   return (
     <div className="freelancerView">
@@ -38,6 +39,8 @@ export default function FreelancerView() {
           <div className="mt-5 text-center">
             <h4 className="mb-0">{`${first_name} ${last_name}`}</h4>
             <span className="text-muted d-block mb-2">{email}</span>
+
+            <p> Phone: {phone}</p>
 
             <ImHeart className="iconHeart text-danger" size="35px" />
 
