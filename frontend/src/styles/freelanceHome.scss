@@ -2,6 +2,36 @@
 @import "./mobile";
 // @import "./buttons";
 @import "./colors";
+.FreelancerSearch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  margin: 0 auto;
+  height: 100px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  .Title {
+    margin-top: 10px;
+  }
+
+  .Search-Form > input {
+    padding: 20px;
+    width: 100%;
+    margin-bottom: 5px;
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid $color-dark;
+    border-radius: 8px;
+
+    &:focus {
+      color: $color-pepper;
+      outline: none;
+    }
+  }
+}
 
 .MainContainer {
   // border: 1px solid red;
@@ -37,6 +67,7 @@
     background-color: $color-dark;
     padding-top: 10px;
     margin-bottom: 5px;
+    margin-top: 5px;
     & img {
       object-fit: cover;
       border-radius: 50%;

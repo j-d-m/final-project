@@ -36,12 +36,13 @@ export default function FreelancerHome() {
     <div className="Wrapper">
       {/*search begins*/}
       <div className="FreelancerSearch">
+        <h3 className="Title">Search for a Freelancer</h3>
         <form className="Search-Form">
           <input
             onChange={(e) => setSearchFreelancers(e.target.value)}
             type="text"
             name="freelancerSearch"
-            placeholder="Search by name or position"
+            placeholder="Search by Position"
           />
         </form>
       </div>
