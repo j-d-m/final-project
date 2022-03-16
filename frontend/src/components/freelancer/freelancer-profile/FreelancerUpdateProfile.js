@@ -11,7 +11,7 @@ import Swal from "sweetalert2";
 import { UPDATE_USER } from "../../../graphQL/Mutations";
 import { MyContext } from "../../../Context/Context";
 import { GET_ONE_USER } from "../../../graphQL/Queries";
-import hotPan from "../../../assets/img/hotPan.svg"
+import hotPan from "../../../assets/img/hotPan.svg";
 
 function FreelancerUpdateProfile(props) {
   const { freelancerLoginData } = useContext(MyContext);
@@ -63,13 +63,13 @@ function FreelancerUpdateProfile(props) {
       description = e.target.description.value;
     }
     if (
-      firstName &&
-      lastName &&
-      hourlyRate &&
-      phone &&
-      email &&
-      password &&
-      description === undefined
+      firstName !== e.target.firstName.value &&
+      lastName !== e.target.lastName.value &&
+      hourlyRate !== Number(e.target.hourlyRate.value) &&
+      phone !== e.target.phone.value &&
+      email !== e.target.email.value &&
+      password !== e.target.password.value &&
+      description !== e.target.description.value
     ) {
       Swal.fire({
         position: "top",
@@ -118,15 +118,9 @@ function FreelancerUpdateProfile(props) {
 
   return (
     <div>
-      <Modal
-        {...props}
-        size="lg"
-        centered
-        className="ProfileUpdate"
-      >
-        <Modal.Header
-          closeButton>
-          <Modal.Title className="contained-modal-title-vcenter w-100" >
+      <Modal {...props} size="lg" centered className="ProfileUpdate">
+        <Modal.Header closeButton>
+          <Modal.Title className="contained-modal-title-vcenter w-100">
             <div className="update-freelancer-title d-flex align-items-center justify-content-around">
               <h3>Update your profile</h3>
               <img alt="" src={hotPan} width="80" height="80" />
@@ -144,7 +138,6 @@ function FreelancerUpdateProfile(props) {
                   type="text"
                   name="firstName"
                   placeholder={freelancerLoginData.first_name}
-                  required
                   minLength="2"
                   maxLength="50"
                 />
@@ -157,7 +150,6 @@ function FreelancerUpdateProfile(props) {
                   type="text"
                   name="lastName"
                   placeholder={freelancerLoginData.last_name}
-                  required
                   minLength="2"
                   maxLength="50"
                 />
@@ -172,7 +164,6 @@ function FreelancerUpdateProfile(props) {
                   type="email"
                   name="email"
                   placeholder={freelancerLoginData.email}
-                  required
                   minLength="2"
                   maxLength="50"
                 />
@@ -223,13 +214,16 @@ function FreelancerUpdateProfile(props) {
                 cols="22"
                 rows="5"
                 placeholder={freelancerLoginData.description}
-                required
                 minLength="5"
                 maxLength="500"
               />
             </div>
             <Modal.Footer className="modal-footer border-0">
-              <input type="submit" value="Save" className="btn btn-secondary ps-3 pe-3" />
+              <input
+                type="submit"
+                value="Save"
+                className="btn btn-secondary ps-3 pe-3"
+              />
             </Modal.Footer>
           </form>
         </Modal.Body>

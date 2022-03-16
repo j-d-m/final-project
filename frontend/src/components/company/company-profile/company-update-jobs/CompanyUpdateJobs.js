@@ -145,7 +145,6 @@ function CompanyUpdateJobs(props) {
                   type="text"
                   name="jobTitle"
                   placeholder={oneCompanyJob.job_Title}
-                  required
                   minLength="2"
                   maxLength="50"
                 />
@@ -193,7 +192,6 @@ function CompanyUpdateJobs(props) {
                 cols="60"
                 rows="8"
                 placeholder={oneCompanyJob.job_description}
-                required
                 minLength="5"
                 maxLength="500"
               />
