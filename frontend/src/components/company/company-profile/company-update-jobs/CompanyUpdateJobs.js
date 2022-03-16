@@ -1,11 +1,21 @@
+
+//Native Imports
 import React, { useContext } from "react";
+
+//External Imports
 import { Modal, Button } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { useMutation } from "@apollo/client";
 import Swal from "sweetalert2";
+
+// import "bootstrap/dist/css/bootstrap.min.css";
+
+//Internal Imports
 import { UPDATE_JOB } from "../../../../graphQL/Mutations";
 import { MyContext } from "../../../../Context/Context";
 import { GET_JOBS, GET_ONE_COMPANY } from "../../../../graphQL/Queries";
+import hotPan from "../../../../assets/img/hotPan.svg"
+import "../../../../styles/companyJobs.scss"
+
 
 function CompanyUpdateJobs(props) {
   const { companyLoginData, setCompanyLoginData, oneCompanyJob } =
@@ -114,13 +124,32 @@ function CompanyUpdateJobs(props) {
 
   return (
     <div>
-      <Modal {...props} size="lg" centered className="ProfileUpdate">
+      <Modal
+        {...props}
+        size="lg"
+        centered
+        className="ProfileUpdate jobsAdminModalBg "
+      >
+        <Modal.Header
+          closeButton>
+          <Modal.Title className="contained-modal-title-vcenter w-100" >
+            <div className="update-jobs-title d-flex align-items-center justify-content-around">
+              <h3>Update Job Post  </h3>
+              <img alt="" src={hotPan} width="80" height="80" />
+            </div>
+          </Modal.Title>
+        </Modal.Header>
+
+
+
         <Modal.Body className="modalBody">
-          <form className="modalForm" onSubmit={updateJobs}>
-            <div className="modalDiv">
+          <form className="container modalForm" onSubmit={updateJobs}>
+            <div className="modalDiv form-group">
               <div>
-                <label>Job Title :</label>
+                <label htmlFor="jobTitle">Job Title</label>
                 <input
+                  id="jobTitle"
+                  className="form-control"
                   type="text"
                   name="jobTitle"
                   placeholder={oneCompanyJob.job_Title}
@@ -129,26 +158,10 @@ function CompanyUpdateJobs(props) {
                 />
               </div>
               <div>
-                <label>Start Date :</label>
+                <label htmlFor="peopleNeeded" >People Needed</label>
                 <input
-                  type="text"
-                  name="startDate"
-                  placeholder={oneCompanyJob.start_Date}
-                />
-              </div>
-            </div>
-            <div className="modalDiv">
-              <div>
-                <label>End Date :</label>
-                <input
-                  type="text"
-                  name="endDate"
-                  placeholder={oneCompanyJob.end_Date}
-                />
-              </div>
-              <div>
-                <label>People Needed :</label>
-                <input
+                  id="peopleNeeded"
+                  className="form-control"
                   type="number"
                   name="numOfPeopleNeeded"
                   placeholder={oneCompanyJob.num_of_people_needed}
@@ -156,20 +169,43 @@ function CompanyUpdateJobs(props) {
               </div>
             </div>
 
+            <div className="modalDiv">
+              <div>
+                <label htmlFor="inputTwo2">Start Date</label>
+                <input
+                  id="startDate"
+                  className="form-control"
+                  type="text"
+                  name="startDate"
+                  placeholder={oneCompanyJob.start_Date}
+                />
+              </div>
+              <div>
+                <label htmlFor="endDate" >End Date</label>
+                <input
+                  id="startDate"
+                  className="form-control"
+                  type="text"
+                  name="endDate"
+                  placeholder={oneCompanyJob.end_Date}
+                />
+              </div>
+
+            </div>
+
             <div className="textInput">
-              <label> Job Description :</label>
+              <label>Description</label>
               <textarea
                 name="jobDescription"
-                cols="22"
-                rows="5"
+                cols="60"
+                rows="8"
                 placeholder={oneCompanyJob.job_description}
-                minLength="2"
-                maxLength="50"
+                minLength="5"
+                maxLength="500"
               />
             </div>
-            <Modal.Footer>
-              <Button onClick={props.onHide}>Close</Button>
-              <input type="submit" value="Save" className="btn btn-primary" />
+            <Modal.Footer className="modal-footer border-0">
+              <input type="submit" value="Save" className="btn btn-secondary ps-3 pe-3" />
             </Modal.Footer>
           </form>
         </Modal.Body>
