@@ -1,8 +1,10 @@
 @import "./mobile";
 @import "./fonts";
+@import "./colors";
 
 .ProfileUpdate {
-  .update-jobs-title {
+  .update-jobs-title,
+  .update-freelancer-title {
     h3 {
       font-family: $font-family-Bebas;
       letter-spacing: 2px;
@@ -49,3 +51,5 @@
     }
   }
 }
+
+

@@ -38,24 +38,36 @@
         justify-content: center;
         flex-direction: column;
         padding: 2rem;
+        height:80vh;
+
 
              h2{
-                 padding: 1rem 0;
-                 margin-top: -50px;
                  color:$color-green;
                 //  font-family: $font-family-Roboto;
 
              }
              @include mobile {
                 flex:1;
+                height:80vh;
+                margin-top: -2rem;
+                margin-bottom: 2rem;
                 
                     h2{
-                        margin-top:-10px;
-                        padding: 5px;
-                        font-weight: 300;
-                        font-size: 20px;
+                        font-weight: 400;
+                        font-size: 18px
                     }
                  }
+                 @include mobile-small {
+                    flex: 1;
+                    height:80vh;
+                    overflow: scroll;
+                    padding-top: 15rem;
+                    margin:10px -30px;   
+                    h2{
+                        font-weight: 300;
+                        font-size: 18px
+                    }
+                     }
 
    
     .form-style-5{
@@ -66,11 +78,15 @@
         border: 5px solid #c5d5d6;
         border-radius: 10px;
 
-
-        @include mobile-small {
-            
-            width: 500px;
+        @include mobile {
+            padding: 20px 20px 10px 20px;
+            width: 100%;
         }
+        @include mobile-small {
+            width: 100%;
+            padding: 5px 5px 3px 5px;
+        }
+
     }
     .form-style-5 input[type=submit],
     .form-style-5 input[type=button],
@@ -86,6 +102,9 @@
     }
     .form-style-5 legend {
         color:$color-dark;
+        @include mobile-small{
+            font-size: smaller;
+        } 
     }
     .form-style-5 label {
         display:block;
@@ -109,6 +128,9 @@
         outline: none;
         padding: 0px 0px 0px 0px;
         color: $color-green;
+        @include mobile-small {
+            width: 250px;
+        }
     }
     .form-style-5 textarea{
         
@@ -124,7 +146,7 @@
 
         @include mobile-small {
            
-            width: 330px;
+            width: 260px;
         }
     }
     

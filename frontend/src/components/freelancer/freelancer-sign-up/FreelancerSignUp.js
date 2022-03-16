@@ -22,7 +22,7 @@ export default function UserSignUp() {
         title: "Your passwords do not match",
         showConfirmButton: false,
         timer: 2000,
-        customClass: "swal-width",
+        // customClass: "swal-width",
       });
     }
     addUser({
@@ -42,17 +42,22 @@ export default function UserSignUp() {
         Swal.fire({
           position: "top",
           icon: "success",
-          title: "account created successfully",
+          title: "Account Created",
           showConfirmButton: false,
           timer: 2000,
-          customClass: "swal-width",
+          // customClass: "swal-width",
         });
-        navigate("/freelancer-login");
+        navigate("/freelancer-profile");
       }
     });
   };
 
-  if (error) return <p>Error :(</p>;
+  // Error handling needs to be reviewed: When there is an error it needs to show
+  // Sweeet Alert and dont make the user loses everything he has entered so far 
+
+  if (error) return
+  <p>{error} </p>
+    ;
 
   return (
     <>
@@ -72,47 +77,89 @@ export default function UserSignUp() {
 
             <label>
               <span>First Name</span>
-              <input type="text" name="first_name" />
+              <input
+                type="text"
+                name="first_name"
+                required
+                minLength="2"
+                maxLength="50"
+              />
             </label>
-
             <label>
               <span>Last Name</span>
-
-              <input type="text" name="last_name" />
+              <input
+                type="text"
+                name="last_name"
+                required
+                minLength="2"
+                maxLength="50"
+              />
             </label>
-
             <label>
               <span>Email</span>
-              <input type="email" name="email" />
+              <input
+                type="email"
+                name="email"
+                required
+                minLength="2"
+                maxLength="50"
+              />
             </label>
-
             <label>
               <span>Phone</span>
-              <input type="Phone" name="phone" />
+              <input
+                type="Phone"
+                name="phone"
+                required
+                minLength="2"
+                maxLength="50"
+              />
             </label>
-
             <label>
               <span>Password</span>
-              <input type="password" name="password" />
+              <input
+                type="password"
+                name="password"
+                required
+                minLength="2"
+                maxLength="50"
+              />
             </label>
-
             <label>
               <span>Repeat Password</span>
-              <input type="password" name="repeatPassword" />
+              <input
+                type="password"
+                name="repeatPassword"
+                required
+                minLength="2"
+                maxLength="50"
+              />
             </label>
-
             <label>
               <span>Hourly Rate</span>
-              <input type="number" name="hourly_rate" />
+              <input
+                type="number"
+                name="hourly_rate"
+                minLength="1"
+                maxLength="10"
+              />
             </label>
 
             <label>
               <span>Describe your Roll</span> <br />
-              <textarea name="description" maxLength={500} />
+              <textarea
+                name="description"
+                required
+                minLength="5"
+                maxLength="500"
+              />
             </label>
             <label>
               <span> </span>
-              <input type="submit" value="Sign Up" />
+              <input
+                type="submit"
+                value="Sign Up"
+              />
             </label>
           </form>
         </div>

@@ -41,7 +41,11 @@ function DeleteCompanyAccount(props) {
   };
   return (
     <div>
-      <Modal {...props} size="m" centered className="companyProfileUpdate">
+      <Modal
+      {...props}
+      size="m"
+      centered
+      className="companyProfileUpdate">
         <Modal.Body className="text-center">
           <h4>Leaving us?  </h4>
           <img alt="" src={hotelCheckout} width="150" height="150" className="" />

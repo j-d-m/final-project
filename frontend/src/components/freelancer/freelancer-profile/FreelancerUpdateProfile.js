@@ -1,11 +1,18 @@
+//Native Imports
 import React, { useContext } from "react";
+
+//External Imports
 import { Modal, Button } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { UPDATE_USER } from "../../../graphQL/Mutations";
 import { useMutation } from "@apollo/client";
 import Swal from "sweetalert2";
+// import "bootstrap/dist/css/bootstrap.min.css";
+
+//Internal Imports
+import { UPDATE_USER } from "../../../graphQL/Mutations";
 import { MyContext } from "../../../Context/Context";
 import { GET_ONE_USER } from "../../../graphQL/Queries";
+import hotPan from "../../../assets/img/hotPan.svg";
+
 function FreelancerUpdateProfile(props) {
   const { freelancerLoginData } = useContext(MyContext);
 
@@ -56,18 +63,18 @@ function FreelancerUpdateProfile(props) {
       description = e.target.description.value;
     }
     if (
-      firstName &&
-      lastName &&
-      hourlyRate &&
-      phone &&
-      email &&
-      password &&
-      description === undefined
+      firstName !== e.target.firstName.value &&
+      lastName !== e.target.lastName.value &&
+      hourlyRate !== Number(e.target.hourlyRate.value) &&
+      phone !== e.target.phone.value &&
+      email !== e.target.email.value &&
+      password !== e.target.password.value &&
+      description !== e.target.description.value
     ) {
       Swal.fire({
         position: "top",
         icon: "error",
-        title: "nothing change",
+        title: "Nothing changed",
         showConfirmButton: false,
         timer: 1000,
       });
@@ -92,7 +99,7 @@ function FreelancerUpdateProfile(props) {
         Swal.fire({
           position: "top",
           icon: "success",
-          title: "profile updated successfully",
+          title: "Profile updated successfully",
           showConfirmButton: false,
           timer: 1000,
         });
@@ -101,7 +108,7 @@ function FreelancerUpdateProfile(props) {
         Swal.fire({
           position: "top",
           icon: "error",
-          title: "something went wrong",
+          title: "Something went wrong",
           showConfirmButton: false,
           timer: 1000,
         });
@@ -112,6 +119,14 @@ function FreelancerUpdateProfile(props) {
   return (
     <div>
       <Modal {...props} size="lg" centered className="ProfileUpdate">
+        <Modal.Header closeButton>
+          <Modal.Title className="contained-modal-title-vcenter w-100">
+            <div className="update-freelancer-title d-flex align-items-center justify-content-around">
+              <h3>Update your profile</h3>
+              <img alt="" src={hotPan} width="80" height="80" />
+            </div>
+          </Modal.Title>
+        </Modal.Header>
         <Modal.Body className="modalBody">
           <form className="container modalForm" onSubmit={updateProfile}>
             <div className="modalDiv form-group">
@@ -123,6 +138,8 @@ function FreelancerUpdateProfile(props) {
                   type="text"
                   name="firstName"
                   placeholder={freelancerLoginData.first_name}
+                  minLength="2"
+                  maxLength="50"
                 />
               </div>
               <div>
@@ -133,6 +150,8 @@ function FreelancerUpdateProfile(props) {
                   type="text"
                   name="lastName"
                   placeholder={freelancerLoginData.last_name}
+                  minLength="2"
+                  maxLength="50"
                 />
               </div>
             </div>
@@ -145,6 +164,8 @@ function FreelancerUpdateProfile(props) {
                   type="email"
                   name="email"
                   placeholder={freelancerLoginData.email}
+                  minLength="2"
+                  maxLength="50"
                 />
               </div>
               <div>
@@ -155,6 +176,8 @@ function FreelancerUpdateProfile(props) {
                   type="password"
                   name="password"
                   placeholder="your new password...."
+                  minLength="2"
+                  maxLength="50"
                 />
               </div>
             </div>
@@ -167,6 +190,8 @@ function FreelancerUpdateProfile(props) {
                   type="number"
                   name="hourlyRate"
                   placeholder={freelancerLoginData.hourly_rate}
+                  minLength="2"
+                  maxLength="50"
                 />
               </div>
               <div>
@@ -177,23 +202,28 @@ function FreelancerUpdateProfile(props) {
                   type="tel"
                   name="phone"
                   placeholder={freelancerLoginData.phone}
+                  minLength="2"
+                  maxLength="50"
                 />
               </div>
             </div>
             <div className="textInput">
-              <label>Description :</label>
+              <label>Description</label>
               <textarea
                 name="description"
                 cols="22"
                 rows="5"
                 placeholder={freelancerLoginData.description}
+                minLength="5"
+                maxLength="500"
               />
             </div>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={props.onHide}>
-                Close
-              </Button>
-              <input type="submit" value="Save" className="btn btn-secondary" />
+            <Modal.Footer className="modal-footer border-0">
+              <input
+                type="submit"
+                value="Save"
+                className="btn btn-secondary ps-3 pe-3"
+              />
             </Modal.Footer>
           </form>
         </Modal.Body>
