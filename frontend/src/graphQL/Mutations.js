@@ -135,6 +135,26 @@ export const CREATE_USER_MUTATION = gql`
   }
 `;
 
+export const USER_FAVORITE = gql`
+  mutation UpdateUserFavorite($userId: ID!, $job: JobInputType) {
+    userId
+    first_name
+    last_name
+    email
+    favorite {
+      job_Title
+      start_Date
+      end_Date
+      issued_At
+      created_by {
+        company_Name
+        company_type
+        email
+      }
+    }
+  }
+`;
+
 //login as user
 export const USER_LOGIN = gql`
   mutation LoginUser($email: String!, $password: String!) {

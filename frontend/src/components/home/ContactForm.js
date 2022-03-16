@@ -1,25 +1,47 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import emailjs from "@emailjs/browser";
 import waiterSmile from "../../assets/img/waiter-smile.svg";
+import { useMutation } from "@apollo/client";
+import { USER_FAVORITE } from "../../graphQL/Mutations";
+import { MyContext } from "../../Context/Context";
+import { GET_ONE_USER } from "../../graphQL/Queries";
 
 export default function Contact({ job }) {
+  // console.log(job);
   const [emailSent, setEmailSent] = useState(false);
+  const { freelancerLoginData, isFreelancerLogin } = useContext(MyContext);
+  // console.log(freelancerLoginData);
+  const [jobHistoryFav, { data, loading, error }] = useMutation(USER_FAVORITE, {
+    refetchQueries: {
+      query: GET_ONE_USER,
+      variables: { getOneUserId: freelancerLoginData.id },
+    },
+  });
 
   const sendEmail = (e) => {
     e.preventDefault();
-    emailjs
-      .sendForm(
-        process.env.REACT_APP_EMAILJS_SERVICE_ID,
-        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
-        e.target,
-        process.env.REACT_APP_EMAILJS_USER_ID
-      )
-      .then((result) => {
-        console.log(result.text);
-      })
-      .catch((err) => console.log(err));
-    e.target.reset();
-    setEmailSent(true);
+    if (isFreelancerLogin) {
+      if (freelancerLoginData.email === e.target.from_email.value) {
+        console.log(e.target.from_email.value);
+        emailjs
+          .sendForm(
+            process.env.REACT_APP_EMAILJS_SERVICE_ID,
+            process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+            e.target,
+            process.env.REACT_APP_EMAILJS_USER_ID
+          )
+          .then((result) => {
+            if (result.status === 200) {
+              jobHistoryFav({
+                variables: { userId: freelancerLoginData.id, job: job },
+              });
+            }
+          })
+          .catch((err) => console.log(err));
+        e.target.reset();
+        setEmailSent(true);
+      }
+    }
   };
 
   return (

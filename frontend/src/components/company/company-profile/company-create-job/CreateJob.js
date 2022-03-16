@@ -97,6 +97,9 @@ function CreateJob(props) {
                 type="text"
                 className="form-control"
                 aria-describedby="emailHelp"
+                required
+                minLength="2"
+                maxLength="50"
               />
             </div>
             <div className="mb-3">
@@ -113,6 +116,8 @@ function CreateJob(props) {
                 name="numOfPeopleNeeded"
                 type="number"
                 className="form-control"
+                minLength="2"
+                maxLength="5"
               />
             </div>
             <div className="form-outline">
@@ -122,7 +127,9 @@ function CreateJob(props) {
                 className="form-control"
                 rows="8"
                 cols="60"
-                maxLength={500}
+                required
+                minLength="5"
+                maxLength="500"
               />
             </div>
             <Modal.Footer className="modal-footer border-0">
