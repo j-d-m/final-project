@@ -193,8 +193,6 @@ export default function CompanyProfile() {
                         <GiCook />
                         <span>Staff</span>
                       </Button>
-
-
                       <Button
                         id={id}
                         className="btn btn-secondary btn-circle btn-xl"
@@ -209,8 +207,6 @@ export default function CompanyProfile() {
                         show={modalShowJobsAdmin}
                         onHide={() => setModalShowJobsAdmin(false)}
                       />
-
-
 
                     </div>
                   </section>
