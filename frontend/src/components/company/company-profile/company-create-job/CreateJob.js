@@ -2,7 +2,6 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-
 //External Imports
 import { useMutation } from "@apollo/client";
 import Swal from "sweetalert2";
@@ -12,8 +11,8 @@ import { Button, Modal } from "react-bootstrap";
 import { MyContext } from "../../../../Context/Context";
 import { GET_JOBS, GET_ONE_COMPANY } from "../../../../graphQL/Queries";
 import { CREATE_JOB } from "../../../../graphQL/Mutations";
-import hiring from "../../../../assets/img/hiring.svg"
-import "../../../../styles/createJobs.scss"
+import hiring from "../../../../assets/img/hiring.svg";
+import "../../../../styles/createJobs.scss";
 
 function CreateJob(props) {
   const navigate = useNavigate();
@@ -55,9 +54,7 @@ function CreateJob(props) {
           showConfirmButton: false,
           timer: 1000,
         });
-        setTimeout(() => {
-          navigate("/company-profile");
-        }, 2000);
+        props.onHide();
       }
       if (error) {
         Swal.fire({
@@ -79,9 +76,8 @@ function CreateJob(props) {
         centered
         size="lg"
       >
-        <Modal.Header
-          closeButton>
-          <Modal.Title className="contained-modal-title-vcenter w-100" >
+        <Modal.Header closeButton>
+          <Modal.Title className="contained-modal-title-vcenter w-100">
             <div className="create-jobs-title d-flex align-items-center justify-content-around">
               <h3>Post a job offer </h3>
               <img alt="" src={hiring} width="80" height="80" />
@@ -133,12 +129,16 @@ function CreateJob(props) {
               />
             </div>
             <Modal.Footer className="modal-footer border-0">
-              <input type="submit" value="Submit" className="btn btn-secondary mt-3" />
+              <input
+                type="submit"
+                value="Submit"
+                className="btn btn-secondary mt-3"
+              />
             </Modal.Footer>
           </form>
         </Modal.Body>
       </Modal>
-    </div >
+    </div>
   );
 }
 export default CreateJob;

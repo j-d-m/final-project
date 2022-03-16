@@ -37,7 +37,16 @@ export default function CompanyLogin() {
       }
     });
   };
-
+  if (error) {
+    Swal.fire({
+      position: "top",
+      icon: "error",
+      title: "please Enter your email address and password",
+      showConfirmButton: false,
+      timer: 2000,
+      customClass: "swal-width",
+    });
+  }
   return (
     <div className="container company-login">
       <h1 className="company-login-header">Employer Login</h1>
@@ -58,6 +67,13 @@ export default function CompanyLogin() {
         <button type="submit" className="btn btn-secondary">
           Submit
         </button>
+
+        {error && (
+          <div className="animate__animated animate__bounceInUp mt-5  border-danger p-3 border rounded">
+            <p>add your Email</p>
+            <p>add your password</p>
+          </div>
+        )}
       </form>
     </div>
   );

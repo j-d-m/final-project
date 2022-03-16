@@ -7,13 +7,12 @@ import Swal from "sweetalert2";
 
 // Internal imports
 import "../../styles/home.scss";
-import "../../styles/_sweetAlert.scss"
-import background1 from '../../assets/img/homeBg1.jpg'
-import background2 from '../../assets/img/homeBg2.jpg'
-import background3 from '../../assets/img/homeBg3.jpg'
-import background4 from '../../assets/img/homeBg4.jpg'
-import background5 from '../../assets/img/homeBg5.jpg'
-
+import "../../styles/_sweetAlert.scss";
+import background1 from "../../assets/img/homeBg1.jpg";
+import background2 from "../../assets/img/homeBg2.jpg";
+import background3 from "../../assets/img/homeBg3.jpg";
+import background4 from "../../assets/img/homeBg4.jpg";
+import background5 from "../../assets/img/homeBg5.jpg";
 
 import { MyContext } from "../../Context/Context";
 import { GET_JOBS } from "../../graphQL/Queries";
@@ -25,12 +24,18 @@ import ThreeSteps from "./ThreeSteps";
 import SearchCard from "./SearchCard";
 import "animate.css";
 
-
-
 export default function Home() {
-  const BgArray = [background1, background2, background3, background4, background5]
-  const randomBg = function () { return Math.floor(Math.random() * 5) }
-  const resultBg = BgArray[randomBg()]
+  const BgArray = [
+    background1,
+    background2,
+    background3,
+    background4,
+    background5,
+  ];
+  const randomBg = function () {
+    return Math.floor(Math.random() * 5);
+  };
+  const resultBg = BgArray[randomBg()];
 
   const { loading, error, data } = useQuery(GET_JOBS);
 
@@ -73,7 +78,9 @@ export default function Home() {
       setIsTitleFilter(false);
     }
   };
-
+  // const resetInput = () => {
+  //   setInputValue("");
+  // };
   if (loading) {
     return (
       <div className="m2-auto text-center loading-block">
@@ -85,9 +92,9 @@ export default function Home() {
     );
   }
   if (error) {
-    console.log('========GraphQL Fetch Error============================');
+    console.log("========GraphQL Fetch Error============================");
     console.log(error);
-    console.log('====================================');
+    console.log("====================================");
   }
 
   return (
@@ -96,26 +103,24 @@ export default function Home() {
         <section className="jobSearchContainer">
           <div
             className="banner-container"
-
             style={{
               backgroundImage: `url(' ${resultBg}')`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
               animation: "fadeIn 3s ease-in-out",
-
             }}
           >
-              {/* flying texts */}
-                  <h4
-                  className="animate__animated animate__fadeInLeftBig animate__delay-2s animate__slow"
-                  > GASTRONOMY JOBS 
-                  </h4>
-                  <h5
-                  className="animate__animated animate__fadeInLeftBig animate__delay-3s animate__slower"
-                  > PEOPLE WHEN YOU NEED
-                  </h5>
-              {/* searchbar and button starts*/}
+            {/* flying texts */}
+            <h4 className="animate__animated animate__fadeInLeftBig animate__delay-2s animate__slow">
+              {" "}
+              GASTRONOMY JOBS
+            </h4>
+            <h5 className="animate__animated animate__fadeInLeftBig animate__delay-3s animate__slower">
+              {" "}
+              PEOPLE WHEN YOU NEED
+            </h5>
+            {/* searchbar and button starts*/}
             <div className="search-fields">
               <form onSubmit={searchHandler}>
                 <input
@@ -127,11 +132,11 @@ export default function Home() {
                   className="search-button"
                   type="submit"
                   value="Search Jobs"
+                  // onClick={() => setInputValue("")}
                 />
               </form>
             </div>
-              {/* searchbar and button ends*/}
-
+            {/* searchbar and button ends*/}
           </div>
           <div className="jobSearchBox">
             {isTitleFilter &&
@@ -147,6 +152,5 @@ export default function Home() {
         </div>
       </div>
     </>
-  
-  )
+  );
 }
