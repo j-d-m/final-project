@@ -56,11 +56,10 @@
                  flex: 1;
                  height:80vh;
                  overflow: scroll;
-                 padding-top: 15rem;
-
-                 h2,h3{
-                     font-weight: 200;
-                     font-size: 18px;
+                 padding-top: 10rem;
+                 margin:5px -30px;   
+                 h2{
+                     display: none;
                  }
                   }
                 
@@ -136,7 +135,7 @@
         height:120px;
 
         @include mobile-small {
-            width: 250px;
+            width: 260px;
         }
     }
     
