@@ -78,9 +78,7 @@ export default function Home() {
       setIsTitleFilter(false);
     }
   };
-  // const resetInput = () => {
-  //   setInputValue("");
-  // };
+
   if (loading) {
     return (
       <div className="m2-auto text-center loading-block">
@@ -132,7 +130,6 @@ export default function Home() {
                   className="search-button"
                   type="submit"
                   value="Search Jobs"
-                  // onClick={() => setInputValue("")}
                 />
               </form>
             </div>

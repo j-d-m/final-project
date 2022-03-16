@@ -138,11 +138,7 @@ function CreateJob(props) {
           </form>
         </Modal.Body>
       </Modal>
-<<<<<<< HEAD
-    </div>
-=======
-    </ >
->>>>>>> fb00c2cf5ca1379fc7b3955dbaa79f5c91f35430
+    </>
   );
 }
 export default CreateJob;
