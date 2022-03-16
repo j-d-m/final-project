@@ -37,27 +37,35 @@ function CompanyUpdateJobs(props) {
       e.target.jobTitle.value !== ""
     ) {
       jobTitle = e.target.jobTitle.value;
-    } else if (
+    }
+    if (
       e.target.startDate.value !== undefined &&
       e.target.startDate.value !== ""
     ) {
       startDate = e.target.startDate.value;
-    } else if (
-      e.target.endDate.value !== undefined &&
-      e.target.endDate.value !== ""
-    ) {
+    }
+    if (e.target.endDate.value !== undefined && e.target.endDate.value !== "") {
       endDate = e.target.endDate.value;
-    } else if (
+    }
+    if (
       e.target.numOfPeopleNeeded.value !== undefined &&
       e.target.numOfPeopleNeeded.value !== ""
     ) {
       numOfPeopleNeeded = Number(e.target.numOfPeopleNeeded.value);
-    } else if (
+    }
+    if (
       e.target.jobDescription.value !== undefined &&
       e.target.jobDescription.value !== ""
     ) {
       jobDescription = e.target.jobDescription.value;
-    } else {
+    }
+    if (
+      jobTitle !== e.target.jobTitle.value &&
+      startDate !== e.target.startDate.value &&
+      endDate !== e.target.endDate.value &&
+      numOfPeopleNeeded !== e.target.numOfPeopleNeeded.value &&
+      jobDescription !== e.target.jobDescription.value
+    ) {
       Swal.fire({
         position: "top",
         icon: "error",
