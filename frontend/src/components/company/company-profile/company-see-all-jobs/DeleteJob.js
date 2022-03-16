@@ -1,7 +1,12 @@
-import { useMutation } from "@apollo/client";
+//Native Imports
 import React, { useContext } from "react";
+
+//External imports
+import { useMutation } from "@apollo/client";
 import { Button, Modal } from "react-bootstrap";
 import Swal from "sweetalert2";
+
+//Internal Imports
 import { MyContext } from "../../../../Context/Context";
 import { DELETE_JOB } from "../../../../graphQL/Mutations";
 import { GET_JOBS, GET_ONE_COMPANY } from "../../../../graphQL/Queries";
@@ -56,18 +61,30 @@ function DeleteJob(props) {
 
   return (
     <div>
-      <Modal {...props} size="md" centered className="companyProfileUpdate">
+      <Modal
+        {...props}
+        size="m"
+        centered
+        className="companyProfileUpdate jobsAdminModalBg">
         <Modal.Body className="text-center">
-          <h4>Are you sure you want to Delete This Job</h4>
+          <h4>Delete Job Post</h4>
+          <p>Are you Sure? This action cannot be reverted.</p>
+
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
-          <input
-            type="submit"
-            value="Delete"
-            className="btn btn-danger"
+          <Button
+            onClick={props.onHide}
+            variant="secondary"
+            className="btn-block"
+          >
+            Close
+          </Button>
+          <Button
+            className="btn-block btn-pepper"
             onClick={deleteOneJob}
-          />
+          >
+            Delete
+          </Button>
         </Modal.Footer>
       </Modal>
     </div>

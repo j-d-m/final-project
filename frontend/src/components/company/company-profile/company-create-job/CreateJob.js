@@ -72,7 +72,7 @@ function CreateJob(props) {
   };
 
   return (
-    <div>
+    <>
       <Modal
         {...props}
         aria-labelledby="contained-modal-title-vcenter"
@@ -138,7 +138,7 @@ function CreateJob(props) {
           </form>
         </Modal.Body>
       </Modal>
-    </div >
+    </ >
   );
 }
 export default CreateJob;
