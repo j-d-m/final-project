@@ -22,6 +22,7 @@ import DeleteCompanyAccount from "./DeleteCompanyAccount";
 import CompanyUpdateProfile from "./CompanyUpdateProfile";
 import CompanyCreateJob from "../company-profile/company-create-job/CreateJob";
 import "../../../styles/companyProfile.scss";
+import CompanyJobs from "./company-see-all-jobs/CompanyJobs";
 
 export default function CompanyProfile() {
   const navigate = useNavigate();
@@ -29,6 +30,7 @@ export default function CompanyProfile() {
   const [modalShowEdit, setModalShowEdit] = useState();
   const [modalShowDelete, setModalShowDelete] = useState();
   const [modalShowCreate, setModalShowCreate] = useState();
+  const [modalShowJobsAdmin, setModalShowJobsAdmin] = useState();
   const [companyImage, setCompanyImage] = useState(null);
   const [UpdateCompany, { data1, loading1, error1 }] =
     useMutation(UPDATE_COMPANY);
@@ -165,6 +167,7 @@ export default function CompanyProfile() {
                         show={modalShowDelete}
                         onHide={() => setModalShowDelete(false)}
                       />
+
                       <Button
                         id={id}
                         className="btn btn-secondary btn-circle btn-xl"
@@ -179,8 +182,9 @@ export default function CompanyProfile() {
                       <CompanyCreateJob
                         show={modalShowCreate}
                         onHide={() => setModalShowCreate(false)}
-                        // image={companyImage}
+                      // image={companyImage}
                       />
+
                       <Button
                         value="Check freelancers"
                         onClick={() => navigate("/freelancer-list")}
@@ -189,16 +193,25 @@ export default function CompanyProfile() {
                         <GiCook />
                         <span>Staff</span>
                       </Button>
+
+
                       <Button
-                        value="Jobs List"
-                        onClick={() =>
-                          navigate("/company-profile/company-jobs")
-                        }
+                        id={id}
                         className="btn btn-secondary btn-circle btn-xl"
+                        onClick={() => {
+                          setModalShowJobsAdmin(true);
+                        }}
                       >
                         <AiOutlineUnorderedList />
                         <span>Jobs</span>
                       </Button>
+                      <CompanyJobs
+                        show={modalShowJobsAdmin}
+                        onHide={() => setModalShowJobsAdmin(false)}
+                      />
+
+
+
                     </div>
                   </section>
                 </div>
