@@ -41,8 +41,10 @@ export default function FreelancerView() {
             <span className="text-muted d-block mb-2">{email}</span>
 
             <p> Phone: {phone}</p>
-
-            <ImHeart className="iconHeart text-danger" size="35px" />
+            <h5>
+              Person to your favorites
+              <ImHeart className="iconHeart text-danger" size="35px" />
+            </h5>
 
             <div className="stats mt-2">
               <h6 className="mb-0">Hourly_rate</h6>
