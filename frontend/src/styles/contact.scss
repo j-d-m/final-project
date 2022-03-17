@@ -1,0 +1,20 @@
+@import "mobile";
+@import "flexCenter";
+@import "colors";
+@import "fonts";
+
+.contact-avatar-company,
+.contact-avatar-freelancer {
+  max-width: 250px;
+  max-height: 150px;
+  margin: 0px 30px;
+  clip-path: circle();
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  @include mobile-small {
+    display: none;
+  }
+}
