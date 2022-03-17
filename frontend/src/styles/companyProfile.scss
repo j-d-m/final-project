@@ -105,8 +105,9 @@
 
     .ModalBtnCompanyProfile {
       @include flex-center;
-      justify-content: space-evenly;
+      justify-content: center;
       margin-top: 2rem;
+      
 
       .btn-circle.btn-xl {
         width: 70px;
@@ -120,6 +121,7 @@
         width: 30px;
         height: 30px;
         padding: 6px 0px;
+        margin: 1rem;
         border-radius: 15px;
         text-align: center;
         color: white;

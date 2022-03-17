@@ -6,11 +6,8 @@
 
 .Company-sign-container{
     display: flex;
-    height: 80vh;
-
-    
+    height: 100vh;
     // left side wall
-
     .Wall-left {
         flex:0.2;
         @include flex-center;
@@ -19,39 +16,31 @@
         border-bottom:5px solid white;
         background-image: url(../assets/img/hp-bg-1.jpeg);
         background-size: cover;
-        
         img {
             width: 10rem;
-            
         }
 
         @include mobile {
            display: none;
             }
-    }
+        }
 
     // form section 
-
      .signUp-form-right{
         flex:0.8;
         @include flex-center;
-        justify-content: center;
         flex-direction: column;
         padding: 2rem;
-        height:80vh;
-
-
+        height:100%;
              h2{
                  color:$color-green;
+                 padding-bottom:1rem;
                 //  font-family: $font-family-Roboto;
-
              }
              @include mobile {
                 flex:1;
-                height:80vh;
-                margin-top: -2rem;
+                height:100%;
                 margin-bottom: 2rem;
-                
                     h2{
                         font-weight: 400;
                         font-size: 18px
@@ -59,10 +48,8 @@
                  }
                  @include mobile-small {
                     flex: 1;
-                    height:80vh;
+                    height:100%;
                     overflow: scroll;
-                    padding-top: 15rem;
-                    margin:10px -30px;   
                     h2{
                         font-weight: 300;
                         font-size: 18px
@@ -144,9 +131,12 @@
         resize:none;
         height:120px;
 
+        @include mobile {
+            width: 100%;
+        }
+
         @include mobile-small {
-           
-            width: 260px;
+            width: 100%;
         }
     }
     

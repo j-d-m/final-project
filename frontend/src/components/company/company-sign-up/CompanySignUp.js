@@ -87,7 +87,7 @@ export default function CompanySignUp() {
           </div>
         </div>
 
-        <div className="container signUp-form-right">
+        <div className="signUp-form-right">
           <h2>Company Signup page</h2>
 
           <form className="form-style-5" onSubmit={formSubmitAddCompany}>
