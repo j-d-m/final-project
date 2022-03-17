@@ -1,0 +1,146 @@
+@import "./mobile";
+@import "./colors";
+.CompanyLogin {
+  height: 60vh;
+  width: 60vw;
+  margin: 0 auto;
+  margin-top: 8em;
+
+  .CompanyLoginHeader {
+    text-align: center;
+  }
+  .FormContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 40vh;
+    border-right: none;
+
+    .CompanyLoginForm {
+      width: 50%;
+      height: 60vh;
+
+      box-shadow: 10px 10px 10px rgb(19, 18, 18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      .InputForm {
+        .form-control {
+          border: none;
+          border-bottom: 1px solid rgb(90, 139, 127);
+          outline: none;
+        }
+        position: relative;
+
+        &::after {
+          content: "";
+          width: 0%;
+          height: 3px;
+          position: absolute;
+          background-color: $color-pepper;
+          bottom: 0%;
+          left: 50%;
+          border-radius: 10px;
+          transition: all 500ms ease;
+        }
+        &:hover::after {
+          left: 0%;
+          width: 100%;
+        }
+      }
+    }
+    .imageDiv {
+      width: 50%;
+      height: 40vh;
+      background-image: url("https://images.unsplash.com/photo-1488992783499-418eb1f62d08?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1289&q=80");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  }
+  .FreelancerImageDiv {
+    width: 50%;
+    height: 40vh;
+    background-image: url("https://images.unsplash.com/photo-1571989569011-ff63072f08b0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1176&q=80");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+  .goToSignUp {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 868px) {
+  .CompanyLoginForm {
+    background-image: url("https://images.unsplash.com/photo-1578474846511-04ba529f0b88?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    width: 95%;
+  }
+  .CompanyLoginHeader {
+    font-size: 25px;
+    color: $color-sky;
+  }
+  .imageDiv {
+    display: none;
+  }
+  .FreelancerImageDiv {
+    display: none;
+  }
+  .goToSignUp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: $color-sky;
+    p {
+      font-weight: bold;
+      background-color: rgba(0, 0, 0, 0.692);
+      padding: 10px;
+    }
+    a {
+      color: $color-sky;
+      cursor: pointer;
+    }
+  }
+}
+@media screen and (max-width: 926px) {
+  .CompanyLoginForm {
+    margin-top: 60px;
+    background-image: url("https://images.unsplash.com/photo-1578474846511-04ba529f0b88?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    width: 95%;
+  }
+  .CompanyLoginHeader {
+    font-size: 25px;
+    color: $color-sky;
+  }
+  .imageDiv {
+    display: none;
+  }
+  .FreelancerImageDiv {
+    display: none;
+  }
+  .goToSignUp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: $color-sky;
+    p {
+      font-weight: bold;
+      background-color: rgba(0, 0, 0, 0.692);
+      padding: 10px;
+    }
+    a {
+      color: $color-sky;
+      cursor: pointer;
+    }
+  }
+}

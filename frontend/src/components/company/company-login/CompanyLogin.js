@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import { useMutation } from "@apollo/client";
 import { COMPANY_LOGIN } from "../../../graphQL/Mutations";
 import { MyContext } from "../../../Context/Context";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import "../../../styles/companyLoginStyle.scss";
+import "../../../styles/LoginStyle.scss";
 
 export default function CompanyLogin() {
   const navigate = useNavigate();
@@ -37,44 +37,38 @@ export default function CompanyLogin() {
       }
     });
   };
-  if (error) {
-    Swal.fire({
-      position: "top",
-      icon: "error",
-      title: "please Enter your email address and password",
-      showConfirmButton: false,
-      timer: 2000,
-      customClass: "swal-width",
-    });
-  }
-  return (
-    <div className="container company-login">
-      <h1 className="company-login-header">Employer Login</h1>
-      <form onSubmit={companyLogin}>
-        <div className="mb-3">
-          <label className="form-label">Email</label>
-          <input
-            name="email"
-            type="email"
-            className="form-control"
-            aria-describedby="emailHelp"
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Password</label>
-          <input name="password" type="password" className="form-control" />
-        </div>
-        <button type="submit" className="btn btn-secondary">
-          Submit
-        </button>
 
-        {error && (
-          <div className="animate__animated animate__bounceInUp mt-5  border-danger p-3 border rounded">
-            <p>add your Email</p>
-            <p>add your password</p>
+  return (
+    <div className=" CompanyLogin">
+      <div className="FormContainer">
+        <form onSubmit={companyLogin} className="CompanyLoginForm">
+          <h1 className="CompanyLoginHeader">Employer Login</h1>
+          <div className="m-3 InputForm">
+            <input
+              name="email"
+              type="email"
+              className="form-control shadow-none"
+              placeholder="Email"
+            />
           </div>
-        )}
-      </form>
+          <div className="m-3 InputForm">
+            <input
+              name="password"
+              type="password"
+              className="form-control shadow-none"
+              placeholder="Password"
+            />
+          </div>
+          <button type="submit" className="btn btn-secondary">
+            Submit
+          </button>
+          <div className="goToSignUp">
+            <p>You Dont Have Account ?</p>
+            <Link to="/company-signUp">Sign Up</Link>
+          </div>
+        </form>
+        <div className="imageDiv"></div>
+      </div>
     </div>
   );
 }

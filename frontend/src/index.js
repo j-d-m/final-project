@@ -10,7 +10,8 @@ import {
   ApolloProvider,
   ApolloLink,
 } from "@apollo/client";
-
+import { onError } from "apollo-link-error";
+import Swal from "sweetalert2";
 // new middlewareLink to attach the token in headers similar to authLink
 const middlewareLink = new ApolloLink((operation, forward) => {
   operation.setContext({
@@ -21,16 +22,43 @@ const middlewareLink = new ApolloLink((operation, forward) => {
   return forward(operation);
 });
 
+const link = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors)
+    graphQLErrors.map(({ message, locations, path }) =>
+      console.log(
+        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
+      )
+    );
+  Swal.fire({
+    position: "top",
+    icon: "error",
+    title: graphQLErrors[0].message,
+    showConfirmButton: false,
+    timer: 2000,
+    customClass: "swal-width",
+  });
+  console.log(graphQLErrors[0].message);
+
+  if (networkError) console.log(`[Network error]: ${networkError}`);
+  Swal.fire({
+    position: "top",
+    icon: "error",
+    title: networkError[0].message,
+    showConfirmButton: false,
+    timer: 2000,
+    customClass: "swal-width",
+  });
+});
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: ApolloLink.from([
+    link,
     middlewareLink,
     createUploadLink({
       uri: "https://deploy-final-project-anass.herokuapp.com/graphql",
     }),
   ]),
 });
-
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
