@@ -6,10 +6,8 @@
 
 .Freelancer-sign-container{
     display: flex;
-    height: 80vh;
-   
+    height: 100vh;
     // left side wall
-
     .Wall-left {
         flex:0.2;
         @include flex-center;
@@ -27,14 +25,12 @@
         }
 
     // form section 
-
      .signUp-form-right{
         flex:0.8;
         @include flex-center;
-        justify-content: center;
         flex-direction: column;
         padding: 2rem;
-        height:80vh;
+        height:100%;
         
              h2,h3{
                  color:$color-green;
@@ -42,9 +38,8 @@
 
              @include mobile {
                  flex:1;
-                 height:80vh;
-                 margin-top: -2rem;
-                 margin-bottom: 2rem;
+                 height:100%;
+                //  margin-bottom: 2rem;
           
                 h2,h3{
                     font-weight: 400;
@@ -54,10 +49,8 @@
 
              @include mobile-small {
                  flex: 1;
-                 height:80vh;
+                 height:100%;
                  overflow: scroll;
-                 padding-top: 10rem;
-                 margin:5px -30px;   
                  h2{
                      display: none;
                  }
@@ -79,6 +72,7 @@
         @include mobile-small {
             width: 100%;
             padding: 5px 5px 3px 5px;
+            
         }
     }
     .form-style-4 input[type=submit],
@@ -131,11 +125,14 @@
         border-bottom: 1px dashed #83A4C5;
         width: 600px;
         // overflow: hidden;
-        resize:none;
+        resize:horizontal;
         height:120px;
 
+        @include mobile {
+            width: 100%;
+        }
         @include mobile-small {
-            width: 260px;
+            width: 100%;
         }
     }
     

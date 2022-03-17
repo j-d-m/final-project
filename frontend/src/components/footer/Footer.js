@@ -2,8 +2,8 @@ import React from "react";
 import { Link as LinkDom } from "react-router-dom";
 import { Link } from "react-scroll";
 import "../../styles/footer.scss";
+import { FaChevronUp } from "react-icons/fa";
 import {
-  BsArrowUpCircle,
   BsFacebook,
   BsInstagram,
   BsTwitter,
@@ -11,6 +11,7 @@ import {
 
 export default function Footer() {
   return (
+    
     <div className="FooterParent">
       <footer className="Footer">
         <div className="Footer-LEFT">
@@ -67,8 +68,7 @@ export default function Footer() {
       </footer>
       <div className="Footer-Copyright">
         <p>Staff Room © 2021. All rights reserved.</p>
-
-        <Link
+       <Link
           to="goTop"
           spy={true}
           smooth={true}
@@ -76,9 +76,12 @@ export default function Footer() {
           duration={200}
           delay={500}
         >
-          <BsArrowUpCircle />
+          <FaChevronUp />
         </Link>
       </div>
+      
     </div>
+     
+   
   );
 }

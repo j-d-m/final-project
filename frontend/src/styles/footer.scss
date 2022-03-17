@@ -50,10 +50,35 @@
     display: flex;
     justify-content: center;
     padding-top: 20px;
+    position:relative;
 
     a {
-      margin-left: 8px;
       cursor: pointer;
+      position: absolute;
+      top: -290px;
+      right: 50px;
+      color: $color-white;
+      background-color: $color-pepper;
+      font-size:x-large;
+      padding: .1rem .5rem .3rem .5rem;
+      animation: fadeIn 4s infinite alternate;
+      -webkit-animation: fadeIn 4s infinite alternate;
+      -moz-animation: fadeIn 4s infinite alternate;
     }
+
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+@-moz-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+@-webkit-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+    
   }
+
 }
