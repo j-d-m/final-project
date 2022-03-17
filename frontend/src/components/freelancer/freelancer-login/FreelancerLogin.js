@@ -1,11 +1,11 @@
 import React, { useContext, useRef } from "react";
-import "../../../styles/freelancerLogin.scss";
-import { useNavigate } from "react-router-dom";
+
+import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { USER_LOGIN } from "../../../graphQL/Mutations";
 import { MyContext } from "../../../Context/Context";
 import swal from "sweetalert2";
-
+import "../../../styles/LoginStyle.scss";
 export default function FreeLancerLogin() {
   const navigate = useNavigate();
   const formRef = useRef();
@@ -40,27 +40,36 @@ export default function FreeLancerLogin() {
   };
 
   return (
-    <div className="container freelancer-login">
-      <h1 className="freelancer-login-header">Freelancer Login</h1>
-      <form onSubmit={userLogin} ref={formRef}>
-        <div className="mb-3">
-          <label className="form-label">Email</label>
-          <input
-            name="email"
-            type="email"
-            className="form-control"
-            aria-describedby="emailHelp"
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Password</label>
-          <input name="password" type="password" className="form-control" />
-        </div>
-        <button type="submit" className="btn btn-secondary">
-          Submit
-        </button>
-      </form>
-      {/* <Toaster position="top-center" reverseOrder={false} /> */}
+    <div className=" CompanyLogin">
+      <div className="FormContainer">
+        <form onSubmit={userLogin} ref={formRef} className="CompanyLoginForm">
+          <h1 className="CompanyLoginHeader">Freelancer Login</h1>
+          <div className="m-3 InputForm">
+            <input
+              name="email"
+              type="email"
+              className="form-control shadow-none"
+              placeholder="Email"
+            />
+          </div>
+          <div className="m-3 InputForm">
+            <input
+              name="password"
+              type="password"
+              className="form-control shadow-none"
+              placeholder="Password"
+            />
+          </div>
+          <button type="submit" className="btn btn-secondary">
+            Submit
+          </button>
+          <div className="goToSignUp">
+            <p>You Dont Have Account ?</p>
+            <Link to="/freelancer-signUp">Sign Up</Link>
+          </div>
+        </form>
+        <div className="FreelancerImageDiv"></div>
+      </div>
     </div>
   );
 }
