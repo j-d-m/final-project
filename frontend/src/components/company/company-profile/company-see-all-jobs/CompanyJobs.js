@@ -33,7 +33,7 @@ function CompanyJobs(props) {
         {...props}
         aria-labelledby="contained-modal-title-vcenter"
         centered
-        size="fullscreen"
+        size="xl"
       >
         <Modal.Header
           closeButton>
