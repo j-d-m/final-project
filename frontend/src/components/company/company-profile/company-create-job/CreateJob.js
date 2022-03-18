@@ -75,6 +75,7 @@ function CreateJob(props) {
         aria-labelledby="contained-modal-title-vcenter"
         centered
         size="lg"
+        className="createJobModalContainer"
       >
         <Modal.Header closeButton>
           <Modal.Title className="contained-modal-title-vcenter w-100">

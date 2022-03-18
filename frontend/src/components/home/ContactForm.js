@@ -62,11 +62,6 @@ export default function Contact({ job }) {
     }
   };
 
-  console.log('==================Job.data==================');
-  console.log(job);
-  console.log('====================================');
-
-  console.log(freelancerLoginData);
 
   return (
     <>
@@ -76,7 +71,9 @@ export default function Contact({ job }) {
           <img alt="" src={waiterSmile} width="150" height="150" className="" />
         </div>
       ) : (
-        <div className="container contact-form-freelancer">
+
+        //company data
+        <div className="container contact-form-freelancer contactFormContainer ">
           <h4>Contact the Company</h4>
           <form onSubmit={sendEmail}>
             <div className="d-flex justify-content-between mb-3 ">
@@ -117,11 +114,8 @@ export default function Contact({ job }) {
             </div>
 
 
-
+            {/* freelancer data */}
             <div className="d-flex justify-content-between">
-
-
-
               <div
                 className="
               d-flex
@@ -134,8 +128,6 @@ export default function Contact({ job }) {
                   alt=""
                 />
               </div>
-
-
               <div className="w-100">
                 <div className="form-group col-auto">
                   <label htmlFor="name">Your Name</label>

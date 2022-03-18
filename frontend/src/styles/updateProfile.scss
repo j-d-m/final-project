@@ -3,6 +3,10 @@
 @import "./colors";
 
 .ProfileUpdate {
+  label {
+    font-family: $font-family-Bebas;
+    letter-spacing: 2px;
+  }
   .update-jobs-title,
   .update-freelancer-title {
     h3 {
@@ -10,6 +14,11 @@
       letter-spacing: 2px;
       font-weight: 600;
       margin-bottom: 1rem;
+    }
+
+    label {
+      font-family: $font-family-Bebas;
+      letter-spacing: 2px;
     }
   }
 
@@ -51,5 +60,3 @@
     }
   }
 }
-
-
