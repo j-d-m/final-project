@@ -17,11 +17,12 @@ import { UPDATE_COMPANY } from "../../../graphQL/Mutations";
 import Swal from "sweetalert2";
 
 //Internal Imports
+import "../../../styles/companyProfile.scss";
 import { MyContext } from "../../../Context/Context";
 import DeleteCompanyAccount from "./DeleteCompanyAccount";
 import CompanyUpdateProfile from "./CompanyUpdateProfile";
 import CompanyCreateJob from "../company-profile/company-create-job/CreateJob";
-import "../../../styles/companyProfile.scss";
+import FreelancerHome from "../../home/FreelancerHome";
 import CompanyJobs from "./company-see-all-jobs/CompanyJobs";
 
 export default function CompanyProfile() {
@@ -30,10 +31,14 @@ export default function CompanyProfile() {
   const [modalShowEdit, setModalShowEdit] = useState();
   const [modalShowDelete, setModalShowDelete] = useState();
   const [modalShowCreate, setModalShowCreate] = useState();
+  const [modalShowStaff, setModalShowStaff] = useState();
   const [modalShowJobsAdmin, setModalShowJobsAdmin] = useState();
   const [companyImage, setCompanyImage] = useState(null);
+
   const [UpdateCompany, { data1, loading1, error1 }] =
     useMutation(UPDATE_COMPANY);
+
+  //Update Avatar function
   const updateAvatar = (e) => {
     e.preventDefault();
     UpdateCompany({
@@ -138,6 +143,8 @@ export default function CompanyProfile() {
                   </div>
                   <section>
                     <div className="ModalBtnCompanyProfile">
+
+                      {/* Edit/Update Company Profile */}
                       <Button
                         id={id}
                         className="btn btn-secondary btn-circle btn-xl"
@@ -148,11 +155,12 @@ export default function CompanyProfile() {
                         <AiOutlineEdit />
                         <span>Edit</span>
                       </Button>
-                      
                       <CompanyUpdateProfile
                         show={modalShowEdit}
                         onHide={() => setModalShowEdit(false)}
                       />
+
+                      {/* Delete Company Profile */}
                       <Button
                         id={id}
                         className="btn btn-secondary btn-circle btn-xl"
@@ -163,12 +171,12 @@ export default function CompanyProfile() {
                         <AiOutlineDelete />
                         <span>Delete</span>
                       </Button>
-
                       <DeleteCompanyAccount
                         show={modalShowDelete}
                         onHide={() => setModalShowDelete(false)}
                       />
 
+                      {/* Create/Post new Job Offer */}
                       <Button
                         id={id}
                         className="btn btn-secondary btn-circle btn-xl"
@@ -179,20 +187,29 @@ export default function CompanyProfile() {
                         <AiOutlinePlusCircle />
                         <span>Create</span>
                       </Button>
-
                       <CompanyCreateJob
                         show={modalShowCreate}
                         onHide={() => setModalShowCreate(false)}
                       />
 
+                      {/* Check/visit Freelancer/staff available */}
                       <Button
-                        value="Check freelancers"
-                        onClick={() => navigate("/freelancer-list")}
+                        id={id}
                         className="btn btn-secondary btn-circle btn-xl"
+                        onClick={() => {
+                          setModalShowStaff(true);
+                        }}
                       >
                         <GiCook />
                         <span>Staff</span>
                       </Button>
+                      <FreelancerHome
+                        show={modalShowStaff}
+                        onHide={() => setModalShowStaff(false)}
+                      />
+
+
+                      {/* Edit/Update/Admin Job offers Posted */}
                       <Button
                         id={id}
                         className="btn btn-secondary btn-circle btn-xl"

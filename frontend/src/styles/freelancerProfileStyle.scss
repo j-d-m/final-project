@@ -6,7 +6,7 @@
   width: 100%;
   height: calc(100vh - 20vh);
   background-image: url("../assets/img/bgglass.png");
-  background-repeat:no-repeat;
+  background-repeat: no-repeat;
   background-size: cover;
   @include flex-center;
   justify-content: center;
@@ -59,7 +59,6 @@
       display: none;
     }
     .Custom-File-Upload {
-      
       background-color: #6c757d;
       color: $color-white;
       border-radius: 5px;
@@ -72,49 +71,47 @@
       transition: 0.2s ease-in;
 
       &:hover {
-      opacity: .8;
+        opacity: 0.8;
       }
 
-      @include mobile-small{
+      @include mobile-small {
         padding: 0.5rem auto;
-        margin-bottom: .65rem;
-
+        margin-bottom: 0.65rem;
       }
     }
   }
 
   .Freelance-Right {
     flex: 0.7;
-    .textProfile{
+    .textProfile {
       @include flex-center;
       flex-direction: column;
 
-       h1 {
-          font-size: 40px;
-          color: $color-green;
-          margin-bottom: -5px;
-    
-          @include mobile {
-            font-size: 28px;
-            margin-bottom: 5px;
-          }
-        }
-        p{
-      color: $color-green;
-      font-size: 20px;
-      font-weight: 300;
+      h1 {
+        font-size: 40px;
+        color: $color-green;
+        margin-bottom: -5px;
 
-      @include mobile {
-        display: none;
+        @include mobile {
+          font-size: 28px;
+          margin-bottom: 5px;
+        }
+      }
+      p {
+        color: $color-green;
+        font-size: 20px;
+        font-weight: 300;
+
+        @include mobile {
+          display: none;
+        }
       }
     }
-    }
-    
-    
+
     p {
       font-size: 20px;
       color: $color-green;
-      
+
       @include mobile {
         font-size: smaller;
       }
@@ -130,10 +127,10 @@
         height: 70px;
         padding: 10px 16px;
         border-radius: 35px;
-        
+
         line-height: 1.2;
       }
-      
+
       .btn-circle {
         width: 30px;
         height: 30px;
@@ -141,15 +138,13 @@
         margin: 1rem;
         border-radius: 15px;
         text-align: center;
-        color: white;
-        span{
+        color: $color-white;
+        span {
           font-weight: 300;
           font-size: x-small;
-          color: white;
+          color: $color-white;
         }
       }
-
     }
-     
   }
 }
