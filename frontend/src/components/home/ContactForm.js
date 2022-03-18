@@ -7,22 +7,23 @@ import { MyContext } from "../../Context/Context";
 import { GET_ONE_USER } from "../../graphQL/Queries";
 
 export default function Contact({ job }) {
-  // console.log(job);
   const [emailSent, setEmailSent] = useState(false);
   const { freelancerLoginData, isFreelancerLogin } = useContext(MyContext);
-  // console.log(freelancerLoginData);
-  const [jobHistoryFav, { data, loading, error }] = useMutation(USER_FAVORITE, {
-    refetchQueries: {
-      query: GET_ONE_USER,
-      variables: { getOneUserId: freelancerLoginData.id },
-    },
-  });
+
+  const [UpdateUserFavorite, { data, loading, error }] = useMutation(
+    USER_FAVORITE,
+    {
+      refetchQueries: {
+        query: GET_ONE_USER,
+        variables: { getOneUserId: freelancerLoginData.id },
+      },
+    }
+  );
 
   const sendEmail = (e) => {
     e.preventDefault();
     if (isFreelancerLogin) {
       if (freelancerLoginData.email === e.target.from_email.value) {
-        console.log(e.target.from_email.value);
         emailjs
           .sendForm(
             process.env.REACT_APP_EMAILJS_SERVICE_ID,
@@ -31,9 +32,19 @@ export default function Contact({ job }) {
             process.env.REACT_APP_EMAILJS_USER_ID
           )
           .then((result) => {
-            if (result.status === 200) {
-              jobHistoryFav({
-                variables: { userId: freelancerLoginData.id, job: job },
+            if (true) {
+              UpdateUserFavorite({
+                variables: {
+                  userId: freelancerLoginData.id,
+                  job: {
+                    id: job.id,
+                    job_Title: job.job_Title,
+                    start_Date: job.start_Date,
+                    end_Date: job.end_Date,
+                    num_of_people_needed: job.num_of_people_needed,
+                    job_description: job.job_description,
+                  },
+                },
               });
             }
           })

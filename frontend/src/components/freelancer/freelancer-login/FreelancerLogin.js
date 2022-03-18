@@ -6,6 +6,7 @@ import { USER_LOGIN } from "../../../graphQL/Mutations";
 import { MyContext } from "../../../Context/Context";
 import swal from "sweetalert2";
 import "../../../styles/LoginStyle.scss";
+import Swal from "sweetalert2";
 export default function FreeLancerLogin() {
   const navigate = useNavigate();
   const formRef = useRef();
@@ -38,7 +39,19 @@ export default function FreeLancerLogin() {
       }
     });
   };
-
+  if (error) {
+    let errorMessage1 = error.message.split(",").splice(0, 1);
+    let errorMessage2 = error.message.split(",").splice(1, 2);
+    Swal.fire({
+      position: "top",
+      icon: "error",
+      title: ` ${errorMessage1}
+      ${errorMessage2}`,
+      showConfirmButton: false,
+      timer: 2000,
+      customClass: "swal-width",
+    });
+  }
   return (
     <div className=" CompanyLogin">
       <div className="FormContainer">

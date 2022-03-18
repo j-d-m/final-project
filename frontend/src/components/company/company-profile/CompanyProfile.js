@@ -182,7 +182,6 @@ export default function CompanyProfile() {
                       <CompanyCreateJob
                         show={modalShowCreate}
                         onHide={() => setModalShowCreate(false)}
-                      // image={companyImage}
                       />
 
                       <Button
@@ -207,7 +206,6 @@ export default function CompanyProfile() {
                         show={modalShowJobsAdmin}
                         onHide={() => setModalShowJobsAdmin(false)}
                       />
-
                     </div>
                   </section>
                 </div>
