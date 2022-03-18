@@ -86,7 +86,7 @@ export default function FreelancerHome(props) {
                     {/*button to open the freelancer contact card*/}
                     <div className="OpenContact">
                       <Button
-                        className="Btn bg-secondary text-light "
+                        className="Btn btn-secondary bg-secondary text-light "
                         onClick={() => {
                           setModalShowFreelancer(true);
                           contactFreelancer(user.id);
