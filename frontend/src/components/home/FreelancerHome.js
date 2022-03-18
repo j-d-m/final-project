@@ -12,16 +12,21 @@ import "../../styles/freelancerProfileStyle.scss";
 import "../../styles/freelanceHome.scss";
 import staffBook from "../../assets/img/staffBook.svg";
 import { MyContext } from "../../Context/Context";
+import FreeLancerView from "../freelancer/freelancer-profile/FreelancerView"
+
 
 export default function FreelancerHome(props) {
   const navigate = useNavigate();
+
   const [searchFreelancers, setSearchFreelancers] = useState("");
+  const [modalShowStaffContact, setModalShowStaffContact] = useState();
   const { setFreelancerFind } = useContext(MyContext);
   const { loading, error, data } = useQuery(GET_USERS);
-  console.log(data);
+
+  // console.log(data);
 
   if (loading) {
-    return <p></p>;
+    return <p></p>; //empty because we dont want to show anything
   }
   if (error) {
     console.log(error);
@@ -45,7 +50,7 @@ export default function FreelancerHome(props) {
     <>
       <Modal
         {...props}
-        size="xl"
+        size="lg"
         centered
         className="ProfileUpdate jobsAdminModalBg "
       >
@@ -85,12 +90,40 @@ export default function FreelancerHome(props) {
                     <h2 className="name">{`${user.first_name} ${user.last_name}`}</h2>
 
                     <div className="OpenContact">
-                      <input
+                      {/* <input
                         type="button"
                         value="contact this freelancer"
                         className="Btn bg-secondary text-light "
                         onClick={() => contactFreelancer(user.id)}
+                      /> */}
+
+
+
+                      <Button
+                        // id={id}
+                        className="Btn bg-secondary text-light "
+                        onClick={() => {
+                          setModalShowStaffContact(true);;
+                        }}
+                      >
+                        contact this freelancer
+                      </Button>
+
+
+
+
+                      <FreeLancerView
+                        show={modalShowStaffContact}
+                        onHide={() => setModalShowStaffContact(false)}
                       />
+
+
+
+
+
+
+
+
                     </div>
                   </div>
                   <div className="Description Skills">

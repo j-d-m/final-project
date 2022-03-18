@@ -27,7 +27,7 @@
 
     &:focus {
       // color: $color-pepper;
-      outline: none;
+      // outline: none;
     }
   }
 }
@@ -58,7 +58,7 @@
     justify-content: center;
     align-items: center;
     align-content: center;
-    width: 50%;
+    width: 40%;
     // background-color: $color-pinky;
     padding-top: 10px;
     margin-bottom: 5px;
@@ -75,6 +75,7 @@
     & p,
     h2 {
       margin-top: 5px;
+      padding: 0 10px 0 10px;
       text-align: center;
       color: $color-dark;
     }
@@ -85,7 +86,7 @@
   .Description {
     // padding: 0px 20px;
     justify-content: center;
-    align-items: center;
+    align-items: left;
   }
 
   .Skills {
