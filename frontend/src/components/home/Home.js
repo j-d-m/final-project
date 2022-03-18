@@ -39,13 +39,8 @@ export default function Home() {
 
   const { loading, error, data } = useQuery(GET_JOBS);
 
-  const {
-    isTitleFilter,
-    setIsTitleFilter,
-    inputValue,
-    setInputValue,
-    isCompanyLogin,
-  } = useContext(MyContext);
+  const { isTitleFilter, setIsTitleFilter, inputValue, setInputValue } =
+    useContext(MyContext);
 
   const searchHandler = (e) => {
     e.preventDefault();
@@ -77,6 +72,7 @@ export default function Home() {
       });
       setIsTitleFilter(false);
     }
+    document.getElementById("reset-form").reset();
   };
 
   if (loading) {
@@ -120,7 +116,7 @@ export default function Home() {
             </h5>
             {/* searchbar and button starts*/}
             <div className="search-fields">
-              <form onSubmit={searchHandler}>
+              <form onSubmit={searchHandler} id="reset-form">
                 <input
                   name="searchJobTitle"
                   type="text"

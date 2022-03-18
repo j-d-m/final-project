@@ -68,7 +68,7 @@ export default function UserSignUp() {
           </div>
         </div>
 
-        <div className="container signUp-form-right">
+        <div className="signUp-form-right">
           <h2>Are you a freelancer?</h2>
           <h3>Create an Account</h3>
 

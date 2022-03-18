@@ -49,6 +49,13 @@ export const COMPANY_LOGIN = gql`
         phone
         email
         description
+        favorite {
+          first_name
+          last_name
+          avatar
+          email
+          description
+        }
         jobs {
           id
           job_Title
@@ -109,8 +116,23 @@ export const UPDATE_COMPANY = gql`
     }
   }
 `;
+export const COMPANY_FAVORITE = gql`
+  mutation updateCompanyFavorite($userId: ID!, $job: JobInputType) {
+    updateCompanyFavorite(userId: $userId, companyId: $companyId) {
+      id
+      company_Name
+      owner_name
+      avatar
+      company_type
+      address
+      phone
+      email
+      password
+      description
+    }
+  }
+`;
 
-//add user
 export const CREATE_USER_MUTATION = gql`
   mutation addUser(
     $first_name: String!
@@ -136,20 +158,22 @@ export const CREATE_USER_MUTATION = gql`
 `;
 
 export const USER_FAVORITE = gql`
-  mutation UpdateUserFavorite($userId: ID!, $job: JobInputType) {
-    userId
-    first_name
-    last_name
-    email
-    favorite {
-      job_Title
-      start_Date
-      end_Date
-      issued_At
-      created_by {
-        company_Name
-        company_type
-        email
+  mutation updateUserFavorite($userId: ID!, $job: JobInputType) {
+    updateUserFavorite(userId: $userId, job: $job) {
+      id
+      first_name
+      last_name
+      email
+      favorite {
+        job_Title
+        start_Date
+        end_Date
+        issued_At
+        created_by {
+          company_Name
+          company_type
+          email
+        }
       }
     }
   }
@@ -172,6 +196,7 @@ export const USER_LOGIN = gql`
         description
         id
         favorite {
+          id
           job_Title
           start_Date
           end_Date

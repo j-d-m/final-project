@@ -70,7 +70,7 @@ export default function FreelancerProfile() {
       setFreelancerLoginData(data.getOneUser);
     }
   }, 100);
-
+  // console.log(data);
   return (
     <section className="Profile-Container">
       <div className="Banner-Container">
@@ -137,7 +137,7 @@ export default function FreelancerProfile() {
                       <section>
                         {favorite.map((job) => {
                           return (
-                            <div>
+                            <div key={job.id}>
                               <h5>{job.job_Title}</h5>
                               <p>{job.company_Name}</p>
                               <p>{job.start_Date}</p>

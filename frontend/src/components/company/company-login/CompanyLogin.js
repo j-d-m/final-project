@@ -37,6 +37,19 @@ export default function CompanyLogin() {
       }
     });
   };
+  if (error) {
+    let errorMessage1 = error.message.split(",").splice(0, 1);
+    let errorMessage2 = error.message.split(",").splice(1, 2);
+    Swal.fire({
+      position: "top",
+      icon: "error",
+      title: ` ${errorMessage1}
+      ${errorMessage2}`,
+      showConfirmButton: false,
+      timer: 2000,
+      customClass: "swal-width",
+    });
+  }
 
   return (
     <div className=" CompanyLogin">

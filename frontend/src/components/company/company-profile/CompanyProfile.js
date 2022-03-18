@@ -148,6 +148,7 @@ export default function CompanyProfile() {
                         <AiOutlineEdit />
                         <span>Edit</span>
                       </Button>
+                      
                       <CompanyUpdateProfile
                         show={modalShowEdit}
                         onHide={() => setModalShowEdit(false)}
@@ -182,7 +183,6 @@ export default function CompanyProfile() {
                       <CompanyCreateJob
                         show={modalShowCreate}
                         onHide={() => setModalShowCreate(false)}
-                      // image={companyImage}
                       />
 
                       <Button
@@ -207,7 +207,6 @@ export default function CompanyProfile() {
                         show={modalShowJobsAdmin}
                         onHide={() => setModalShowJobsAdmin(false)}
                       />
-
                     </div>
                   </section>
                 </div>

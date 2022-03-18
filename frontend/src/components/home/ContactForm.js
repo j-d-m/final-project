@@ -1,28 +1,36 @@
+//Native Imports
 import React, { useContext, useState } from "react";
+
+//External Impors
 import emailjs from "@emailjs/browser";
 import waiterSmile from "../../assets/img/waiter-smile.svg";
+
+//Internal Imports
 import { useMutation } from "@apollo/client";
 import { USER_FAVORITE } from "../../graphQL/Mutations";
 import { MyContext } from "../../Context/Context";
 import { GET_ONE_USER } from "../../graphQL/Queries";
+import '../../styles/contact.scss'
+
 
 export default function Contact({ job }) {
-  // console.log(job);
   const [emailSent, setEmailSent] = useState(false);
   const { freelancerLoginData, isFreelancerLogin } = useContext(MyContext);
-  // console.log(freelancerLoginData);
-  const [jobHistoryFav, { data, loading, error }] = useMutation(USER_FAVORITE, {
-    refetchQueries: {
-      query: GET_ONE_USER,
-      variables: { getOneUserId: freelancerLoginData.id },
-    },
-  });
+
+  const [UpdateUserFavorite, { data, loading, error }] = useMutation(
+    USER_FAVORITE,
+    {
+      refetchQueries: {
+        query: GET_ONE_USER,
+        variables: { getOneUserId: freelancerLoginData.id },
+      },
+    }
+  );
 
   const sendEmail = (e) => {
     e.preventDefault();
     if (isFreelancerLogin) {
       if (freelancerLoginData.email === e.target.from_email.value) {
-        console.log(e.target.from_email.value);
         emailjs
           .sendForm(
             process.env.REACT_APP_EMAILJS_SERVICE_ID,
@@ -31,9 +39,19 @@ export default function Contact({ job }) {
             process.env.REACT_APP_EMAILJS_USER_ID
           )
           .then((result) => {
-            if (result.status === 200) {
-              jobHistoryFav({
-                variables: { userId: freelancerLoginData.id, job: job },
+            if (true) {
+              UpdateUserFavorite({
+                variables: {
+                  userId: freelancerLoginData.id,
+                  job: {
+                    id: job.id,
+                    job_Title: job.job_Title,
+                    start_Date: job.start_Date,
+                    end_Date: job.end_Date,
+                    num_of_people_needed: job.num_of_people_needed,
+                    job_description: job.job_description,
+                  },
+                },
               });
             }
           })
@@ -43,6 +61,12 @@ export default function Contact({ job }) {
       }
     }
   };
+
+  console.log('==================Job.data==================');
+  console.log(job);
+  console.log('====================================');
+
+  console.log(freelancerLoginData);
 
   return (
     <>
@@ -55,65 +79,110 @@ export default function Contact({ job }) {
         <div className="container contact-form-freelancer">
           <h4>Contact the Company</h4>
           <form onSubmit={sendEmail}>
-            <div className="form-row align-items-center">
-              <div className="form-group col-auto">
-                <label htmlFor="name">Company Name</label>
-                <input
-                  type="text"
-                  name="to_name"
-                  className="form-control"
-                  value={job.created_by.company_Name}
-                  readOnly
-                />
+            <div className="d-flex justify-content-between mb-3 ">
+              <div className="w-100" >
+                <div className="form-group col-auto ">
+                  <label htmlFor="name">Company Name</label>
+                  <input
+                    type="text"
+                    name="to_name"
+                    className="form-control"
+                    value={job.created_by.company_Name}
+                    readOnly
+                  />
+                </div>
+                <div className="form-group col-auto">
+                  <label htmlFor="email">Company Email</label>
+                  <input
+                    type="email"
+                    name="to_email"
+                    className="form-control"
+                    value={job.created_by.email}
+                    readOnly
+                  />
+                </div>
               </div>
-              <div className="form-group col-auto">
-                <label htmlFor="email">Company Email</label>
-                <input
-                  type="email"
-                  name="to_email"
-                  className="form-control"
-                  value={job.created_by.email}
-                  readOnly
-                />
-              </div>
-            </div>
-            <div className="form-row align-items-center">
-              <div className="form-group col-auto">
-                <label htmlFor="name">Your Name</label>
-                <input
-                  type="text"
-                  name="from_name"
-                  className="form-control"
-                  placeholder="Max Mustermann"
-                  maxLength="50"
-                  required
-                />
-              </div>
-              <div className="form-group col-auto">
-                <label htmlFor="email">Email Address</label>
-                <input
-                  type="email"
-                  name="from_email"
-                  className="form-control"
-                  placeholder="max@mustermann.com"
-                  maxLength="50"
+              <div
+                className="
+              d-flex
+              justify-content-center
+              align-items-center                         
+              "              >
+                <img
+                  src={job.created_by.avatar}
+                  className="contact-avatar-company  "
+                  alt=""
                 />
               </div>
             </div>
-            <div className="form-row">
-              <div className="form-group col-auto">
-                <label htmlFor="phone">Contact Number</label>
-                <input
-                  type="tel"
-                  name="from_phone"
-                  className="form-control"
-                  placeholder="+49 123456789"
-                  maxLength="20"
+
+
+
+            <div className="d-flex justify-content-between">
+
+
+
+              <div
+                className="
+              d-flex
+              justify-content-center
+              align-items-center                         
+              "              >
+                <img
+                  src={freelancerLoginData.avatar}
+                  className="contact-avatar-freelancer  "
+                  alt=""
                 />
               </div>
+
+
+              <div className="w-100">
+                <div className="form-group col-auto">
+                  <label htmlFor="name">Your Name</label>
+                  <input
+                    type="text"
+                    name="from_name"
+                    className="form-control"
+                    value={`${freelancerLoginData.first_name} ${freelancerLoginData.last_name}`}
+                    maxLength="50"
+                    required
+                  />
+                </div>
+                <div className="form-group col-auto">
+                  <label htmlFor="email">Email Address</label>
+                  <input
+                    type="email"
+                    name="from_email"
+                    className="form-control"
+                    value={freelancerLoginData.email}
+                    maxLength="50"
+                  />
+
+                </div>
+
+                <div className="form-row">
+                  <div className="form-group col-auto">
+                    <label htmlFor="phone">Contact Number</label>
+                    <input
+                      type="tel"
+                      name="from_phone"
+                      className="form-control"
+                      value={freelancerLoginData.phone}
+                      maxLength="20"
+                    />
+                  </div>
+                </div>
+
+              </div>
+
+
+
+
+
+
             </div>
-            <div className="form-row">
-              <div className="form-group col-md-12">
+            <div className="form-row mb-3">
+              <div className="form-group col-md-12 ">
                 <label htmlFor="message">Message</label>
                 <textarea
                   type="textarea"

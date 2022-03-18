@@ -15,6 +15,10 @@ export const GET_ONE_USER = gql`
       description
       favorite {
         id
+        job_Title
+        job_description
+        end_Date
+        start_Date
       }
     }
   }
@@ -31,6 +35,13 @@ export const GET_USERS = gql`
       password
       hourly_rate
       description
+      favorite {
+        id
+        job_Title
+        job_description
+        end_Date
+        start_Date
+      }
     }
   }
 `;
@@ -79,6 +90,21 @@ export const GET_COMPANIES = gql`
       email
       password
       description
+      favorite {
+        first_name
+        last_name
+        avatar
+        email
+        description
+      }
+      jobs {
+        id
+        job_Title
+        start_Date
+        end_Date
+        num_of_people_needed
+        job_description
+      }
     }
   }
 `;
@@ -94,6 +120,7 @@ export const GET_ONE_JOB = gql`
       created_by {
         company_Name
         email
+        avatar                 
       }
     }
   }
@@ -103,7 +130,6 @@ export const GET_JOBS = gql`
     getJobs {
       id
       job_Title
-      #bring in when we have real data
       start_Date
       end_Date
       issued_At
@@ -112,6 +138,7 @@ export const GET_JOBS = gql`
       created_by {
         company_Name
         email
+        avatar
       }
     }
   }

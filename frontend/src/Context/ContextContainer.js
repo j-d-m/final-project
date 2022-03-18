@@ -25,6 +25,7 @@ function ContextContainer({ children }) {
         query: `query{
           getVerify{
           user{
+          id
           first_name
           last_name
           avatar
@@ -33,7 +34,14 @@ function ContextContainer({ children }) {
           password
           hourly_rate
           description
-          id
+          favorite {
+        id
+        job_Title
+        job_description
+        end_Date
+        start_Date
+      }
+          
         }
           company{
           company_Name
@@ -55,6 +63,13 @@ function ContextContainer({ children }) {
         num_of_people_needed
         job_description
       }
+            favorite {
+        first_name
+        last_name
+        avatar
+        email
+        description
+      }
 	
         }
 
@@ -73,16 +88,17 @@ function ContextContainer({ children }) {
         } else if (result.data.getVerify?.company) {
           setCompanyLoginData(result.data.getVerify.company);
           setIsCompanyLogin(true);
-          console.log(
-            "================FROM: ContextContainer.js===================="
-          );
-          console.log(companyLoginData);
-          console.log("====================================");
+          // console.log(
+          //   "================FROM: ContextContainer.js===================="
+          // );
+          // console.log(companyLoginData);
+          // console.log("====================================");
         } else {
           navigate(1); //changed to navigate(1), instead of navigate("/") because it was affecting the notFound page
         }
       });
   }, []);
+
   return (
     <MyContext.Provider
       value={{

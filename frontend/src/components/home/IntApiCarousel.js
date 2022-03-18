@@ -4,7 +4,6 @@
 import { useQuery } from "@apollo/client";
 import Carousel from "react-elastic-carousel";
 
-
 //Internal imports
 import "../../styles/carousel.scss";
 import { GET_JOBS } from "../../graphQL/Queries";
@@ -21,9 +20,9 @@ const breakPoints = [
 export default function IntApiCarousel() {
   const { data, error } = useQuery(GET_JOBS);
 
-  console.log("===========INT API CAROUSEL=========================");
-  console.log(data.getJobs);
-  console.log("====================================");
+  // console.log("===========INT API CAROUSEL=========================");
+  // console.log(data.getJobs);
+  // console.log("====================================");
 
   if (error) {
     return (
@@ -32,7 +31,6 @@ export default function IntApiCarousel() {
       </div>
     );
   }
-
 
   return (
     <div className="jobs-carousel">
