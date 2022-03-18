@@ -20,10 +20,6 @@ const breakPoints = [
 export default function IntApiCarousel() {
   const { data, error } = useQuery(GET_JOBS);
 
-  // console.log("===========INT API CAROUSEL=========================");
-  // console.log(data.getJobs);
-  // console.log("====================================");
-
   if (error) {
     return (
       <div>
