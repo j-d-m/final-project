@@ -5,13 +5,13 @@ import "../../styles/freelancerProfileStyle.scss";
 import { MyContext } from "../../Context/Context";
 import { useNavigate } from "react-router-dom";
 import "../../styles/freelanceHome.scss";
-
+import { Button } from "react-bootstrap";
+import FreelancerView from "../freelancer/freelancer-profile/FreelancerView";
 export default function FreelancerHome() {
-  const navigate = useNavigate();
   const [searchFreelancers, setSearchFreelancers] = useState("");
-  const { setFreelancerFind } = useContext(MyContext);
+  const { freelancerFind, setFreelancerFind } = useContext(MyContext);
   const { loading, error, data } = useQuery(GET_USERS);
-  console.log(data);
+  const [modalShowFreelancer, setModalShowFreelancer] = useState();
 
   if (loading) {
     return <p>Loading...</p>;
@@ -24,7 +24,6 @@ export default function FreelancerHome() {
   const contactFreelancer = (id) => {
     let findUser = data.getUsers.find((freelancer) => freelancer.id === id);
     setFreelancerFind(findUser);
-    navigate("/freelancer-view");
   };
 
   const result =
@@ -55,16 +54,25 @@ export default function FreelancerHome() {
               <div className="bodyCard">
                 <img src={user.avatar} alt="img" />
                 <h2 className="name">{`${user.first_name} ${user.last_name}`}</h2>
-
+                {/*button to open the freelancer contact card*/}
                 <div className="OpenContact">
-                  <input
-                    type="button"
-                    value="contact this freelancer"
-                    className="Btn"
-                    onClick={() => contactFreelancer(user.id)}
+                  <Button
+                    className="btn btn-secondary btn-circle btn-xl"
+                    onClick={() => {
+                      setModalShowFreelancer(true);
+                      contactFreelancer(user.id);
+                    }}
+                  >
+                    contact this freelancer
+                  </Button>
+
+                  <FreelancerView
+                    show={modalShowFreelancer}
+                    onHide={() => setModalShowFreelancer(false)}
                   />
                 </div>
               </div>
+              {/* button to open the freelancer contact card END*/}
               <div className="Description Skills">
                 <h5>
                   {user.first_name} is a looking for / has experience doing:
