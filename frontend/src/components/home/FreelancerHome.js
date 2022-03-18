@@ -44,7 +44,7 @@ export default function FreelancerHome(props) {
     <>
       <Modal
         {...props}
-        size="lg"
+        size="xl"
         centered
         className="ProfileUpdate jobsAdminModalBg "
       >
