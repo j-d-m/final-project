@@ -12,18 +12,13 @@ import "../../styles/freelancerProfileStyle.scss";
 import "../../styles/freelanceHome.scss";
 import staffBook from "../../assets/img/staffBook.svg";
 import { MyContext } from "../../Context/Context";
-import FreeLancerView from "../freelancer/freelancer-profile/FreelancerView"
-
+import FreelancerView from "../freelancer/freelancer-profile/FreelancerView";
 
 export default function FreelancerHome(props) {
-  const navigate = useNavigate();
-
   const [searchFreelancers, setSearchFreelancers] = useState("");
-  const [modalShowStaffContact, setModalShowStaffContact] = useState();
-  const { setFreelancerFind } = useContext(MyContext);
+  const [modalShowFreelancer, setModalShowFreelancer] = useState();
+  const { freelancerFind, setFreelancerFind } = useContext(MyContext);
   const { loading, error, data } = useQuery(GET_USERS);
-
-  // console.log(data);
 
   if (loading) {
     return <p></p>; //empty because we dont want to show anything
@@ -36,7 +31,6 @@ export default function FreelancerHome(props) {
   const contactFreelancer = (id) => {
     let findUser = data.getUsers.find((freelancer) => freelancer.id === id);
     setFreelancerFind(findUser);
-    navigate("/freelancer-view");
   };
 
   const result =
@@ -89,43 +83,25 @@ export default function FreelancerHome(props) {
                     <img src={user.avatar} alt="img" />
                     <h2 className="name">{`${user.first_name} ${user.last_name}`}</h2>
 
+                    {/*button to open the freelancer contact card*/}
                     <div className="OpenContact">
-                      {/* <input
-                        type="button"
-                        value="contact this freelancer"
-                        className="Btn bg-secondary text-light "
-                        onClick={() => contactFreelancer(user.id)}
-                      /> */}
-
-
-
                       <Button
-                        // id={id}
                         className="Btn bg-secondary text-light "
                         onClick={() => {
-                          setModalShowStaffContact(true);;
+                          setModalShowFreelancer(true);
+                          contactFreelancer(user.id);
                         }}
                       >
                         contact this freelancer
                       </Button>
 
-
-
-
-                      <FreeLancerView
-                        show={modalShowStaffContact}
-                        onHide={() => setModalShowStaffContact(false)}
+                      <FreelancerView
+                        show={modalShowFreelancer}
+                        onHide={() => setModalShowFreelancer(false)}
                       />
-
-
-
-
-
-
-
-
                     </div>
                   </div>
+                  {/* button to open the freelancer contact card END*/}
                   <div className="Description Skills">
                     <h5>
                       {user.first_name} is a looking for / has experience doing:
