@@ -9,9 +9,8 @@ import moment from "moment";
 import { MyContext } from "../../../../Context/Context";
 import CompanyUpdateJobs from "../company-update-jobs/CompanyUpdateJobs";
 import DeleteJob from "./DeleteJob";
-import luggageBoy from "../../../../assets/img/luggageBoy.svg"
-import "../../../../styles/companyJobs.scss"
-
+import luggageBoy from "../../../../assets/img/luggageBoy.svg";
+import "../../../../styles/companyJobs.scss";
 
 function CompanyJobs(props) {
   const [modalShowUpdate, setModalShowUpdate] = useState();
@@ -23,10 +22,6 @@ function CompanyJobs(props) {
     setOneCompanyJob(findOneJob);
   };
 
-  console.log('====================================');
-  console.log(companyLoginData);
-  console.log('====================================');
-
   return (
     <>
       <Modal
@@ -35,9 +30,8 @@ function CompanyJobs(props) {
         centered
         size="xl"
       >
-        <Modal.Header
-          closeButton>
-          <Modal.Title className="contained-modal-title-vcenter w-100" >
+        <Modal.Header closeButton>
+          <Modal.Title className="contained-modal-title-vcenter w-100">
             <div className="admin-jobs-title d-flex align-items-center justify-content-around">
               <h3>Job Posts Admin </h3>
               <img alt="" src={luggageBoy} width="80" height="80" />
@@ -57,16 +51,20 @@ function CompanyJobs(props) {
                   num_of_people_needed,
                 } = job;
                 return (
-                  <div
-                    className="jobsCard"
-                    key={id}
-                  >
+                  <div className="jobsCard" key={id}>
                     <h4>{job_Title}</h4>
                     <div>
-                      <p>{`To work from ${moment(start_Date).locale("en").format("ll")} til ${moment(end_Date).locale("en").format("ll")}.`}</p>
+                      <p>{`To work from ${moment(start_Date)
+                        .locale("en")
+                        .format("ll")} til ${moment(end_Date)
+                        .locale("en")
+                        .format("ll")}.`}</p>
                       <p>{`${num_of_people_needed} people needed`}</p>
                       <p>
-                        <strong> Description: </strong> <span> <em> {job_description}</em></span>
+                        <strong> Description: </strong>
+                        <span>
+                          <em> {job_description}</em>
+                        </span>
                       </p>
                       <div className="adminJobsButtons">
                         <Button
@@ -103,8 +101,7 @@ function CompanyJobs(props) {
                 );
               })}
           </div>
-          <Modal.Footer className="modal-footer border-0">
-          </Modal.Footer>
+          <Modal.Footer className="modal-footer border-0"></Modal.Footer>
         </Modal.Body>
       </Modal>
     </>

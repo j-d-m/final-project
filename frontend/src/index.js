@@ -23,31 +23,28 @@ const middlewareLink = new ApolloLink((operation, forward) => {
 });
 
 const link = onError(({ graphQLErrors, networkError }) => {
-  if (graphQLErrors)
-    graphQLErrors.map(({ message, locations, path }) =>
-      console.log(
-        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
-      )
-    );
-  Swal.fire({
-    position: "top",
-    icon: "error",
-    title: graphQLErrors[0].message,
-    showConfirmButton: false,
-    timer: 2000,
-    customClass: "swal-width",
-  });
-  console.log(graphQLErrors[0].message);
-
-  if (networkError) console.log(`[Network error]: ${networkError}`);
-  Swal.fire({
-    position: "top",
-    icon: "error",
-    title: networkError[0].message,
-    showConfirmButton: false,
-    timer: 2000,
-    customClass: "swal-width",
-  });
+  // if (graphQLErrors) {
+  //   graphQLErrors.map(({ message, locations, path }) =>
+  //     Swal.fire({
+  //       position: "top",
+  //       icon: "error",
+  //       title: `${message}`,
+  //       showConfirmButton: false,
+  //       timer: 2000,
+  //       customClass: "swal-width",
+  //     })
+  //   );
+  // }
+  if (networkError) {
+    Swal.fire({
+      position: "top",
+      icon: "error",
+      title: networkError,
+      showConfirmButton: false,
+      timer: 2000,
+      customClass: "swal-width",
+    });
+  }
 });
 const client = new ApolloClient({
   cache: new InMemoryCache(),
