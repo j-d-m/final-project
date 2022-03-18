@@ -120,6 +120,7 @@ export const GET_ONE_JOB = gql`
       created_by {
         company_Name
         email
+        avatar                 
       }
     }
   }
@@ -137,6 +138,7 @@ export const GET_JOBS = gql`
       created_by {
         company_Name
         email
+        avatar
       }
     }
   }

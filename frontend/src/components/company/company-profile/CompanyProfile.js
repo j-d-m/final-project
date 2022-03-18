@@ -148,6 +148,7 @@ export default function CompanyProfile() {
                         <AiOutlineEdit />
                         <span>Edit</span>
                       </Button>
+                      
                       <CompanyUpdateProfile
                         show={modalShowEdit}
                         onHide={() => setModalShowEdit(false)}
