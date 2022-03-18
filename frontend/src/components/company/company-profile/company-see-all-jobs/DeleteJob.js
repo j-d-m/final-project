@@ -68,7 +68,7 @@ function DeleteJob(props) {
         className="companyProfileUpdate jobsAdminModalBg">
         <Modal.Body className="text-center">
           <h4>Delete Job Post</h4>
-          <p>Are you Sure? This action cannot be reverted.</p>
+          <p>Are you sure? This action cannot be reverted.</p>
 
         </Modal.Body>
         <Modal.Footer>

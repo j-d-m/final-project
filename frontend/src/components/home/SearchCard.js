@@ -44,9 +44,12 @@ export default function SearchCard({ job }) {
 
 
     return (
-        <div className="jobs-searchCardSection">
+        <div className="jobs-searchCardSection"
+            title={`To work from ${moment(job.start_Date).locale("en").format("ll")} until ${moment(job.end_Date).locale("en").format("ll")}.`}
+        >
 
-            <div className="searchCard-card">
+            <div
+                className="searchCard-card">
                 <h5>
                     {" "}
                     {job.job_Title.slice(0, CharLimitTitleSearchCard) +
@@ -103,6 +106,7 @@ export default function SearchCard({ job }) {
                                 </p>
                                 <p>
                                     <BsFillPersonFill />  <strong>Open positions:</strong> {job.num_of_people_needed}
+                                    <em> {` (To work from ${moment(job.start_Date).locale("en").format("ll")} until ${moment(job.end_Date).locale("en").format("ll")}.)`} </em>
                                 </p>
                                 <p>
                                     <MdOutlineToday />  <strong>Posted:</strong> {moment(

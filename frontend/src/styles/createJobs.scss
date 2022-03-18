@@ -1,5 +1,13 @@
 @import "./fonts";
 
+.createJobModalContainer {
+  label {
+    font-family: $font-family-Bebas;
+    letter-spacing: 2px;
+    margin-bottom: 0px;
+  }
+}
+
 .create-jobs-title {
   h3 {
     font-family: $font-family-Bebas;

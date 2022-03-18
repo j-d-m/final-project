@@ -2,7 +2,6 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-
 //External imports
 import Button from "react-bootstrap/Button";
 import moment from "moment";
@@ -43,13 +42,19 @@ export default function IntApiCarouselCardModal({ job }) {
     let CharLimitDescriptionModal = 500;
 
     return (
-        <div className="carousel-card">
+        <div
+            className="carousel-card"
+            title={`To work from ${moment(job.start_Date).locale("en").format("ll")} until ${moment(job.end_Date).locale("en").format("ll")}.`}
+        >
             <h5>
                 {" "}
                 {job.job_Title.slice(0, CharLimitTitleCarousel) +
                     (job.job_Title.length > CharLimitTitleCarousel ? "..." : "")}
             </h5>
-            <p> {job.num_of_people_needed} open position(s)</p>
+            <p
+            >
+                {job.num_of_people_needed} open position(s)
+            </p>
             <p>
                 posted{" "}
                 {moment(
@@ -100,6 +105,8 @@ export default function IntApiCarouselCardModal({ job }) {
                             </p>
                             <p>
                                 <BsFillPersonFill />  <strong>Open positions:</strong> {job.num_of_people_needed}
+                                <em> {` (To work from ${moment(job.start_Date).locale("en").format("ll")} until ${moment(job.end_Date).locale("en").format("ll")}.)`} </em>
+
                             </p>
                             <p>
                                 <MdOutlineToday />  <strong>Posted:</strong> {moment(
