@@ -9,11 +9,11 @@ import Swal from "sweetalert2";
 // import "bootstrap/dist/css/bootstrap.min.css";
 
 //Internal Imports
+import "../../../../styles/companyJobs.scss";
+import hotPan from "../../../../assets/img/hotPan.svg";
 import { UPDATE_JOB } from "../../../../graphQL/Mutations";
 import { MyContext } from "../../../../Context/Context";
 import { GET_JOBS, GET_ONE_COMPANY } from "../../../../graphQL/Queries";
-import hotPan from "../../../../assets/img/hotPan.svg";
-import "../../../../styles/companyJobs.scss";
 
 function CompanyUpdateJobs(props) {
   const { companyLoginData, setCompanyLoginData, oneCompanyJob } =
@@ -131,7 +131,7 @@ function CompanyUpdateJobs(props) {
         <Modal.Header closeButton>
           <Modal.Title className="contained-modal-title-vcenter w-100">
             <div className="update-jobs-title d-flex align-items-center justify-content-around">
-              <h3>Update Job Post </h3>
+              <h3>Update Job Post</h3>
               <img alt="" src={hotPan} width="80" height="80" />
             </div>
           </Modal.Title>

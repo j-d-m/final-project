@@ -28,7 +28,7 @@ function CompanyJobs(props) {
         {...props}
         aria-labelledby="contained-modal-title-vcenter"
         centered
-        size="xl"
+        size="lg"
       >
         <Modal.Header closeButton>
           <Modal.Title className="contained-modal-title-vcenter w-100">
@@ -57,8 +57,8 @@ function CompanyJobs(props) {
                       <p>{`To work from ${moment(start_Date)
                         .locale("en")
                         .format("ll")} til ${moment(end_Date)
-                        .locale("en")
-                        .format("ll")}.`}</p>
+                          .locale("en")
+                          .format("ll")}.`}</p>
                       <p>{`${num_of_people_needed} people needed`}</p>
                       <p>
                         <strong> Description: </strong>
