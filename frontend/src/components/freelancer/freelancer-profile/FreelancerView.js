@@ -55,128 +55,140 @@ export default function FreelancerView(props) {
   };
 
   return (
-    <Modal {...props} size="xl" centered className="ProfileUpdate modal">
-      <button
-        type="button"
-        className="btn-close"
-        data-bs-dismiss="modal"
-        aria-label="Close"
-        onClick={() => props.onHide()}
-      ></button>
-      <div className="freelancerView">
-        <div className="freelancerViewContainer d-flex justify-content-center align-items-center ">
-          <div className="Card">
-            <div className="upper">
-              <img
-                src="https://i.imgur.com/Qtrsrk5.jpg"
-                alt=""
-                className="img-fluid"
-              />
-            </div>
-            <div className="user text-center">
-              <div className="profile">
-                <img
-                  src={avatar}
-                  alt="img"
-                  className="rounded-circle"
-                  width="80"
-                />
-              </div>
-            </div>
-            <div className="mt-5 text-center">
-              <h4 className="mb-0">{`${first_name} ${last_name}`}</h4>
-              <span className="text-muted d-block mb-2">{email}</span>
+    <Modal
+      {...props}
+      size="fullscreen"
+      centered
+      className="ProfileUpdate modal"
+    >
 
-              <p> Phone: {phone}</p>
-              <div className="Favourite">
-                <h5>Add this person to your favorites</h5>{" "}
-                <ImHeart className="iconHeart text-danger" size="35px" />
-              </div>
+      <Modal.Header closeButton>
+        <Modal.Title className="contained-modal-title-vcenter w-100">
+          <div className="update-jobs-title d-flex align-items-center justify-content-around">
+            <h3>Contact Freelancer</h3>
+            {/* <img alt="" src={hotPan} width="80" height="80" /> */}
+          </div>
+        </Modal.Title>
+      </Modal.Header>
 
-              <div className="stats mt-2">
-                <h6 className="mb-0">Hourly_rate</h6>
-                <span>{hourly_rate}</span>
+      <Modal.Body className="modalBody">
+
+
+        <div className="freelancerView">
+          <div className="freelancerViewContainer d-flex justify-content-center align-items-center ">
+            <div className="Card">
+              <div className="upper">
+                {/* <img
+                  src="https://i.imgur.com/Qtrsrk5.jpg"
+                  alt=""
+                  className="img-fluid"
+                /> */}
               </div>
-            </div>
-            <div className="contactMainBtn text-center">
-              <Link
-                to="submit"
-                spy={true}
-                smooth={true}
-                offset={320}
-                duration={200}
-                delay={500}
+              <div className="user text-center">
+                <div className="profile">
+                  <img
+                    src={avatar}
+                    alt="img"
+                    className="rounded-circle"
+                    width="80"
+                  />
+                </div>
+              </div>
+              <div className="mt-5 text-center">
+                <h4 className="mb-0">{`${first_name} ${last_name}`}</h4>
+                <span className="text-muted d-block mb-2">{email}</span>
+
+                <p> Phone: {phone}</p>
+                {/* <div className="Favourite">
+                  <h5>Add this person to your favorites</h5>{" "}
+                  <ImHeart className="iconHeart text-danger" size="35px" />
+                </div> */}
+
+                <div className="stats mt-2">
+                  <h6 className="mb-0">Hourly_rate</h6>
+                  <span>{hourly_rate}</span>
+                </div>
+              </div>
+              <div className="contactMainBtn text-center">
+                <Link
+                  to="submit"
+                  spy={true}
+                  smooth={true}
+                  offset={320}
+                  duration={200}
+                  delay={500}
+                >
+                  {showContactForm ? (
+                    <HiOutlineMailOpen
+                      onClick={() => setShowContactForm(false)}
+                      size="35px"
+                      style={{ cursor: "pointer" }}
+                    />
+                  ) : (
+                    <HiOutlineMail
+                      onClick={() => setShowContactForm(true)}
+                      size="35px"
+                      style={{ cursor: "pointer" }}
+                    />
+                  )}
+                </Link>
+              </div>
+              <form
+                onSubmit={FormHandler}
+                id="submit"
+                className={
+                  !showContactForm
+                    ? "d-none "
+                    : "d-block  animate__animated animate__fadeInDownBig"
+                }
               >
-                {showContactForm ? (
-                  <HiOutlineMailOpen
-                    onClick={() => setShowContactForm(false)}
-                    size="35px"
-                    style={{ cursor: "pointer" }}
-                  />
-                ) : (
-                  <HiOutlineMail
-                    onClick={() => setShowContactForm(true)}
-                    size="35px"
-                    style={{ cursor: "pointer" }}
-                  />
-                )}
-              </Link>
+                <h1 className="text-white bg-dark text-center">Direct Contact</h1>
+                <input
+                  type="text"
+                  name="to_name"
+                  className="form-control d-none"
+                  defaultValue={`${first_name} ${last_name}`}
+                  readOnly
+                />
+                <input
+                  type="email"
+                  name="to_email"
+                  className="form-control d-none"
+                  value={email}
+                  readOnly
+                />
+                <input
+                  name="from_name"
+                  type="text"
+                  className="feedback-input text-dark"
+                  value={companyLoginData.owner_name}
+                  readOnly
+                />
+                <input
+                  name="from_email"
+                  type="text"
+                  className="feedback-input text-dark"
+                  value={companyLoginData.email}
+                  readOnly
+                />
+                <textarea
+                  className="feedback-input text-dark"
+                  placeholder="Comment"
+                  name="from_message"
+                  required
+                  minLength={10}
+                  maxLength={200}
+                ></textarea>
+                <input
+                  type="submit"
+                  value="Send"
+                  className="text-white bg-dark"
+                />
+              </form>
             </div>
-            <form
-              onSubmit={FormHandler}
-              id="submit"
-              className={
-                !showContactForm
-                  ? "d-none "
-                  : "d-block  animate__animated animate__fadeInDownBig"
-              }
-            >
-              <h1 className="text-white bg-dark text-center">Direct Contact</h1>
-              <input
-                type="text"
-                name="to_name"
-                className="form-control d-none"
-                defaultValue={`${first_name} ${last_name}`}
-                readOnly
-              />
-              <input
-                type="email"
-                name="to_email"
-                className="form-control d-none"
-                value={email}
-                readOnly
-              />
-              <input
-                name="from_name"
-                type="text"
-                className="feedback-input text-dark"
-                value={companyLoginData.owner_name}
-                readOnly
-              />
-              <input
-                name="from_email"
-                type="text"
-                className="feedback-input text-dark"
-                value={companyLoginData.email}
-                readOnly
-              />
-              <textarea
-                className="feedback-input text-dark"
-                placeholder="Comment"
-                name="from_message"
-                required
-                minLength={10}
-                maxLength={200}
-              ></textarea>
-              <input
-                type="submit"
-                value="Send"
-                className="text-white bg-dark"
-              />
-            </form>
           </div>
         </div>
-      </div>
+      </Modal.Body>
     </Modal>
   );
 }

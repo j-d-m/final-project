@@ -28,7 +28,7 @@ function CompanyJobs(props) {
         {...props}
         aria-labelledby="contained-modal-title-vcenter"
         centered
-        size="lg"
+        size="xl"
       >
         <Modal.Header closeButton>
           <Modal.Title className="contained-modal-title-vcenter w-100">
