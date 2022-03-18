@@ -106,7 +106,7 @@ export default function SearchCard({ job }) {
                                 </p>
                                 <p>
                                     <BsFillPersonFill />  <strong>Open positions:</strong> {job.num_of_people_needed}
-                                    <em> {` (To work from ${moment(job.start_Date).locale("en").format("ll")} until ${moment(job.end_Date).locale("en").format("ll")}.)`} </em>
+                                    <em> {` (to work from ${moment(job.start_Date).locale("en").format("ll")} until ${moment(job.end_Date).locale("en").format("ll")}.)`} </em>
                                 </p>
                                 <p>
                                     <MdOutlineToday />  <strong>Posted:</strong> {moment(

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import moment from "moment";
 import Modal from "react-bootstrap/Modal";
-import { AiOutlineArrowUp, AiOutlineFileText } from 'react-icons/ai';
+import { AiOutlineArrowUp, AiOutlineFileText } from "react-icons/ai";
 import { BsFillPersonFill } from "react-icons/bs";
 import { HiOutlineOfficeBuilding } from "react-icons/hi";
 import { MdOutlineToday } from "react-icons/md";
@@ -15,12 +15,11 @@ import { FaConciergeBell } from "react-icons/fa";
 //Internal imports
 import "../../styles/carousel.scss";
 import Contact from "./ContactForm";
-import { MyContext } from "../../Context/Context"
-
+import { MyContext } from "../../Context/Context";
 
 export default function IntApiCarouselCardModal({ job }) {
     const navigate = useNavigate();
-    const { isFreelancerLogin } = useContext(MyContext);
+    const { isFreelancerLogin, freelancerLoginData } = useContext(MyContext);
     const [show, setShow] = useState(false);
     const [showContact, setShowContact] = useState(false);
     const [iconHover, setIconHover] = useState(false);
@@ -31,13 +30,13 @@ export default function IntApiCarouselCardModal({ job }) {
     const toggleShowContact = () => setShowContact(!showContact);
 
     function redirectToLogin() {
-        navigate("/freelancer-login")
+        navigate("/freelancer-login");
     }
 
     let CharLimitCompanyCarousel = 30;
     let CharLimitTitleCarousel = 20;
 
-    let CharLimitCompanyModal = 50
+    let CharLimitCompanyModal = 50;
     let CharLimitTitleModal = 100;
     let CharLimitDescriptionModal = 500;
 
@@ -51,10 +50,7 @@ export default function IntApiCarouselCardModal({ job }) {
                 {job.job_Title.slice(0, CharLimitTitleCarousel) +
                     (job.job_Title.length > CharLimitTitleCarousel ? "..." : "")}
             </h5>
-            <p
-            >
-                {job.num_of_people_needed} open position(s)
-            </p>
+            <p> {job.num_of_people_needed} open position(s)</p>
             <p>
                 posted{" "}
                 {moment(
@@ -74,14 +70,9 @@ export default function IntApiCarouselCardModal({ job }) {
             </p>
 
             <div className="text-center">
-                <Button
-                    variant="secondary"
-                    size="md"
-                    onClick={handleShow}
-                >
+                <Button variant="secondary" size="md" onClick={handleShow}>
                     Details <AiOutlineArrowUp />
                 </Button>
-
             </div>
             <Modal
                 show={show}
@@ -93,58 +84,83 @@ export default function IntApiCarouselCardModal({ job }) {
             >
                 <Modal.Header className="modalHeader" closeButton>
                     <Modal.Title>
-                        <h3> {job.job_Title.slice(0, CharLimitTitleModal) +
-                            (job.job_Title.length > CharLimitTitleModal ? "..." : "")}</h3>
+                        <h3>
+                            {" "}
+                            {job.job_Title.slice(0, CharLimitTitleModal) +
+                                (job.job_Title.length > CharLimitTitleModal ? "..." : "")}
+                        </h3>
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {showContact ||
+                    {showContact || (
                         <>
-                            <p>< AiOutlineFileText />  <strong>Job description:</strong>  {job.job_description.slice(0, CharLimitDescriptionModal) +
-                                (job.job_description.length > CharLimitDescriptionModal ? "..." : "")}
+                            <p>
+                                <AiOutlineFileText /> <strong>Job description:</strong>{" "}
+                                {job.job_description.slice(0, CharLimitDescriptionModal) +
+                                    (job.job_description.length > CharLimitDescriptionModal
+                                        ? "..."
+                                        : "")}
                             </p>
                             <p>
-                                <BsFillPersonFill />  <strong>Open positions:</strong> {job.num_of_people_needed}
-                                <em> {` (To work from ${moment(job.start_Date).locale("en").format("ll")} until ${moment(job.end_Date).locale("en").format("ll")}.)`} </em>
+                                <BsFillPersonFill /> <strong>Open positions:</strong>{" "}
+                                {job.num_of_people_needed}
+                                {` (to work from ${moment(job.start_Date).locale("en").format("ll")} until ${moment(job.end_Date).locale("en").format("ll")}).`}
 
                             </p>
                             <p>
-                                <MdOutlineToday />  <strong>Posted:</strong> {moment(
+                                <MdOutlineToday /> <strong>Posted:</strong>{" "}
+                                {moment(
                                     new Date(job.issued_At.slice(0, 10) * 1000).toGMTString()
                                 ).fromNow()}
                             </p>
                             <p>
-                                <HiOutlineOfficeBuilding />  <strong>Company:</strong> {job.created_by.company_Name.slice(0, CharLimitCompanyModal) +
-                                    (job.created_by.company_Name.length > CharLimitCompanyModal ? "..." : "")}
+                                <HiOutlineOfficeBuilding /> <strong>Company:</strong>{" "}
+                                {job.created_by.company_Name.slice(0, CharLimitCompanyModal) +
+                                    (job.created_by.company_Name.length > CharLimitCompanyModal
+                                        ? "..."
+                                        : "")}
                             </p>
                         </>
-                    }
+                    )}
 
                     <div className="text-center m-2">
-
                         {isFreelancerLogin ? (
-                            <Button onClick={toggleShowContact} variant="secondary  col-6"
+                            <Button
+                                onClick={toggleShowContact}
+                                variant="secondary  col-6"
                                 onMouseEnter={toggleIconHover}
                                 onMouseLeave={toggleIconHover}
-                            >
-                                {iconHover ? <FaConciergeBell /> :
-                                    showContact ? "Return to job description" : "  Contact"
+                                disabled={
+                                    freelancerLoginData.favorite.find(
+                                        (item) => item.id === job.id
+                                    )
+                                        ? true
+                                        : false
                                 }
+                            >
+                                {iconHover ? (
+                                    <FaConciergeBell />
+                                ) : showContact ? (
+                                    "Return to job description"
+                                ) : freelancerLoginData &&
+                                    freelancerLoginData.favorite.find(
+                                        (item) => item.id === job.id
+                                    ) ? (
+                                    " you already applied"
+                                ) : (
+                                    " Contact"
+                                )}
                             </Button>
-                        ) :
-
-                            <Button onClick={redirectToLogin} variant="secondary  col-6"
-                            >You should be logged to contact this company.
+                        ) : (
+                            <Button onClick={redirectToLogin} variant="secondary  col-6">
+                                You should be logged to contact this company.
                             </Button>
-
-
-                        }
-
+                        )}
                     </div>
                 </Modal.Body>
 
                 {showContact && <Contact job={job} />}
             </Modal>
         </div>
-    )
+    );
 }
