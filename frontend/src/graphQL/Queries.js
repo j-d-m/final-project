@@ -60,6 +60,7 @@ export const GET_ONE_COMPANY = gql`
       password
       description
       favorite {
+        id
         first_name
         last_name
         avatar
@@ -91,6 +92,7 @@ export const GET_COMPANIES = gql`
       password
       description
       favorite {
+        id
         first_name
         last_name
         avatar
@@ -120,7 +122,7 @@ export const GET_ONE_JOB = gql`
       created_by {
         company_Name
         email
-        avatar                 
+        avatar
       }
     }
   }

@@ -1,6 +1,5 @@
 //Native Imports
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 //External Imports
 import { useMutation, useQuery } from "@apollo/client";
@@ -24,16 +23,17 @@ import CompanyUpdateProfile from "./CompanyUpdateProfile";
 import CompanyCreateJob from "../company-profile/company-create-job/CreateJob";
 import FreelancerHome from "../../home/FreelancerHome";
 import CompanyJobs from "./company-see-all-jobs/CompanyJobs";
+import { ImHeart } from "react-icons/im";
+import CompanyShowFavList from "./CompanyShowFavList";
 
 export default function CompanyProfile() {
-  const navigate = useNavigate();
   const { companyLoginData, setCompanyLoginData } = useContext(MyContext);
   const [modalShowEdit, setModalShowEdit] = useState();
   const [modalShowDelete, setModalShowDelete] = useState();
   const [modalShowCreate, setModalShowCreate] = useState();
   const [modalShowStaff, setModalShowStaff] = useState();
+  const [modalShowFavorite, setModalShowFavorite] = useState();
   const [modalShowJobsAdmin, setModalShowJobsAdmin] = useState();
-  const [companyImage, setCompanyImage] = useState(null);
 
   const [UpdateCompany, { data1, loading1, error1 }] =
     useMutation(UPDATE_COMPANY);
@@ -85,6 +85,7 @@ export default function CompanyProfile() {
 
   setTimeout(() => {
     if (data) {
+      console.log(data);
       setCompanyLoginData(data.getOneCompany);
     }
   }, 100);
@@ -104,129 +105,150 @@ export default function CompanyProfile() {
               email,
               phone,
               avatar,
+              favorite,
             } = data.getOneCompany;
             return (
               <>
-                <div className="Freelance-Avatar-Comp">
-                  <img src={avatar} alt="img" width="200px" height="200px" />
-                  <label htmlFor="file-upload" className="Custom-File-Upload">
-                    <input
-                      id="file-upload"
-                      name="file"
-                      type="file"
-                      onChange={updateAvatar}
-                    />
-                    Change Image
-                  </label>
+                <div className="BoxContainer">
+                  <div className="Freelance-Avatar-Comp">
+                    <img src={avatar} alt="img" width="200px" height="200px" />
+                    <label htmlFor="file-upload" className="Custom-File-Upload">
+                      <input
+                        id="file-upload"
+                        name="file"
+                        type="file"
+                        onChange={updateAvatar}
+                      />
+                      Change Image
+                    </label>
+                  </div>
+
+                  <div className="Freelance-Right-Comp">
+                    <h1>{company_Name}</h1>
+
+                    <div>
+                      <p>Company type : {company_type} </p>
+                    </div>
+                    <div>
+                      <p>Company address : {address} </p>
+                    </div>
+                    <div>
+                      <p>Owner : {owner_name}</p>
+                    </div>
+                    <div>
+                      <p>Email : {email}</p>
+                    </div>
+                    <div>
+                      <p>Phone : {phone}</p>
+                    </div>
+                    <div>
+                      <p>Company Description : {description} </p>
+                    </div>
+                  </div>
                 </div>
-
-                <div className="Freelance-Right-Comp">
-                  <h1>{company_Name}</h1>
-
-                  <div>
-                    <p>Company type : {company_type} </p>
-                  </div>
-                  <div>
-                    <p>Company address : {address} </p>
-                  </div>
-                  <div>
-                    <p>Owner : {owner_name}</p>
-                  </div>
-                  <div>
-                    <p>Email : {email}</p>
-                  </div>
-                  <div>
-                    <p>Phone : {phone}</p>
-                  </div>
-                  <div>
-                    <p>Company Description : {description} </p>
-                  </div>
-                  <section>
-                    <div className="ModalBtnCompanyProfile">
-
-                      {/* Edit/Update Company Profile */}
-                      <Button
-                        id={id}
-                        className="btn btn-secondary btn-circle btn-xl"
-                        onClick={() => {
-                          setModalShowEdit(true);
-                        }}
-                      >
+                <section className="BtnSection">
+                  <div className="ModalBtnCompanyProfile">
+                    {/* Show/Update favorite freelancer list */}
+                    <Button
+                      id={id}
+                      className="btn btn-secondary btn-circle btn-xl"
+                      onClick={() => {
+                        setModalShowFavorite(true);
+                      }}
+                    >
+                      <div className="FavoriteList">
+                        <ImHeart />
+                        <span>List</span>
+                      </div>
+                    </Button>
+                    <CompanyShowFavList
+                      favorite={favorite}
+                      show={modalShowFavorite}
+                      onHide={() => setModalShowFavorite(false)}
+                    />
+                    {/* Edit/Update Company Profile */}
+                    <Button
+                      id={id}
+                      className="btn btn-secondary btn-circle btn-xl"
+                      onClick={() => {
+                        setModalShowEdit(true);
+                      }}
+                    >
+                      <div className="FavoriteList">
                         <AiOutlineEdit />
                         <span>Edit</span>
-                      </Button>
-                      <CompanyUpdateProfile
-                        show={modalShowEdit}
-                        onHide={() => setModalShowEdit(false)}
-                      />
+                      </div>
+                    </Button>
+                    <CompanyUpdateProfile
+                      show={modalShowEdit}
+                      onHide={() => setModalShowEdit(false)}
+                    />
 
-                      {/* Delete Company Profile */}
-                      <Button
-                        id={id}
-                        className="btn btn-secondary btn-circle btn-xl"
-                        onClick={() => {
-                          setModalShowDelete(true);
-                        }}
-                      >
-                        <AiOutlineDelete />
-                        <span>Delete</span>
-                      </Button>
-                      <DeleteCompanyAccount
-                        show={modalShowDelete}
-                        onHide={() => setModalShowDelete(false)}
-                      />
+                    {/* Delete Company Profile */}
+                    <Button
+                      id={id}
+                      className="btn btn-secondary btn-circle btn-xl"
+                      onClick={() => {
+                        setModalShowDelete(true);
+                      }}
+                    >
+                      <AiOutlineDelete />
+                      <span>Delete</span>
+                    </Button>
+                    <DeleteCompanyAccount
+                      show={modalShowDelete}
+                      onHide={() => setModalShowDelete(false)}
+                    />
 
-                      {/* Create/Post new Job Offer */}
-                      <Button
-                        id={id}
-                        className="btn btn-secondary btn-circle btn-xl"
-                        onClick={() => {
-                          setModalShowCreate(true);
-                        }}
-                      >
-                        <AiOutlinePlusCircle />
-                        <span>Create</span>
-                      </Button>
-                      <CompanyCreateJob
-                        show={modalShowCreate}
-                        onHide={() => setModalShowCreate(false)}
-                      />
+                    {/* Create/Post new Job Offer */}
+                    <Button
+                      id={id}
+                      className="btn btn-secondary btn-circle btn-xl"
+                      onClick={() => {
+                        setModalShowCreate(true);
+                      }}
+                    >
+                      <AiOutlinePlusCircle />
+                      <span>Create</span>
+                    </Button>
+                    <CompanyCreateJob
+                      show={modalShowCreate}
+                      onHide={() => setModalShowCreate(false)}
+                    />
 
-                      {/* Check/visit Freelancer/staff available */}
-                      <Button
-                        id={id}
-                        className="btn btn-secondary btn-circle btn-xl"
-                        onClick={() => {
-                          setModalShowStaff(true);
-                        }}
-                      >
-                        <GiCook />
-                        <span>Staff</span>
-                      </Button>
-                      <FreelancerHome
-                        show={modalShowStaff}
-                        onHide={() => setModalShowStaff(false)}
-                      />
+                    {/* Check/visit Freelancer/staff available */}
+                    <Button
+                      id={id}
+                      className="btn btn-secondary btn-circle btn-xl"
+                      onClick={() => {
+                        setModalShowStaff(true);
+                      }}
+                    >
+                      <GiCook />
+                      <span>Staff</span>
+                    </Button>
+                    <FreelancerHome
+                      show={modalShowStaff}
+                      onHide={() => setModalShowStaff(false)}
+                    />
 
-
-                      {/* Edit/Update/Admin Job offers Posted */}
-                      <Button
-                        id={id}
-                        className="btn btn-secondary btn-circle btn-xl"
-                        onClick={() => {
-                          setModalShowJobsAdmin(true);
-                        }}
-                      >
-                        <AiOutlineUnorderedList />
-                        <span>Jobs</span>
-                      </Button>
-                      <CompanyJobs
-                        show={modalShowJobsAdmin}
-                        onHide={() => setModalShowJobsAdmin(false)}
-                      />
-                    </div>
-                  </section>
-                </div>
+                    {/* Edit/Update/Admin Job offers Posted */}
+                    <Button
+                      id={id}
+                      className="btn btn-secondary btn-circle btn-xl"
+                      onClick={() => {
+                        setModalShowJobsAdmin(true);
+                      }}
+                    >
+                      <AiOutlineUnorderedList />
+                      <span>Jobs</span>
+                    </Button>
+                    <CompanyJobs
+                      show={modalShowJobsAdmin}
+                      onHide={() => setModalShowJobsAdmin(false)}
+                    />
+                  </div>
+                </section>
               </>
             );
           })()}

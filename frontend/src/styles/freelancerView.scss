@@ -50,6 +50,18 @@
       font-size: 29px;
       text-align: center;
     }
+    .FavoriteDiv {
+      .iconBtn {
+        border: none;
+        background: none;
+      }
+      .Favorite {
+        color: red;
+      }
+      .notFavorite {
+        color: rgb(83, 70, 70);
+      }
+    }
   }
   form {
     max-width: 420px;

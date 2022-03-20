@@ -5,8 +5,9 @@
 .Profile-Container-Comp {
   width: 100%;
   height: calc(100vh - 20vh);
+
   background-image: url("../assets/img/bgglass.png");
-  background-repeat:no-repeat;
+  background-repeat: no-repeat;
   background-size: cover;
   @include flex-center;
   justify-content: center;
@@ -27,7 +28,7 @@
   padding: 1.5rem;
   line-height: 1.5;
 
-  display: flex;
+  // display: flex;
   justify-content: flex-start;
 
   @include mobile {
@@ -42,12 +43,31 @@
     height: 100%;
     line-height: 1.1;
   }
-
-  .Freelance-Avatar-Comp{
+  // fix responsive
+  .BoxContainer {
+    display: flex;
+  }
+  @media screen and (max-width: 480px) {
+    .BoxContainer {
+      display: flex;
+      flex-direction: column;
+      .Freelance-Avatar-Comp {
+        margin-bottom: 20px;
+      }
+      .Freelance-Right-Comp {
+        h1 {
+          text-align: center;
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+  .Freelance-Avatar-Comp {
     flex: 0.25;
     display: flex;
     align-items: center;
     flex-direction: column;
+    margin-right: 20px;
 
     img {
       border-radius: 50%;
@@ -70,19 +90,18 @@
       transition: 0.2s ease-in;
 
       &:hover {
-      opacity: .8;
+        opacity: 0.8;
       }
-      @include mobile-small{
+      @include mobile-small {
         padding: 0.5rem auto;
-        margin-bottom: .65rem;
-
+        margin-bottom: 0.65rem;
       }
     }
   }
 
   .Freelance-Right-Comp {
     flex: 0.7;
-  
+
     h1 {
       font-size: 40px;
       color: $color-green;
@@ -95,19 +114,17 @@
     p {
       font-size: 20px;
       color: $color-green;
-      
 
-      
       @include mobile {
         font-size: smaller;
       }
     }
-
+  }
+  .BtnSection {
     .ModalBtnCompanyProfile {
       @include flex-center;
       justify-content: center;
       margin-top: 2rem;
-      
 
       .btn-circle.btn-xl {
         width: 70px;
@@ -116,7 +133,7 @@
         border-radius: 35px;
         line-height: 1.2;
       }
-      
+
       .btn-circle {
         width: 30px;
         height: 30px;
@@ -125,7 +142,7 @@
         border-radius: 15px;
         text-align: center;
         color: white;
-        span{
+        span {
           font-weight: 300;
           font-size: x-small;
           color: white;
@@ -136,8 +153,15 @@
         flex-wrap: wrap;
         margin: 0 5px;
       }
-      
     }
-     
+  }
+  // fix button icons style
+  .FavoriteList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    span {
+      margin-top: 5px;
+    }
   }
 }
