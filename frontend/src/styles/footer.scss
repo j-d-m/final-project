@@ -1,84 +1,171 @@
 @import "./colors";
 @import "./fonts";
 
-.FooterParent {
-  background-color: #292b2c;
+.FooterDiv {
+  position: relative;
+  background-color: $color-dark;
   width: 100%;
-  
-
-  margin: 0 auto;
-
-  .Footer {
+  .goToTop {
+    cursor: pointer;
+    position: absolute;
+    top: -30px;
+    right: 50px;
     color: $color-white;
-    margin: 0 auto;
+    background-color: $color-pepper;
+    font-size: x-large;
+    padding: 0.1rem 0.5rem 0.3rem 0.5rem;
+    animation: fadeIn 4s infinite alternate;
+    -webkit-animation: fadeIn 4s infinite alternate;
+    -moz-animation: fadeIn 4s infinite alternate;
+  }
 
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    align-items: center;
-    & div {
-      height: 200px;
-
-      padding-top: 20px;
-      margin: 30px;
-
-      p {
-        width: 200px;
-      }
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
     }
-
-    li {
-      list-style-type: none;
-
-      .SocialIcons {
-        margin-right: 8px;
-      }
-      a {
-        text-decoration: none;
-        margin-right: 10px;
-      }
-    }
-    .Footer-MIDDLE > span {
-      display: flex;
-      padding-right: 20px;
+    100% {
+      opacity: 1;
     }
   }
-  .Footer-Copyright {
+  @-moz-keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @-webkit-keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  position: fixed;
+  bottom: 0;
+  .FooterIconDiv {
     text-align: center;
-    color: #fff;
+    height: 30px;
+
+    .arrowFooterIcon {
+      position: absolute;
+      top: -30px;
+      left: 48vw;
+      color: $color-dark;
+      font-size: 3rem;
+      cursor: pointer;
+    }
+  }
+}
+
+.footer-dark {
+  position: relative;
+  padding: 50px 0;
+  color: #f0f9ff;
+  background-color: $color-dark;
+  .Container {
+    width: 100%;
+    .footerDiv {
+      box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.267);
+
+      display: flex;
+
+      flex-wrap: wrap;
+      .logo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          align-self: center;
+        }
+      }
+      .item {
+        width: 400px;
+        height: 200px;
+
+        padding: 40px;
+        .mailLink {
+          a {
+            text-decoration: none;
+            color: $color-pepper;
+            border-bottom: 1px solid $color-pepper;
+            &:hover {
+              color: rgba(255, 255, 255, 0.664);
+              border-bottom: 1px solid rgba(255, 255, 255, 0.664);
+            }
+          }
+        }
+      }
+      ul {
+        padding: 0;
+        list-style: none;
+        line-height: 1.6;
+        font-size: 14px;
+        margin-bottom: 0;
+        a {
+          text-decoration: none;
+          color: $color-sky;
+          border-bottom: 1px solid $color-sky;
+
+          &:hover {
+            color: $color-white;
+            color: rgba(255, 255, 255, 0.664);
+          }
+        }
+      }
+    }
+  }
+}
+
+.footer-dark .item.text {
+  margin-bottom: 36px;
+}
+
+.footer-dark .item.text p {
+  opacity: 0.6;
+  margin-bottom: 0;
+}
+
+.footer-dark .item.social {
+  text-align: center;
+}
+
+@media (max-width: 1200px) {
+  .footerDiv {
     display: flex;
     justify-content: center;
-    padding-top: 20px;
-    position:relative;
-
-    a {
-      cursor: pointer;
-      position: absolute;
-      top: -290px;
-      right: 50px;
-      color: $color-white;
-      background-color: $color-pepper;
-      font-size:x-large;
-      padding: .1rem .5rem .3rem .5rem;
-      animation: fadeIn 4s infinite alternate;
-      -webkit-animation: fadeIn 4s infinite alternate;
-      -moz-animation: fadeIn 4s infinite alternate;
-    }
-
-@keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
-}
-@-moz-keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
-}
-@-webkit-keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
-}
-    
+    flex-wrap: wrap;
+    text-align: center;
+    width: 100%;
   }
+}
 
+.footer-dark .item.social > a {
+  font-size: 20px;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4);
+  margin: 0 8px;
+  color: #fff;
+  opacity: 0.75;
+}
+
+.footer-dark .item.social > a:hover {
+  opacity: 0.9;
+}
+
+.footer-dark .copyright {
+  text-align: center;
+  padding-top: 24px;
+  opacity: 0.3;
+  font-size: 13px;
+  margin-bottom: 0;
 }
