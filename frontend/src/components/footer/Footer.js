@@ -36,10 +36,10 @@ export default function Footer() {
         )}
       </div>
       <footer className={footerIcon ? "footer" : "footer d-none"}>
-        <div class="footer-dark">
-          <div class="Container">
-            <div class="footerDiv">
-              <div class=" item">
+        <div className="footer-dark">
+          <div className="Container">
+            <div className="footerDiv">
+              <div className=" item">
                 <h5>Get Started</h5>
 
                 <p>
@@ -58,7 +58,7 @@ export default function Footer() {
                   </li>
                 </ul>
               </div>
-              <div class="item logo">
+              <div className="item logo">
                 <img src={logo} alt="img" width="200px" />
                 <span className="mailLink">
                   <a href="mailto:staff.room.server@gmail.com">
@@ -66,7 +66,7 @@ export default function Footer() {
                   </a>
                 </span>
               </div>
-              <div class="item text">
+              <div className="item text">
                 <h5>Staff Room</h5>
                 <p>
                   Staff Room is a portal to connect freelancers looking for gig
@@ -75,7 +75,7 @@ export default function Footer() {
               </div>
             </div>
           </div>
-          <div class=" item social">
+          <div className=" item social">
             <a href="https://www.facebook.com/" title="Facebook">
               <BsFacebook className="SocialIcons" />
             </a>
@@ -88,7 +88,7 @@ export default function Footer() {
               <BsInstagram className="SocialIcons" />
             </a>
           </div>
-          <p class="copyright">Staff Room © 2021. All rights reserved.</p>
+          <p className="copyright">Staff Room © 2021. All rights reserved.</p>
         </div>
       </footer>
     </div>
