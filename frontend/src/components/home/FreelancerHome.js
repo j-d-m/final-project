@@ -1,11 +1,10 @@
 //Native Imports
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 //External Imports
-import { useQuery } from "@apollo/client";
 import { GET_USERS } from "../../graphQL/Queries";
 import { Modal, Button } from "react-bootstrap";
+import { useQuery } from "@apollo/client";
 
 //Internal Imports
 import "../../styles/freelancerProfileStyle.scss";
@@ -17,7 +16,9 @@ import FreelancerView from "../freelancer/freelancer-profile/FreelancerView";
 export default function FreelancerHome(props) {
   const [searchFreelancers, setSearchFreelancers] = useState("");
   const [modalShowFreelancer, setModalShowFreelancer] = useState();
-  const { freelancerFind, setFreelancerFind } = useContext(MyContext);
+
+  const { setFreelancerFind } = useContext(MyContext);
+
   const { loading, error, data } = useQuery(GET_USERS);
 
   if (loading) {
@@ -39,7 +40,6 @@ export default function FreelancerHome(props) {
       return user.description.includes(searchFreelancers);
     });
 
-
   return (
     <>
       <Modal
@@ -56,9 +56,6 @@ export default function FreelancerHome(props) {
             </div>
           </Modal.Title>
         </Modal.Header>
-
-
-
 
         <div className="Wrapper">
           {/*search begins*/}
@@ -83,7 +80,6 @@ export default function FreelancerHome(props) {
                     <img src={user.avatar} alt="img" />
                     <h2 className="name">{`${user.first_name} ${user.last_name}`}</h2>
 
-                    {/*button to open the freelancer contact card*/}
                     <div className="OpenContact">
                       <Button
                         className="Btn btn-secondary bg-secondary text-light "
@@ -112,9 +108,9 @@ export default function FreelancerHome(props) {
               );
             })
           ) : (
-            <h3
-              className="text-center my-5"
-            >No such Freelancer is Available</h3>
+            <h3 className="text-center my-5">
+              No such Freelancer is Available
+            </h3>
           )}
         </div>
       </Modal>

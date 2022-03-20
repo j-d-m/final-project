@@ -3,19 +3,122 @@ import { ImHeart } from "react-icons/im";
 import { HiOutlineMail, HiOutlineMailOpen } from "react-icons/hi";
 import { Link } from "react-scroll";
 import "../../../styles/freelancerView.scss";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import emailjs from "@emailjs/browser";
 import Swal from "sweetalert2";
+import {
+  COMPANY_FAVORITE,
+  DELETE_COMPANY_FAVORITE,
+} from "../../../graphQL/Mutations";
+import { GET_ONE_COMPANY } from "../../../graphQL/Queries";
+import { useMutation } from "@apollo/client";
 
 export default function FreelancerView(props) {
-  /*  2- we need to add functionality to favorite icon
-   */
   const { freelancerFind, companyLoginData, isCompanyLogin } =
     useContext(MyContext);
   const [showContactForm, setShowContactForm] = useState(false);
-  let { first_name, last_name, hourly_rate, email, phone, avatar } =
+  const [companyFavorite, setCompanyFavorite] = useState(false);
+
+  let storeId = companyLoginData.favorite.filter(
+    (item) => item.id === freelancerFind.id
+  );
+
+  useEffect(() => {
+    if (storeId.length > 0) {
+      setCompanyFavorite(true);
+    } else {
+      setCompanyFavorite(false);
+    }
+  }, [storeId]);
+
+  // we need to filter the freelancerFind state to make companyFavorite true
+  let { first_name, last_name, hourly_rate, email, phone, avatar, id } =
     freelancerFind;
+  const [updateCompanyFavorite, { data1, loading1, error1 }] = useMutation(
+    COMPANY_FAVORITE,
+    {
+      refetchQueries: [
+        {
+          query: GET_ONE_COMPANY,
+          variables: { getOneCompanyId: companyLoginData.id },
+        },
+      ],
+      awaitRefetchQueries: true,
+    }
+  );
+
+  const favoriteBtn = () => {
+    updateCompanyFavorite({
+      variables: {
+        userId: id,
+        companyId: companyLoginData.id,
+      },
+    }).then((res) => {
+      if (res.data) {
+        Swal.fire({
+          position: "top",
+          icon: "success",
+          title: `you add ${first_name}as a favorite`,
+          showConfirmButton: false,
+          timer: 1000,
+        });
+        setCompanyFavorite(true);
+      }
+      if (error1) {
+        Swal.fire({
+          position: "top",
+          icon: "error",
+          title: "Something went wrong",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      }
+    });
+  };
+
+  const [deleteCompanyFavorite, { data2, loading2, error2 }] = useMutation(
+    DELETE_COMPANY_FAVORITE,
+    {
+      refetchQueries: [
+        {
+          query: GET_ONE_COMPANY,
+          variables: { getOneCompanyId: companyLoginData.id },
+        },
+      ],
+      awaitRefetchQueries: true,
+    }
+  );
+
+  const deleteFavoriteBtn = () => {
+    deleteCompanyFavorite({
+      variables: {
+        userId: id,
+        companyId: companyLoginData.id,
+      },
+    }).then((res) => {
+      if (res.data) {
+        console.log(res.data);
+        Swal.fire({
+          position: "top",
+          icon: "success",
+          title: `you delete ${first_name}from your favorite list`,
+          showConfirmButton: false,
+          timer: 1000,
+        });
+        setCompanyFavorite(false);
+      }
+      if (error2) {
+        Swal.fire({
+          position: "top",
+          icon: "error",
+          title: "Something went wrong",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      }
+    });
+  };
 
   const FormHandler = (e) => {
     e.preventDefault();
@@ -61,19 +164,16 @@ export default function FreelancerView(props) {
       centered
       className="ProfileUpdate modal"
     >
-
       <Modal.Header closeButton>
         <Modal.Title className="contained-modal-title-vcenter w-100">
           <div className="update-jobs-title d-flex align-items-center justify-content-around">
-            <h3>Contact Freelancer</h3>
+            <h3>Contact Freelancer </h3>
             {/* <img alt="" src={hotPan} width="80" height="80" /> */}
           </div>
         </Modal.Title>
       </Modal.Header>
 
       <Modal.Body className="modalBody">
-
-
         <div className="freelancerView">
           <div className="freelancerViewContainer d-flex justify-content-center align-items-center ">
             <div className="Card">
@@ -99,10 +199,22 @@ export default function FreelancerView(props) {
                 <span className="text-muted d-block mb-2">{email}</span>
 
                 <p> Phone: {phone}</p>
-                {/* <div className="Favourite">
-                  <h5>Add this person to your favorites</h5>{" "}
-                  <ImHeart className="iconHeart text-danger" size="35px" />
-                </div> */}
+
+                <div className="FavoriteDiv">
+                  <button
+                    className="iconBtn"
+                    onClick={!companyFavorite ? favoriteBtn : deleteFavoriteBtn}
+                  >
+                    <ImHeart
+                      className={
+                        companyFavorite
+                          ? "iconHeart Favorite"
+                          : "iconHeart notFavorite"
+                      }
+                      size="35px"
+                    />
+                  </button>
+                </div>
 
                 <div className="stats mt-2">
                   <h6 className="mb-0">Hourly_rate</h6>
@@ -142,7 +254,9 @@ export default function FreelancerView(props) {
                     : "d-block  animate__animated animate__fadeInDownBig"
                 }
               >
-                <h1 className="text-white bg-dark text-center">Direct Contact</h1>
+                <h1 className="text-white bg-dark text-center">
+                  Direct Contact
+                </h1>
                 <input
                   type="text"
                   name="to_name"

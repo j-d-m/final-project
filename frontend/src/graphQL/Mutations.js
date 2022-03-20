@@ -117,7 +117,7 @@ export const UPDATE_COMPANY = gql`
   }
 `;
 export const COMPANY_FAVORITE = gql`
-  mutation updateCompanyFavorite($userId: ID!, $job: JobInputType) {
+  mutation updateCompanyFavorite($userId: ID!, $companyId: ID!) {
     updateCompanyFavorite(userId: $userId, companyId: $companyId) {
       id
       company_Name
@@ -132,7 +132,22 @@ export const COMPANY_FAVORITE = gql`
     }
   }
 `;
-
+export const DELETE_COMPANY_FAVORITE = gql`
+  mutation DeleteCompanyFavorite($companyId: ID!, $userId: ID!) {
+    deleteCompanyFavorite(companyId: $companyId, userId: $userId) {
+      id
+      company_Name
+      owner_name
+      avatar
+      company_type
+      address
+      phone
+      email
+      password
+      description
+    }
+  }
+`;
 export const CREATE_USER_MUTATION = gql`
   mutation addUser(
     $first_name: String!
