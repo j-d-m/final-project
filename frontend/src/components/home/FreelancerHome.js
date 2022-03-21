@@ -29,10 +29,10 @@ export default function FreelancerHome(props) {
     return <p>error:</p>;
   }
 
-  // const contactFreelancer = (id) => {
-  //   let findUser = data.getUsers.find((freelancer) => freelancer.id === id);
-  //   setFreelancerFind(findUser);
-  // };
+  const contactFreelancer = (id) => {
+    let findUser = data.getUsers.find((freelancer) => freelancer.id === id);
+    setFreelancerFind(findUser);
+  };
 
   const result =
     data &&
@@ -78,7 +78,12 @@ export default function FreelancerHome(props) {
               console.log(user.id);
 
               return (
-                <section className="MainContainer" key={user.id}>
+                <section
+                  className="MainContainer"
+                  key={user.id}
+                  // onMouseLeave={() => setShowContactForm(false)}
+
+                >
                   <div className="bodyCard-avatar">
                     <img src={user.avatar} alt="img" />
                     <h2 className="name">
@@ -89,12 +94,12 @@ export default function FreelancerHome(props) {
                     {/*button to open the freelancer contact card*/}
                     <div className="OpenContact">
                       <Button
-                        className="Btn contactDetailsButton" 
+                        className="Btn contactDetailsButton"
                         variant="secondary"
                         onClick={() => {
-                          // contactFreelancer(user.id);
-                          setCurrentFreelancer(user.id);
                           setShowContactForm(!showContactForm);
+                          contactFreelancer(user.id);
+                          setCurrentFreelancer(user.id);
                         }}
                       >
                         {showContactForm &&
