@@ -15,7 +15,8 @@ import FreelancerView from "../freelancer/freelancer-profile/FreelancerView";
 
 export default function FreelancerHome(props) {
   const [searchFreelancers, setSearchFreelancers] = useState("");
-  const [modalShowFreelancer, setModalShowFreelancer] = useState();
+  const [currentFreelancer, setCurrentFreelancer] = useState("");
+  const [showContactForm, setShowContactForm] = useState(false);
 
   const { setFreelancerFind } = useContext(MyContext);
   const { loading, error, data } = useQuery(GET_USERS);
@@ -28,16 +29,15 @@ export default function FreelancerHome(props) {
     return <p>error:</p>;
   }
 
-  const contactFreelancer = (id) => {
-    let findUser = data.getUsers.find((freelancer) => freelancer.id === id);
-    setFreelancerFind(findUser);
-  };
+  // const contactFreelancer = (id) => {
+  //   let findUser = data.getUsers.find((freelancer) => freelancer.id === id);
+  //   setFreelancerFind(findUser);
+  // };
 
   const result =
     data &&
     data.getUsers.filter((user) => {
       return user.description.includes(searchFreelancers);
-
     });
 
 
@@ -57,9 +57,8 @@ export default function FreelancerHome(props) {
             </div>
           </Modal.Title>
         </Modal.Header>
-         <Modal.Body>
+        <Modal.Body>
 
-        <div className="FreeLancerListStaff">
           {/*search begins*/}
           <div className="FreelancerSearch">
             {/* <h3 className="Title">Search for a Freelancer</h3> */}
@@ -76,6 +75,7 @@ export default function FreelancerHome(props) {
 
           {result.length > 0 ? (
             result.map((user) => {
+              console.log(user.id);
 
               return (
                 <section className="MainContainer" key={user.id}>
@@ -85,25 +85,31 @@ export default function FreelancerHome(props) {
                       {`${user.first_name[0].toUpperCase() + user.first_name.substring(1).toLowerCase()} 
                       ${user.last_name[0].toUpperCase() + user.last_name.substring(1).toLowerCase()}`}
 
-
-
                     </h2>
                     {/*button to open the freelancer contact card*/}
                     <div className="OpenContact">
                       <Button
-                        className="Btn btn-secondary bg-secondary text-light "
+                        className="Btn contactDetailsButton" 
+                        variant="secondary"
                         onClick={() => {
-                          setModalShowFreelancer(!modalShowFreelancer);
-                          contactFreelancer(user.id);
+                          // contactFreelancer(user.id);
+                          setCurrentFreelancer(user.id);
+                          setShowContactForm(!showContactForm);
                         }}
                       >
-                        contact this freelancer
+                        {showContactForm &&
+                          currentFreelancer === user.id ?
+                          "Details" : "Contact"
+                        }
+
                       </Button>
                     </div>
                   </div>
 
 
-                  {modalShowFreelancer ? (
+                  {showContactForm &&
+                    currentFreelancer === user.id ? (
+
                     <FreelancerView />
                   ) : (
                     <>
@@ -119,7 +125,7 @@ export default function FreelancerHome(props) {
                         </p>
                         <p>
                           <span>Hourly Rate: </span>
-                          {`€${user.hourly_rate} / hour `}
+                          {`€${user.hourly_rate} per hour `}
                         </p>
 
                         <p>
@@ -145,7 +151,6 @@ export default function FreelancerHome(props) {
               No such Freelancer is Available
             </h3>
           )}
-        </div>
         </Modal.Body>
       </Modal>
     </>
