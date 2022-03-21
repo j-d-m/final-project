@@ -98,7 +98,6 @@ export default function FreelancerView(props) {
       },
     }).then((res) => {
       if (res.data) {
-        console.log(res.data);
         Swal.fire({
           position: "top",
           icon: "success",
