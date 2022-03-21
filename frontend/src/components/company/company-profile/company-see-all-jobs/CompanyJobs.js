@@ -83,7 +83,8 @@ function CompanyJobs(props) {
                         />
                         <Button
                           id={id}
-                          className="btn-block btn-pepper"
+                          variant="secondary"
+                          className="deleteButton"
                           onClick={() => {
                             setModalShowDelete(true);
                             updateSingleJob(id);

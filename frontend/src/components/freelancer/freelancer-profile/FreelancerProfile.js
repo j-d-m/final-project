@@ -63,14 +63,17 @@ export default function FreelancerProfile() {
     variables: { getOneUserId: freelancerLoginData.id },
   });
 
-  if (loading)
+  if (loading) {
     return (
-      <img
-        src="https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif"
-        alt="img"
-      />
+      <div className="m2-auto text-center loading-block">
+        <img
+          src="https://cdn.dribbble.com/users/1186261/screenshots/3718681/_______.gif"
+          alt="img"
+        />
+      </div>
     );
-    
+
+  }
 
   setTimeout(() => {
     if (data) {

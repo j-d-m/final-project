@@ -29,7 +29,6 @@ export default function CompanyShowFavList(props) {
       },
     }).then((res) => {
       if (res.data) {
-        console.log(res.data);
         Swal.fire({
           position: "top",
           icon: "success",
@@ -63,11 +62,11 @@ export default function CompanyShowFavList(props) {
           {props.favorite.map((fav) => {
             let { first_name, last_name, avatar, email, description, id } = fav;
             return (
-              <div class="Container">
-                <div class="Card">
-                  <div class="Box">
-                    <div class="Content">
-                      <img src={avatar} alt="" width="100px" />
+              <div className="Container" key={fav.id}>
+                <div className="Card">
+                  <div className="Box">
+                    <div className="Content">
+                      <img src={avatar} alt="img" width="100px" />
                       {/* <h2>01</h2> */}
 
                       <h3>{`${first_name}  ${last_name}`}</h3>
