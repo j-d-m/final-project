@@ -79,7 +79,7 @@ export default function FreelancerHome(props) {
                   <div className="bodyCard">
                     <img src={user.avatar} alt="img" />
                     <h2 className="name">{`${user.first_name} ${user.last_name}`}</h2>
-
+                    {/*button to open the freelancer contact card*/}
                     <div className="OpenContact">
                       <Button
                         className="Btn btn-secondary bg-secondary text-light "

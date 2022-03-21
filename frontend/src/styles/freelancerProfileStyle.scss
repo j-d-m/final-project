@@ -10,7 +10,6 @@
   background-size: cover;
   @include flex-center;
   justify-content: center;
-  overflow: scroll;
 
   @include mobile {
     height: 100%;
@@ -28,8 +27,8 @@
   padding: 1.5rem;
   line-height: 1.5;
 
-  display: flex;
-  justify-content: flex-start;
+  // display: flex;
+  // justify-content: flex-start;
 
   @include mobile {
     width: 80vw;
@@ -43,7 +42,18 @@
     height: 100%;
     line-height: 1.1;
   }
-
+  .BoxContainer {
+    display: flex;
+  }
+  @media screen and (max-width: 480px) {
+    .BoxContainer {
+      display: flex;
+      flex-direction: column;
+      .Freelancer-Avatar {
+        margin-bottom: 20px;
+      }
+    }
+  }
   .Freelance-Avatar {
     flex: 0.25;
     display: flex;
@@ -52,7 +62,7 @@
 
     img {
       border-radius: 50%;
-      border: 8px solid $color-white;
+      border: 10px solid $color-white;
     }
 
     input[type="file"] {
@@ -83,20 +93,21 @@
 
   .Freelance-Right {
     flex: 0.7;
-    .textProfile {
-      @include flex-center;
-      flex-direction: column;
+    // .textProfile {
+    //   @include flex-center;
+    //   flex-direction: column;
 
-      h1 {
-        font-size: 40px;
-        color: $color-green;
-        margin-bottom: -5px;
+    h1 {
+      // text-align: center;
+      font-size: 40px;
+      color: $color-green;
+      margin-bottom: 15px;
 
-        @include mobile {
-          font-size: 28px;
-          margin-bottom: 5px;
-        }
+      @include mobile {
+        font-size: 28px;
+        margin-bottom: 5px;
       }
+      // }
       p {
         color: $color-green;
         font-size: 20px;
@@ -116,11 +127,13 @@
         font-size: smaller;
       }
     }
-
+  }
+  .BtnSection {
+    // border: 1px solid black;
     .ModalBtnFreelancerProfile {
       @include flex-center;
       justify-content: center;
-      margin-top: 2rem;
+      // margin-top: 2rem;
 
       .btn-circle.btn-xl {
         width: 70px;
@@ -145,6 +158,15 @@
           color: $color-white;
         }
       }
+    }
+  }
+  // fix button icons edit
+  .EditBtn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    span {
+      margin-top: 5px;
     }
   }
 }

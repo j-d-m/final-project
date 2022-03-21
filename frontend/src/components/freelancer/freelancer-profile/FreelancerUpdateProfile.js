@@ -95,7 +95,6 @@ function FreelancerUpdateProfile(props) {
       },
     }).then((res) => {
       if (res.data) {
-        console.log(res.data);
         Swal.fire({
           position: "top",
           icon: "success",

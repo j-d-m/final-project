@@ -19,7 +19,6 @@ export default function Header() {
   } = useContext(MyContext);
 
   const companyLogout = () => {
-    console.log("hello");
     setIsCompanyLogin(false);
     localStorage.clear("token");
     navigate("/");
@@ -39,7 +38,7 @@ export default function Header() {
             width="60"
             height="60"
             className="d-inline-block align-center"
-          />{" "}
+          />
           <span>STAFF ROOM </span>
         </Navbar.Brand>
 
@@ -48,7 +47,11 @@ export default function Header() {
           <Nav className="mx-auto TopHeader ">
             {isCompanyLogin ? (
               <Nav.Link as={Link} to="/home">
-                Freelancer
+                Jobs
+              </Nav.Link>
+            ) : isFreelancerLogin ? (
+              <Nav.Link as={Link} to="/home">
+                Jobs
               </Nav.Link>
             ) : (
               <Nav.Link as={Link} to="/home">
