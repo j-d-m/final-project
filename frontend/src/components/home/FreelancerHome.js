@@ -15,10 +15,10 @@ import FreelancerView from "../freelancer/freelancer-profile/FreelancerView";
 
 export default function FreelancerHome(props) {
   const [searchFreelancers, setSearchFreelancers] = useState("");
-  const [modalShowFreelancer, setModalShowFreelancer] = useState();
+  const [currentFreelancer, setCurrentFreelancer] = useState("");
+  const [showContactForm, setShowContactForm] = useState(false);
 
   const { setFreelancerFind } = useContext(MyContext);
-
   const { loading, error, data } = useQuery(GET_USERS);
 
   if (loading) {
@@ -40,6 +40,7 @@ export default function FreelancerHome(props) {
       return user.description.includes(searchFreelancers);
     });
 
+
   return (
     <>
       <Modal
@@ -56,11 +57,10 @@ export default function FreelancerHome(props) {
             </div>
           </Modal.Title>
         </Modal.Header>
+        <Modal.Body>
 
-        <div className="Wrapper">
           {/*search begins*/}
           <div className="FreelancerSearch">
-            {/* <h3 className="Title">Search for a Freelancer</h3> */}
             <form className="Search-Form">
               <input
                 onChange={(e) => setSearchFreelancers(e.target.value)}
@@ -74,36 +74,73 @@ export default function FreelancerHome(props) {
 
           {result.length > 0 ? (
             result.map((user) => {
+              console.log(user.id);
+
               return (
-                <section className="MainContainer" key={user.id}>
-                  <div className="bodyCard">
+                <section
+                  className="MainContainer"
+                  key={user.id}
+                  onMouseLeave={() => setShowContactForm(false)}
+
+                >
+                  <div className="bodyCard-avatar">
                     <img src={user.avatar} alt="img" />
-                    <h2 className="name">{`${user.first_name} ${user.last_name}`}</h2>
+                    <h2 className="name">
+                      {`${user.first_name[0].toUpperCase() + user.first_name.substring(1).toLowerCase()} 
+                      ${user.last_name[0].toUpperCase() + user.last_name.substring(1).toLowerCase()}`}
+
+                    </h2>
                     {/*button to open the freelancer contact card*/}
                     <div className="OpenContact">
                       <Button
-                        className="Btn btn-secondary bg-secondary text-light "
+                        className="Btn contactDetailsButton"
+                        variant="secondary"
                         onClick={() => {
-                          setModalShowFreelancer(true);
+                          setShowContactForm(!showContactForm);
                           contactFreelancer(user.id);
+                          setCurrentFreelancer(user.id);
                         }}
                       >
-                        contact this freelancer
+                        {showContactForm &&
+                          currentFreelancer === user.id ?
+                          "Details" : "Contact"
+                        }
                       </Button>
-
-                      <FreelancerView
-                        show={modalShowFreelancer}
-                        onHide={() => setModalShowFreelancer(false)}
-                      />
                     </div>
                   </div>
-                  {/* button to open the freelancer contact card END*/}
-                  <div className="Description Skills">
-                    <h5>
-                      {user.first_name} is a looking for / has experience doing:
-                    </h5>{" "}
-                    <p>{user.description}</p>
-                  </div>
+                  {showContactForm &&
+                    currentFreelancer === user.id ? (
+                    <FreelancerView />
+                  ) : (
+                    <>
+                      {/* button to open the freelancer contact card END*/}
+                      < div className="bodyCard-details">
+                        <p>
+                          <span>Name: </span>
+                          {user.first_name[0].toUpperCase() + user.first_name.substring(1).toLowerCase()
+                            + " " +
+                            user.last_name[0].toUpperCase() + user.last_name.substring(1).toLowerCase()}
+                        </p>
+                        <p>
+                          <span>Hourly Rate: </span>
+                          {`€${user.hourly_rate} per hour `}
+                        </p>
+
+                        <p>
+                          <span>Summary/Position: </span>
+                          {user.description[0].toUpperCase() + user.description.substring(1).toLowerCase()}
+                        </p>
+                        <p>
+                          <span>Phone Number: </span>
+                          {user.phone}
+                        </p>
+                        <p>
+                          <span>Email: </span>
+                          {user.email.toLowerCase()}
+                        </p>
+                      </div>
+                    </>)
+                  }
                 </section>
               );
             })
@@ -112,7 +149,7 @@ export default function FreelancerHome(props) {
               No such Freelancer is Available
             </h3>
           )}
-        </div>
+        </Modal.Body>
       </Modal>
     </>
   );

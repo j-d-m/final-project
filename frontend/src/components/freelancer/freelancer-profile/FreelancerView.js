@@ -1,27 +1,30 @@
-import { MyContext } from "../../../Context/Context";
-import { ImHeart } from "react-icons/im";
-import { HiOutlineMail, HiOutlineMailOpen } from "react-icons/hi";
-import { Link } from "react-scroll";
-import "../../../styles/freelancerView.scss";
+//Native imports
 import React, { useContext, useEffect, useState } from "react";
-import { Modal } from "react-bootstrap";
+
+//External Imports
 import emailjs from "@emailjs/browser";
 import Swal from "sweetalert2";
-import {
-  COMPANY_FAVORITE,
-  DELETE_COMPANY_FAVORITE,
-} from "../../../graphQL/Mutations";
-import { GET_ONE_COMPANY } from "../../../graphQL/Queries";
+import { ImHeart } from "react-icons/im";
 import { useMutation } from "@apollo/client";
 
-export default function FreelancerView(props) {
-  const { freelancerFind, companyLoginData, isCompanyLogin } =
-    useContext(MyContext);
-  const [showContactForm, setShowContactForm] = useState(false);
+//Internal Imports
+import { MyContext } from "../../../Context/Context";
+import "../../../styles/freelancerView.scss";
+import { COMPANY_FAVORITE, DELETE_COMPANY_FAVORITE, } from "../../../graphQL/Mutations";
+import { GET_ONE_COMPANY } from "../../../graphQL/Queries";
+import waiterSmile from "../../../assets/img/waiter-smile.svg";
+
+
+
+export default function FreelancerView() {
+  const { freelancerFind, companyLoginData, isCompanyLogin } = useContext(MyContext);
   const [companyFavorite, setCompanyFavorite] = useState(false);
+  const [emailSent, setEmailSent] = useState(false);
+
 
   let storeId = companyLoginData.favorite.filter(
     (item) => item.id === freelancerFind.id
+
   );
 
   useEffect(() => {
@@ -32,6 +35,7 @@ export default function FreelancerView(props) {
     }
   }, [storeId]);
 
+  // we need to filter the freelancerFind state to make companyFavorite true
   let { first_name, last_name, hourly_rate, email, phone, avatar, id } =
     freelancerFind;
   const [updateCompanyFavorite, { data1, loading1, error1 }] = useMutation(
@@ -58,7 +62,7 @@ export default function FreelancerView(props) {
         Swal.fire({
           position: "top",
           icon: "success",
-          title: `you add ${first_name}as a favorite`,
+          title: `${first_name} added in favorites!`,
           showConfirmButton: false,
           timer: 1000,
         });
@@ -100,7 +104,7 @@ export default function FreelancerView(props) {
         Swal.fire({
           position: "top",
           icon: "success",
-          title: `you delete ${first_name}from your favorite list`,
+          title: `${first_name} removed from favorites!`,
           showConfirmButton: false,
           timer: 1000,
         });
@@ -118,7 +122,7 @@ export default function FreelancerView(props) {
     });
   };
 
-  const FormHandler = (e) => {
+  const sendEmail = (e) => {
     e.preventDefault();
     if (isCompanyLogin) {
       emailjs
@@ -129,17 +133,9 @@ export default function FreelancerView(props) {
           process.env.REACT_APP_EMAILJS_USER_ID
         )
         .then((result) => {
-          console.log(result.status);
+          // console.log(result.status);
           if (result.status === 200) {
-            Swal.fire({
-              position: "top",
-              icon: "success",
-
-              title: "Your Email was Sent",
-              showConfirmButton: false,
-              timer: 2000,
-            });
-            props.onHide();
+            setEmailSent(true);
           } else {
             Swal.fire({
               position: "top",
@@ -152,155 +148,160 @@ export default function FreelancerView(props) {
         });
 
       e.target.reset();
+      setEmailSent(true);
     }
   };
 
   return (
-    <Modal
-      {...props}
-      size="fullscreen"
-      centered
-      className="ProfileUpdate modal"
-    >
-      <Modal.Header closeButton>
-        <Modal.Title className="contained-modal-title-vcenter w-100">
-          <div className="update-jobs-title d-flex align-items-center justify-content-around">
-            <h3>Contact Freelancer </h3>
-            {/* <img alt="" src={hotPan} width="80" height="80" /> */}
-          </div>
-        </Modal.Title>
-      </Modal.Header>
 
-      <Modal.Body className="modalBody">
-        <div className="freelancerView">
-          <div className="freelancerViewContainer d-flex justify-content-center align-items-center ">
-            <div className="Card">
-              <div className="upper">
-                {/* <img
-                  src="https://i.imgur.com/Qtrsrk5.jpg"
-                  alt=""
-                  className="img-fluid"
-                /> */}
-              </div>
-              <div className="user text-center">
-                <div className="profile">
-                  <img
-                    src={avatar}
-                    alt="img"
-                    className="rounded-circle"
-                    width="80"
-                  />
-                </div>
-              </div>
-              <div className="mt-5 text-center">
-                <h4 className="mb-0">{`${first_name} ${last_name}`}</h4>
-                <span className="text-muted d-block mb-2">{email}</span>
+    <div className="freelancerView">
+      <div className="freelancerViewContainer">
+        <div className="">
 
-                <p> Phone: {phone}</p>
+          <div className="mt-5 text-center">
 
-                <div className="FavoriteDiv">
-                  <button
-                    className="iconBtn"
-                    onClick={!companyFavorite ? favoriteBtn : deleteFavoriteBtn}
-                  >
-                    <ImHeart
-                      className={
-                        companyFavorite
-                          ? "iconHeart Favorite"
-                          : "iconHeart notFavorite"
-                      }
-                      size="35px"
-                    />
-                  </button>
-                </div>
-
-                <div className="stats mt-2">
-                  <h6 className="mb-0">Hourly_rate</h6>
-                  <span>{hourly_rate}</span>
-                </div>
-              </div>
-              <div className="contactMainBtn text-center">
-                <Link
-                  to="submit"
-                  spy={true}
-                  smooth={true}
-                  offset={320}
-                  duration={200}
-                  delay={500}
-                >
-                  {showContactForm ? (
-                    <HiOutlineMailOpen
-                      onClick={() => setShowContactForm(false)}
-                      size="35px"
-                      style={{ cursor: "pointer" }}
-                    />
-                  ) : (
-                    <HiOutlineMail
-                      onClick={() => setShowContactForm(true)}
-                      size="35px"
-                      style={{ cursor: "pointer" }}
-                    />
-                  )}
-                </Link>
-              </div>
-              <form
-                onSubmit={FormHandler}
-                id="submit"
-                className={
-                  !showContactForm
-                    ? "d-none "
-                    : "d-block  animate__animated animate__fadeInDownBig"
-                }
+            <div className="FavoriteDiv">
+              <button
+                className="iconBtn"
+                onClick={!companyFavorite ? favoriteBtn : deleteFavoriteBtn}
               >
-                <h1 className="text-white bg-dark text-center">
-                  Direct Contact
-                </h1>
-                <input
-                  type="text"
-                  name="to_name"
-                  className="form-control d-none"
-                  defaultValue={`${first_name} ${last_name}`}
-                  readOnly
+                <ImHeart
+                  className={
+                    companyFavorite
+                      ? "iconHeart Favorite"
+                      : "iconHeart notFavorite"
+                  }
+                  size="35px"
                 />
-                <input
-                  type="email"
-                  name="to_email"
-                  className="form-control d-none"
-                  value={email}
-                  readOnly
-                />
-                <input
-                  name="from_name"
-                  type="text"
-                  className="feedback-input text-dark"
-                  value={companyLoginData.owner_name}
-                  readOnly
-                />
-                <input
-                  name="from_email"
-                  type="text"
-                  className="feedback-input text-dark"
-                  value={companyLoginData.email}
-                  readOnly
-                />
-                <textarea
-                  className="feedback-input text-dark"
-                  placeholder="Comment"
-                  name="from_message"
-                  required
-                  minLength={10}
-                  maxLength={200}
-                ></textarea>
-                <input
-                  type="submit"
-                  value="Send"
-                  className="text-white bg-dark"
-                />
-              </form>
+              </button>
             </div>
+
+          </div>
+
+          <div>
+            {emailSent ? (
+              <div className="alert text-center" role="alert">
+                Your message was sent!
+                <img alt="" src={waiterSmile} width="150" height="150" className="" />
+              </div>
+            ) : (
+              //freelancer data
+              <div className="container contact-form-freelancer contactFormContainer   animate__animated animate__fadeInDownBig  ">
+                <form onSubmit={sendEmail}>
+                  <div className="d-flex justify-content-between mb-3 d-none ">
+                    <div className="w-100" >
+                      <div className="form-group col-auto ">
+                        <label htmlFor="name">Freelancer Name</label>
+                        <input
+                          type="text"
+                          name="to_name"
+                          className="form-control col-auto"
+                          value={first_name + " " + last_name}
+                          readOnly
+                        />
+                      </div>
+                      <div className="form-group col-auto">
+                        <label htmlFor="email">Freelancer Email</label>
+                        <input
+                          type="email"
+                          name="to_email"
+                          className="form-control"
+                          value={email}
+                          readOnly
+                        />
+                      </div>
+                    </div>
+
+                  </div>
+
+                  {/* company data */}
+                  <div className="d-flex justify-content-between">
+
+                    <div className="w-100">
+                      <div className="form-group col-auto">
+                        <label htmlFor="name">Your Company Name</label>
+                        <input
+                          type="text"
+                          name="from_company_name"
+                          className="form-control"
+                          value={`${companyLoginData.company_Name}`}
+                          maxLength="50"
+                          required
+                          readOnly
+                        />
+                      </div>
+                      <div className="form-group col-auto">
+                        <label htmlFor="name">Your Name</label>
+                        <input
+                          type="text"
+                          name="from_name"
+                          className="form-control"
+                          value={`${companyLoginData.owner_name}`}
+                          maxLength="50"
+                          required
+                        />
+                      </div>
+                      <div className="form-group col-auto">
+                        <label htmlFor="email">Your Email Address</label>
+                        <input
+                          type="email"
+                          name="from_email"
+                          className="form-control"
+                          value={companyLoginData.email}
+                          maxLength="50"
+                        />
+
+                      </div>
+
+                      <div className="form-row">
+                        <div className="form-group col-auto">
+                          <label htmlFor="phone">Your Contact Number</label>
+                          <input
+                            type="tel"
+                            name="from_phone"
+                            className="form-control"
+                            value={companyLoginData.phone}
+                            maxLength="20"
+                          />
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </div>
+                  <div className="form-row mb-3">
+                    <div className="form-group col-auto ">
+                      <label htmlFor="message">Your Message</label>
+                      <textarea
+                        type="textarea"
+                        name="from_message"
+                        className="form-control"
+                        placeholder="Message"
+                        required
+                        rows={5}
+                        maxLength={500}
+                      />
+                    </div>
+                  </div>
+                  <div className="text-end m-2">
+                    <button
+                      type="submit"
+                      className="btn btn-outline-secondary col-3 "
+                      value="Send"
+                    >
+                      Send
+                    </button>
+                  </div>
+                </form>
+              </div>
+            )}
           </div>
         </div>
-      </Modal.Body>
-    </Modal>
+      </div>
+    </div>
+
   );
 }
+
+
+

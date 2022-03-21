@@ -3,14 +3,15 @@ import React, { useContext, useState } from "react";
 
 //External Impors
 import emailjs from "@emailjs/browser";
-import waiterSmile from "../../assets/img/waiter-smile.svg";
+import { useMutation } from "@apollo/client";
 
 //Internal Imports
-import { useMutation } from "@apollo/client";
 import { USER_FAVORITE } from "../../graphQL/Mutations";
 import { MyContext } from "../../Context/Context";
 import { GET_ONE_USER } from "../../graphQL/Queries";
 import '../../styles/contact.scss'
+import waiterSmile from "../../assets/img/waiter-smile.svg";
+
 
 
 export default function Contact({ job }) {
