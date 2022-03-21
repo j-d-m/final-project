@@ -18,7 +18,6 @@ export default function FreelancerHome(props) {
   const [modalShowFreelancer, setModalShowFreelancer] = useState();
 
   const { setFreelancerFind } = useContext(MyContext);
-
   const { loading, error, data } = useQuery(GET_USERS);
 
   if (loading) {
@@ -38,7 +37,9 @@ export default function FreelancerHome(props) {
     data &&
     data.getUsers.filter((user) => {
       return user.description.includes(searchFreelancers);
+
     });
+
 
   return (
     <>
@@ -56,8 +57,9 @@ export default function FreelancerHome(props) {
             </div>
           </Modal.Title>
         </Modal.Header>
+         <Modal.Body>
 
-        <div className="Wrapper">
+        <div className="FreeLancerListStaff">
           {/*search begins*/}
           <div className="FreelancerSearch">
             {/* <h3 className="Title">Search for a Freelancer</h3> */}
@@ -74,36 +76,67 @@ export default function FreelancerHome(props) {
 
           {result.length > 0 ? (
             result.map((user) => {
+
               return (
                 <section className="MainContainer" key={user.id}>
-                  <div className="bodyCard">
+                  <div className="bodyCard-avatar">
                     <img src={user.avatar} alt="img" />
-                    <h2 className="name">{`${user.first_name} ${user.last_name}`}</h2>
+                    <h2 className="name">
+                      {`${user.first_name[0].toUpperCase() + user.first_name.substring(1).toLowerCase()} 
+                      ${user.last_name[0].toUpperCase() + user.last_name.substring(1).toLowerCase()}`}
+
+
+
+                    </h2>
                     {/*button to open the freelancer contact card*/}
                     <div className="OpenContact">
                       <Button
                         className="Btn btn-secondary bg-secondary text-light "
                         onClick={() => {
-                          setModalShowFreelancer(true);
+                          setModalShowFreelancer(!modalShowFreelancer);
                           contactFreelancer(user.id);
                         }}
                       >
                         contact this freelancer
                       </Button>
-
-                      <FreelancerView
-                        show={modalShowFreelancer}
-                        onHide={() => setModalShowFreelancer(false)}
-                      />
                     </div>
                   </div>
-                  {/* button to open the freelancer contact card END*/}
-                  <div className="Description Skills">
-                    <h5>
-                      {user.first_name} is a looking for / has experience doing:
-                    </h5>{" "}
-                    <p>{user.description}</p>
-                  </div>
+
+
+                  {modalShowFreelancer ? (
+                    <FreelancerView />
+                  ) : (
+                    <>
+
+
+                      {/* button to open the freelancer contact card END*/}
+                      < div className="bodyCard-details">
+                        <p>
+                          <span>Name: </span>
+                          {user.first_name[0].toUpperCase() + user.first_name.substring(1).toLowerCase()
+                            + " " +
+                            user.last_name[0].toUpperCase() + user.last_name.substring(1).toLowerCase()}
+                        </p>
+                        <p>
+                          <span>Hourly Rate: </span>
+                          {`€${user.hourly_rate} / hour `}
+                        </p>
+
+                        <p>
+                          <span>Summary/Position: </span>
+                          {user.description[0].toUpperCase() + user.description.substring(1).toLowerCase()}
+                        </p>
+                        <p>
+                          <span>Phone Number: </span>
+                          {user.phone}
+                        </p>
+                        <p>
+                          <span>Email: </span>
+                          {user.email.toLowerCase()}
+                        </p>
+                      </div>
+                    </>)
+                  }
                 </section>
               );
             })
@@ -113,6 +146,7 @@ export default function FreelancerHome(props) {
             </h3>
           )}
         </div>
+        </Modal.Body>
       </Modal>
     </>
   );
