@@ -18,9 +18,7 @@ import Swal from "sweetalert2";
 
 export default function FreelancerProfile() {
   const navigate = useNavigate();
-  const { freelancerLoginData, setFreelancerLoginData, jobAccepted } =
-    useContext(MyContext);
-  //logging result of the job contact form to pass it to the profile on successful contact of the company
+  const { freelancerLoginData, setFreelancerLoginData } = useContext(MyContext);
 
   const [modalShow, setModalShow] = useState();
   const [modalShow1, setModalShow1] = useState();
@@ -72,7 +70,7 @@ export default function FreelancerProfile() {
       setFreelancerLoginData(data.getOneUser);
     }
   }, 100);
-  // console.log(data);
+
   return (
     <section className="Profile-Container">
       <div className="Banner-Container">
@@ -92,33 +90,23 @@ export default function FreelancerProfile() {
 
             return (
               <>
-                <div className="Freelance-Avatar">
-                  <img src={avatar} alt="img" width="200px" height="200px" />
-                  <label htmlFor="file-upload" className="Custom-File-Upload">
-                    <input
-                      id="file-upload"
-                      type="file"
-                      onChange={updateAvatar}
-                    />
-                    Change Image
-                  </label>
-                </div>
-
-                <div className="Freelance-Right">
-                  <div className="textProfile">
-                    <h1>Your Staff Room Profile</h1>
-                    <p>
-                      here you can edit your profile, delete account or go to
-                      the job search page
-                    </p>
+                <div className="BoxContainer">
+                  <div className="Freelance-Avatar">
+                    <img src={avatar} alt="img" width="200px" height="200px" />
+                    <label htmlFor="file-upload" className="Custom-File-Upload">
+                      <input
+                        id="file-upload"
+                        type="file"
+                        onChange={updateAvatar}
+                      />
+                      Change Image
+                    </label>
                   </div>
 
-                  <div>
-                    <p>First name : {first_name}</p>
-                  </div>
-                  <div>
-                    <p>Last name : {last_name}</p>
-                  </div>
+                  <div className="Freelance-Right">
+                    <h1>
+                      {first_name} {last_name}
+                    </h1>
 
                   <div>
                     <p>Email : {email}</p>
@@ -156,51 +144,54 @@ export default function FreelancerProfile() {
                       </section>
                     )}
                   </div>
-                  <section>
-                    <div className="ModalBtnFreelancerProfile">
-                      <Button
-                        type="button"
-                        className="btn btn-secondary btn-circle btn-xl"
-                        id={id}
-                        onClick={() => {
-                          setModalShow(true);
-                        }}
-                      >
+                  </div>
+                </div>
+                <section className="BtnSection">
+                  <div className="ModalBtnFreelancerProfile">
+                    <Button
+                      type="button"
+                      className="btn btn-secondary btn-circle btn-xl"
+                      id={id}
+                      onClick={() => {
+                        setModalShow(true);
+                      }}
+                    >
+                      <div className="EditBtn">
                         <AiOutlineEdit />
                         <span>Edit</span>
-                      </Button>
-                      <FreelancerUpdateProfile
-                        show={modalShow}
-                        onHide={() => setModalShow(false)}
-                      />
+                      </div>
+                    </Button>
+                    <FreelancerUpdateProfile
+                      show={modalShow}
+                      onHide={() => setModalShow(false)}
+                    />
 
-                      <Button
-                        id={id}
-                        className="btn btn-secondary btn-circle btn-xl"
-                        onClick={() => {
-                          setModalShow1(true);
-                        }}
-                      >
-                        {" "}
-                        <AiOutlineDelete />
-                        <span>Delete</span>
-                      </Button>
+                    <Button
+                      id={id}
+                      className="btn btn-secondary btn-circle btn-xl"
+                      onClick={() => {
+                        setModalShow1(true);
+                      }}
+                    >
+                      {" "}
+                      <AiOutlineDelete />
+                      <span>Delete</span>
+                    </Button>
 
-                      <DeleteFreelancerAccount
-                        show={modalShow1}
-                        onHide={() => setModalShow1(false)}
-                      />
-                      <Button
-                        onClick={() => navigate("/home")}
-                        className="btn btn-secondary btn-circle btn-xl"
-                      >
-                        {" "}
-                        <AiOutlineUnorderedList />
-                        <span>Jobs</span>
-                      </Button>
-                    </div>
-                  </section>
-                </div>
+                    <DeleteFreelancerAccount
+                      show={modalShow1}
+                      onHide={() => setModalShow1(false)}
+                    />
+                    <Button
+                      onClick={() => navigate("/home")}
+                      className="btn btn-secondary btn-circle btn-xl"
+                    >
+                      {" "}
+                      <AiOutlineUnorderedList />
+                      <span>Jobs</span>
+                    </Button>
+                  </div>
+                </section>
               </>
             );
           })()}

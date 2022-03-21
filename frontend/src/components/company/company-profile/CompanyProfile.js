@@ -85,7 +85,6 @@ export default function CompanyProfile() {
 
   setTimeout(() => {
     if (data) {
-      console.log(data);
       setCompanyLoginData(data.getOneCompany);
     }
   }, 100);
@@ -110,7 +109,7 @@ export default function CompanyProfile() {
             return (
               <>
                 <div className="BoxContainer">
-                  <div className="Freelance-Avatar-Comp">
+                  <div className="Company-Avatar-Comp">
                     <img src={avatar} alt="img" width="200px" height="200px" />
                     <label htmlFor="file-upload" className="Custom-File-Upload">
                       <input
@@ -123,7 +122,7 @@ export default function CompanyProfile() {
                     </label>
                   </div>
 
-                  <div className="Freelance-Right-Comp">
+                  <div className="Company-Right-Comp">
                     <h1>{company_Name}</h1>
 
                     <div>
@@ -174,7 +173,7 @@ export default function CompanyProfile() {
                         setModalShowEdit(true);
                       }}
                     >
-                      <div className="FavoriteList">
+                      <div className="EditBtn">
                         <AiOutlineEdit />
                         <span>Edit</span>
                       </div>
