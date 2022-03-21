@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
 import React, { useContext, useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { MyContext } from "../../../Context/Context";
 import { GET_ONE_USER } from "../../../graphQL/Queries";
@@ -14,6 +14,7 @@ import {
 } from "react-icons/ai";
 import { UPDATE_USER } from "../../../graphQL/Mutations";
 import Swal from "sweetalert2";
+
 
 export default function FreelancerProfile() {
   const navigate = useNavigate();
@@ -64,6 +65,7 @@ export default function FreelancerProfile() {
         alt="img"
       />
     );
+    
 
   setTimeout(() => {
     if (data) {
@@ -135,15 +137,22 @@ export default function FreelancerProfile() {
                       <p>you have not applied for any jobs</p>
                     ) : (
                       <section>
-                        {favorite.map((job) => {
-                          return (
-                            <div key={job.id}>
-                              <h5>{job.job_Title}</h5>
-                              <p>{job.company_Name}</p>
-                              <p>{job.start_Date}</p>
-                            </div>
-                          );
-                        })}
+                              <Table striped bordered hover variant="inherit" color="inherit" borderless="true" size="sm">
+                                <thead>
+                                  <tr>
+                                    <th>Job Title</th>
+                                    <th>Applied on</th>
+                                  </tr>
+                                </thead>
+                                  {favorite.map((job) => <tbody key={job.id}>
+                                  <tr>
+                                    <td>{job.job_Title}</td>
+                                    <td>{job.start_Date}</td>
+                                  </tr>
+                                  </tbody>
+                                  )}
+                              </Table>
+                                  
                       </section>
                     )}
                   </div>
