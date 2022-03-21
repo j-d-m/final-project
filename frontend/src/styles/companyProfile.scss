@@ -6,7 +6,8 @@
   width: 100%;
   height: calc(100vh - 20vh);
 
-  background-image: url("../assets/img/bgglass.png");
+  background-image: url("https://images.unsplash.com/photo-1535850452425-140ee4a8dbae?ixlib=rb-1.2.1&ixid=MnwxM[…]90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1112&q=80");
+  background-position:center;
   background-repeat: no-repeat;
   background-size: cover;
   @include flex-center;
@@ -19,7 +20,6 @@
 
 .Banner-Container-Comp {
   width: 60vw;
-  background: rgba(255, 255, 255, 0.4);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(3.7px);
@@ -104,7 +104,7 @@
 
     h1 {
       font-size: 40px;
-      color: $color-green;
+      color: $color-white;
 
       @include mobile {
         font-size: 28px;
@@ -112,13 +112,38 @@
       }
     }
     p {
+      background-color: #6c757db4;
+      display: flex;
+      justify-content: start;
+      padding-left: .5rem;
+      align-items: center;
       font-size: 20px;
-      color: $color-green;
+      color: $color-white;
+      // font-weight: 300;
+      
+      span{
+        width:200px;
+      }
 
       @include mobile {
         font-size: smaller;
+        display: flex;
+        flex-direction: column;
+        line-height: 2;
       }
     }
+    .Desc-comp {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     
+     span {
+       text-align: center;
+       width: 100%;
+       
+     }
+ }
   }
   .BtnSection {
     .ModalBtnCompanyProfile {

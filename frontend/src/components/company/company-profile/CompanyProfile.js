@@ -125,22 +125,22 @@ export default function CompanyProfile() {
                     <h1>{company_Name}</h1>
 
                     <div>
-                      <p>Company type : {company_type} </p>
+                      <p><span>Company Type</span><span>{company_type}</span></p>
                     </div>
                     <div>
-                      <p>Company address : {address} </p>
+                      <p><span>Company Address </span><span>{address}</span></p>
                     </div>
                     <div>
-                      <p>Owner : {owner_name}</p>
+                      <p><span>Owner </span><span>{owner_name}</span></p>
                     </div>
                     <div>
-                      <p>Email : {email}</p>
+                      <p><span>Email </span><span>{email}</span></p>
                     </div>
                     <div>
-                      <p>Phone : {phone}</p>
+                      <p><span>Phone </span><span>{phone}</span></p>
                     </div>
                     <div>
-                      <p>Company Description : {description} </p>
+                      <p className="Desc-comp"><span>Company Description</span><span>{description}</span></p>
                     </div>
                   </div>
                 </div>

@@ -5,9 +5,10 @@
 .Profile-Container {
   width: 100%;
   height: calc(100vh - 20vh);
-  background-image: url("../assets/img/bgglass.png");
+  background-image: url("https://images.unsplash.com/photo-1615293306668-77bd0cc6a379?ixlib=rb-1.2.1&ixid=MnwxM[…]90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80");
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: top;
   @include flex-center;
   justify-content: center;
 
@@ -18,17 +19,13 @@
 
 .Banner-Container {
   width: 60vw;
-  background: rgba(255, 255, 255, 0.4);
   border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(3.7px);
   -webkit-backdrop-filter: blur(3.7px);
   border: 1px solid rgba(251, 249, 249, 0.3);
   padding: 1.5rem;
   line-height: 1.5;
-
-  // display: flex;
-  // justify-content: flex-start;
 
   @include mobile {
     width: 80vw;
@@ -93,40 +90,52 @@
 
   .Freelance-Right {
     flex: 0.7;
-    // .textProfile {
-    //   @include flex-center;
-    //   flex-direction: column;
 
     h1 {
-      // text-align: center;
       font-size: 40px;
-      color: $color-green;
+      color: $color-white;
       margin-bottom: 15px;
 
       @include mobile {
         font-size: 28px;
         margin-bottom: 5px;
       }
-      // }
-      p {
-        color: $color-green;
-        font-size: 20px;
-        font-weight: 300;
-
-        @include mobile {
-          display: none;
-        }
-      }
+     
     }
 
     p {
+      background-color: #6c757db4;
+      display: flex;
+      justify-content: start;
+      padding-left: .5rem;
+      align-items: center;
       font-size: 20px;
-      color: $color-green;
+      color: $color-white;
+      line-height: 2;
+      
+      span{
+        width:200px;
+      }
 
       @include mobile {
         font-size: smaller;
+        display: flex;
+        flex-direction: column;
+        line-height: 2;
       }
     }
+    .Desc-comp {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     
+     span {
+       text-align: center;
+       width: 100%;
+       
+     }
+ }
   }
   .BtnSection {
     // border: 1px solid black;
@@ -157,6 +166,10 @@
           font-size: x-small;
           color: $color-white;
         }
+      }
+      @include mobile {
+        flex-wrap: wrap;
+        margin: 0 5px;
       }
     }
   }
