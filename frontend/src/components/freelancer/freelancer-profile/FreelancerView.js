@@ -32,7 +32,6 @@ export default function FreelancerView(props) {
     }
   }, [storeId]);
 
-  // we need to filter the freelancerFind state to make companyFavorite true
   let { first_name, last_name, hourly_rate, email, phone, avatar, id } =
     freelancerFind;
   const [updateCompanyFavorite, { data1, loading1, error1 }] = useMutation(
