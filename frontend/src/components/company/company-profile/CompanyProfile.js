@@ -85,7 +85,6 @@ export default function CompanyProfile() {
 
   setTimeout(() => {
     if (data) {
-      console.log(data);
       setCompanyLoginData(data.getOneCompany);
     }
   }, 100);

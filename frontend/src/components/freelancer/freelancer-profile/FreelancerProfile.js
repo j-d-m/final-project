@@ -17,9 +17,7 @@ import Swal from "sweetalert2";
 
 export default function FreelancerProfile() {
   const navigate = useNavigate();
-  const { freelancerLoginData, setFreelancerLoginData, jobAccepted } =
-    useContext(MyContext);
-  //logging result of the job contact form to pass it to the profile on successful contact of the company
+  const { freelancerLoginData, setFreelancerLoginData } = useContext(MyContext);
 
   const [modalShow, setModalShow] = useState();
   const [modalShow1, setModalShow1] = useState();
@@ -70,7 +68,7 @@ export default function FreelancerProfile() {
       setFreelancerLoginData(data.getOneUser);
     }
   }, 100);
-  // console.log(data);
+
   return (
     <section className="Profile-Container">
       <div className="Banner-Container">
@@ -104,21 +102,9 @@ export default function FreelancerProfile() {
                   </div>
 
                   <div className="Freelance-Right">
-                    {/* <div className="textProfile">
-                      <h1>Your Staff Room Profile</h1>
-                      <p>
-                        here you can edit your profile, delete account or go to
-                        the job search page
-                      </p>
-                    </div> */}
-
                     <h1>
                       {first_name} {last_name}
                     </h1>
-
-                    {/* <div>
-                      <p>Last name : {last_name}</p>
-                    </div> */}
 
                     <div>
                       <p>Email : {email}</p>

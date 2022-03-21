@@ -19,7 +19,6 @@ export default function Header() {
   } = useContext(MyContext);
 
   const companyLogout = () => {
-    console.log("hello");
     setIsCompanyLogin(false);
     localStorage.clear("token");
     navigate("/");
