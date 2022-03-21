@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
 import React, { useContext, useState } from "react";
-import { Button, Table } from "react-bootstrap";
+import { Button, Table, Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { MyContext } from "../../../Context/Context";
 import { GET_ONE_USER } from "../../../graphQL/Queries";
@@ -11,6 +11,7 @@ import {
   AiOutlineEdit,
   AiOutlineDelete,
   AiOutlineUnorderedList,
+  AiOutlineHistory
 } from "react-icons/ai";
 import { UPDATE_USER } from "../../../graphQL/Mutations";
 import Swal from "sweetalert2";
@@ -22,6 +23,12 @@ export default function FreelancerProfile() {
 
   const [modalShow, setModalShow] = useState();
   const [modalShow1, setModalShow1] = useState();
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  
+
   const [UpdateUser, { data1, loading1, error1 }] = useMutation(UPDATE_USER);
   const updateAvatar = (e) => {
     e.preventDefault();
@@ -109,38 +116,45 @@ export default function FreelancerProfile() {
                     </h1>
 
                   <div>
-                    <p>Email : {email}</p>
+                    <p><span>Email</span><span>{email}</span></p>
                   </div>
                   <div>
-                    <p>Phone : {phone}</p>
+                    <p><span>Phone</span><span>{phone}</span></p>
                   </div>
                   <div>
-                    <p>Your hourly : {hourly_rate}</p>
+                    <p><span>Your hourly</span><span>{hourly_rate}</span></p>
                   </div>
                   <div>
-                    <p>Your position : {description}</p>
+                    <p className="Desc-comp"><span>Your position</span><span>{description}</span></p>
                   </div>
+                  
                   <div className="JobHistory">
                     {favorite.length === 0 ? (
                       <p>you have not applied for any jobs</p>
                     ) : (
                       <section>
-                              <Table striped bordered hover variant="inherit" color="inherit" borderless="true" size="sm">
+                        <Modal show={show} onHide={handleClose}>
+                          <Modal.Header closeButton>
+                            <Modal.Title style={{margin: " 0 auto"}} >Job History</Modal.Title>
+                          </Modal.Header>
+                          <Modal.Body>
+                          <Table striped bordered hover variant="inherit" color="inherit" borderless="true" size="sm">
                                 <thead>
                                   <tr>
                                     <th>Job Title</th>
                                     <th>Applied on</th>
                                   </tr>
                                 </thead>
-                                  {favorite.map((job) => <tbody key={job.id}>
+                                  {favorite.map((job, index) => <tbody key={job.id}>
                                   <tr>
                                     <td>{job.job_Title}</td>
                                     <td>{job.start_Date}</td>
                                   </tr>
                                   </tbody>
                                   )}
-                              </Table>
-                                  
+                              </Table> 
+                          </Modal.Body>
+                        </Modal>
                       </section>
                     )}
                   </div>
@@ -148,6 +162,17 @@ export default function FreelancerProfile() {
                 </div>
                 <section className="BtnSection">
                   <div className="ModalBtnFreelancerProfile">
+                  <Button
+                      id={id}
+                      className="btn btn-secondary btn-circle btn-xl"
+                      onClick={handleShow }
+                        
+                     
+                    >
+                      {" "}
+                      <AiOutlineHistory />
+                      <span>History</span>
+                    </Button>
                     <Button
                       type="button"
                       className="btn btn-secondary btn-circle btn-xl"
