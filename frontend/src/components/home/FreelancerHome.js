@@ -61,7 +61,6 @@ export default function FreelancerHome(props) {
 
           {/*search begins*/}
           <div className="FreelancerSearch">
-            {/* <h3 className="Title">Search for a Freelancer</h3> */}
             <form className="Search-Form">
               <input
                 onChange={(e) => setSearchFreelancers(e.target.value)}
@@ -81,7 +80,7 @@ export default function FreelancerHome(props) {
                 <section
                   className="MainContainer"
                   key={user.id}
-                  // onMouseLeave={() => setShowContactForm(false)}
+                  onMouseLeave={() => setShowContactForm(false)}
 
                 >
                   <div className="bodyCard-avatar">
@@ -106,20 +105,14 @@ export default function FreelancerHome(props) {
                           currentFreelancer === user.id ?
                           "Details" : "Contact"
                         }
-
                       </Button>
                     </div>
                   </div>
-
-
                   {showContactForm &&
                     currentFreelancer === user.id ? (
-
                     <FreelancerView />
                   ) : (
                     <>
-
-
                       {/* button to open the freelancer contact card END*/}
                       < div className="bodyCard-details">
                         <p>

@@ -5,8 +5,6 @@ import React, { useContext, useEffect, useState } from "react";
 import emailjs from "@emailjs/browser";
 import Swal from "sweetalert2";
 import { ImHeart } from "react-icons/im";
-import { HiOutlineMail, HiOutlineMailOpen } from "react-icons/hi";
-import { Link } from "react-scroll";
 import { useMutation } from "@apollo/client";
 
 //Internal Imports
@@ -18,9 +16,8 @@ import waiterSmile from "../../../assets/img/waiter-smile.svg";
 
 
 
-export default function FreelancerView(props) {
+export default function FreelancerView() {
   const { freelancerFind, companyLoginData, isCompanyLogin } = useContext(MyContext);
-  const [showContactForm, setShowContactForm] = useState(false);
   const [companyFavorite, setCompanyFavorite] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
 
@@ -37,9 +34,6 @@ export default function FreelancerView(props) {
       setCompanyFavorite(false);
     }
   }, [storeId]);
-
-
-  console.log(companyLoginData)
 
   // we need to filter the freelancerFind state to make companyFavorite true
   let { first_name, last_name, hourly_rate, email, phone, avatar, id } =
@@ -107,7 +101,6 @@ export default function FreelancerView(props) {
       },
     }).then((res) => {
       if (res.data) {
-        console.log(res.data);
         Swal.fire({
           position: "top",
           icon: "success",
@@ -185,21 +178,13 @@ export default function FreelancerView(props) {
 
           </div>
 
-        
-
-
-          {/* model from contactForm.js */}
-
-
-          <>
+          <div>
             {emailSent ? (
               <div className="alert text-center" role="alert">
                 Your message was sent!
                 <img alt="" src={waiterSmile} width="150" height="150" className="" />
               </div>
             ) : (
-
-
               //freelancer data
               <div className="container contact-form-freelancer contactFormContainer   animate__animated animate__fadeInDownBig  ">
                 <form onSubmit={sendEmail}>
@@ -228,7 +213,6 @@ export default function FreelancerView(props) {
                     </div>
 
                   </div>
-
 
                   {/* company data */}
                   <div className="d-flex justify-content-between">
@@ -311,8 +295,7 @@ export default function FreelancerView(props) {
                 </form>
               </div>
             )}
-          </>
-
+          </div>
         </div>
       </div>
     </div>

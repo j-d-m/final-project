@@ -1,5 +1,5 @@
 //Native imports
-import React, { useContext } from "react";
+import React, { useContext, useRef, useState } from "react";
 
 //External imports
 import { useQuery } from "@apollo/client";
@@ -25,6 +25,7 @@ import SearchCard from "./SearchCard";
 import "animate.css";
 
 export default function Home() {
+  const [inp, setInp] = useState("");
   const BgArray = [
     background1,
     background2,
@@ -39,26 +40,22 @@ export default function Home() {
 
   const { loading, error, data } = useQuery(GET_JOBS);
 
-  const { isTitleFilter, setIsTitleFilter, inputValue, setInputValue } =
-    useContext(MyContext);
+  const { isTitleFilter, setIsTitleFilter } = useContext(MyContext);
+  const inputRef = useRef();
+  let filterTitle =
+    inp &&
+    data.getJobs.filter(
+      (item) =>
+        item.job_Title.toLowerCase().includes(inp.toLowerCase()) ||
+        item.job_description.toLowerCase().includes(inp.toLowerCase()) ||
+        item.created_by.company_Name.toLowerCase().includes(inp.toLowerCase())
+    );
 
   const searchHandler = (e) => {
     e.preventDefault();
-    let inputTitleValue = e.target.searchJobTitle.value;
+    setInp(inputRef.current.value);
 
-    let filterTitle = data.getJobs.filter(
-      (item) =>
-        item.job_Title.toLowerCase().includes(inputTitleValue.toLowerCase()) ||
-        item.job_description
-          .toLowerCase()
-          .includes(inputTitleValue.toLowerCase()) ||
-        item.created_by.company_Name
-          .toLowerCase()
-          .includes(inputTitleValue.toLowerCase())
-    );
-
-    if (inputTitleValue.length > 0 && filterTitle.length > 0) {
-      setInputValue(filterTitle);
+    if (inputRef.current.value.length > 0) {
       setIsTitleFilter(true);
     } else {
       Swal.fire({
@@ -79,7 +76,7 @@ export default function Home() {
     return (
       <div className="m2-auto text-center loading-block">
         <img
-          src="https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif"
+          src="https://cdn.dribbble.com/users/1186261/screenshots/3718681/_______.gif"
           alt="img"
         />
       </div>
@@ -121,6 +118,7 @@ export default function Home() {
                   name="searchJobTitle"
                   type="text"
                   placeholder=" Search by job title, description or company name"
+                  ref={inputRef}
                 />
                 <input
                   className="search-button"
@@ -133,7 +131,8 @@ export default function Home() {
           </div>
           <div className="jobSearchBox">
             {isTitleFilter &&
-              inputValue
+              filterTitle &&
+              filterTitle
                 .slice(0, 20)
                 .map((job) => <SearchCard job={job} key={job.id} />)}
           </div>

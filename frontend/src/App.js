@@ -51,7 +51,16 @@ const FreelancerHomeComponent = lazy(() =>
 function App() {
   return (
     <>
-      <Suspense fallback={<h2>loading......</h2>}>
+      <Suspense
+        fallback={
+          <div className="m2-auto text-center loading-block ">
+            <img
+              src="https://cdn.dribbble.com/users/1186261/screenshots/3718681/_______.gif"
+              alt="img"
+            />
+          </div>
+        }
+      >
         <ContextContainer>
           <HeaderComponent />
 
