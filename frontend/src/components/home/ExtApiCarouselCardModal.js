@@ -31,8 +31,9 @@ export default function ExtApiCarouselCardModal({ job }) {
         navigate("/freelancer-login")
     }
 
-    let CharLimitCompanyCarousel = 30;
+    let CharLimitCompanyCarousel = 20;
     let CharLimitTitleCarousel = 20;
+    let CharLimitLocationCarousel = 20;
 
     let CharLimitCompanyModal = 50
     let CharLimitTitleModal = 100;
@@ -46,7 +47,10 @@ export default function ExtApiCarouselCardModal({ job }) {
                 {job.title.slice(0, CharLimitTitleCarousel) +
                     (job.title.length > CharLimitTitleCarousel ? "..." : "")}
             </h5>
-            <p> {job.location.display_name}</p>
+            <p> 
+                {job.location.display_name.slice(0, CharLimitLocationCarousel) +
+                    (job.location.display_name.length > CharLimitLocationCarousel ? "..." : "")}            
+            </p>
             <p>posted {moment(job.created).fromNow()}</p>
             <p>
                 by{" "}
