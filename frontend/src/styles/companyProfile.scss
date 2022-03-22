@@ -6,9 +6,12 @@
   width: 100%;
   height: calc(100vh - 20vh);
 
-  background-image: url("../assets/img/bgglass.png");
-  background-repeat: no-repeat;
+
+  background-image: url("https://images.unsplash.com/photo-1535850452425-140ee4a8dbae?ixlib=rb-1.2.1&ixid=MnwxM[…]90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1112&q=80");
+
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position:center;
   @include flex-center;
   justify-content: center;
 
@@ -79,7 +82,7 @@
     }
     .Custom-File-Upload {
       background-color: #6c757d;
-      color: $color-white;
+      color: red;
       border-radius: 5px;
       font-size: medium;
       font-weight: 300;
