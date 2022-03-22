@@ -85,7 +85,7 @@ export default function Contact({ job }) {
                     type="text"
                     name="to_name"
                     className="form-control"
-                    value={job.created_by.company_Name}
+                    defaultValue={job.created_by.company_Name}
                     readOnly
                   />
                 </div>
@@ -95,7 +95,7 @@ export default function Contact({ job }) {
                     type="email"
                     name="to_email"
                     className="form-control"
-                    value={job.created_by.email}
+                    defaultValue={job.created_by.email}
                     readOnly
                   />
                 </div>
@@ -136,7 +136,7 @@ export default function Contact({ job }) {
                     type="text"
                     name="from_name"
                     className="form-control"
-                    value={`${freelancerLoginData.first_name} ${freelancerLoginData.last_name}`}
+                    defaultValue={`${freelancerLoginData.first_name} ${freelancerLoginData.last_name}`}
                     maxLength="50"
                     required
                   />
@@ -147,7 +147,7 @@ export default function Contact({ job }) {
                     type="email"
                     name="from_email"
                     className="form-control"
-                    value={freelancerLoginData.email}
+                    defaultValue={freelancerLoginData.email}
                     maxLength="50"
                   />
 
@@ -160,19 +160,13 @@ export default function Contact({ job }) {
                       type="tel"
                       name="from_phone"
                       className="form-control"
-                      value={freelancerLoginData.phone}
+                      defaultValue={freelancerLoginData.phone}
                       maxLength="20"
                     />
                   </div>
                 </div>
 
               </div>
-
-
-
-
-
-
             </div>
             <div className="form-row mb-3">
               <div className="form-group col-md-12 ">
