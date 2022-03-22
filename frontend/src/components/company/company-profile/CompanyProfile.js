@@ -109,7 +109,10 @@ export default function CompanyProfile() {
               <>
                 <div className="BoxContainer">
                   <div className="Company-Avatar-Comp">
-                    <img src={avatar} alt="img" width="200px" height="200px" />
+                    <img src={avatar}
+                    alt="img"
+                    //  width="200px" height="200px"
+                      />
                     <label htmlFor="file-upload" className="Custom-File-Upload">
                       <input
                         id="file-upload"
@@ -174,7 +177,7 @@ export default function CompanyProfile() {
                     >
                       <div className="FavoriteList">
                         <ImHeart />
-                        <span>List</span>
+                        <span>Favorites</span>
                       </div>
                     </Button>
                     <CompanyShowFavList

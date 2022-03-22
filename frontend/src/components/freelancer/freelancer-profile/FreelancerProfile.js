@@ -15,6 +15,7 @@ import {
 } from "react-icons/ai";
 import { UPDATE_USER } from "../../../graphQL/Mutations";
 import Swal from "sweetalert2";
+import jobApplication from "../../../assets/img/jobApplication.svg";
 
 export default function FreelancerProfile() {
   const navigate = useNavigate();
@@ -65,7 +66,7 @@ export default function FreelancerProfile() {
     return (
       <div className="m2-auto text-center loading-block">
         <img
-          src="https://cdn.dribbble.com/users/1186261/screenshots/3718681/_______.gif"
+          src="https://cdn.dribbble.com/users/924068/screenshots/3757746/media/6035d641a7d26f1ba75421d15ce173cf.gif"
           alt="img"
         />
       </div>
@@ -99,7 +100,11 @@ export default function FreelancerProfile() {
               <>
                 <div className="BoxContainer">
                   <div className="Freelance-Avatar">
-                    <img src={avatar} alt="img" width="200px" height="200px" />
+                    <img
+                      src={avatar}
+                      alt="img"
+                      //  width="200px" height="200px"
+                    />
                     <label htmlFor="file-upload" className="Custom-File-Upload">
                       <input
                         id="file-upload"
@@ -142,13 +147,40 @@ export default function FreelancerProfile() {
 
                     <div className="JobHistory">
                       {favorite.length === 0 ? (
-                        <p>you have not applied for any jobs</p>
+                        <section>
+                          <Modal show={show} onHide={handleClose} size="lg">
+                            <Modal.Header closeButton>
+                              <Modal.Title className="contained-modal-title-vcenter w-100">
+                                <div className="d-flex align-items-center justify-content-around job-application-history-empty-title">
+                                  <h3>Job Application History</h3>
+                                  <img
+                                    alt=""
+                                    src={jobApplication}
+                                    width="80"
+                                    height="80"
+                                  />
+                                </div>
+                              </Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                              <p>You didn't contact any company yet.</p>
+                            </Modal.Body>
+                          </Modal>
+                        </section>
                       ) : (
                         <section>
-                          <Modal show={show} onHide={handleClose}>
+                          <Modal show={show} onHide={handleClose} size="lg">
                             <Modal.Header closeButton>
-                              <Modal.Title style={{ margin: " 0 auto" }}>
-                                Job History
+                              <Modal.Title className="contained-modal-title-vcenter w-100">
+                                <div className="d-flex align-items-center justify-content-around job-application-history-title-filled">
+                                  <h3>Job Application History</h3>
+                                  <img
+                                    alt=""
+                                    src={jobApplication}
+                                    width="80"
+                                    height="80"
+                                  />
+                                </div>
                               </Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
