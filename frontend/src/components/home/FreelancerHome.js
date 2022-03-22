@@ -80,8 +80,7 @@ export default function FreelancerHome(props) {
                 <section
                   className="MainContainer"
                   key={user.id}
-                  onMouseLeave={() => setShowContactForm(false)}
-
+                // onMouseOut={() => setShowContactForm(false)}
                 >
                   <div className="bodyCard-avatar">
                     <img src={user.avatar} alt="img" />
@@ -93,18 +92,24 @@ export default function FreelancerHome(props) {
                     {/*button to open the freelancer contact card*/}
                     <div className="OpenContact">
                       <Button
-                        className="Btn contactDetailsButton"
+                        className="Btn contactDetailsButton mx-1"
                         variant="secondary"
                         onClick={() => {
-                          setShowContactForm(!showContactForm);
+                          setShowContactForm(true);
                           contactFreelancer(user.id);
                           setCurrentFreelancer(user.id);
                         }}
                       >
-                        {showContactForm &&
-                          currentFreelancer === user.id ?
-                          "Details" : "Contact"
-                        }
+                        Contact
+                      </Button>
+                      <Button
+                        className="Btn contactDetailsButton mx-1"
+                        variant="secondary"
+                        onClick={() => {
+                          setShowContactForm(false);
+                        }}
+                      >
+                        Details
                       </Button>
                     </div>
                   </div>
