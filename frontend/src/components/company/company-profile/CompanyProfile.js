@@ -76,7 +76,7 @@ export default function CompanyProfile() {
     return (
       <div className="m2-auto text-center loading-block">
         <img
-          src="https://cdn.dribbble.com/users/1186261/screenshots/3718681/_______.gif"
+          src="https://cdn.dribbble.com/users/924068/screenshots/3757746/media/6035d641a7d26f1ba75421d15ce173cf.gif"
           alt="img"
         />
       </div>
@@ -125,22 +125,40 @@ export default function CompanyProfile() {
                     <h1>{company_Name}</h1>
 
                     <div>
-                      <p><span>Company Type</span><span>{company_type}</span></p>
+                      <p>
+                        <span>Company Type</span>
+                        <span>{company_type}</span>
+                      </p>
                     </div>
                     <div>
-                      <p><span>Company Address </span><span>{address}</span></p>
+                      <p>
+                        <span>Company Address </span>
+                        <span>{address}</span>
+                      </p>
                     </div>
                     <div>
-                      <p><span>Owner </span><span>{owner_name}</span></p>
+                      <p>
+                        <span>Owner </span>
+                        <span>{owner_name}</span>
+                      </p>
                     </div>
                     <div>
-                      <p><span>Email </span><span>{email}</span></p>
+                      <p>
+                        <span>Email </span>
+                        <span>{email}</span>
+                      </p>
                     </div>
                     <div>
-                      <p><span>Phone </span><span>{phone}</span></p>
+                      <p>
+                        <span>Phone </span>
+                        <span>{phone}</span>
+                      </p>
                     </div>
                     <div>
-                      <p className="Desc-comp"><span>Company Description</span><span>{description}</span></p>
+                      <p className="Desc-comp">
+                        <span>Company Description</span>
+                        <span>{description}</span>
+                      </p>
                     </div>
                   </div>
                 </div>
