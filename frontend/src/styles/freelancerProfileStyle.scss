@@ -1,6 +1,7 @@
 @import "./colors";
 @import "./flexCenter";
 @import "./mobile";
+@import "./fonts";
 
 .Profile-Container {
   width: 100%;
@@ -58,8 +59,22 @@
     flex-direction: column;
 
     img {
+      // border-radius: 50%;
+      // border: 10px solid $color-white;
+    }
+
+    img {
+      object-fit: cover;
       border-radius: 50%;
-      border: 10px solid $color-white;
+      padding: 5px;
+      width: 200px;
+      height: 200px;
+      border: 1px solid $color-white;
+      background-color: $color-white;
+
+      &:hover {
+        transform: scale(1.1);
+      }
     }
 
     input[type="file"] {
@@ -100,21 +115,20 @@
         font-size: 28px;
         margin-bottom: 5px;
       }
-     
     }
 
     p {
       background-color: #6c757db4;
       display: flex;
       justify-content: start;
-      padding-left: .5rem;
+      padding-left: 0.5rem;
       align-items: center;
       font-size: 20px;
       color: $color-white;
       line-height: 2;
-      
-      span{
-        width:200px;
+
+      span {
+        width: 200px;
       }
 
       @include mobile {
@@ -125,17 +139,16 @@
       }
     }
     .Desc-comp {
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     align-items: center;
-     
-     span {
-       text-align: center;
-       width: 100%;
-       
-     }
- }
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      span {
+        text-align: center;
+        width: 100%;
+      }
+    }
   }
   .BtnSection {
     // border: 1px solid black;
@@ -181,5 +194,16 @@
     span {
       margin-top: 5px;
     }
+  }
+}
+
+//Style for Freelancer - Job Application History
+.job-application-history-title-filled,
+.job-application-history-title-empty {
+  h3 {
+    font-family: $font-family-Bebas;
+    letter-spacing: 2px;
+    font-weight: 600;
+    margin-bottom: 1rem;
   }
 }

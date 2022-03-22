@@ -20,12 +20,19 @@
     .CompanyLoginForm {
       width: 50%;
       height: 60vh;
-
       box-shadow: 10px 10px 10px rgb(19, 18, 18);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
+
+      @include mobile {
+        width: 90%;
+      }
+      @include mobile-small {
+        width: 90%;
+      }
+
       .InputForm {
         .form-control {
           border: none;
