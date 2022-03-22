@@ -49,7 +49,13 @@ export default function ExtApiCarousel() {
       ) : (
 
         <div className="carousel-wrapper">
-          <Carousel breakPoints={breakPoints}>
+          <Carousel
+            enableMouseSwipe={false}
+            easing="cubic-bezier(1,.15,.55,1.54)"
+            tiltEasing="cubic-bezier(0.110, 1, 1.500, 0.210)"
+            transitionMs={1500}
+            breakPoints={breakPoints}>
+
             {apiJobs.slice(0, 40).map((job) => (
               <ExtApiCard job={job} key={job.id} />
             ))}
