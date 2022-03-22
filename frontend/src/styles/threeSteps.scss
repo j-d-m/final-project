@@ -17,14 +17,24 @@
             color: $color-green;
             padding-top: 2rem;
             font-size: 2rem;
+
+            @include mobile{
+                font-weight: 400;
+                font-size: 40px;
+                text-align: center;
+                }
+                @include mobile-small{
+                font-size: 30px;
+                }
         }
     }
 
     .allExp{
         margin-top: 3rem;
         display: grid;
-        grid-template-columns: repeat(3,400px);
+        grid-template-columns: repeat(3, auto);
         justify-content: space-around;
+        padding: 1rem;
         gap: 3rem;
         text-align: center;
 
