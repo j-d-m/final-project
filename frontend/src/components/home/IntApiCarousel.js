@@ -32,7 +32,13 @@ export default function IntApiCarousel() {
     <div className="jobs-carousel">
       <hr className="separator" />
       <div className="carousel-wrapper">
-        <Carousel breakPoints={breakPoints}>
+        <Carousel
+          enableMouseSwipe={false}
+          easing="cubic-bezier(1,.15,.55,1.54)"
+          tiltEasing="cubic-bezier(0.110, 1, 1.500, 0.210)"
+          transitionMs={1500}
+          breakPoints={breakPoints}>
+
           {data.getJobs.slice(0, 40).map((job) => (
             <IntApiCard job={job} key={job.id} />
           ))}
