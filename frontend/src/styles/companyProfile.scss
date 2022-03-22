@@ -61,10 +61,27 @@
     align-items: center;
     flex-direction: column;
     margin-right: 20px;
-    img {
+
+    // img {
+    //   border-radius: 50%;
+    //   border: 10px solid $color-white;
+    // }
+
+      img {
+      object-fit: cover;
       border-radius: 50%;
-      border: 10px solid $color-white;
+      padding: 5px;
+      width: 200px;
+      height: 200px;
+      border: 1px solid $color-white;
+      background-color: $color-white;
+
+      &:hover {
+        transform: scale(1.1);
+      }
     }
+
+
     input[type="file"] {
       display: none;
     }

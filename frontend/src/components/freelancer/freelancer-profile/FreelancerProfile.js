@@ -15,6 +15,7 @@ import {
 } from "react-icons/ai";
 import { UPDATE_USER } from "../../../graphQL/Mutations";
 import Swal from "sweetalert2";
+import jobApplication from "../../../assets/img/jobApplication.svg";
 
 
 export default function FreelancerProfile() {
@@ -27,7 +28,7 @@ export default function FreelancerProfile() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  
+
 
   const [UpdateUser, { data1, loading1, error1 }] = useMutation(UPDATE_USER);
   const updateAvatar = (e) => {
@@ -102,7 +103,11 @@ export default function FreelancerProfile() {
               <>
                 <div className="BoxContainer">
                   <div className="Freelance-Avatar">
-                    <img src={avatar} alt="img" width="200px" height="200px" />
+                    <img
+                      src={avatar}
+                      alt="img"
+                    //  width="200px" height="200px"
+                    />
                     <label htmlFor="file-upload" className="Custom-File-Upload">
                       <input
                         id="file-upload"
@@ -118,59 +123,78 @@ export default function FreelancerProfile() {
                       {first_name} {last_name}
                     </h1>
 
-                  <div>
-                    <p><span>Email</span><span>{email}</span></p>
-                  </div>
-                  <div>
-                    <p><span>Phone</span><span>{phone}</span></p>
-                  </div>
-                  <div>
-                    <p><span>Your hourly</span><span>{hourly_rate}</span></p>
-                  </div>
-                  <div>
-                    <p className="Desc-comp"><span>Your position</span><span>{description}</span></p>
-                  </div>
-                  
-                  <div className="JobHistory">
-                    {favorite.length === 0 ? (
-                      <p>you have not applied for any jobs</p>
-                    ) : (
-                      <section>
-                        <Modal show={show} onHide={handleClose}>
-                          <Modal.Header closeButton>
-                            <Modal.Title style={{margin: " 0 auto"}} >Job History</Modal.Title>
-                          </Modal.Header>
-                          <Modal.Body>
-                          <Table striped bordered hover variant="inherit" color="inherit" borderless="true" size="sm">
+                    <div>
+                      <p><span>Email</span><span>{email}</span></p>
+                    </div>
+                    <div>
+                      <p><span>Phone</span><span>{phone}</span></p>
+                    </div>
+                    <div>
+                      <p><span>Your hourly</span><span>{hourly_rate}</span></p>
+                    </div>
+                    <div>
+                      <p className="Desc-comp"><span>Your position</span><span>{description}</span></p>
+                    </div>
+
+                    <div className="JobHistory">
+                      {favorite.length === 0 ? (
+                        <section>
+                          <Modal show={show} onHide={handleClose} size="lg">
+                            <Modal.Header closeButton>
+                              <Modal.Title className="contained-modal-title-vcenter w-100">
+                                <div className="d-flex align-items-center justify-content-around job-application-history-empty-title">
+                                  <h3>Job Application History</h3>
+                                  <img alt="" src={jobApplication} width="80" height="80" />
+                                </div>
+                              </Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                              <p>You didn't contact any company yet.</p>
+                            </Modal.Body>
+                          </Modal>
+                        </section>
+                      ) : (
+                        <section>
+                          <Modal show={show} onHide={handleClose} size="lg">
+                            <Modal.Header closeButton>
+                              <Modal.Title className="contained-modal-title-vcenter w-100">
+                                <div className="d-flex align-items-center justify-content-around job-application-history-title-filled">
+                                  <h3>Job Application History</h3>
+                                  <img alt="" src={jobApplication} width="80" height="80" />
+                                </div>
+                              </Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                              <Table striped bordered hover variant="inherit" color="inherit" borderless="true" size="sm">
                                 <thead>
                                   <tr>
                                     <th>Job Title</th>
                                     <th>Applied on</th>
                                   </tr>
                                 </thead>
-                                  {favorite.map((job, index) => <tbody key={job.id}>
+                                {favorite.map((job, index) => <tbody key={job.id}>
                                   <tr>
                                     <td>{job.job_Title}</td>
                                     <td>{job.start_Date}</td>
                                   </tr>
-                                  </tbody>
-                                  )}
-                              </Table> 
-                          </Modal.Body>
-                        </Modal>
-                      </section>
-                    )}
-                  </div>
+                                </tbody>
+                                )}
+                              </Table>
+                            </Modal.Body>
+                          </Modal>
+                        </section>
+                      )}
+                    </div>
                   </div>
                 </div>
                 <section className="BtnSection">
                   <div className="ModalBtnFreelancerProfile">
-                  <Button
+                    <Button
                       id={id}
                       className="btn btn-secondary btn-circle btn-xl"
-                      onClick={handleShow }
-                        
-                     
+                      onClick={handleShow}
+
+
                     >
                       {" "}
                       <AiOutlineHistory />

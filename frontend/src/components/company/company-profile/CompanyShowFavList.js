@@ -5,6 +5,8 @@ import Swal from "sweetalert2";
 import { MyContext } from "../../../Context/Context";
 import { DELETE_COMPANY_FAVORITE } from "../../../graphQL/Mutations";
 import { GET_ONE_COMPANY } from "../../../graphQL/Queries";
+import favoriteIcon from "../../../assets/img/favorite.svg";
+
 
 export default function CompanyShowFavList(props) {
   const { companyLoginData, setCompanyLoginData } = useContext(MyContext);
@@ -50,11 +52,13 @@ export default function CompanyShowFavList(props) {
   };
   return (
     <div>
-      <Modal {...props} size="lg" centered>
+      <Modal {...props} size="lg" centered className="favoriteListCompany" >
         <Modal.Header closeButton>
           <Modal.Title className="contained-modal-title-vcenter w-100">
             <div className="update-jobs-title d-flex align-items-center justify-content-around">
               <h3> Your Favorite Freelancers </h3>
+              <img alt="" src={favoriteIcon} width="80" height="80" />
+
             </div>
           </Modal.Title>
         </Modal.Header>
