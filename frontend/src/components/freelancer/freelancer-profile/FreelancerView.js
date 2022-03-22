@@ -160,7 +160,7 @@ export default function FreelancerView() {
 
           <div className="mt-5 text-center">
 
-            <div className="FavoriteDiv">
+            <div className="FavoriteDiv m-3">
               <button
                 className="iconBtn"
                 onClick={!companyFavorite ? favoriteBtn : deleteFavoriteBtn}
@@ -168,12 +168,13 @@ export default function FreelancerView() {
                 <ImHeart
                   className={
                     companyFavorite
-                      ? "iconHeart Favorite"
-                      : "iconHeart notFavorite"
+                      ? "iconHeart Favorite me-2"
+                      : "iconHeart notFavorite me-2"
                   }
                   size="35px"
                 />
               </button>
+              <strong>Add to Favorites</strong>
             </div>
 
           </div>
@@ -196,7 +197,7 @@ export default function FreelancerView() {
                           type="text"
                           name="to_name"
                           className="form-control col-auto"
-                          value={first_name + " " + last_name}
+                          defaultValue={first_name + " " + last_name}
                           readOnly
                         />
                       </div>
@@ -206,7 +207,7 @@ export default function FreelancerView() {
                           type="email"
                           name="to_email"
                           className="form-control"
-                          value={email}
+                          defaultValue={email}
                           readOnly
                         />
                       </div>
@@ -224,7 +225,7 @@ export default function FreelancerView() {
                           type="text"
                           name="from_company_name"
                           className="form-control"
-                          value={`${companyLoginData.company_Name}`}
+                          defaultValue={`${companyLoginData.company_Name}`}
                           maxLength="50"
                           required
                           readOnly
@@ -236,7 +237,7 @@ export default function FreelancerView() {
                           type="text"
                           name="from_name"
                           className="form-control"
-                          value={`${companyLoginData.owner_name}`}
+                          defaultValue={`${companyLoginData.owner_name}`}
                           maxLength="50"
                           required
                         />
@@ -247,7 +248,7 @@ export default function FreelancerView() {
                           type="email"
                           name="from_email"
                           className="form-control"
-                          value={companyLoginData.email}
+                          defaultValue={companyLoginData.email}
                           maxLength="50"
                         />
 
@@ -260,7 +261,7 @@ export default function FreelancerView() {
                             type="tel"
                             name="from_phone"
                             className="form-control"
-                            value={companyLoginData.phone}
+                            defaultValue={companyLoginData.phone}
                             maxLength="20"
                           />
                         </div>
