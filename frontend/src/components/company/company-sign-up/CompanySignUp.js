@@ -51,7 +51,7 @@ export default function CompanySignUp() {
           timer: 2000,
           customClass: "swal-width",
         });
-        navigate("/company-profile");
+        navigate("/company-login");
       }
     });
   };
