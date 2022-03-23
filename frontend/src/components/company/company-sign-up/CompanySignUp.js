@@ -59,24 +59,19 @@ export default function CompanySignUp() {
   // if (loading)
   //   return (
   //     <img
-  //       src="https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif"
+  //       src="https://cdn.dribbble.com/users/924068/screenshots/3757746/media/6035d641a7d26f1ba75421d15ce173cf.gif"
   //       alt="img"
   //     />
   //   );
 
-
   // Error handling needs to be reviewed: When there is an error it needs to show
-  // Sweeet Alert and dont make the user loses everything he has entered so far 
+  // Sweeet Alert and dont make the user loses everything he has entered so far
 
   if (error) {
     console.log("data", data);
     console.log("error", error);
     return `${error.message}`;
-  }  
-  
-  
-  
-
+  }
 
   return (
     <>
@@ -194,10 +189,7 @@ export default function CompanySignUp() {
 
             <label>
               <span></span>
-              <input
-                type="submit"
-                value="Sign Up"
-              />
+              <input type="submit" value="Sign Up" />
             </label>
           </form>
         </div>

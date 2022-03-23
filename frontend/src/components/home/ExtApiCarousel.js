@@ -27,9 +27,9 @@ export default function ExtApiCarousel() {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(API_URL);
-      console.log('===================axios=================');
+      console.log("===================axios=================");
       console.log(result.data.results);
-      console.log('====================================');
+      console.log("====================================");
       setApiJobs(result.data.results);
       setLoading(false);
     };
@@ -37,25 +37,23 @@ export default function ExtApiCarousel() {
   }, []);
 
   return (
-
     <div className="jobs-carousel">
       {loading ? (
         <div className="text-center">
           <img
-            src="https://media3.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif"
+            src="https://cdn.dribbble.com/users/924068/screenshots/3757746/media/6035d641a7d26f1ba75421d15ce173cf.gif"
             alt="img"
           />
         </div>
       ) : (
-
         <div className="carousel-wrapper">
           <Carousel
             enableMouseSwipe={false}
             easing="cubic-bezier(1,.15,.55,1.54)"
             tiltEasing="cubic-bezier(0.110, 1, 1.500, 0.210)"
             transitionMs={1500}
-            breakPoints={breakPoints}>
-
+            breakPoints={breakPoints}
+          >
             {apiJobs.slice(0, 40).map((job) => (
               <ExtApiCard job={job} key={job.id} />
             ))}

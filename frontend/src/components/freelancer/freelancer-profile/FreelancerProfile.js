@@ -11,12 +11,11 @@ import {
   AiOutlineEdit,
   AiOutlineDelete,
   AiOutlineUnorderedList,
-  AiOutlineHistory
+  AiOutlineHistory,
 } from "react-icons/ai";
 import { UPDATE_USER } from "../../../graphQL/Mutations";
 import Swal from "sweetalert2";
 import jobApplication from "../../../assets/img/jobApplication.svg";
-
 
 export default function FreelancerProfile() {
   const navigate = useNavigate();
@@ -28,7 +27,6 @@ export default function FreelancerProfile() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
 
   const [UpdateUser, { data1, loading1, error1 }] = useMutation(UPDATE_USER);
   const updateAvatar = (e) => {
@@ -68,12 +66,11 @@ export default function FreelancerProfile() {
     return (
       <div className="m2-auto text-center loading-block">
         <img
-          src="https://cdn.dribbble.com/users/1186261/screenshots/3718681/_______.gif"
+          src="https://cdn.dribbble.com/users/924068/screenshots/3757746/media/6035d641a7d26f1ba75421d15ce173cf.gif"
           alt="img"
         />
       </div>
     );
-
   }
 
   setTimeout(() => {
@@ -106,7 +103,7 @@ export default function FreelancerProfile() {
                     <img
                       src={avatar}
                       alt="img"
-                    //  width="200px" height="200px"
+                      //  width="200px" height="200px"
                     />
                     <label htmlFor="file-upload" className="Custom-File-Upload">
                       <input
@@ -124,16 +121,28 @@ export default function FreelancerProfile() {
                     </h1>
 
                     <div>
-                      <p><span>Email</span><span>{email}</span></p>
+                      <p>
+                        <span>Email</span>
+                        <span>{email}</span>
+                      </p>
                     </div>
                     <div>
-                      <p><span>Phone</span><span>{phone}</span></p>
+                      <p>
+                        <span>Phone</span>
+                        <span>{phone}</span>
+                      </p>
                     </div>
                     <div>
-                      <p><span>Your hourly</span><span>{hourly_rate}</span></p>
+                      <p>
+                        <span>Your hourly</span>
+                        <span>{hourly_rate}</span>
+                      </p>
                     </div>
                     <div>
-                      <p className="Desc-comp"><span>Your position</span><span>{description}</span></p>
+                      <p className="Desc-comp">
+                        <span>Your position</span>
+                        <span>{description}</span>
+                      </p>
                     </div>
 
                     <div className="JobHistory">
@@ -144,7 +153,12 @@ export default function FreelancerProfile() {
                               <Modal.Title className="contained-modal-title-vcenter w-100">
                                 <div className="d-flex align-items-center justify-content-around job-application-history-empty-title">
                                   <h3>Job Application History</h3>
-                                  <img alt="" src={jobApplication} width="80" height="80" />
+                                  <img
+                                    alt=""
+                                    src={jobApplication}
+                                    width="80"
+                                    height="80"
+                                  />
                                 </div>
                               </Modal.Title>
                             </Modal.Header>
@@ -160,25 +174,39 @@ export default function FreelancerProfile() {
                               <Modal.Title className="contained-modal-title-vcenter w-100">
                                 <div className="d-flex align-items-center justify-content-around job-application-history-title-filled">
                                   <h3>Job Application History</h3>
-                                  <img alt="" src={jobApplication} width="80" height="80" />
+                                  <img
+                                    alt=""
+                                    src={jobApplication}
+                                    width="80"
+                                    height="80"
+                                  />
                                 </div>
                               </Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
-                              <Table striped bordered hover variant="inherit" color="inherit" borderless="true" size="sm">
+                              <Table
+                                striped
+                                bordered
+                                hover
+                                variant="inherit"
+                                color="inherit"
+                                borderless="true"
+                                size="sm"
+                              >
                                 <thead>
                                   <tr>
                                     <th>Job Title</th>
                                     <th>Applied on</th>
                                   </tr>
                                 </thead>
-                                {favorite.map((job, index) => <tbody key={job.id}>
-                                  <tr>
-                                    <td>{job.job_Title}</td>
-                                    <td>{job.start_Date}</td>
-                                  </tr>
-                                </tbody>
-                                )}
+                                {favorite.map((job, index) => (
+                                  <tbody key={job.id}>
+                                    <tr>
+                                      <td>{job.job_Title}</td>
+                                      <td>{job.start_Date}</td>
+                                    </tr>
+                                  </tbody>
+                                ))}
                               </Table>
                             </Modal.Body>
                           </Modal>
@@ -193,8 +221,6 @@ export default function FreelancerProfile() {
                       id={id}
                       className="btn btn-secondary btn-circle btn-xl"
                       onClick={handleShow}
-
-
                     >
                       {" "}
                       <AiOutlineHistory />
