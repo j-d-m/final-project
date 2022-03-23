@@ -47,7 +47,7 @@ export default function UserSignUp() {
           timer: 2000,
           // customClass: "swal-width",
         });
-        navigate("/freelancer-profile");
+        navigate("/freelancer-login");
       }
     });
   };
