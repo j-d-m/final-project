@@ -49,8 +49,8 @@ export default function IntApiCarouselCardModal({ job }) {
       title={`To work from ${moment(job.start_Date)
         .locale("en")
         .format("ll")} until ${moment(job.end_Date)
-        .locale("en")
-        .format("ll")}.`}
+          .locale("en")
+          .format("ll")}.`}
     >
       <h5>
         {" "}
@@ -61,7 +61,7 @@ export default function IntApiCarouselCardModal({ job }) {
       <p>
         posted{" "}
         {moment(
-          new Date(job.issued_At.slice(0, 10) * 1000).toGMTString()
+          new Date(job.issued_At.slice(0, 10) * 1000.0071).toLocaleString()
         ).fromNow()}
       </p>
 
@@ -114,8 +114,8 @@ export default function IntApiCarouselCardModal({ job }) {
                 {` (to work from ${moment(job.start_Date)
                   .locale("en")
                   .format("ll")} until ${moment(job.end_Date)
-                  .locale("en")
-                  .format("ll")}).`}
+                    .locale("en")
+                    .format("ll")}).`}
               </p>
               <p>
                 <MdOutlineToday /> <strong>Posted:</strong>{" "}
