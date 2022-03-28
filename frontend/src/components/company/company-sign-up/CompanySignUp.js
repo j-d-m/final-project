@@ -56,13 +56,14 @@ export default function CompanySignUp() {
     });
   };
 
-  // if (loading)
-  //   return (
-  //     <img
-  //       src="https://cdn.dribbble.com/users/924068/screenshots/3757746/media/6035d641a7d26f1ba75421d15ce173cf.gif"
-  //       alt="img"
-  //     />
-  //   );
+  if (loading)
+    return (
+      <img
+        className="Spinner-Media"
+        src="https://cdn.dribbble.com/users/924068/screenshots/3757746/media/6035d641a7d26f1ba75421d15ce173cf.gif"
+        alt="img"
+      />
+    );
 
   // Error handling needs to be reviewed: When there is an error it needs to show
   // Sweeet Alert and dont make the user loses everything he has entered so far

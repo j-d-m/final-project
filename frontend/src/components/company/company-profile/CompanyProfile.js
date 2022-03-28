@@ -74,7 +74,7 @@ export default function CompanyProfile() {
 
   if (loading) {
     return (
-      <div className="m2-auto text-center loading-block">
+      <div className="m2-auto text-center loading-block Spinner-Media">
         <img
           src="https://cdn.dribbble.com/users/924068/screenshots/3757746/media/6035d641a7d26f1ba75421d15ce173cf.gif"
           alt="img"
@@ -109,10 +109,11 @@ export default function CompanyProfile() {
               <>
                 <div className="BoxContainer">
                   <div className="Company-Avatar-Comp">
-                    <img src={avatar}
-                    alt="img"
-                    //  width="200px" height="200px"
-                      />
+                    <img
+                      src={avatar}
+                      alt="img"
+                      //  width="200px" height="200px"
+                    />
                     <label htmlFor="file-upload" className="Custom-File-Upload">
                       <input
                         id="file-upload"
