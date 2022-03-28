@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
-import avatar from "../../assets/img/avatar-placeholder.png";
+// import avatar from "../../assets/img/avatar-placeholder.png";
 import logo from "../../assets/img/logo.svg";
 import { AiOutlineLogin } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
@@ -186,7 +186,7 @@ export default function Header() {
               className="ms-5 DisappearI"
               width="60"
               height="60"
-              src={avatar}
+              src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
               alt="img"
             />
           )}

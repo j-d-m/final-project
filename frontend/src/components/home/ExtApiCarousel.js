@@ -39,7 +39,7 @@ export default function ExtApiCarousel() {
   return (
     <div className="jobs-carousel">
       {loading ? (
-        <div className="text-center">
+        <div className="text-center Spinner-Media">
           <img
             src="https://cdn.dribbble.com/users/924068/screenshots/3757746/media/6035d641a7d26f1ba75421d15ce173cf.gif"
             alt="img"
