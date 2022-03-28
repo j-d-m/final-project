@@ -29,17 +29,19 @@ export default function Header() {
     navigate("/");
   };
   return (
-    <Navbar bg="dark" variant={"dark"} expand="lg" id="goTop">
+    <Navbar bg="dark" variant={"dark"} expand="lg" id="goTop" className="m-0 p-1">
       <Container>
-        <Navbar.Brand as={Link} to="/home">
+        <Navbar.Brand as={Link} to="/home" className="m-0 p-0" >
           <img
             alt=""
             src={logo}
-            width="60"
-            height="60"
-            className="d-inline-block align-center"
+            width="80"
+            height="80"
+            className="d-inline-block align-center navBarLogo "
+            hover path fill="red"
           />
-          <span>STAFF ROOM </span>
+
+          <span className="ms-3" >STAFF ROOM </span>
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -127,7 +129,7 @@ export default function Header() {
                     value="Logout"
                     onClick={companyLogout}
                     className="logoutCompanyBtn ms-3"
-                    // ms-3 (margin-left: 3px) added to fix style after <NavDropdown.Item> was removed
+                  // ms-3 (margin-left: 3px) added to fix style after <NavDropdown.Item> was removed
                   />
                   {/* </NavDropdown.Item> */}
                   <NavDropdown.Item as={Link} to="/company-profile">
@@ -166,24 +168,24 @@ export default function Header() {
           {isCompanyLogin ? (
             <img
               className="ms-5 DisappearI"
-              width="50"
-              height="50"
+              width="60"
+              height="60"
               src={companyLoginData?.avatar}
               alt="img"
             />
           ) : isFreelancerLogin ? (
             <img
               className="ms-5 DisappearI"
-              width="50"
-              height="50"
+              width="60"
+              height="60"
               src={freelancerLoginData?.avatar}
               alt="img"
             />
           ) : (
             <img
               className="ms-5 DisappearI"
-              width="50"
-              height="50"
+              width="60"
+              height="60"
               src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
               alt="img"
             />

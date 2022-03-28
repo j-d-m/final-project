@@ -32,3 +32,27 @@
     background: none;
   }
 }
+
+.navBarLogo {
+  color: yellowgreen;
+
+  :hover {
+    color: red;
+  }
+}
+
+//logo Animation
+
+// @keyframes App-logo-spin {
+//   from {
+//     transform: rotate(0deg);
+//   }
+//   to {
+//     transform: rotate(360deg);
+//   }
+// }
+// @media (prefers-reduced-motion: no-preference) {
+//   .navBarLogo {
+//     animation: App-logo-spin infinite 20s linear;
+//   }
+// }
