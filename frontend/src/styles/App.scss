@@ -9,6 +9,7 @@
 @import "./favoriteListCompanyProfile.scss";
 @import "./fonts";
 @import "./colors";
+@import "./mobile";
 
 div,
 h1,
@@ -29,4 +30,12 @@ p {
 }
 :-ms-input-placeholder {
   font-style: italic;
+}
+
+.Spinner-Media {
+  @include mobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }

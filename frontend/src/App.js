@@ -53,7 +53,7 @@ function App() {
     <>
       <Suspense
         fallback={
-          <div className="m2-auto text-center loading-block ">
+          <div className="m2-auto text-center loading-block Spinner-Media ">
             <img
               src="https://cdn.dribbble.com/users/924068/screenshots/3757746/media/6035d641a7d26f1ba75421d15ce173cf.gif"
               alt="img"
