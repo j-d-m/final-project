@@ -38,7 +38,9 @@ export default function Header() {
             width="80"
             height="80"
             className="d-inline-block align-center navBarLogo "
+            hover path fill="red"
           />
+
           <span className="ms-3" >STAFF ROOM </span>
         </Navbar.Brand>
 
@@ -166,24 +168,24 @@ export default function Header() {
           {isCompanyLogin ? (
             <img
               className="ms-5 DisappearI"
-              width="50"
-              height="50"
+              width="60"
+              height="60"
               src={companyLoginData?.avatar}
               alt="img"
             />
           ) : isFreelancerLogin ? (
             <img
               className="ms-5 DisappearI"
-              width="50"
-              height="50"
+              width="60"
+              height="60"
               src={freelancerLoginData?.avatar}
               alt="img"
             />
           ) : (
             <img
               className="ms-5 DisappearI"
-              width="50"
-              height="50"
+              width="60"
+              height="60"
               src={avatar}
               alt="img"
             />
