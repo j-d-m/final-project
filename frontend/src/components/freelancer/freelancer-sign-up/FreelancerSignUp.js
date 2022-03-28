@@ -59,6 +59,10 @@ export default function UserSignUp() {
   <p>{error} </p>
     ;
 
+  console.log('====================================');
+  console.log(error);
+  console.log('====================================');
+
   return (
     <>
       <section className="Freelancer-sign-container ">

@@ -1,164 +1,161 @@
-@import './flexCenter';
-@import './colors';
-@import './mobile';
-@import './fonts';
+@import "./flexCenter";
+@import "./colors";
+@import "./mobile";
+@import "./fonts";
 
+.Company-sign-container {
+  display: flex;
+  height: 100vh;
+  // left side wall
+  .Wall-left {
+    flex: 0.2;
+    @include flex-center;
+    justify-content: center;
+    border-top: 5px solid white;
+    border-bottom: 5px solid white;
+    background-image: url(../assets/img/verticalBg1.jpg);
+    background-size: cover;
 
-.Company-sign-container{
-    display: flex;
-    height: 100vh;
-    // left side wall
-    .Wall-left {
-        flex:0.2;
-        @include flex-center;
-        justify-content: center;
-        border-top:5px solid white;
-        border-bottom:5px solid white;
-        background-image: url(../assets/img/hp-bg-1.jpeg);
-        background-size: cover;
-        img {
-            width: 10rem;
-        }
-
-        @include mobile {
-           display: none;
-            }
-        }
-
-    // form section 
-     .signUp-form-right{
-        flex:0.8;
-        @include flex-center;
-        flex-direction: column;
-        padding-top: 2rem;
-        height:100%;
-             h2{
-                 color:$color-green;
-                 padding-bottom:1rem;
-                //  font-family: $font-family-Roboto;
-             }
-             @include mobile {
-                flex:1;
-                height:100%;
-                // margin-bottom: 2rem;
-                    h2{
-                        font-weight: 400;
-                        font-size: 18px
-                    }
-                 }
-                 @include mobile-small {
-                    flex: 1;
-                    height:100%;
-                    overflow: scroll;
-                    h2{
-                        font-weight: 300;
-                        font-size: 18px
-                    }
-                     }
-
-   
-    .form-style-5{
-        width: 800px;
-        font-size: 18px;
-        background: #c5d5d6;
-        padding: 30px 30px 15px 30px;
-        border: 5px solid #c5d5d6;
-        border-radius: 10px;
-
-        @include mobile {
-            padding: 20px 20px 10px 20px;
-            width: 100%;
-        }
-        @include mobile-small {
-            width: 100%;
-            padding: 5px 5px 3px 5px;
-        }
-
+    img {
+      width: 10rem;
     }
-    .form-style-5 input[type=submit],
-    .form-style-5 input[type=button],
-    .form-style-5 input[type=text],
-    .form-style-5 input[type=email],
-    .form-style-5 textarea,
-    .form-style-5 label
-    {
-        font-family: $font-family-Roboto, "Times New Roman", Times, serif;
-        font-size: 18px;
-        color: $color-green;
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  // form section
+  .signUp-form-right {
+    flex: 0.8;
+    @include flex-center;
+    flex-direction: column;
+    padding: 2rem;
+    height: 100%;
     
+
+    h2 {
+      color: $color-green;
+      padding-bottom: 1rem;
+      //    font-family: $font-family-Roboto;
+    }
+    @include mobile {
+      flex: 1;
+      height: 100%;
+      // margin-bottom: 2rem;
+      h2 {
+        font-weight: 400;
+        font-size: 18px;
+      }
+    }
+    @include mobile-small {
+      flex: 1;
+      height: 100%;
+      overflow: scroll;
+      h2 {
+        font-weight: 300;
+        font-size: 18px;
+      }
+    }
+
+    .form-style-5 {
+      width: 800px;
+      font-size: 18px;
+      background: #c5d5d6;
+      padding: 30px 30px 15px 30px;
+      border: 5px solid #c5d5d6;
+      border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+
+
+      @include mobile {
+        padding: 20px 20px 10px 20px;
+        width: 100%;
+      }
+      @include mobile-small {
+        width: 100%;
+        padding: 5px 5px 3px 5px;
+      }
+    }
+    .form-style-5 input[type="submit"],
+    .form-style-5 input[type="button"],
+    .form-style-5 input[type="text"],
+    .form-style-5 input[type="email"],
+    .form-style-5 textarea,
+    .form-style-5 label {
+      font-family: $font-family-Roboto, "Times New Roman", Times, serif;
+      font-size: 18px;
+      color: $color-green;
     }
     .form-style-5 legend {
-        color:$color-dark;
-        @include mobile-small{
-            font-size: smaller;
-        } 
+      color: $color-dark;
+      @include mobile-small {
+        font-size: smaller;
+      }
     }
     .form-style-5 label {
-        display:block;
-        margin-bottom: 12px;
+      display: block;
+      margin-bottom: 12px;
     }
-    .form-style-5 label > span{
-        display: inline-block;
-        float: left;
-        width: 200px;
+    .form-style-5 label > span {
+      display: inline-block;
+      float: left;
+      width: 200px;
     }
-    .form-style-5 input[type=text],
-    .form-style-5 input[type=email],
-    .form-style-5 input[type=password],
-    .form-style-5 input[type=phone],
-    .form-style-5 input[type=number]
-    {
-        background: transparent;
-        border: none;
-        border-bottom: 1px dashed #83A5C5;
-        width: 275px;
-        outline: none;
-        padding: 0px 0px 0px 0px;
-        color: $color-green;
-        @include mobile-small {
-            width: 250px;
-        }
+    .form-style-5 input[type="text"],
+    .form-style-5 input[type="email"],
+    .form-style-5 input[type="password"],
+    .form-style-5 input[type="phone"],
+    .form-style-5 input[type="number"] {
+      background: transparent;
+      border: none;
+      border-bottom: 1px dashed #83a5c5;
+      width: 275px;
+      outline: none;
+      padding: 0px 0px 0px 0px;
+      color: $color-green;
+      @include mobile-small {
+        width: 250px;
+      }
     }
-    .form-style-5 textarea{
-        
-        padding: 10px 0px 0px 0px;
-        background: transparent;
-        outline: none;
-        // border: none;
-        border-bottom: 1px dashed #83A5C5;
-        width: 600px;
-        // overflow: hidden;
-        resize:horizontal;
-        height:120px;
+    .form-style-5 textarea {
+      padding: 10px 0px 0px 0px;
+      background: transparent;
+      outline: none;
+      // border: none;
+      border-bottom: 1px dashed #83a5c5;
+      width: 600px;
+      // overflow: hidden;
+      resize: horizontal;
+      height: 120px;
 
-        @include mobile {
-            width: 100%;
-        }
+      @include mobile {
+        width: 100%;
+      }
 
-        @include mobile-small {
-            width: 100%;
-        }
+      @include mobile-small {
+        width: 100%;
+      }
     }
-    
-    .form-style-5 textarea:focus, 
-    .form-style-5 input[type=text]:focus,
-    .form-style-5 input[type=email]:focus,
-    .form-style-5 input[type=email] :focus
-    {
-        border-bottom: 1px dashed #D9FFA9;
+
+    .form-style-5 textarea:focus,
+    .form-style-5 input[type="text"]:focus,
+    .form-style-5 input[type="email"]:focus,
+    .form-style-5 input[type="email"] :focus {
+      border-bottom: 1px dashed #d9ffa9;
     }
-    
-    .form-style-5 input[type=submit],
-    .form-style-5 input[type=button]{
-        background: $color-white;
-        border: none;
-        padding: 8px 10px 8px 10px;
-        border-radius: 5px;
-        color: $color-green;
+
+    .form-style-5 input[type="submit"],
+    .form-style-5 input[type="button"] {
+      background: $color-white;
+      border: none;
+      padding: 8px 10px 8px 10px;
+      border-radius: 5px;
+      color: $color-green;
     }
-    .form-style-5 input[type=submit]:hover,
-    .form-style-5 input[type=button]:hover{
-    background: $color-sky;
+    .form-style-5 input[type="submit"]:hover,
+    .form-style-5 input[type="button"]:hover {
+      background: $color-sky;
     }
-    }
+  }
 }
