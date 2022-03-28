@@ -29,17 +29,17 @@ export default function Header() {
     navigate("/");
   };
   return (
-    <Navbar bg="dark" variant={"dark"} expand="lg" id="goTop">
+    <Navbar bg="dark" variant={"dark"} expand="lg" id="goTop" className="m-0 p-1">
       <Container>
-        <Navbar.Brand as={Link} to="/home">
+        <Navbar.Brand as={Link} to="/home" className="m-0 p-0" >
           <img
             alt=""
             src={logo}
-            width="60"
-            height="60"
-            className="d-inline-block align-center"
+            width="80"
+            height="80"
+            className="d-inline-block align-center navBarLogo "
           />
-          <span>STAFF ROOM </span>
+          <span className="ms-3" >STAFF ROOM </span>
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -127,7 +127,7 @@ export default function Header() {
                     value="Logout"
                     onClick={companyLogout}
                     className="logoutCompanyBtn ms-3"
-                    // ms-3 (margin-left: 3px) added to fix style after <NavDropdown.Item> was removed
+                  // ms-3 (margin-left: 3px) added to fix style after <NavDropdown.Item> was removed
                   />
                   {/* </NavDropdown.Item> */}
                   <NavDropdown.Item as={Link} to="/company-profile">
