@@ -74,14 +74,13 @@ export default function CompanyShowFavList(props) {
                       {/* <h2>01</h2> */}
 
                       <h3>{`${first_name}  ${last_name}`}</h3>
+                      <button
+                        onClick={() => deleteFavoriteBtn(id, first_name)}
+                      > Remove from favorite list </button>
                       <h6>{email}</h6>
                       <p>{description}</p>
-                      <input
-                        type="button"
-                        className="Button"
-                        value="Delete from favorite list "
-                        onClick={() => deleteFavoriteBtn(id, first_name)}
-                      />
+
+
                     </div>
                   </div>
                 </div>
