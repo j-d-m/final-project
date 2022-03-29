@@ -6,6 +6,10 @@
     flex-wrap: wrap;
     margin: 40px 0;
 
+    @include mobile-small {
+      margin: 10px 0;
+    }
+
     .Card {
       background-color: $color-pepper;
       position: relative;
@@ -21,6 +25,7 @@
       @include mobile-small {
         min-width: 350px;
         min-height: 550px;
+        margin: 0px;
       }
 
       .Box {
