@@ -32,6 +32,7 @@ function CompanyUpdateJobs(props) {
   const updateJobs = (e) => {
     e.preventDefault();
     let jobTitle, startDate, endDate, numOfPeopleNeeded, jobDescription;
+
     if (
       e.target.jobTitle.value !== undefined &&
       e.target.jobTitle.value !== ""
@@ -63,7 +64,7 @@ function CompanyUpdateJobs(props) {
       jobTitle !== e.target.jobTitle.value &&
       startDate !== e.target.startDate.value &&
       endDate !== e.target.endDate.value &&
-      numOfPeopleNeeded !== e.target.numOfPeopleNeeded.value &&
+      numOfPeopleNeeded !== Number(e.target.numOfPeopleNeeded.value) &&
       jobDescription !== e.target.jobDescription.value
     ) {
       Swal.fire({
