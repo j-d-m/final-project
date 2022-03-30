@@ -61,7 +61,7 @@ button.rec-dot:focus {
 
 //Carousel Arrows
 
-.jRFJkP {
+.rec.rec-arrow {
   background-color: $color-pinky !important;
 
   @include mobile-small {
@@ -73,14 +73,28 @@ button.rec-dot:focus {
   }
 }
 
-.cNNJIt {
-  background-color: $color-pinky !important;
 
-  @include mobile-small {
-    display: none;
-  }
 
-  &:hover {
-    background-color: $color-green !important;
-  }
-}
+// .jRFJkP {
+//   background-color: $color-pinky !important;
+
+//   @include mobile-small {
+//     display: none;
+//   }
+
+//   &:hover {
+//     background-color: $color-green !important;
+//   }
+// }
+
+// .cNNJIt {
+//   background-color: $color-pinky !important;
+
+//   @include mobile-small {
+//     display: none;
+//   }
+
+//   &:hover {
+//     background-color: $color-green !important;
+//   }
+// }
