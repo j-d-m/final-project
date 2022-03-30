@@ -7,10 +7,9 @@ import { DELETE_COMPANY_FAVORITE } from "../../../graphQL/Mutations";
 import { GET_ONE_COMPANY } from "../../../graphQL/Queries";
 import favoriteIcon from "../../../assets/img/favorite.svg";
 
-
 export default function CompanyShowFavList(props) {
-  const { companyLoginData, setCompanyLoginData } = useContext(MyContext);
-  const [deleteCompanyFavorite, { data, loading, error }] = useMutation(
+  const { companyLoginData } = useContext(MyContext);
+  const [deleteCompanyFavorite, { error }] = useMutation(
     DELETE_COMPANY_FAVORITE,
     {
       refetchQueries: [
@@ -52,13 +51,12 @@ export default function CompanyShowFavList(props) {
   };
   return (
     <div>
-      <Modal {...props} size="lg" centered className="favoriteListCompany" >
+      <Modal {...props} size="lg" centered className="favoriteListCompany">
         <Modal.Header closeButton>
           <Modal.Title className="contained-modal-title-vcenter w-100">
             <div className="update-jobs-title d-flex align-items-center justify-content-around">
               <h3> Your Favorite Freelancers </h3>
               <img alt="" src={favoriteIcon} width="80" height="80" />
-
             </div>
           </Modal.Title>
         </Modal.Header>
@@ -74,13 +72,12 @@ export default function CompanyShowFavList(props) {
                       {/* <h2>01</h2> */}
 
                       <h3>{`${first_name}  ${last_name}`}</h3>
-                      <button
-                        onClick={() => deleteFavoriteBtn(id, first_name)}
-                      > Remove from favorite list </button>
+                      <button onClick={() => deleteFavoriteBtn(id, first_name)}>
+                        {" "}
+                        Remove from favorite list{" "}
+                      </button>
                       <h6>{email}</h6>
                       <p>{description}</p>
-
-
                     </div>
                   </div>
                 </div>
