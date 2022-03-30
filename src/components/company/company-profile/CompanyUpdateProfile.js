@@ -2,7 +2,7 @@
 import React, { useContext } from "react";
 
 //Externa Imports
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import { useMutation } from "@apollo/client";
 import Swal from "sweetalert2";
 // import "bootstrap/dist/css/bootstrap.min.css";
@@ -16,19 +16,16 @@ import hotPan from "../../../assets/img/hotPan.svg";
 function CompanyUpdateProfile(props) {
   const { companyLoginData } = useContext(MyContext);
 
-  const [UpdateCompany, { data, loading, error }] = useMutation(
-    UPDATE_COMPANY,
-    {
-      refetchQueries: [
-        { query: GET_JOBS },
-        {
-          query: GET_ONE_COMPANY,
-          variables: { getOneCompanyId: companyLoginData.id },
-        },
-      ],
-      awaitRefetchQueries: true,
-    }
-  );
+  const [UpdateCompany, { error }] = useMutation(UPDATE_COMPANY, {
+    refetchQueries: [
+      { query: GET_JOBS },
+      {
+        query: GET_ONE_COMPANY,
+        variables: { getOneCompanyId: companyLoginData.id },
+      },
+    ],
+    awaitRefetchQueries: true,
+  });
 
   const updateProfile = (e) => {
     e.preventDefault();
