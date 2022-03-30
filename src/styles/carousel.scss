@@ -61,6 +61,20 @@ button.rec-dot:focus {
 
 //Carousel Arrows
 
+.rec.rec-arrow {
+  background-color: $color-pinky !important;
+
+  @include mobile-small {
+    display: none;
+  }
+
+  &:hover {
+    background-color: $color-green !important;
+  }
+}
+
+
+
 // .jRFJkP {
 //   background-color: $color-pinky !important;
 
@@ -84,15 +98,3 @@ button.rec-dot:focus {
 //     background-color: $color-green !important;
 //   }
 // }
-
-.rec.rec-arrow {
-  background-color: $color-pinky !important;
-
-  @include mobile-small {
-    display: none;
-  }
-
-  &:hover {
-    background-color: $color-green !important;
-  }
-}
