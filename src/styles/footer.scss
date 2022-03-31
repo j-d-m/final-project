@@ -53,11 +53,12 @@
   .FooterIconDiv {
     text-align: center;
     height: 30px;
+    cursor: pointer;
 
     .arrowFooterIcon {
-      position: absolute;
-      top: 0px;
-      left: 48vw;
+      // position: absolute;
+      // top: 0px;
+      // left: 48vw;
       color: $color-dark;
       font-size: 3rem;
       cursor: pointer;
@@ -118,7 +119,7 @@
 
           &:hover {
             color: $color-white;
-            color: rgba(255, 255, 255, 0.664);
+            // color: rgba(255, 255, 255, 0.664);
           }
         }
       }

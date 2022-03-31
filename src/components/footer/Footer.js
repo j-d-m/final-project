@@ -22,17 +22,11 @@ export default function Footer() {
       >
         <FaChevronUp />
       </Link>
-      <div className="FooterIconDiv">
+      <div className="FooterIconDiv" onClick={() => setFooterIcon(!footerIcon)}>
         {footerIcon ? (
-          <IoMdArrowDropdownCircle
-            className="arrowFooterIcon"
-            onClick={() => setFooterIcon(!footerIcon)}
-          />
+          <IoMdArrowDropdownCircle className="arrowFooterIcon" />
         ) : (
-          <IoMdArrowDropupCircle
-            className="arrowFooterIcon"
-            onClick={() => setFooterIcon(!footerIcon)}
-          />
+          <IoMdArrowDropupCircle className="arrowFooterIcon" />
         )}
       </div>
       <footer className={footerIcon ? "footer" : "footer d-none"}>
