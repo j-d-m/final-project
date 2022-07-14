@@ -35,13 +35,16 @@ There are two user tracks;
 
 ## Screenshots
 ### homepage
-<img src="public/Screenshots/Hompage.png" width="200"/>
+<img src="public/Screenshots/Hompage.png" width="400"/>
+
 ### Freelancer profile
-<img src="public/Screenshots/Freelancer.png" width="200"/>
+<img src="public/Screenshots/Freelancer.png" width="400"/>
+
 ### company profile
-<img src="public/Screenshots/Company.png" width="200"/>
+<img src="public/Screenshots/Company.png" width="400"/>
+
 ### homepage with footer open
-<img src="public/Screenshots/Footer.png" width="200"/>
+<img src="public/Screenshots/Footer.png" width="400"/>
 
 
  
