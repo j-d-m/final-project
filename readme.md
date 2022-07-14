@@ -34,14 +34,14 @@ There are two user tracks;
 
 
 ## Screenshots
-# homepage
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-# Freelancer profile
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-# company profile
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-# homepage with footer open
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+### homepage
+<img src="public/Screenshots/Hompage.png"/>
+### Freelancer profile
+<img src="public/Screenshots/Freelancer.png"/>
+### company profile
+<img src="public/Screenshots/Company.png"/>
+### homepage with footer open
+<img src="public/Screenshots/Footer.png"
 
 
  
