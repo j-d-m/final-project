@@ -52,7 +52,7 @@ const client = new ApolloClient({
     link,
     middlewareLink,
     createUploadLink({
-      uri: "https://deploy-final-project-anass.herokuapp.com/graphql",
+      uri: "http://localhost:5000/graphql",
     }),
   ]),
 });

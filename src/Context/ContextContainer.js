@@ -15,7 +15,7 @@ function ContextContainer({ children }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://deploy-final-project-anass.herokuapp.com/graphql", {
+    fetch("http://localhost:5000/graphql", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
