@@ -51,17 +51,16 @@ export default function UserSignUp() {
       }
     });
   };
-
+  console.log(data);
   // Error handling needs to be reviewed: When there is an error it needs to show
-  // Sweeet Alert and dont make the user loses everything he has entered so far 
+  // Sweeet Alert and dont make the user loses everything he has entered so far
 
-  if (error) return
-  <p>{error} </p>
-    ;
+  if (error) return;
+  <p>{error} </p>;
 
-  console.log('====================================');
+  console.log("====================================");
   console.log(error);
-  console.log('====================================');
+  console.log("====================================");
 
   return (
     <>
@@ -160,10 +159,7 @@ export default function UserSignUp() {
             </label>
             <label>
               <span> </span>
-              <input
-                type="submit"
-                value="Sign Up"
-              />
+              <input type="submit" value="Sign Up" />
             </label>
           </form>
         </div>

@@ -96,7 +96,7 @@ export default function FreelancerProfile() {
               avatar,
               favorite,
             } = data.getOneUser;
-
+            console.log(avatar);
             return (
               <>
                 <div className="BoxContainer">
