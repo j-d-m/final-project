@@ -52,7 +52,7 @@ const client = new ApolloClient({
     link,
     middlewareLink,
     createUploadLink({
-      uri: "https://final-project-backend-meilp3h6f-j-d-m.vercel.app/graphql",
+      uri: "https://staff-room.cyclic.app/graphql",
     }),
   ]),
 });

@@ -15,7 +15,7 @@ function ContextContainer({ children }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("httpcd ://localhost:5000/graphql", {
+    fetch("https://staff-room.cyclic.app/graphql", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
