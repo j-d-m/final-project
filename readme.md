@@ -1,7 +1,7 @@
 # Staff Room
 
-A platfrom for freelance hospitality(Gastronomie) workers to connect with companies looking for short term hire, event staff, staff shortage cover i.e sick leave of permanent staff.
-Also for companies to find staff for events/catering/shift cover by posting to the platfrom events or jobs that they need staff for.
+A platfrom for freelance hospitality(Gastronomy/hospitality) workers to connect with companies looking for short term hire, event staff, staff shortage cover i.e sick leave of permanent staff.
+Also for companies to find staff for events/catering/shift cover by posting to the platform events or jobs that they need staff for.
 
 There are two user tracks;
 
@@ -18,7 +18,7 @@ There are two user tracks;
 - Editing profile.
 - Upload a new profile picture.
 - Contacting the freelancers using an automated email system.
-- Adding or removing Freelancers to or from a favourites list.
+- Adding or removing Freelancers to or from a favorites list.
 
 ### Freelancers Track
 
@@ -77,9 +77,9 @@ There are two user tracks;
 - The importance of having a good wireframe and design planning =>
   this was over come by using gibhub projects to ensure task assignment.
 
-- Balancing of workload and slpitting task between team members => we solved this issue by having clear commication of our strenghts and weeknesses, and asking for help when needed.
-- Time Managment => Using the Agile Methodology, breaking down the project into 6 sprints
+- Balancing of workload and splitting task between team members => we solved this issue by having clear commination of our strengths and weaknesses, and asking for help when needed.
+- Time Management => Using the Agile Methodology, breaking down the project into 6 sprints
 
 ### lessons learned
 
-Commication is key to any project succeding and planning before coding is a take away from our experience in the project.
+Commination is key to any project succeeding and planning before coding is a take away from our experience in the project.

@@ -1,3 +1,5 @@
+//**This code sets up a React application with routing using react-router-dom, lazy loading components using React's lazy and Suspense for code splitting, and includes a context provider (ContextContainer) for state management. The application has various routes defined for different pages, and a fallback UI is displayed while the lazy-loaded components are being fetched. The application also includes Bootstrap for styling and custom SCSS styles. */
+
 // Native imports
 import { Routes, Route } from "react-router-dom";
 
@@ -6,7 +8,7 @@ import { lazy, Suspense } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ContextContainer from "./Context/ContextContainer";
 import "./styles/App.scss";
-
+// Lazy loading components for code splitting and better performance
 const HomeComponent = lazy(() => import("./components/home/Home"));
 
 const HeaderComponent = lazy(() => import("./components/navbar/Header"));
@@ -61,9 +63,11 @@ function App() {
           </div>
         }
       >
+        {/* ContextContainer to provide context to the entire application */}
+
         <ContextContainer>
           <HeaderComponent />
-
+          {/* Main content area */}
           <main className="container-fluid">
             <Routes>
               <Route path="/" element={<HomeComponent />} />
@@ -108,7 +112,7 @@ function App() {
                 path="/company-profile/company-jobs"
                 element={<CompanyJobsComponent />}
               />
-
+              {/* Catch-all route for 404 Page Not Found */}
               <Route path="*" element={<PageNotFoundComponent />} />
             </Routes>
           </main>
