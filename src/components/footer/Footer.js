@@ -69,7 +69,7 @@ export default function Footer() {
               </div>
             </div>
           </div>
-          <div className=" item social">
+          <div className="item social">
             <a href="https://www.facebook.com/" title="Facebook">
               <BsFacebook className="SocialIcons" />
             </a>
