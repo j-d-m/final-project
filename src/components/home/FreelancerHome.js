@@ -1,18 +1,21 @@
-//Native Imports
+//** Native Imports
 import React, { useContext, useState } from "react";
 
-//External Imports
+//** External Imports
 import { GET_USERS } from "../../graphQL/Queries";
 import { Modal, Button } from "react-bootstrap";
 import { useQuery } from "@apollo/client";
 
-//Internal Imports
+//** Internal Imports
 import "../../styles/freelancerProfileStyle.scss";
 import "../../styles/freelanceHome.scss";
 import staffBook from "../../assets/img/staffBook.svg";
 import { MyContext } from "../../Context/Context";
 import FreelancerView from "../freelancer/freelancer-profile/FreelancerView";
 
+/**
+ ** FreelancerHome component renders a modal that allows users to search and view freelancer profiles.
+ */
 export default function FreelancerHome(props) {
   const [searchFreelancers, setSearchFreelancers] = useState("");
   const [currentFreelancer, setCurrentFreelancer] = useState("");
@@ -22,7 +25,7 @@ export default function FreelancerHome(props) {
   const { loading, error, data } = useQuery(GET_USERS);
 
   if (loading) {
-    return <p></p>; //empty because we dont want to show anything
+    return <p></p>; //empty because we don't want to show anything
   }
   if (error) {
     console.log(error);
@@ -40,14 +43,13 @@ export default function FreelancerHome(props) {
       return user.description.includes(searchFreelancers);
     });
 
-
   return (
     <>
       <Modal
         {...props}
         size="xl"
         centered
-        className="ProfileUpdate jobsAdminModalBg "
+        className="ProfileUpdate jobsAdminModalBg"
       >
         <Modal.Header closeButton>
           <Modal.Title className="contained-modal-title-vcenter w-100">
@@ -58,8 +60,7 @@ export default function FreelancerHome(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-
-          {/*search begins*/}
+          {/* Search begins */}
           <div className="FreelancerSearch">
             <form className="Search-Form">
               <input
@@ -70,26 +71,27 @@ export default function FreelancerHome(props) {
               />
             </form>
           </div>
-          {/*search ends*/}
+          {/* Search ends */}
 
           {result.length > 0 ? (
             result.map((user) => {
               console.log(user.id);
 
               return (
-                <section
-                  className="MainContainer"
-                  key={user.id}
-                // onMouseOut={() => setShowContactForm(false)}
-                >
+                <section className="MainContainer" key={user.id}>
                   <div className="bodyCard-avatar">
                     <img src={user.avatar} alt="img" />
                     <h2 className="name">
-                      {`${user.first_name[0].toUpperCase() + user.first_name.substring(1).toLowerCase()} 
-                      ${user.last_name[0].toUpperCase() + user.last_name.substring(1).toLowerCase()}`}
-
+                      {`${
+                        user.first_name[0].toUpperCase() +
+                        user.first_name.substring(1).toLowerCase()
+                      } 
+                      ${
+                        user.last_name[0].toUpperCase() +
+                        user.last_name.substring(1).toLowerCase()
+                      }`}
                     </h2>
-                    {/*button to open the freelancer contact card*/}
+                    {/* Button to open the freelancer contact card */}
                     <div className="OpenContact">
                       <Button
                         className="Btn contactDetailsButton mx-1"
@@ -113,27 +115,28 @@ export default function FreelancerHome(props) {
                       </Button>
                     </div>
                   </div>
-                  {showContactForm &&
-                    currentFreelancer === user.id ? (
+                  {showContactForm && currentFreelancer === user.id ? (
                     <FreelancerView />
                   ) : (
                     <>
-                      {/* button to open the freelancer contact card END*/}
-                      < div className="bodyCard-details">
+                      {/* Button to open the freelancer contact card END */}
+                      <div className="bodyCard-details">
                         <p>
                           <span>Name: </span>
-                          {user.first_name[0].toUpperCase() + user.first_name.substring(1).toLowerCase()
-                            + " " +
-                            user.last_name[0].toUpperCase() + user.last_name.substring(1).toLowerCase()}
+                          {user.first_name[0].toUpperCase() +
+                            user.first_name.substring(1).toLowerCase() +
+                            " " +
+                            user.last_name[0].toUpperCase() +
+                            user.last_name.substring(1).toLowerCase()}
                         </p>
                         <p>
                           <span>Hourly Rate: </span>
                           {`€${user.hourly_rate} per hour `}
                         </p>
-
                         <p>
                           <span>Summary/Position: </span>
-                          {user.description[0].toUpperCase() + user.description.substring(1).toLowerCase()}
+                          {user.description[0].toUpperCase() +
+                            user.description.substring(1).toLowerCase()}
                         </p>
                         <p>
                           <span>Phone Number: </span>
@@ -144,8 +147,8 @@ export default function FreelancerHome(props) {
                           {user.email.toLowerCase()}
                         </p>
                       </div>
-                    </>)
-                  }
+                    </>
+                  )}
                 </section>
               );
             })

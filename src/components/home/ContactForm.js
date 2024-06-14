@@ -1,19 +1,21 @@
-//Native Imports
+// Native Imports
 import React, { useContext, useState } from "react";
 
-//External Impors
+// External Imports
 import emailjs from "@emailjs/browser";
 import { useMutation } from "@apollo/client";
 
-//Internal Imports
+// Internal Imports
 import { USER_FAVORITE } from "../../graphQL/Mutations";
 import { MyContext } from "../../Context/Context";
 import { GET_ONE_USER } from "../../graphQL/Queries";
-import '../../styles/contact.scss'
+import "../../styles/contact.scss";
 import waiterSmile from "../../assets/img/waiter-smile.svg";
 
-
-
+/**
+ * Contact component allows freelancers to contact companies regarding a job.
+ * It sends an email using emailjs and updates the user's favorite jobs using GraphQL.
+ */
 export default function Contact({ job }) {
   const [emailSent, setEmailSent] = useState(false);
   const { freelancerLoginData, isFreelancerLogin } = useContext(MyContext);
@@ -28,6 +30,12 @@ export default function Contact({ job }) {
     }
   );
 
+  /**
+   * Function to handle sending the email.
+   * It checks if the freelancer is logged in and if the email matches the logged-in user's email,
+   * then sends the email using emailjs and updates the user's favorite jobs.
+   * @param {Event} e - The form submission event.
+   */
   const sendEmail = (e) => {
     e.preventDefault();
     if (isFreelancerLogin) {
@@ -40,21 +48,19 @@ export default function Contact({ job }) {
             process.env.REACT_APP_EMAILJS_USER_ID
           )
           .then((result) => {
-            if (true) {
-              UpdateUserFavorite({
-                variables: {
-                  userId: freelancerLoginData.id,
-                  job: {
-                    id: job.id,
-                    job_Title: job.job_Title,
-                    start_Date: job.start_Date,
-                    end_Date: job.end_Date,
-                    num_of_people_needed: job.num_of_people_needed,
-                    job_description: job.job_description,
-                  },
+            UpdateUserFavorite({
+              variables: {
+                userId: freelancerLoginData.id,
+                job: {
+                  id: job.id,
+                  job_Title: job.job_Title,
+                  start_Date: job.start_Date,
+                  end_Date: job.end_Date,
+                  num_of_people_needed: job.num_of_people_needed,
+                  job_description: job.job_description,
                 },
-              });
-            }
+              },
+            });
           })
           .catch((err) => console.log(err));
         e.target.reset();
@@ -63,23 +69,20 @@ export default function Contact({ job }) {
     }
   };
 
-
   return (
     <>
       {emailSent ? (
         <div className="alert text-center" role="alert">
           Your message was sent!
-          <img alt="" src={waiterSmile} width="150" height="150" className="" />
+          <img alt="" src={waiterSmile} width="150" height="150" />
         </div>
       ) : (
-
-        //company data
-        <div className="container contact-form-freelancer contactFormContainer ">
+        <div className="container contact-form-freelancer contactFormContainer">
           <h4>Contact the Company</h4>
           <form onSubmit={sendEmail}>
-            <div className="d-flex justify-content-between mb-3 ">
-              <div className="w-100" >
-                <div className="form-group col-auto ">
+            <div className="d-flex justify-content-between mb-3">
+              <div className="w-100">
+                <div className="form-group col-auto">
                   <label htmlFor="name">Company Name</label>
                   <input
                     type="text"
@@ -100,32 +103,20 @@ export default function Contact({ job }) {
                   />
                 </div>
               </div>
-              <div
-                className="
-              d-flex
-              justify-content-center
-              align-items-center                         
-              "              >
+              <div className="d-flex justify-content-center align-items-center">
                 <img
                   src={job.created_by.avatar}
-                  className="contact-avatar-company  "
+                  className="contact-avatar-company"
                   alt=""
                 />
               </div>
             </div>
 
-
-            {/* freelancer data */}
             <div className="d-flex justify-content-between">
-              <div
-                className="
-              d-flex
-              justify-content-center
-              align-items-center                         
-              "              >
+              <div className="d-flex justify-content-center align-items-center">
                 <img
                   src={freelancerLoginData.avatar}
-                  className="contact-avatar-freelancer  "
+                  className="contact-avatar-freelancer"
                   alt=""
                 />
               </div>
@@ -150,9 +141,7 @@ export default function Contact({ job }) {
                     defaultValue={freelancerLoginData.email}
                     maxLength="50"
                   />
-
                 </div>
-
                 <div className="form-row">
                   <div className="form-group col-auto">
                     <label htmlFor="phone">Contact Number</label>
@@ -165,11 +154,10 @@ export default function Contact({ job }) {
                     />
                   </div>
                 </div>
-
               </div>
             </div>
             <div className="form-row mb-3">
-              <div className="form-group col-md-12 ">
+              <div className="form-group col-md-12">
                 <label htmlFor="message">Message</label>
                 <textarea
                   type="textarea"
@@ -185,7 +173,7 @@ export default function Contact({ job }) {
             <div className="text-end m-2">
               <button
                 type="submit"
-                className="btn btn-outline-secondary col-3 "
+                className="btn btn-outline-secondary col-3"
                 value="Send"
               >
                 Send

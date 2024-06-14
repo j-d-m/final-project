@@ -18,7 +18,8 @@ import { MyContext } from "../../Context/Context";
 import { GET_JOBS } from "../../graphQL/Queries";
 import exclamation from "../../assets/img/exclamation.ico";
 import IntApiCarousel from "./IntApiCarousel";
-import ExtApiCarousel from "./ExtApiCarousel";
+//**The EXTERNAL API is not being used in this version of the project */
+// import ExtApiCarousel from "./ExtApiCarousel";
 import FreelancerHome from "./FreelancerHome";
 import ThreeSteps from "./ThreeSteps";
 import SearchCard from "./SearchCard";
@@ -140,7 +141,8 @@ export default function Home() {
         <div className="jobs-combo-box">
           <IntApiCarousel />
           <ThreeSteps />
-          <ExtApiCarousel />
+          {/* NOT BRING USED IN THIS VERSION OF THE PROJECT 
+         <ExtApiCarousel /> */}
         </div>
       </div>
     </>
