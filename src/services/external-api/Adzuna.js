@@ -1,9 +1,6 @@
 // const API_KEY = process.env.REACT_APP_ADZUNA_API_KEY;
 // const API_ID = process.env.REACT_APP_ADZUNA_API_ID;
 
-// const API_KEY = "29a3798b05f90a06de46cbde16715be2";
-// const API_ID = "d2c33ab1";
-
 // const API_BASE_URL = 'https://api.adzuna.com/v1/api/jobs';
 // const API_KEYWORD_WHAT_AND = 'what_and=freiberuf' /* The keywords to search for, all keywords must be found. */
 // const API_KEYWORD_WHAT_OR = 'what_or=freelance%20freiberuf' /* The keywords to search for, any keywords may be found. Multiple terms may be space separated. */
